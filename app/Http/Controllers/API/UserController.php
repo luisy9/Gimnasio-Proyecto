@@ -28,7 +28,7 @@ class UserController extends Controller
 
             $success = true;
             $message = "Usuario registrado correctamente";
-        } catch (\Illuminati\Database\QueryException $ex) {
+        } catch (\Illuminate\Database\QueryException $ex) {
             $success = false;
             $message = $ex->getMessage();
         }
