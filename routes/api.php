@@ -20,12 +20,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('login',[UserController::class,'login']);
-Route::post('register',[UserController::class,'register']);
-Route::post('logout',[UserController::class, 'logout'])->middleware(['auth:sanctum']);
-Route::group(['prefix' => 'posts', 'middleware' => 'auth:sanctum'], function(){
-    Route::get('/' , + [PostController::class,'index']);
-    Route::post('add' , + [PostController::class,'add']);
-}
-
-);
+Route::post('login', [UserController::class, 'login']);
+Route::post('register', [UserController::class, 'register']);
+Route::post('logout', [UserController::class, 'logout'])->middleware(['auth:sanctum']);
+Route::group(['prefix' => 'posts', 'middleware' => 'auth:sanctum'], function () {
+    Route::get('/', [PostController::class, 'index']);
+    Route::post('add', [PostController::class, 'add']);
+});

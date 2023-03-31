@@ -5,6 +5,7 @@ import Dashboard from "../components/Dashboard.vue";
 import Posts from '../components/Posts.vue';
 import AddPosts from '../components/addPost.vue';
 // import EditPosts from '../components/editPosts.vue';
+import {createWebHistory, createRouter} from "vue-router";
 
 export const routes = [
     {

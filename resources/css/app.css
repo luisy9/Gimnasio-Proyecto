@@ -1,0 +1,15 @@
+/* HEADER */
+.logo_header{
+    height: 80px;
+    width: 80px;
+    margin-left: 30px;
+    background: url(http://programandoointentandolo.com/ejemplos/imagenes/cubo/img1.png) no-repeat;
+}
+.login_header{
+    height: 40px;
+    width: 40px;
+    margin-right: 30px;
+}
+.logo_header:hover {
+    background: url(../img/nike_logo_hov.svg) no-repeat;
+}
