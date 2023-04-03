@@ -1,9 +1,9 @@
 <template>
     <!--<div class="container">-->
-        <nav class="navbar navbar-expand-sm navbar-light bg-light mb-4 ">
-            <div class="movil-vis logo-general-header">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light mb-4 nav-padding">
+            <div class="movil-vis logo-header">
                 <a href="/">
-                    <img id="imagen-cambiante" src="../img/nike_logo.svg" class="logo_header">
+                    <img src="../img/nike_logo.svg" alt="Logo">
                 </a>
             </div>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
@@ -18,9 +18,11 @@
                 <router-link to="/login" class="nav-item nav-link">Tarifas</router-link>
                 <router-link to="/register" class="nav-item nav-link">¿Quienes somos?</router-link>
             </div>
-            <a href="/">
-            <img src="../img/logo_login.svg" class="login_header">
-            </a>
+            <div class="movil-vis login-header">
+                <a href="/">
+                    <img src="../img/logo_login.svg">
+                </a>
+            </div>
         </nav>
  
  
