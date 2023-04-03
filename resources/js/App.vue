@@ -1,6 +1,6 @@
 <template>
     <!--<div class="container">-->
-        <nav class="navbar navbar-expand-sm navbar-light bg-light mb-4 nav-padding">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light nav-padding">
             <div class="movil-vis logo-header">
                 <a href="/">
                     <img src="../img/nike_logo.svg" alt="Logo">
@@ -19,7 +19,7 @@
                 <router-link to="/register" class="nav-item nav-link">¿Quienes somos?</router-link>
             </div>
             <div class="movil-vis login-header">
-                <a href="/">
+                <a href="/login">
                     <img src="../img/logo_login.svg">
                 </a>
             </div>
