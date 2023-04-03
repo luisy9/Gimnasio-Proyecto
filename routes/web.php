@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\DB;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('{any}', function(){
+    return view('app');
+})->where('any','.*');
+
 
 Route::get('/connection', function(){
     try{

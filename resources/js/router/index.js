@@ -4,6 +4,7 @@ import Login from "../components/Login.vue";
 import Dashboard from "../components/Dashboard.vue";
 import Posts from '../components/Posts.vue';
 import AddPosts from '../components/addPost.vue';
+import {createWebHistory, createRouter} from "vue-router";
 // import EditPosts from '../components/editPosts.vue';
 
 export const routes = [
