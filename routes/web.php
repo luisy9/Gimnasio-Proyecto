@@ -22,12 +22,6 @@ Route::get('{any}', function(){
 })->where('any','.*');
 
 
-Route::get('/connection', function(){
-    try{
-        DB::connection()->getPdo();
-        return 'conectado';
-    }
-    catch(\Exception $ex){
-        dd($ex->getMessage());
-    }
-});
+Route::get('{any}', function(){
+        return view('app');
+})->where('any','.*');

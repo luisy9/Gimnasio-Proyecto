@@ -1,0 +1,79 @@
+/* GENERAL */
+
+/* Seccion */
+.seccion{
+    margin: 100px;
+}
+/* Texto*/
+
+
+/* Estilos para el boton */
+.button-primary {
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #000000;
+    border: none;
+    border-radius: 50px;
+  }
+  
+  .button-primary:hover {
+    background-color: #707070;
+  }
+  
+  .button-secondary {
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #000000;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50px;
+  }
+  
+  .button-secondary:hover {
+    background-color: #D6D6D6;
+  }
+  
+/* HEADER */
+
+.nav-padding {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.logo-header img {
+    height: 80px;
+    width: 80px;
+    transition: all 0.3s ease-in-out;
+}
+.logo-header img:hover {
+    content: url("../img/nike_logo_hov.svg");
+}
+.login-header img {
+    height: 35px;
+    width: 35px;
+    transition: all 0.3s ease-in-out;
+}
+.login-header img:hover {
+    content: url("../img/logo_login_hov.svg");
+}
+
+/* HOME */
+
+.banner-home {
+    background-image: url("../img/banner.webp");
+    height: 800px;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    background-repeat: no-repeat;
+}
+.banner-text {
+    font-size: 25px;
+    padding-top: 150px;
+    padding-left: 80px;
+    width: 650px;
+}
