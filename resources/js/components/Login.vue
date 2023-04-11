@@ -12,7 +12,7 @@
                         data-bs-dismiss="alert"
                         aria-label="Close"
                     ></button>
-                    <strong>{{  }}</strong>
+                    <strong>{{}}</strong>
                 </div>
 
                 <div class="card card-default">
@@ -20,7 +20,11 @@
                         <h5>Login</h5>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form
+                            action=""
+                            method="GET"
+                            @submit.prevent="loginUser()"
+                        >
                             <div class="form-group row">
                                 <label
                                     for="email"
@@ -31,13 +35,14 @@
                                 <div class="col-md-8">
                                     <input
                                         id="email"
-                                        type="email"
+                                        type="text"
                                         class="form-control"
+                                        v-model="email"
                                         required
                                         autofocus
                                         autocomplete="off"
-                                        placeholder="Enter your email"
-                                    >
+                                        placeholder="Teclea tu email"
+                                    />
                                 </div>
                             </div>
 
@@ -53,10 +58,12 @@
                                         id="password"
                                         type="password"
                                         class="form-control"
+                                        v-model="password"
                                         required
+                                        autofocus
                                         autocomplete="off"
-                                        placeholder="Enter your password"
-                                    >
+                                        placeholder="Teclea tu contraseña"
+                                    />
                                 </div>
                             </div>
 
@@ -87,4 +94,43 @@
             </div>
         </div>
     </div>
-</template>;
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            email: "",
+            password: "",
+        };
+    },
+
+    methods: {
+        loginUser() {
+            if (this.password.length > 0) {
+                this.$axios
+                    .get("/sanctum/csrf-cookie")
+                    .then((response) => {
+                        this.$axios
+                            .post("api/login", {
+                                email: this.email,
+                                password: this.password,
+                            })
+                            .then((response) => {
+                                if (response.data.success) {
+                                    console.error("OK");
+                                    window.location.href = "/login";
+                                } else {
+                                    console.error("No loggin");
+                                    this.error = response.data.message;
+                                }
+                            })
+                            .catch(function (error) {
+                                console.error(error);
+                            });
+                    });
+            }
+        },
+    },
+};
+</script>

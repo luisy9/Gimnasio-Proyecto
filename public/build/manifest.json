@@ -1,0 +1,36 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-4a7b6679.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/img/banner.webp": {
+    "file": "assets/banner-6956ab39.webp",
+    "src": "resources/img/banner.webp"
+  },
+  "resources/img/logo_login.svg": {
+    "file": "assets/logo_login-87fb6bd2.svg",
+    "src": "resources/img/logo_login.svg"
+  },
+  "resources/img/logo_login_hov.svg": {
+    "file": "assets/logo_login_hov-93f10678.svg",
+    "src": "resources/img/logo_login_hov.svg"
+  },
+  "resources/img/nike_logo.svg": {
+    "file": "assets/nike_logo-57694bf3.svg",
+    "src": "resources/img/nike_logo.svg"
+  },
+  "resources/img/nike_logo_hov.svg": {
+    "file": "assets/nike_logo_hov-033ad4cf.svg",
+    "src": "resources/img/nike_logo_hov.svg"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/nike_logo-57694bf3.svg",
+      "assets/logo_login-87fb6bd2.svg"
+    ],
+    "file": "assets/app-10f7c8eb.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}

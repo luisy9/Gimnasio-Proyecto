@@ -19,23 +19,45 @@
                 <div class="card card-default">
                     <div class="card-header"><h5>Register New User</h5></div>
                     <div class="card-body">
+                        <h1>Form Register</h1>
+
                         <form>
                             <div class="form-group row">
                                 <label
-                                    for="name"
+                                    for="nombre"
                                     class="col-sm-4 col-form-label text-md-right"
-                                    >Name</label
+                                    >Nombre</label
                                 >
                                 <div class="col-md-8">
                                     <input
-                                        id="name"
+                                        id="nombre"
                                         type="text"
                                         class="form-control"
-                                        v-model="name"
+                                        v-model="nombre"
                                         required
                                         autofocus
                                         autocomplete="off"
-                                        placeholder="Enter your name"
+                                        placeholder="Teclea tu nombre"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="form-group row mt-1">
+                                <label
+                                    for="Apellido"
+                                    class="col-sm-4 col-form-label text-md-right"
+                                    >Apellido</label
+                                >
+                                <div class="col-md-8">
+                                    <input
+                                        id="Apellido"
+                                        type="text"
+                                        class="form-control"
+                                        v-model="Apellido"
+                                        required
+                                        autofocus
+                                        autocomplete="off"
+                                        placeholder="Teclea tu Apellido"
                                     />
                                 </div>
                             </div>
@@ -43,8 +65,8 @@
                             <div class="form-group row mt-1">
                                 <label
                                     for="email"
-                                    class="col-sm-4 col-form-label text-md-right"
-                                    >E-Mail Address</label
+                                    class="col-md-4 col-form-label text-md-right"
+                                    >email</label
                                 >
                                 <div class="col-md-8">
                                     <input
@@ -53,18 +75,34 @@
                                         class="form-control"
                                         v-model="email"
                                         required
-                                        autofocus
                                         autocomplete="off"
-                                        placeholder="Enter your email"
+                                        placeholder="Teclea tu email"
                                     />
                                 </div>
                             </div>
-
+                            <div class="form-group row mt-1">
+                                <label
+                                    for="DNI"
+                                    class="col-md-4 col-form-label text-md-right"
+                                    >DNI</label
+                                >
+                                <div class="col-md-8">
+                                    <input
+                                        id="DNI"
+                                        type="DNI"
+                                        class="form-control"
+                                        v-model="DNI"
+                                        required
+                                        autocomplete="off"
+                                        placeholder="Teclea tu DNI"
+                                    />
+                                </div>
+                            </div>
                             <div class="form-group row mt-1">
                                 <label
                                     for="password"
                                     class="col-md-4 col-form-label text-md-right"
-                                    >Password</label
+                                    >Contraseñ</label
                                 >
                                 <div class="col-md-8">
                                     <input
@@ -74,7 +112,25 @@
                                         v-model="password"
                                         required
                                         autocomplete="off"
-                                        placeholder="Enter your password"
+                                        placeholder="Teclea tu passwordseña"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group row mt-1">
+                                <label
+                                    for="fecha_nacimiento"
+                                    class="col-md-4 col-form-label text-md-right"
+                                    >fecha nacimiento</label
+                                >
+                                <div class="col-md-8">
+                                    <input
+                                        id="fecha_nacimiento"
+                                        type="date"
+                                        class="form-control"
+                                        v-model="fecha_nacimiento"
+                                        required
+                                        autocomplete="off"
+                                        placeholder="Teclea tu fecha nacimiento"
                                     />
                                 </div>
                             </div>
@@ -84,6 +140,7 @@
                                     <button
                                         type="submit"
                                         class="btn btn-success"
+                                        @click="register"
                                     >
                                         Register
                                     </button>
@@ -111,7 +168,70 @@
 <script>
 export default {
     data() {
-        return {};
+        return {
+            nombre: "",
+            Apellido: "",
+            email: "",
+            DNI: "",
+            password: "",
+            fecha_nacimiento: "",
+            rol: "usuario",
+            error: null,
+        };
+    },
+    methods: {
+        register(e) {
+            e.preventDefault();
+            if (this.password.length > 0) {
+                this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                    this.$axios
+                        .post("api/register", {
+                            name: this.name,
+                            Apellido: this.Apellido,
+                            email: this.email,
+                            DNI: this.DNI,
+                            password: this.password,
+                            fecha_nacimiento: this.fecha_nacimiento,
+                            rol: this.rol,
+                        })
+                        .then((response) => {
+                            if (response.data.success) {
+                                window.location.href = "/login";
+                            } else {
+                                this.error = response.data.message;
+                            }
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        });
+                });
+            }
+        },
+        // addUser() {
+        //     if (this.password.length > 0) {
+        //         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+        //             this.$axios
+        //                 .post("api/register", {
+        //                     name: this.name,
+        //                     Apellido: this.Apellido,
+        //                     email: this.email,
+        //                     password: this.password,
+        //                     fecha_nacimiento: this.fecha_nacimiento,
+        //                     rol: this.rol,
+        //                 })
+        //                 .then((response) => {
+        //                     if (response.data.success) {
+        //                         window.location.href = "/login";
+        //                     } else {
+        //                         this.error = response.data.message;
+        //                     }
+        //                 })
+        //                 .catch(function (error) {
+        //                     console.error(error);
+        //                 });
+        //         });
+        //     }
+        // },
     },
 };
 </script>

@@ -127,7 +127,7 @@ export default {
                 formData.append("file", this.img);
 
                 this.$axios
-                    .post("/api/posts/add", formData, config)
+                    .post("http://127.0.0.1:8000/api/register", formData, config)
                     .then((response) => {
                         existObj.strError = "";
                         existObj.strSuccess = response.data.success;
