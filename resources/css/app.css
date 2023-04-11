@@ -77,3 +77,14 @@
     padding-left: 80px;
     width: 650px;
 }
+
+/* LOGIN */
+
+.login-pag{
+    margin-top: 50px;
+    text-align: center;
+}
+    /* color link*/
+a.link-login{
+    color:#000000;
+}
