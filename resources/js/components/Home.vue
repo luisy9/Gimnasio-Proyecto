@@ -18,7 +18,7 @@
           <div class="card-header py-3">
             <h4 class="my-0 fw-normal">Free</h4>
           </div>
-          <div class="card-body">
+          <div class="card-body carta-color">
             <h1 class="card-title pricing-card-title">0€<small class="text-body-secondary fw-light">/mes</small></h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li>Entrada de un día</li>
@@ -35,7 +35,7 @@
           <div class="card-header py-3">
             <h4 class="my-0 fw-normal">Pro</h4>
           </div>
-          <div class="card-body">
+          <div class="card-body carta-color">
             <h1 class="card-title pricing-card-title">15€<small class="text-body-secondary fw-light">/mes</small></h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li>20 users included</li>
@@ -52,7 +52,7 @@
           <div class="card-header py-3 text-bg-dark border-dark">
             <h4 class="my-0 fw-normal">Enterprise</h4>
           </div>
-          <div class="card-body">
+          <div class="card-body carta-color">
             <h1 class="card-title pricing-card-title">29€<small class="text-body-secondary fw-light">/mes</small></h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li>30 users included</li>
@@ -69,9 +69,26 @@
   </div>
 
 <!-- SEC2  ELEGIRNOS-->
-<div class="seccion">
+<div>
+<div class="seccion mx-0 mb-0">
 <div class="text-center text-titulo">
 <h1>NUESTRO CLUB</h1>
+</div>
+<div class="row">
+  <div class="col-md-7 imagen-prueba"></div>
+  <div class="col-md-5">
+    <div style="height: 500px; width: 600px; margin-top: 100px; margin-left: -100px;">
+      <h2>¿PARA QUÉ?</h2>
+      <ul class="list-unstyled listaguion mt-3 mb-4">
+        <li>Desarrollar el crecimiento muscular y la fuerza física.</li>
+        <li>Para obtener una mayor resistencia y unos músculos más tonificados y prominentes.</li>
+        <li>Aumentar la masa muscular reduciendo la grasa.</li>
+        <li>Fortalecer la resistencia ósea combatiendo la pérdida de densidad (osteoporosis) con cargas progresivas</li>
+        <li>Estimular la confianza personal ayudándote a conseguir un cuerpo con el que te sientas bien.</li>
+      </ul>
+    </div>
+  </div>
+</div>
 </div>
 </div>
 </template>

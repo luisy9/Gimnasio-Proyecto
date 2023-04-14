@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div class="container">
         <div class="row jutify-content-center">
             <div class="col-md-8">
@@ -93,7 +94,46 @@
                 </div>
             </div>
         </div>
+=======
+    <div class="container px-5">
+    <div class="login-pag">
+    <div class="row jutify-content-center w-50 mx-auto">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong>{{  }}</strong>
+>>>>>>> 40c38eeaf4f9d9606e6c3d0d9e85f8f3e7fe8520
     </div>
+    <main class="form-signin w-100 m-auto px-5">
+        <form>
+            <h1 class="h3 mb-3 fw-normal">Inicia sesión para acceder a tu cuenta</h1>
+            <br>
+            <div class="form-floating">
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" required autofocus>
+                <label for="floatingInput">Email address</label>
+            </div>
+            <br>
+            <div class="form-floating">
+              <input type="password" class="form-control" id="password" placeholder="Password" required autofocus>
+              <label for="floatingPassword">Password</label>
+            </div>
+            <br>
+            <div class="text-center">
+            <button class="button-primary" type="submit">Continuar</button>
+            </div>
+            <div class="text-center mt-3">
+                <small class="text-muted">
+                    Don't have any account yet? Please
+                    <router-link class="link-login" to="/register">
+                        Register
+                    </router-link>
+                </small>
+            </div>
+        </form>
+    </main>
+    </div>
+    </div>
+</div>
+    
 </template>
 
 <script>
@@ -133,4 +173,10 @@ export default {
         },
     },
 };
+<<<<<<< HEAD
 </script>
+=======
+</script>
+
+
+>>>>>>> 40c38eeaf4f9d9606e6c3d0d9e85f8f3e7fe8520

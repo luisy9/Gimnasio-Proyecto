@@ -1,5 +1,9 @@
 /* GENERAL */
 
+/* Container */
+.container{
+    min-height: 675px;
+}
 /* Seccion */
 .seccion{
     margin: 100px;
@@ -81,6 +85,24 @@
     padding-left: 80px;
     width: 650px;
 }
+.imagen-prueba{
+    background-image: url("../img/seccion3.webp");
+    height: 600px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.listaguion li{
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+.listaguion li:before{
+    content: "-";
+}
+/* tarifa */
+
+.carta-color{
+    background-color: #fafbfd;
+}
 
 /* LOGIN */
 
@@ -91,4 +113,20 @@
     /* color link*/
 a.link-login{
     color:#000000;
+}
+/* FOOTER */
+.img-footer li{
+    opacity: 0.5;
+}
+.img-footer li:hover{
+    opacity: 1;
+}
+.nav-link{
+    opacity: 0.5;
+}
+.nav-link:hover{
+    opacity: 1;
+}
+.footer-link{
+    opacity: 0.5;
 }

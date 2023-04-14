@@ -25,11 +25,28 @@
             </div>
         </nav>
  
- 
- 
- 
         <router-view></router-view>
-    <!--</div>-->
+
+        <div class="bg-black">
+            <footer class="py-3">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Pricing</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
+                </ul>
+                <ul class="nav justify-content-center list-unstyled d-flex img-footer my-4">
+      <li class="ms-3 mx-2"><a class="text-muted" href="https://twitter.com/Nike"><img src="../img/tw.svg" alt="Logo" width="35" height="35"></a></li>
+      <li class="ms-3 mx-2"><a class="text-muted" href="https://youtube.com/Nike"><img src="../img/fb.svg" alt="Logo" width="35" height="35"></a></li>
+      <li class="ms-3 mx-2"><a class="text-muted" href="https://twitter.com/Nike"><img src="../img/yt.svg" alt="Logo" width="35" height="35"></a></li>
+      <li class="ms-3 mx-2"><a class="text-muted" href="https://twitter.com/Nike"><img src="../img/ig.svg" alt="Logo" width="35" height="35"></a></li>
+    </ul>
+    <div class="d-flex align-items-center justify-content-center">
+      <span class="mb-3 mb-md-0 text-light footer-link">© 2023 Nike, Inc. Todos los derechos reservados</span>
+    </div>
+            </footer>
+        </div>
  </template>
  <script>
  export default {
