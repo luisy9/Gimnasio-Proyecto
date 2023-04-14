@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-    <div class="login-pag px-5">
+    <div class="container px-5">
+    <div class="login-pag">
     <div class="row jutify-content-center w-50 mx-auto">
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
