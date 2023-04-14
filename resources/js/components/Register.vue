@@ -13,7 +13,7 @@
                         aria-label="Close"
                     ></button>
 
-                    <strong></strong>
+                    <strong>{{ error }}</strong>
                 </div>
 
                 <div class="card card-default">
@@ -34,7 +34,6 @@
                                         type="text"
                                         class="form-control"
                                         v-model="nombre"
-                                        required
                                         autofocus
                                         autocomplete="off"
                                         placeholder="Teclea tu nombre"
@@ -54,14 +53,12 @@
                                         type="text"
                                         class="form-control"
                                         v-model="Apellido"
-                                        required
                                         autofocus
                                         autocomplete="off"
                                         placeholder="Teclea tu Apellido"
                                     />
                                 </div>
                             </div>
-
                             <div class="form-group row mt-1">
                                 <label
                                     for="email"
@@ -74,7 +71,6 @@
                                         type="email"
                                         class="form-control"
                                         v-model="email"
-                                        required
                                         autocomplete="off"
                                         placeholder="Teclea tu email"
                                     />
@@ -92,7 +88,6 @@
                                         type="DNI"
                                         class="form-control"
                                         v-model="DNI"
-                                        required
                                         autocomplete="off"
                                         placeholder="Teclea tu DNI"
                                     />
@@ -110,7 +105,6 @@
                                         type="password"
                                         class="form-control"
                                         v-model="password"
-                                        required
                                         autocomplete="off"
                                         placeholder="Teclea tu passwordseña"
                                     />
@@ -128,7 +122,6 @@
                                         type="date"
                                         class="form-control"
                                         v-model="fecha_nacimiento"
-                                        required
                                         autocomplete="off"
                                         placeholder="Teclea tu fecha nacimiento"
                                     />
@@ -182,56 +175,33 @@ export default {
     methods: {
         register(e) {
             e.preventDefault();
-            if (this.password.length > 0) {
-                this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-                    this.$axios
-                        .post("api/register", {
-                            name: this.name,
-                            Apellido: this.Apellido,
-                            email: this.email,
-                            DNI: this.DNI,
-                            password: this.password,
-                            fecha_nacimiento: this.fecha_nacimiento,
-                            rol: this.rol,
-                        })
-                        .then((response) => {
-                            if (response.data.success) {
-                                window.location.href = "/login";
-                            } else {
-                                this.error = response.data.message;
-                            }
-                        })
-                        .catch(function (error) {
-                            console.error(error);
-                        });
-                });
-            }
+            // if (this.password.length > 0) {
+            this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                this.$axios
+                    .post("api/register", {
+                        nombre: this.nombre,
+                        Apellido: this.Apellido,
+                        email: this.email,
+                        DNI: this.DNI,
+                        password: this.password,
+                        fecha_nacimiento: this.fecha_nacimiento,
+                        rol: this.rol,
+                    })
+                    .then((response) => {
+                        if (response.data.success) {
+                            window.location.href = "/login";
+                        } else {
+                            console.log(response);
+                            console.log("hola error");
+                            this.error = response.data.message;
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                    });
+            });
+            // }
         },
-        // addUser() {
-        //     if (this.password.length > 0) {
-        //         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-        //             this.$axios
-        //                 .post("api/register", {
-        //                     name: this.name,
-        //                     Apellido: this.Apellido,
-        //                     email: this.email,
-        //                     password: this.password,
-        //                     fecha_nacimiento: this.fecha_nacimiento,
-        //                     rol: this.rol,
-        //                 })
-        //                 .then((response) => {
-        //                     if (response.data.success) {
-        //                         window.location.href = "/login";
-        //                     } else {
-        //                         this.error = response.data.message;
-        //                     }
-        //                 })
-        //                 .catch(function (error) {
-        //                     console.error(error);
-        //                 });
-        //         });
-        //     }
-        // },
     },
 };
 </script>
