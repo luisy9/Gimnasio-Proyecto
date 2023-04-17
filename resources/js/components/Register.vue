@@ -185,7 +185,11 @@ export default {
                         DNI: this.DNI,
                         password: this.password,
                         fecha_nacimiento: this.fecha_nacimiento,
+<<<<<<< HEAD
                         id_role: this.id_role,
+=======
+                        rol: this.rol,
+>>>>>>> df01adef1ecc2b5334d212147ed3aa3338f91792
                     })
                     .then((response) => {
                         if (response.data.success) {
