@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\usuarios;
-use Illuminate\Console\View\Components\Task;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -23,9 +18,14 @@ class UserController extends Controller
             'password' => $req->password
         ];
 
+
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
             $success = true;
             $message = "Usuario logeado correctamente";
+            if ($success && $user->rol == 'admin') {
+                $message = "Usuario " . $user->rol;
+            }
         } else {
             $success = false;
             $message = "Usuario no autorizado";
@@ -49,7 +49,7 @@ class UserController extends Controller
             $user->DNI = $req->DNI;
             $user->password = Hash::make($req->password);
             $user->fecha_nacimiento = $req->fecha_nacimiento;
-            $user->rol = $req->rol;
+            $user->id_role = $req->id_role;
             $user->save();
 
             $success = true;
@@ -66,14 +66,26 @@ class UserController extends Controller
         ];
 
         return response()->json($response);
-        // $input = $req->all();
-        // usuarios::create($input);
-        // return response()->json(['success' => 'Post creado correctamente.']);
     }
 
     public function logout(Request $req)
     {
-        return "Hola logout";
+        try {
+            Session::flush();
+
+            $success = true;
+            $message = "Logout correcto";
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+
+        return response()->json($response);
     }
 
     public function store(Request $req)
