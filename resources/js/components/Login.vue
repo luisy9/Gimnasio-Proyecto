@@ -3,89 +3,7 @@
         <div class="login-pag px-5">
             <div class="row jutify-content-center w-50 mx-auto">
                 <div class="row jutify-content-center">
-<<<<<<< HEAD
-                    <div class="col-md-8">
-                        <div
-                            class="alert alert-danger alert-dismissible fade show"
-                            role="alert"
-                        >
-                            <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="alert"
-                                aria-label="Close"
-                            ></button>
-                            <strong>{{}}</strong>
-                        </div>
-
-                        <main class="form-signin w-100 m-auto px-5">
-                            <form>
-                                <h1 class="h3 mb-3 fw-normal">
-                                    Inicia sesión para acceder a tu cuenta
-                                </h1>
-                                <br />
-                                <div class="form-floating">
-                                    <input
-                                        id="email"
-                                        type="text"
-                                        class="form-control"
-                                        v-model="email"
-                                        required
-                                        autofocus
-                                        autocomplete="off"
-                                        placeholder="Enter your email"
-                                    />
-                                    <label
-                                        for="email"
-                                        class="col-sm-4 col-form-label text-md-right"
-                                        >E-Mail Address</label
-                                    >
-                                </div>
-                                <br />
-                                <div class="form-floating">
-                                    <input
-                                        id="password"
-                                        type="text"
-                                        class="form-control"
-                                        v-model="password"
-                                        required
-                                        autocomplete="off"
-                                        placeholder="Enter your password"
-                                    />
-                                    <label
-                                        for="password"
-                                        class="col-md-4 col-form-label text-md-right"
-                                        >Password</label
-                                    >
-                                </div>
-                                <br />
-                                <div class="text-center">
-                                    <button
-                                        type="submit"
-                                        class="button-primary"
-                                        @click="doLogin"
-                                    >
-                                        Continuar
-                                    </button>
-                                </div>
-                                <div class="text-center mt-3">
-                                    <small class="text-muted">
-                                        Don't have any account yet? Please
-                                        <router-link
-                                            class="link-login"
-                                            to="/register"
-                                        >
-                                            Register
-                                        </router-link>
-                                    </small>
-                                </div>
-                            </form>
-                        </main>
-                    </div>
-                </div>
-            </div>
-        </div>
-=======
+                       
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         <strong>{{ error }}</strong>
@@ -123,9 +41,8 @@
                 </div>
             </div>
         </div>
-    </div>
->>>>>>> 7867db2787e726ffcedffcbe6204befec81bf365
-    </div>
+        </div>
+        </div>
 </template>
 
 <script>
@@ -171,8 +88,4 @@ export default {
         next();
     },
 };
-<<<<<<< HEAD
-=======
-
->>>>>>> 7867db2787e726ffcedffcbe6204befec81bf365
 </script>
