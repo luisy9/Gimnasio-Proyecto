@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-aa110d91.css",
+    "file": "assets/app-4a7b6679.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -29,7 +29,7 @@
       "assets/nike_logo-57694bf3.svg",
       "assets/logo_login-87fb6bd2.svg"
     ],
-    "file": "assets/app-30f51191.js",
+    "file": "assets/app-10f7c8eb.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }
