@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rutina_ejercicios', function (Blueprint $table) {
-            $table->integer('id_ejercicios')->unsigned();
-            $table->foreign('id_ejercicios')->references('id_ejercicio')->on('ejercicios');
+        Schema::create('rutina_ejercicio', function (Blueprint $table) {
+            $table->integer('id_ejercicio')->unsigned();
+            $table->foreign('id_ejercicio')->references('id_ejercicio')->on('ejercicio');
             $table->integer('id_rutina')->unsigned();
-            $table->foreign('id_rutina')->references('id_rutina')->on('rutinas');
+            $table->foreign('id_rutina')->references('id_rutina')->on('rutina');
             $table->string('nombre_ejercicio');
             $table->string('imagen');
-            $table->string('categporia');
-            $table->string('tipo');
+            $table->integer('id_categoria')->unsigned();
+            $table->foreign('id_categoria')->references('id_categoria')->on('categoria');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rutina_ejercicios');
+        Schema::dropIfExists('rutina_ejercicio');
     }
 };

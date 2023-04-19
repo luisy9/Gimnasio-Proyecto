@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rutina_usuarios', function (Blueprint $table) {
+        Schema::create('rutina_user', function (Blueprint $table) {
             $table->integer('id_rutina')->unsigned();
-            $table->foreign('id_rutina')->references('id_rutina')->on('rutinas');
+            $table->foreign('id_rutina')->references('id_rutina')->on('rutina');
             $table->integer('id_usuario')->unsigned();
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios');
+            $table->foreign('id_usuario')->references('id_usuario')->on('users');
             $table->string('nombre_rutina');
-            $table->string('tipo_rutina');
-            $table->string('rol');
+            $table->string('tipo');
+            $table->integer('id_role')->unsigned();
+            $table->foreign('id_role')->references('id_role')->on('role');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rutina_usuarios');
+        Schema::dropIfExists('rutina_user');
     }
 };

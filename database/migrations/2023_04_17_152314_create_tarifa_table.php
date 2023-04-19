@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ejercicios', function (Blueprint $table) {
-            $table->increments('id_ejercicio');
-            $table->string('nombre_ejercicio');
-            $table->string('imagen');
-            $table->integer('id_categoria')->unsigned();
-            $table->foreign('id_categoria')->references('id_categoria')->on('categorias');
+        Schema::create('tarifa', function (Blueprint $table) {
+            $table->increments('id_tarifa');
+            $table->string('tipo_tarifa');
+            $table->string('precio');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ejercicios');
+        Schema::dropIfExists('tarifa');
     }
 };

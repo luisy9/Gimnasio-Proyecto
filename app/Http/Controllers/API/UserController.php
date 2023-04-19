@@ -23,8 +23,8 @@ class UserController extends Controller
             $user = Auth::user();
             $success = true;
             $message = "Usuario logeado correctamente";
-            if ($success && $user->rol == 'admin') {
-                $message = "Usuario " . $user->rol;
+            if ($success && $user->id_role == 1) {
+                $message = "Usuario " . $user->id_role;
             }
         } else {
             $success = false;

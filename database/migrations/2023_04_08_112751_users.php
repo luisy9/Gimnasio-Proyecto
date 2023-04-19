@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('DNI');
             $table->string('password');
             $table->date('fecha_nacimiento');
-            $table->string('rol');
+            $table->string('id_role');
             $table->timestamps();
         });
     }
