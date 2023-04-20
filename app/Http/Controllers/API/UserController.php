@@ -1,18 +1,26 @@
 <?php
 
+// namespace App\Http\Controllers\API;
+
+// use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+// use Illuminate\Foundation\Bus\DispatchesJobs;
+// use Illuminate\Foundation\Validation\ValidatesRequests;
+// use App\Http\Controllers\Controller;
+// use Illuminate\Http\Request;
+// use App\Models\User;
+// use App\Models\usuarios;
+// use Illuminate\Console\View\Components\Task;
+// use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\Hash;
+// use Illuminate\Support\Facades\Auth;
 namespace App\Http\Controllers\API;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\usuarios;
-use Illuminate\Console\View\Components\Task;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -26,12 +34,9 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $success = true;
             $message = "Usuario logeado correctamente";
-<<<<<<< HEAD
             if ($success && $user->id_role == 1) {
                 $message = "Usuario " . $user->id_role;
             }
-=======
->>>>>>> 7867db2787e726ffcedffcbe6204befec81bf365
         } else {
             $success = false;
             $message = "Usuario no autorizado";

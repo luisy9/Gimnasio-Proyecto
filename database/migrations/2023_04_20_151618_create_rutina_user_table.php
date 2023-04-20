@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nombre_rutina');
             $table->string('tipo');
             $table->integer('id_role')->unsigned();
-            $table->foreign('id_role')->references('id_role')->on('role');
+            $table->foreign('id_role')->references('id_role')->on('roles');
             $table->timestamps();
         });
     }
