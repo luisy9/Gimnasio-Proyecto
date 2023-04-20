@@ -1,7 +1,7 @@
 <template>
 <!-- BANNER-->
 <div class="banner-home">
-    <div class="<banner-text>">
+    <div class="banner-text">
         <p class="text-white">Transforma tu cuerpo y mejora tu salud con nuestro gimnasio. Entrenamiento personalizado, clases de fitness y planes nutricionales para alcanzar tus objetivos. ¡Abónate hoy mismo y comienza tu transformación!</p>
         <a href="/Tarifa">
           <button class="button-secondary ">Abonarse</button>
