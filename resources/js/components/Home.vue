@@ -44,15 +44,13 @@
                                         tarifa.descripcion_tarifa
                                     }}
                                 </ul>
-                                <router-link :to="`/Tarifa/${tarifa.id}`">
-                                    <button
-                                        @click="navigate"
-                                        class="button-primary"
-                                        role="link"
-                                    >
-                                        Seleccionar
-                                    </button>
-                                </router-link>
+                                <button
+                                    @click="navigate"
+                                    class="button-primary"
+                                    role="link"
+                                >
+                                    Seleccionar
+                                </button>
                             </div>
                         </div>
                     </tbody>
@@ -115,11 +113,22 @@ export default {
             strError: "",
         };
     },
+
+    methods: {
+        navigate() {
+            if (window.Laravel.isLoggedin) {
+                window.location.href = '/Tarifa/';
+            } else {
+                console.log("No has iniciado session");
+            }
+        },
+    },
+
     mounted() {
         var self = this;
         axios.get("/Tarifa").then(function (response) {
             return (self.item = response.data);
-        }); 
+        });
     },
     created() {
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
