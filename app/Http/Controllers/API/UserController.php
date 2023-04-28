@@ -1,18 +1,5 @@
 <?php
 
-// namespace App\Http\Controllers\API;
-
-// use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-// use Illuminate\Foundation\Bus\DispatchesJobs;
-// use Illuminate\Foundation\Validation\ValidatesRequests;
-// use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
-// use App\Models\User;
-// use App\Models\usuarios;
-// use Illuminate\Console\View\Components\Task;
-// use Illuminate\Support\Facades\DB;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Facades\Auth;
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
@@ -20,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use App\Models\role;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -34,9 +23,6 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $success = true;
             $message = "Usuario logeado correctamente";
-            if ($success && $user->id_role == 1) {
-                $message = "Usuario " . $user->id_role;
-            }
         } else {
             $success = false;
             $message = "Usuario no autorizado";
@@ -54,14 +40,23 @@ class UserController extends Controller
     {
         try {
             $user = new User();
-            $user->nombre = $req->nombre;
-            $user->Apellido = $req->Apellido;
+            $user->name = $req->name;
             $user->email = $req->email;
-            $user->DNI = $req->DNI;
             $user->password = Hash::make($req->password);
             $user->fecha_nacimiento = $req->fecha_nacimiento;
-            $user->rol = $req->rol;
             $user->save();
+
+            $role_default = role::where('nombre_role','default_user')->get();
+
+            // DB::insert('insert into rolesusuarios (user_id, role_id) values ('.$user->id.', '.$role_default->id.')');
+            //DB::insert('insert into rolesusuarios (user_id, role_id) values ('.$user->id.', '.$role_default->id.')');
+            // $role_id = $role_default->id;
+            // return $role_default;
+            // $test->roles()->attach($role_default->id);
+            $user->roles()->sync(2);
+            
+            // return $user->roles;
+            
 
             $success = true;
             $message = "Usuario registrado correctamente";
@@ -77,14 +72,26 @@ class UserController extends Controller
         ];
 
         return response()->json($response);
-        // $input = $req->all();
-        // usuarios::create($input);
-        // return response()->json(['success' => 'Post creado correctamente.']);
     }
 
     public function logout(Request $req)
     {
-        return "Hola logout";
+        try {
+            Session::flush();
+
+            $success = true;
+            $message = "Logout correcto";
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+
+        return response()->json($response);
     }
 
     public function store(Request $req)

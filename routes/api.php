@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\TarifaController;
 use App\Http\Controllers\API\UserController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 Route::post('logout', [UserController::class, 'logout'])->middleware(['auth:sanctum']);
-Route::group(['prefix' => 'posts', 'middleware' => 'auth:sanctum'], function () {
-    Route::get('/', [PostController::class, 'index']);
-    Route::post('add', [PostController::class, 'add']);
-});
+// Route::group(['prefix' => 'posts', 'middleware' => 'auth:sanctum'], function () {
+//     Route::get('/', [PostController::class, 'index']);
+//     Route::post('add', [PostController::class, 'add']);
+// });
+Route::get('tarifas', [TarifaController::class, 'index']);
+Route::get('tarifasSelect', [TarifaController::class, 'selectTarifas']);

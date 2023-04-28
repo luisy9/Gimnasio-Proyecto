@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tarifa', function (Blueprint $table) {
-            $table->increments('id_tarifa');
-            $table->string('tipo_tarifa');
-            $table->string('precio');
+        Schema::create('tarifa_clase', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('tarifa_id');
+            $table->foreign('tarifa_id')->references('id')->on('tarifas');
+            $table->unsignedBigInteger('clase_id');
+            $table->foreign('clase_id')->references('id')->on('clase');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tarifa');
+        Schema::dropIfExists('tarifa_clase');
     }
 };

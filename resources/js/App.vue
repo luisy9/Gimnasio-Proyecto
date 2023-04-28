@@ -26,7 +26,7 @@
                 >Logout</a
             >
             <a v-if="user.id_role == 2">
-                <h1>Hola</h1>
+                <h1>{user.nombre_role}</h1>
             </a>
         </div>
         <div class="navbar-nav mx-auto">

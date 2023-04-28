@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id_usuario');
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->string('email');
-            $table->string('DNI');
-            $table->string('password');
-            $table->date('fecha_nacimiento');
-            $table->string('id_role');
+        Schema::create('tarifas', function (Blueprint $table) {
+            $table->id();
+            $table->string('tipo_tarifa');
+            $table->double('precio');
+            $table->string('descripcion_tarifa');
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('tarifa');
     }
 };
