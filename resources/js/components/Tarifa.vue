@@ -57,7 +57,8 @@
         </div>
       </div>
     </div>
-
+</main>
+</div>
     <div class="seccion">
         <div class="text-center text-titulo">
             <h1>PAGAMIENTO</h1>
