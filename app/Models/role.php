@@ -8,15 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class role extends Model
 {
     use HasFactory;
-
-    protected $primaryKey = "id_role";
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+    protected $table = 'roles';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'id_role',
-        'nombre_role',
+        'nombre_role'
     ];
 }

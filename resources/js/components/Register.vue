@@ -12,13 +12,8 @@
                             <h1 class="h3 mb-3 fw-normal">Registrate</h1>
                             <br/>
                             <div class="form-floating">
-                                <input id="nombre" type="text" class="form-control" v-model="nombre" autofocus autocomplete="off" placeholder="Nombre"/>
-                                <label for="nombre" class="col-sm-4 col-form-label text-md-right">Nombre</label>
-                            </div>
-                            <br />
-                            <div class="form-floating">
-                                <input id="Apellido" type="text" class="form-control" v-model="Apellido" autofocus autocomplete="off" placeholder="Apellidos"/>
-                                <label for="Apellido" class="col-sm-4 col-form-label text-md-right">Apellidos</label>
+                                <input id="name" type="text" class="form-control" v-model="name" autofocus autocomplete="off" placeholder="Nombre"/>
+                                <label for="name" class="col-sm-4 col-form-label text-md-right">Nombre</label>
                             </div>
                             <br />
                             <div class="form-floating">
@@ -69,30 +64,26 @@
 export default {
     data() {
         return {
-            nombre: "",
-            Apellido: "",
+            name: "",
             email: "",
-            DNI: "",
             password: "",
             fecha_nacimiento: "",
-            id_role: 2 ,
+            // id_role: 0 ,
             error: null,
         };
     },
     methods: {
-        register(e) {
+        doLogin(e) {
             e.preventDefault();
             // if (this.password.length > 0) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
                     .post("api/register", {
-                        nombre: this.nombre,
-                        Apellido: this.Apellido,
+                        name: this.name,
                         email: this.email,
-                        DNI: this.DNI,
                         password: this.password,
                         fecha_nacimiento: this.fecha_nacimiento,
-                        id_role: this.id_role,
+                        // id_role: this.id_role,
                     })
                     .then((response) => {
                         if (response.data.success) {

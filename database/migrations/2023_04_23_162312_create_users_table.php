@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('permissions', function (Blueprint $table) {
-            $table->increments('id_permissions');
-            $table->string('name_permission');
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->date('fecha_nacimiento');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('users');
     }
 };

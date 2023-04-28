@@ -4,10 +4,6 @@ import Login from "../components/Login.vue";
 import Dashboard from "../components/Dashboard.vue";
 import Posts from '../components/Posts.vue';
 import AddPosts from '../components/addPost.vue';
-import Tarifa from "../components/Tarifa.vue";
-import Pago from "../components/Pago.vue";
-import Entrenamiento from "../components/Entrenamiento.vue";
-import Musculo from "../components/Musculo.vue";
 import {createWebHistory, createRouter} from "vue-router";
 
 export const routes = [
@@ -44,7 +40,7 @@ export const routes = [
     },
     {
         name: "tarifa",
-        path: "/tarifa",
+        path: "/Tarifa/:idtarifa",
         component: Tarifa,
     },
     {
