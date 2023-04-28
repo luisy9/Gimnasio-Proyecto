@@ -3,7 +3,16 @@
         <div class="text-center text-titulo">
             <h1>PAGAMIENTO</h1>
         </div>
-        <p>{{ $route.params.idtarifa }}</p>
+        <div
+            class="col"
+            v-for="(tarifa, index) in tarfiasArray"
+            :key="tarifa.id"
+        >
+            <p>{{ tarifa.id }}</p>
+            <p>{{ tarifa.tipo_tarifa }}</p>
+            <p>{{ tarifa.precio }}</p>
+            <p>{{ tarifa.descripcion_tarifa }}</p>
+    </div>
         <main></main>
     </div>
 </template>
@@ -14,6 +23,8 @@ export default {
     data() {
         return {
             tarifas: null,
+            tarfiasArray: [],
+            idtarifa: this.$route.params.idtarifa,
         };
     },
     mounted() {
@@ -29,20 +40,18 @@ export default {
         //             console.log(error);
         //         });
         // });
-        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-            this.$axios
-                .post("api/tarifasSelect")
-                .then((response) => {
-                    if (response.data.success) {
-                        console.log(response.data);
-                    } else {
-                        console.log(response);
-                    }
-                })
-                .catch(function (error) {
-                    console.error(error);
-                });
-        });
+        this.$axios
+            .post("/api/tarifasSelect", {
+                id: this.idtarifa,
+            })
+            .then((response) => {
+                var tarifas = response.data;
+                this.tarfiasArray.push(tarifas);
+                console.log(tarifas);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
     },
 };
 </script>

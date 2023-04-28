@@ -29,4 +29,4 @@ Route::post('logout', [UserController::class, 'logout'])->middleware(['auth:sanc
 //     Route::post('add', [PostController::class, 'add']);
 // });
 Route::get('tarifas', [TarifaController::class, 'index']);
-Route::get('tarifasSelect', [TarifaController::class, 'selectTarifas']);
+Route::post('tarifasSelect', [TarifaController::class, 'selectTarifas']);
