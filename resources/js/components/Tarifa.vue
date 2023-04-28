@@ -18,7 +18,9 @@
               <li>Email support</li>
               <li>Help center access</li>
             </ul>
-            <button class="button-primary">Seleccionar</button>
+            <a href="/Pago">
+              <button class="button-primary">Seleccionar</button>
+            </a>
           </div>
         </div>
       </div>
@@ -35,7 +37,9 @@
               <li>Phone and email support</li>
               <li>Help center access</li>
             </ul>
-            <button class="button-primary">Seleccionar</button>
+            <a href="/Pago">
+              <button class="button-primary">Seleccionar</button>
+            </a>
           </div>
         </div>
       </div>
@@ -52,7 +56,9 @@
               <li>Priority email support</li>
               <li>Help center access</li>
             </ul>
-            <button class="button-primary">Seleccionar</button>
+            <a href="/Pago">
+              <button class="button-primary">Seleccionar</button>
+            </a>
           </div>
         </div>
       </div>
@@ -64,7 +70,7 @@
 
 <script>
 export default {
-    name: "tarifa",
+    name: "Tarifa",
 };
 </script>
 

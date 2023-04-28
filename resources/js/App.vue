@@ -1,4 +1,5 @@
 <template>
+    
     <!--<div class="container">-->
     <nav class="navbar navbar-expand-sm navbar-light bg-light nav-padding">
         <div class="movil-vis logo-header">
@@ -30,7 +31,7 @@
             </a>
         </div>
         <div class="navbar-nav mx-auto">
-            <router-link to="/" class="nav-item nav-link"
+            <router-link to="/entrenamiento" class="nav-item nav-link"
                 >Entrenamiento</router-link
             >
             <router-link to="/login" class="nav-item nav-link"

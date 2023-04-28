@@ -29,7 +29,9 @@
               <li>Mes de apertura gratuito</li>
               <li>Acceso ilimitado</li>
             </ul>
-            <button class="button-primary">Seleccionar</button>
+            <a href="/Pago">
+              <button class="button-primary">Seleccionar</button>
+            </a>
           </div>
         </div>
       </div>
@@ -48,7 +50,9 @@
               <li>Mes de apertura gratuito</li>
               <li>Acceso ilimitado</li>
             </ul>
-            <button class="button-primary">Seleccionar</button>
+            <a href="/Pago">
+              <button class="button-primary">Seleccionar</button>
+            </a>
           </div>
         </div>
       </div>
@@ -66,7 +70,9 @@
               <li>Mes de apertura gratuito</li>
               <li>Acceso ilimitado</li>
             </ul>
-            <button class="button-primary">Seleccionar</button>
+            <a href="/Pago">
+              <button class="button-primary">Seleccionar</button>
+            </a>
           </div>
         </div>
       </div>

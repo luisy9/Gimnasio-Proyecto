@@ -21,7 +21,7 @@
                             </div>
                             <br />
                             <div class="form-floating">
-                                <input id="password" type="text" class="form-control" v-model="password" required autocomplete="off" placeholder="Enter your password"/>
+                                <input id="password" type="password" class="form-control" v-model="password" required autocomplete="off" placeholder="Enter your password"/>
                                 <label for="password" class="col-md-4 col-form-label text-md-right" >Password</label>
                             </div>
                             <br />
