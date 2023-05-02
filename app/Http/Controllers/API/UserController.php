@@ -98,4 +98,9 @@ class UserController extends Controller
     {
         return $req->all();
     }
+
+    public function selectUser(Request $req){
+        $userSelecionado = User::find($req->id);
+        return $userSelecionado;
+    }
 }

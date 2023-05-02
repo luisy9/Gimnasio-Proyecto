@@ -44,12 +44,12 @@ export const routes = [
     },
     {
         name: "tarifa",
-        path: "/Tarifa/:idtarifa",
+        path: "/tarifa",
         component: Tarifa,
     },
     {
         name: "pago",
-        path: "/pago",
+        path: "/pago/:idtarifa",
         component: Pago,
     },
     {
@@ -62,11 +62,6 @@ export const routes = [
         path: "/musculo",
         component: Musculo,
     },
-    // {
-    //     name: "editposts",
-    //     path: "/editposts",
-    //     component: EditPosts,
-    // },
 ];
 
 const router = createRouter({

@@ -1,5 +1,4 @@
 <template>
-    
     <!--<div class="container">-->
     <nav class="navbar navbar-expand-sm navbar-light bg-light nav-padding">
         <div class="movil-vis logo-header">
@@ -26,9 +25,11 @@
             <a class="nav-item nav-link" style="cursor: pointer" @click="logout"
                 >Logout</a
             >
-            <a v-if="user.id_role == 2">
-                <h1>{user.nombre_role}</h1>
-            </a>
+            <!-- <a v-if="user.id_role == 1"> -->
+            <!-- </a> -->
+        </div>
+        <div class="" v-if="user_role.id == 2">
+            <a>Crear Users</a>
         </div>
         <div class="navbar-nav mx-auto">
             <router-link to="/entrenamiento" class="nav-item nav-link"
@@ -49,6 +50,7 @@
                     @click="logout"
                     >Logout</a
                 >
+                <a>{{ user.name }}</a>
             </div>
             <a href="/login">
                 <img src="../img/logo_login.svg" />
@@ -133,13 +135,30 @@ export default {
             isLoggedin: false,
             isAdmin: false,
             user: null,
+            user_role: [],
+
         };
     },
     created() {
         if (window.Laravel.isLoggedin) {
             this.isLoggedin = true;
             this.user = window.Laravel.user;
+            this.user_role = window.Laravel.user_role;
+            console.log(this.user_role);
         }
+    },
+    mounted() {
+        this.$axios;
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get("/api/rolesSelect")
+                .then((response) => {
+                    this.user_role = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
     },
     methods: {
         logout(e) {

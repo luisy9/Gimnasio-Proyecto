@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\TarifaController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\RoleController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,3 +31,5 @@ Route::post('logout', [UserController::class, 'logout'])->middleware(['auth:sanc
 // });
 Route::get('tarifas', [TarifaController::class, 'index']);
 Route::post('tarifasSelect', [TarifaController::class, 'selectTarifas']);
+Route::post('userSelect', [UserController::class, 'selectUser']);
+Route::post('rolesSelect', [RoleController::class, 'selectRoles']);
