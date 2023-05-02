@@ -2,8 +2,9 @@
 
 /* Container */
 .container{
-    min-height: 675px;
+    min-height: 42.19em;
 }
+
 /* Seccion */
 .seccion{
     margin: 6.25em;
@@ -182,3 +183,4 @@ a.link-login{
 .footer-link{
     opacity: 0.5;
 }
+/* MUSCULO */
