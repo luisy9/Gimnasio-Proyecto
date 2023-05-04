@@ -35,7 +35,7 @@
             <router-link to="/entrenamiento" class="nav-item nav-link"
                 >Entrenamiento</router-link
             >
-            <router-link to="/login" class="nav-item nav-link"
+            <router-link to="/tarifa" class="nav-item nav-link"
                 >Tarifas</router-link
             >
             <router-link to="/register" class="nav-item nav-link"

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <!--<div class="container">
         <div class="login-pag px-5">
             <div class="row jutify-content-center w-50 mx-auto">
                 <div class="row jutify-content-center">
@@ -90,149 +90,73 @@
                         <p>{{ tarifa.precio }}</p>
                         <p>{{ tarifa.descripcion_tarifa }}</p>
                     </div>
-                </div>
+               </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <!-- <section
+<section
         class="p-4 p-md-5"
-        style="
-            background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Others/background3.webp);
-        "
+
     >
         <div class="row d-flex justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-5">
-                <div class="card rounded-3">
+                <div class="card card-default p-5">
                     <div class="card-body p-4">
                         <div class="text-center mb-4">
-                            <h3>Settings</h3>
-                            <h6>Payment</h6>
+                            <h3>Pago</h3>
                         </div>
                         <form action="">
-                            <p class="fw-bold mb-4 pb-2">Saved cards:</p>
-
-                            <div
-                                class="d-flex flex-row align-items-center mb-4 pb-1"
-                            >
-                                <img
-                                    class="img-fluid"
-                                    src="https://img.icons8.com/color/48/000000/mastercard-logo.png"
-                                />
-                                <div class="flex-fill mx-3">
-                                    <div class="form-outline">
-                                        <input
-                                            type="text"
-                                            id="formControlLgXc"
-                                            class="form-control form-control-lg"
-                                            value="**** **** **** 3193"
-                                        />
-                                        <label
-                                            class="form-label"
-                                            for="formControlLgXc"
-                                            >Card Number</label
-                                        >
-                                    </div>
-                                </div>
-                                <a href="#!">Remove card</a>
+                            <div class="form-floating">
+                                <input id="name" type="text" class="form-control" v-model="name" required autofocus autocomplete="off" placeholder="Nombre completo"/>
+                                <label for="name" class="col-sm-4 col-form-label text-md-right">Nombre completo</label>
                             </div>
-
-                            <div
-                                class="d-flex flex-row align-items-center mb-4 pb-1"
-                            >
-                                <img
-                                    class="img-fluid"
-                                    src="https://img.icons8.com/color/48/000000/visa.png"
-                                />
-                                <div class="flex-fill mx-3">
-                                    <div class="form-outline">
-                                        <input
-                                            type="text"
-                                            id="formControlLgXs"
-                                            class="form-control form-control-lg"
-                                            value="**** **** **** 4296"
-                                        />
-                                        <label
-                                            class="form-label"
-                                            for="formControlLgXs"
-                                            >Card Number</label
-                                        >
-                                    </div>
-                                </div>
-                                <a href="#!">Remove card</a>
+                            <br>
+                            <div class="form-floating">
+                                <input id="name" type="text" class="form-control" v-model="name" required autofocus autocomplete="off" placeholder="Numero de tarjeta"/>
+                                <label for="name" class="col-sm-4 col-form-label text-md-right">Numero de tarjeta</label>
                             </div>
-
-                            <p class="fw-bold mb-4">Add new card:</p>
-
-                            <div class="form-outline mb-4">
-                                <input
-                                    type="text"
-                                    id="formControlLgXsd"
-                                    class="form-control form-control-lg"
-                                    value="Anna Doe"
-                                />
-                                <label class="form-label" for="formControlLgXsd"
-                                    >Cardholder's Name</label
-                                >
-                            </div>
-
+                            <br>
                             <div class="row mb-4">
-                                <div class="col-7">
-                                    <div class="form-outline">
-                                        <input
-                                            type="text"
-                                            id="formControlLgXM"
-                                            class="form-control form-control-lg"
-                                            value="1234 5678 1234 5678"
-                                        />
-                                        <label
-                                            class="form-label"
-                                            for="formControlLgXM"
-                                            >Card Number</label
-                                        >
+                                <div class="col-4">
+                                    <div class="form-floating">
+                                        <input id="name" type="text" class="form-control" v-model="name" required autofocus autocomplete="off" placeholder="MM/YY"/>
+                                        <label for="name" class="col-sm-4 col-form-label text-md-right">MM/YY</label>
                                     </div>
                                 </div>
                                 <div class="col-3">
-                                    <div class="form-outline">
-                                        <input
-                                            type="password"
-                                            id="formControlLgExpk"
-                                            class="form-control form-control-lg"
-                                            placeholder="MM/YYYY"
-                                        />
-                                        <label
-                                            class="form-label"
-                                            for="formControlLgExpk"
-                                            >Expire</label
-                                        >
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-outline">
-                                        <input
-                                            type="password"
-                                            id="formControlLgcvv"
-                                            class="form-control form-control-lg"
-                                            placeholder="Cvv"
-                                        />
-                                        <label
-                                            class="form-label"
-                                            for="formControlLgcvv"
-                                            >Cvv</label
-                                        >
+                                    <div class="form-floating">
+                                        <input id="name" type="text" class="form-control" v-model="name" required autofocus autocomplete="off" placeholder="CVV"/>
+                                        <label for="name" class="col-sm-4 col-form-label text-md-right">CVV</label>
                                     </div>
                                 </div>
                             </div>
-
-                            <button class="btn btn-success btn-lg btn-block">
-                                Add card
-                            </button>
+                            <br>
+                            <div class="text-center">
+                                <button type="submit" class="button-primary">Pagar</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div> -->
-    <!-- </section> -->
+            <div class="col-md-10 col-lg-8 col-xl-3">
+                <div class="card card-default p-5">
+                    <div class="card-body p-4"  v-for="(tarifa, index) in tarfiasArray"
+                        :key="tarifa.id">
+                        <div class="text-center mb-4">
+                            <h3>{{ tarifa.tipo_tarifa }}</h3>
+                        </div>
+                        <div class="col">
+                        <p>{{ tarifa.id }}</p>
+                        <p>{{ tarifa.tipo_tarifa }}</p>
+                        <p>{{ tarifa.precio }}</p>
+                        <p>{{ tarifa.descripcion_tarifa}}</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
 </template>
 
 <script>
@@ -253,7 +177,7 @@ export default {
     },
     mounted() {
         if (this.isLoggedin) {
-            window.location.href = "/";
+            window.location.href = "/login";
         }
         this.$axios
             .post("/api/tarifasSelect", {
