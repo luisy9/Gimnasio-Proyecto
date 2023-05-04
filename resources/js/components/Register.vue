@@ -22,12 +22,6 @@
                             </div>
                             <br />
                             <div class="form-floating">
-                                <input id="DNI" type="DNI" class="form-control" v-model="DNI" autocomplete="off" placeholder="DNI"/>
-                                <label for="DNI" class="col-md-4 col-form-label text-md-right">DNI</label>
-                                
-                            </div>
-                            <br />
-                            <div class="form-floating">
                                 <input id="password" type="password" class="form-control" v-model="password" autocomplete="off" placeholder="Contraseña"/>
                                 <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
                             </div>

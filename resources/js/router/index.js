@@ -8,6 +8,7 @@ import Tarifa from "../components/Tarifa.vue";
 import Pago from "../components/Pago.vue";
 import Entrenamiento from "../components/Entrenamiento.vue";
 import Musculo from "../components/Musculo.vue";
+import Compania from "../components/Compania.vue";
 import {createWebHistory, createRouter} from "vue-router";
 
 export const routes = [
@@ -61,6 +62,11 @@ export const routes = [
         name: "musculo",
         path: "/musculo",
         component: Musculo,
+    },
+    {
+        name: "compania",
+        path: "/compania",
+        component: Compania,
     },
 ];
 

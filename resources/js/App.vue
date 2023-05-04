@@ -15,19 +15,6 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
         ></button>
-        <div class="navbar-nav" v-if="isLoggedin">
-            <router-link to="/dashboard" class="nav-item nav-link"
-                >Dashboard</router-link
-            >
-            <router-link to="/posts" class="nav-item nav-link"
-                >xxxx</router-link
-            >
-            <a class="nav-item nav-link" style="cursor: pointer" @click="logout"
-                >Logout</a
-            >
-            <!-- <a v-if="user.id_role == 1"> -->
-            <!-- </a> -->
-        </div>
         <div class="" v-if="user_role.id == 2">
             <a>Crear Users</a>
         </div>
@@ -38,19 +25,24 @@
             <router-link to="/tarifa" class="nav-item nav-link"
                 >Tarifas</router-link
             >
-            <router-link to="/register" class="nav-item nav-link"
+            <router-link to="/compania" class="nav-item nav-link"
                 >¿Quienes somos?</router-link
             >
         </div>
         <div class="movil-vis login-header">
             <div class="nav-item" v-if="isLoggedin">
-                <a
-                    class="nav-item nav-link"
-                    style="cursor: pointer"
-                    @click="logout"
-                    >Logout</a
-                >
-                <a>{{ user.name }}</a>
+                <a data-toggle="dropdown" class="nav-item nav-link" role="button">{{ user.name }}</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <router-link to="/dashboard" class="nav-item nav-link"
+                >Dashboard</router-link
+            >
+            <router-link to="/posts" class="nav-item nav-link"
+                >xxxx</router-link
+            >
+            <a class="nav-item nav-link" style="cursor: pointer" @click="logout"
+                >Logout</a
+            >
+            </div>
             </div>
             <a href="/login">
                 <img src="../img/logo_login.svg" />
@@ -64,19 +56,16 @@
         <footer class="py-3">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                 <li class="nav-item">
-                    <a href="#" class="nav-link px-2 text-light">Home</a>
+                    <a href="/" class="nav-link px-2 text-light">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link px-2 text-light">Features</a>
+                    <a href="/tarifa" class="nav-link px-2 text-light">Tarifas</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link px-2 text-light">Pricing</a>
+                    <a href="/entrenamiento" class="nav-link px-2 text-light">Ejercicios</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link px-2 text-light">FAQs</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link px-2 text-light">About</a>
+                    <a href="/compania" class="nav-link px-2 text-light">Compañía</a>
                 </li>
             </ul>
             <ul
@@ -92,7 +81,7 @@
                     /></a>
                 </li>
                 <li class="ms-3 mx-2">
-                    <a class="text-muted" href="https://youtube.com/Nike"
+                    <a class="text-muted" href="https://www.facebook.com/nike"
                         ><img
                             src="../img/fb.svg"
                             alt="Logo"
@@ -101,7 +90,7 @@
                     /></a>
                 </li>
                 <li class="ms-3 mx-2">
-                    <a class="text-muted" href="https://twitter.com/Nike"
+                    <a class="text-muted" href="https://youtube.com/Nike"
                         ><img
                             src="../img/yt.svg"
                             alt="Logo"
@@ -110,7 +99,7 @@
                     /></a>
                 </li>
                 <li class="ms-3 mx-2">
-                    <a class="text-muted" href="https://twitter.com/Nike"
+                    <a class="text-muted" href="https://instagram.com/nike"
                         ><img
                             src="../img/ig.svg"
                             alt="Logo"
@@ -119,10 +108,10 @@
                     /></a>
                 </li>
             </ul>
-            <div class="d-flex align-items-center justify-content-center">
-                <span class="mb-3 mb-md-0 text-light footer-link"
-                    >© 2023 Nike, Inc. Todos los derechos reservados</span
-                >
+            <div class="d-flex align-items-center justify-content-center nav-link ">
+                <a href="https://agreementservice.svs.nike.com/es/es_es/rest/agreement?agreementType=termsOfUse&uxId=com.nike&country=ES&language=es&requestType=redirect" class="mb-3 mb-md-0 text-light footer-link">
+                    © 2023 Nike, Inc. Todos los derechos reservados
+                </a>
             </div>
         </footer>
     </div>
