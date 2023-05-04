@@ -42,7 +42,7 @@
             </div>
             <div class="col-md-10 col-lg-8 col-xl-3">
                 <div class="card card-default p-5">
-                    <div class="card-body p-4"  v-for="(tarifa, index) in tarfiasArray"
+                    <!--<div class="card-body p-4"  v-for="(tarifa, index) in tarfiasArray"
                         :key="tarifa.id">
                         <div class="text-center mb-4">
                             <h3>{{ tarifa.tipo_tarifa }}</h3>
@@ -51,9 +51,13 @@
                         <p>{{ tarifa.id }}</p>
                         <p>{{ tarifa.tipo_tarifa }}</p>
                         <p>{{ tarifa.precio }}</p>
-                        <p>{{ tarifa.descripcion_tarifa}}</p>
+                        <p>{{ tarifa.descripcion_tarifa}}</p>-->
+                        <div class="text-center">
+                                <button type="submit" class="button-primary">Cambiar tarifa</button>
+                                <button type="submit" class="button-primary">Dar de baja</button>
+                        </div><!--
                     </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
