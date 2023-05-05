@@ -8,7 +8,15 @@ import Tarifa from "../components/Tarifa.vue";
 import Pago from "../components/Pago.vue";
 import Entrenamiento from "../components/Entrenamiento.vue";
 import Musculo from "../components/Musculo.vue";
+<<<<<<< HEAD
+import crearUsuarios from "../components/crearUsuarios.vue";
+import eliminarUsuarios from "../components/eliminarUsuarios.vue";
+import updateUsers from "../components/updateUsers.vue";
+import roleAdmin from "../components/rolesAdmin.vue";
+import updateRoles from "../components/updatRoles.vue";
+=======
 import Compania from "../components/Compania.vue";
+>>>>>>> df43d48871d1193346197b214d65b9ca5c580bc0
 import {createWebHistory, createRouter} from "vue-router";
 
 export const routes = [
@@ -64,9 +72,35 @@ export const routes = [
         component: Musculo,
     },
     {
+<<<<<<< HEAD
+        name: "crearUsuarios",
+        path: "/crearUsuarios",
+        component: crearUsuarios,
+    },
+    {
+        name: "eliminarUsuarios",
+        path: "/eliminarUsuarios",
+        component: eliminarUsuarios,
+    },
+    {
+        name: "updateUsers",
+        path: "/updateUsers/:id",
+        component: updateUsers,
+    },
+    {
+        name: "roleAdmin",
+        path: "/roleAdmin",
+        component: roleAdmin,
+    },
+    {
+        name: "updateRoles",
+        path: "/updateRoles",
+        component: updateRoles,
+=======
         name: "compania",
         path: "/compania",
         component: Compania,
+>>>>>>> df43d48871d1193346197b214d65b9ca5c580bc0
     },
 ];
 

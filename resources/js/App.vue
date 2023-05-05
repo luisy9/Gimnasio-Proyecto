@@ -42,7 +42,31 @@
             <a class="nav-item nav-link" style="cursor: pointer" @click="logout"
                 >Logout</a
             >
+<<<<<<< HEAD
+        </div>
+        <div class="navbar-nav mx-auto">
+            <router-link to="/entrenamiento" class="nav-item nav-link"
+                >Entrenamiento</router-link
+            >
+            <router-link to="/login" class="nav-item nav-link"
+                >Tarifas</router-link
+            >
+            <router-link to="/register" class="nav-item nav-link"
+                >¿Quienes somos?</router-link
+            >
+        </div>
+        <div class="movil-vis login-header">
+            <div class="nav-item" v-if="isLoggedin">
+                <a
+                    class="nav-item nav-link"
+                    style="cursor: pointer"
+                    @click="logout"
+                    >Logout</a
+                >
+                <a>{{ user.name }}</a>
+=======
             </div>
+>>>>>>> df43d48871d1193346197b214d65b9ca5c580bc0
             </div>
             <a href="/login">
                 <img src="../img/logo_login.svg" />
@@ -124,8 +148,8 @@ export default {
             isLoggedin: false,
             isAdmin: false,
             user: null,
-            user_role: [],
-
+            user_role: null,
+            arrayUserRole: [],
         };
     },
     created() {
@@ -133,21 +157,10 @@ export default {
             this.isLoggedin = true;
             this.user = window.Laravel.user;
             this.user_role = window.Laravel.user_role;
-            console.log(this.user_role);
+            console.log("=======");
+            console.log(window.Laravel.user.roles[0].nombre_role);
+            this.user_role = window.Laravel.user.roles[0].nombre_role;
         }
-    },
-    mounted() {
-        this.$axios;
-        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-            this.$axios
-                .get("/api/rolesSelect")
-                .then((response) => {
-                    this.user_role = response.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        });
     },
     methods: {
         logout(e) {

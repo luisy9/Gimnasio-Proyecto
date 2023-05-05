@@ -53,6 +53,7 @@ class UserController extends Controller
             // $role_id = $role_default->id;
             // return $role_default;
             // $test->roles()->attach($role_default->id);
+            // $arrayRoles = $req->checked;
             $user->roles()->sync(2);
             
             // return $user->roles;
