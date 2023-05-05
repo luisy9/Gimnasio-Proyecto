@@ -1,10 +1,42 @@
 <template>
     <div class="seccion">
         <div class="text-center text-titulo">
-            <h1>PAGAMIENTO</h1>
+            <h1>NUESTRAS TARIFAS</h1>
         </div>
-        
-        <main></main>
+        <main>
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                <div v-for="(tarifa, index) in tarifas" :key="index">
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm border-dark">
+                            <div class="card-header py-3 border-dark">
+                                <h4 class="my-0 fw-normal">
+                                    {{ tarifa.tipo_tarifa }}
+                                </h4>
+                            </div>
+                            <div class="card-body carta-color tarjeta">
+                                <h1 class="card-title pricing-card-title">
+                                    {{ tarifa.precio }}€<small
+                                        class="text-body-secondary fw-light"
+                                        >/mes</small
+                                    >
+                                </h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>{{ tarifa.descripcion_tarifa }}</li>
+                                </ul>
+                                <router-link :to="`/pago/${tarifa.id}`">
+                                    <button
+                                        class="button-primary"
+                                        @click="navigate"
+                                    >
+                                        Seleccionar
+                                    </button>
+                                </router-link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 </template>
 
@@ -13,24 +45,29 @@ export default {
     name: "tarifa",
     data() {
         return {
-            tarifas: null,
-            tarfiasArray: [],
-            idtarifa: this.$route.params.idtarifa,
+            tarifas: [],
+            strSuccess: "",
+            strError: "",
         };
     },
+
     mounted() {
-        this.$axios
-            .post("/api/userSelect", {
-                id: this.idtarifa,
-            })
-            .then((response) => {
-                var tarifas = response.data;
-                this.tarfiasArray.push(tarifas);
-                console.log(tarifas);
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
+        var self = this;
+        axios.get("/Tarifa").then(function (response) {
+            return (self.item = response.data);
+        });
+    },
+    created() {
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get("/api/tarifas")
+                .then((response) => {
+                    this.tarifas = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
     },
 };
 </script>
