@@ -31,7 +31,7 @@
         </div>
         <div class="movil-vis login-header">
             <div class="nav-item" v-if="isLoggedin">
-                <a data-toggle="dropdown" class="nav-item nav-link" role="button">{{ user.name }}</a>
+                <a data-toggle="dropdown" class="nav-item nav-link dropdown-toggle" role="button">{{ user.name }}</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <router-link to="/dashboard" class="nav-item nav-link"
                 >Dashboard</router-link

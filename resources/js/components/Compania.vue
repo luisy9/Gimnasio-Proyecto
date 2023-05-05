@@ -1,8 +1,8 @@
 <template>
-    <div class="px-4 pt-5 my-5 border-bottom">
-        <h1 class="display-4 fw-bold text-center">Sobre Gym Nike</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">
+    <div class="px-4 pt-5 my-5">
+        <h1 class="display-4 fw-bold text-center mb-5">SOBRE GYM NIKE</h1>
+        <div class="col-lg-10 mx-auto">
+            <p class="mb-4 pt-5">
                 Bienvenido a Gym Nike, el lugar donde la transformación
         física y mental comienza. Aquí en Gym Nike, nos enorgullece ofrecer
         una experiencia de entrenamiento de primera calidad a todos nuestros
@@ -10,7 +10,7 @@
         comunidad te brindará el apoyo, el conocimiento y la motivación
         necesarios para alcanzar tus objetivos de fitness.
         </p>
-        <p class="lead mb-4">
+        <p class="mb-4">
         En Gym Nike, creemos en un enfoque holístico para la salud y el bienestar. No se
         trata solo de levantar pesas o correr en una cinta de correr, sino de
         trabajar en conjunto con nuestros entrenadores personales  para desarrollar un plan de entrenamiento y alimentación
@@ -24,8 +24,7 @@
         pueden ayudarte a establecer objetivos realistas, medir tu progreso y
         proporcionarte la motivación necesaria para seguir adelante.
         </p>
-        <p class="lead mb-4">
-            
+        <p class="mb-4 pb-5">
         En cuanto a
         nuestras instalaciones, el Gimnasio de Gym Nike cuenta con equipos de
         alta calidad y última tecnología, desde pesas libres hasta máquinas

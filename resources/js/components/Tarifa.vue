@@ -8,30 +8,38 @@
                 <div v-for="(tarifa, index) in tarifas" :key="index">
                     <div class="col">
                         <div class="card mb-4 rounded-3 shadow-sm border-dark">
-                            <div class="card-header py-3 border-dark">
-                                <h4 class="my-0 fw-normal">
-                                    {{ tarifa.tipo_tarifa }}
+                            <div class="card-header py-3 border-dark bg-dark">
+                                <h4 class="my-0 fw-normal text-light">
+                                    <b>
+                                        {{ tarifa.tipo_tarifa }}
+                                    </b>
                                 </h4>
                             </div>
                             <div class="card-body carta-color tarjeta">
-                                <h1 class="card-title pricing-card-title">
-                                    {{ tarifa.precio }}€<small
-                                        class="text-body-secondary fw-light"
-                                        >/mes</small
-                                    >
-                                </h1>
                                 <ul class="list-unstyled mt-3 mb-4">
-                                    <li>{{ tarifa.descripcion_tarifa }}</li>
-                                </ul>
-                                <router-link :to="`/pago/${tarifa.id}`">
-                                    <button
-                                        class="button-primary"
-                                        @click="navigate"
+                                    <div
+                                        v-for="descripcion in tarifa.descripcion_tarifa.split(
+                                            ','
+                                        )"
                                     >
-                                        Seleccionar
-                                    </button>
-                                </router-link>
+                                        <li class="tarjeta-text my-2">{{ descripcion }}</li>
+                                    </div>
+                                </ul>
                             </div>
+                            <h1 class="card-title pricing-card-title precio">
+                                {{ tarifa.precio }}€<small
+                                    class="text-body-secondary fw-light"
+                                    >/mes</small
+                                >
+                            </h1>
+                            <router-link :to="`/pago/${tarifa.id}`">
+                                <button
+                                    class="button-primary my-4"
+                                    @click="navigate"
+                                >
+                                    Seleccionar
+                                </button>
+                            </router-link>
                         </div>
                     </div>
                 </div>
