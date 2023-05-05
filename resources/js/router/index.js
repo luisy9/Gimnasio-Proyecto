@@ -8,6 +8,11 @@ import Tarifa from "../components/Tarifa.vue";
 import Pago from "../components/Pago.vue";
 import Entrenamiento from "../components/Entrenamiento.vue";
 import Musculo from "../components/Musculo.vue";
+import crearUsuarios from "../components/crearUsuarios.vue";
+import eliminarUsuarios from "../components/eliminarUsuarios.vue";
+import updateUsers from "../components/updateUsers.vue";
+import roleAdmin from "../components/rolesAdmin.vue";
+import updateRoles from "../components/updatRoles.vue";
 import {createWebHistory, createRouter} from "vue-router";
 
 export const routes = [
@@ -61,6 +66,31 @@ export const routes = [
         name: "musculo",
         path: "/musculo",
         component: Musculo,
+    },
+    {
+        name: "crearUsuarios",
+        path: "/crearUsuarios",
+        component: crearUsuarios,
+    },
+    {
+        name: "eliminarUsuarios",
+        path: "/eliminarUsuarios",
+        component: eliminarUsuarios,
+    },
+    {
+        name: "updateUsers",
+        path: "/updateUsers/:id",
+        component: updateUsers,
+    },
+    {
+        name: "roleAdmin",
+        path: "/roleAdmin",
+        component: roleAdmin,
+    },
+    {
+        name: "updateRoles",
+        path: "/updateRoles",
+        component: updateRoles,
     },
 ];
 

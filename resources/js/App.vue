@@ -25,11 +25,6 @@
             <a class="nav-item nav-link" style="cursor: pointer" @click="logout"
                 >Logout</a
             >
-            <!-- <a v-if="user.id_role == 1"> -->
-            <!-- </a> -->
-        </div>
-        <div class="" v-if="user_role.id == 2">
-            <a>Crear Users</a>
         </div>
         <div class="navbar-nav mx-auto">
             <router-link to="/entrenamiento" class="nav-item nav-link"
@@ -135,8 +130,8 @@ export default {
             isLoggedin: false,
             isAdmin: false,
             user: null,
-            user_role: [],
-
+            user_role: null,
+            arrayUserRole: [],
         };
     },
     created() {
@@ -144,21 +139,10 @@ export default {
             this.isLoggedin = true;
             this.user = window.Laravel.user;
             this.user_role = window.Laravel.user_role;
-            console.log(this.user_role);
+            console.log("=======");
+            console.log(window.Laravel.user.roles[0].nombre_role);
+            this.user_role = window.Laravel.user.roles[0].nombre_role;
         }
-    },
-    mounted() {
-        this.$axios;
-        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-            this.$axios
-                .get("/api/rolesSelect")
-                .then((response) => {
-                    this.user_role = response.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        });
     },
     methods: {
         logout(e) {

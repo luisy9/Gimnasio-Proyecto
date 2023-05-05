@@ -13,4 +13,10 @@ class RoleController extends Controller
         $RoleSeleccionada = role::find($req->id);
         return $RoleSeleccionada;
     }
+
+    public function allRoles()
+    {
+        $roles = role::all()->toArray();
+        return $roles;
+    }
 }
