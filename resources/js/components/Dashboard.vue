@@ -22,62 +22,78 @@
     >
 
     <div class="row d-flex justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-5">
-                <div class="card card-default p-5">
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <h3>Dashboard</h3>
-                        </div>
-                        <form action="">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" readonly v-model="user.name">
-                                <label for="nombre" >Nombre</label>
-                            </div>
-                            <br>
-                            <div class="form-floating">
-                                <input type="email" class="form-control" readonly v-model="user.email">
-                                <label for="email">Email</label>
-                            </div>
-                            <br>
-                            <div class="form-floating">
-                                <input type="date" class="form-control" min='1899-01-01' max='2000-01-01' readonly v-model="user.fecha_nacimiento">
-                                <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                            </div>
-                            <br>
-                            
-                            <br>
-                            <div class="text-center">
-                                <button type="submit" class="button-primary">Editar</button>
-                            </div>
-                        </form>
+        <div class="col-md-10 col-lg-8 col-xl-5">
+            <div class="card card-default p-5">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <h3>Dashboard</h3>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-10 col-lg-8 col-xl-3">
-                <div class="card card-default p-5">
-                    <!--<div class="card-body p-4"  v-for="(tarifa, index) in tarfiasArray"
-                        :key="tarifa.id">
-                        <div class="text-center mb-4">
-                            <h3>{{ tarifa.tipo_tarifa }}</h3>
+                    <form action="">
+                        <div class="form-floating">
+                            <input
+                                type="text"
+                                class="form-control"
+                                readonly
+                                v-model="user.name"
+                            />
+                            <label for="nombre">Nombre</label>
                         </div>
-                        <div class="col">
-                        <p>{{ tarifa.id }}</p>
-                        <p>{{ tarifa.tipo_tarifa }}</p>
-                        <p>{{ tarifa.precio }}</p>
-                        <p>{{ tarifa.descripcion_tarifa}}</p>-->
+                        <br />
+                        <div class="form-floating">
+                            <input
+                                type="email"
+                                class="form-control"
+                                readonly
+                                v-model="user.email"
+                            />
+                            <label for="email">Email</label>
+                        </div>
+                        <br />
+                        <div class="form-floating">
+                            <input
+                                type="date"
+                                class="form-control"
+                                min="1899-01-01"
+                                max="2000-01-01"
+                                readonly
+                                v-model="user.fecha_nacimiento"
+                            />
+                            <label for="fecha_nacimiento"
+                                >Fecha de nacimiento</label
+                            >
+                        </div>
+                        <br />
+
+                        <br />
                         <div class="text-center">
-                                <button type="submit" class="button-primary">Cambiar tarifa</button>
-                                <button type="submit" class="button-primary">Dar de baja</button>
-                        </div><!--
-                    </div>
-                    </div>-->
+                            <button type="submit" class="button-primary">
+                                Editar
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-
+        <div class="col-md-10 col-lg-8 col-xl-3" v-if="this.hayTarifa">
+            <div class="card card-default p-5">
+                <div class="text-center">
+                    <h1>Tarifa Actual</h1>
+                    <h4>{{ this.id_tarifa.tipo_tarifa }}</h4>
+                    <button type="submit" class="button-primary" @click="">
+                        Cambiar tarifa
+                    </button>
+                    <button
+                        type="submit"
+                        class="button-primary"
+                        @click="darbaja(this.iduser)"
+                    >
+                        Dar de baja
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
-
 <script>
 export default {
     name: "Dashboard",
@@ -86,10 +102,31 @@ export default {
             isLoggedin: false,
             isAdmin: false,
             user: null,
+            factura: null,
+            iduser: null,
+            id_tarifa: [],
+            tarifa_actual: null,
+            hayTarifa: null,
         };
+    },
+    mounted() {
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get(`/api/facturasTarifas/${this.user.id}`)
+                .then((response) => {
+                    this.id_tarifa = response.data;
+                    this.hayTarifa = true;
+                    console.log(this.hayTarifa);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
     },
     created() {
         if (window.Laravel.isLoggedin) {
+            this.iduser = window.Laravel.user.id;
+            console.log(this.iduser);
             this.isLoggedin = true;
             this.user = window.Laravel.user;
             this.isLoggedin = true;
@@ -101,6 +138,21 @@ export default {
         }
     },
     methods: {
+        darbaja(id) {
+            this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                this.$axios
+                    .delete("/api/deleteFactura/" + id)
+                    .then((response) => {
+                        const index = this.factura.findIndex(
+                            (factura) => factura.id === id
+                        );
+                        this.factura.splice(index, 1);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            });
+        },
         logout(e) {
             e.preventDefault();
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {

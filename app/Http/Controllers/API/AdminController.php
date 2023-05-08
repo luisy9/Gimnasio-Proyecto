@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\role;
+use App\Models\tarifa;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -52,7 +53,6 @@ class AdminController extends Controller
 
     public function delete($id)
     {
-        // $id =$req->id;
         $user = User::findOrFail($id);
         $user->roles()->detach();
         $user->delete();
@@ -70,9 +70,51 @@ class AdminController extends Controller
         ]);
 
         $input = $request->all();
+        $input["password"] = Hash::make($request->password);
         $user->update($input);
 
 
         return response()->json(['success' => 'User update successfully']);
+    }
+
+    public function userRoles($id, Request $req)
+    {
+    }
+
+    public function addTarifas(Request $req)
+    {
+        try {
+            $tarifa = new tarifa();
+            $tarifa->tipo_tarifa = $req->tipo_tarifa;
+            $tarifa->precio = $req->precio;
+            $tarifa->descripcion_tarifa = $req->descripcion_tarifa;
+            $tarifa->save();
+
+
+            $success = true;
+            $message = "Tarifa añadida correctamente";
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+
+
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+
+        return response()->json($response);
+    }
+
+    public function deleteTarifas($id)
+    {
+        $tarifa = tarifa::findOrFail($id);
+        $tarifa->delete();
+        return response()->json(['success' => 'Tarifa deleted successfully']);
+    }
+
+    public function updateTarifas()
+    {
     }
 }

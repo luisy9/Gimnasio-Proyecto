@@ -20,32 +20,4 @@ class TarifaController extends Controller
         return $tarifaSeleccionada;
     }
 
-    // public function add(Request $request)
-    // {
-
-
-    //     $request->validate([
-    //         'name' => 'required',
-    //         'description' => 'required',
-    //         'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-    //     ]);
-
-
-    //     $input = $request->all();
-    //     $imageName = NULL;
-
-
-    //     if ($image = $request->file('file')) {
-    //         $destinationPath = 'img/';
-    //         $imageName = date('YmdHis') . "." . $image->getClientOriginalExtension();
-    //         $image->move($destinationPath, $imageName);
-    //         $input['image'] = $imageName;
-    //     }
-
-
-    //     Post::create($input);
-
-
-    //     return response()->json(['success' => 'Post creado correctamente.']);
-    // }
 }

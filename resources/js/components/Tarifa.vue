@@ -23,7 +23,9 @@
                                 <ul class="list-unstyled mt-3 mb-4">
                                     <li>{{ tarifa.descripcion_tarifa }}</li>
                                 </ul>
-                                <router-link :to="`/pago/${tarifa.id}`">
+                                <router-link
+                                    :to="`/pago/${tarifa.id}/${this.iduser}`"
+                                >
                                     <button
                                         class="button-primary"
                                         @click="navigate"
@@ -46,12 +48,14 @@ export default {
     data() {
         return {
             tarifas: [],
+            iduser: null,
             strSuccess: "",
             strError: "",
         };
     },
 
     mounted() {
+        this.iduser = window.Laravel.user.id;
         var self = this;
         axios.get("/Tarifa").then(function (response) {
             return (self.item = response.data);

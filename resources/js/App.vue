@@ -15,7 +15,7 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
         ></button>
-        <div class="" v-if="user_role.id == 2">
+        <div class="" v-if="user_role == 2">
             <a>Crear Users</a>
         </div>
         <div class="navbar-nav mx-auto">
@@ -31,20 +31,33 @@
         </div>
         <div class="movil-vis login-header">
             <div class="nav-item" v-if="isLoggedin">
-                <a data-toggle="dropdown" class="nav-item nav-link" role="button">{{ user.name }}</a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <router-link to="/dashboard" class="nav-item nav-link"
-                >Dashboard</router-link
-            >
-            <router-link to="/posts" class="nav-item nav-link"
-                >xxxx</router-link
-            >
-            <a class="nav-item nav-link" style="cursor: pointer" @click="logout"
-                >Logout</a
-            >
-<<<<<<< HEAD
-        </div>
-        <div class="navbar-nav mx-auto">
+                <a
+                    data-toggle="dropdown"
+                    class="nav-item nav-link"
+                    role="button"
+                    >{{ user.name }}</a
+                >
+                <div
+                    class="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                >
+                {{ this.user.id }}
+                    <router-link :to="`/dashboard/${this.user.id}`"  class="nav-item nav-link"
+                        >Dashboard</router-link
+                    >
+                    >
+                    <router-link to="/posts" class="nav-item nav-link"
+                        >xxxx</router-link
+                    >
+                    <a
+                        class="nav-item nav-link"
+                        style="cursor: pointer"
+                        @click="logout"
+                        >Logout</a
+                    >
+                </div>
+            </div>
+            <!-- <div class="navbar-nav mx-auto">
             <router-link to="/entrenamiento" class="nav-item nav-link"
                 >Entrenamiento</router-link
             >
@@ -54,19 +67,17 @@
             <router-link to="/register" class="nav-item nav-link"
                 >¿Quienes somos?</router-link
             >
-        </div>
-        <div class="movil-vis login-header">
-            <div class="nav-item" v-if="isLoggedin">
-                <a
-                    class="nav-item nav-link"
-                    style="cursor: pointer"
-                    @click="logout"
-                    >Logout</a
-                >
-                <a>{{ user.name }}</a>
-=======
-            </div>
->>>>>>> df43d48871d1193346197b214d65b9ca5c580bc0
+        </div> -->
+            <div class="movil-vis login-header">
+                <div class="nav-item" v-if="isLoggedin">
+                    <a
+                        class="nav-item nav-link"
+                        style="cursor: pointer"
+                        @click="logout"
+                        >Logout</a
+                    >
+                    <a>{{ user.name }}</a>
+                </div>
             </div>
             <a href="/login">
                 <img src="../img/logo_login.svg" />
@@ -83,13 +94,19 @@
                     <a href="/" class="nav-link px-2 text-light">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/tarifa" class="nav-link px-2 text-light">Tarifas</a>
+                    <a href="/tarifa" class="nav-link px-2 text-light"
+                        >Tarifas</a
+                    >
                 </li>
                 <li class="nav-item">
-                    <a href="/entrenamiento" class="nav-link px-2 text-light">Ejercicios</a>
+                    <a href="/entrenamiento" class="nav-link px-2 text-light"
+                        >Ejercicios</a
+                    >
                 </li>
                 <li class="nav-item">
-                    <a href="/compania" class="nav-link px-2 text-light">Compañía</a>
+                    <a href="/compania" class="nav-link px-2 text-light"
+                        >Compañía</a
+                    >
                 </li>
             </ul>
             <ul
@@ -132,8 +149,13 @@
                     /></a>
                 </li>
             </ul>
-            <div class="d-flex align-items-center justify-content-center nav-link ">
-                <a href="https://agreementservice.svs.nike.com/es/es_es/rest/agreement?agreementType=termsOfUse&uxId=com.nike&country=ES&language=es&requestType=redirect" class="mb-3 mb-md-0 text-light footer-link">
+            <div
+                class="d-flex align-items-center justify-content-center nav-link"
+            >
+                <a
+                    href="https://agreementservice.svs.nike.com/es/es_es/rest/agreement?agreementType=termsOfUse&uxId=com.nike&country=ES&language=es&requestType=redirect"
+                    class="mb-3 mb-md-0 text-light footer-link"
+                >
                     © 2023 Nike, Inc. Todos los derechos reservados
                 </a>
             </div>
@@ -160,6 +182,7 @@ export default {
             console.log("=======");
             console.log(window.Laravel.user.roles[0].nombre_role);
             this.user_role = window.Laravel.user.roles[0].nombre_role;
+            console.log(this.user.name);
         }
     },
     methods: {
