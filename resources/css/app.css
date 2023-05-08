@@ -4,7 +4,6 @@
 .container {
     min-height: 42.19em;
 }
-
 /* Seccion */
 .seccion {
     margin: 6.25em;
@@ -21,6 +20,9 @@
 li{
     font-family: "texto";
     font-size: 1.5em;
+}
+small{
+    font-family: "texto";
 }
 p {
     font-family: "texto";
@@ -151,10 +153,13 @@ h4{
 /* MOVIL HOME */
 
 /* LOGIN */
-
+.titulo-form{
+    font-size:2em;
+}
 .login-pag {
     margin-top: 3.125em;
     text-align: center;
+    margin-bottom: 3.125em;
 }
 /* color link*/
 a.link-login {
@@ -173,6 +178,7 @@ a.link-login {
 .img-fluid {
     height: 15em !important;
     object-fit: cover;
+    
 }
 .img-fluid:hover {
     opacity: 0.7;
