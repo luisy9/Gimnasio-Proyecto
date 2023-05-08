@@ -14,7 +14,6 @@ import updateUsers from "../components/updateUsers.vue";
 import roleAdmin from "../components/rolesAdmin.vue";
 import updateRoles from "../components/updatRoles.vue";
 import Compania from "../components/Compania.vue";
->>>>>>> df43d48871d1193346197b214d65b9ca5c580bc0
 import {createWebHistory, createRouter} from "vue-router";
 
 export const routes = [
