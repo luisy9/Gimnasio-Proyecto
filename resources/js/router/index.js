@@ -2,8 +2,8 @@ import Home from "../components/Home.vue";
 import Register from "../components/Register.vue";
 import Login from "../components/Login.vue";
 import Dashboard from "../components/Dashboard.vue";
-import Posts from '../components/Posts.vue';
-import AddPosts from '../components/addPost.vue';
+import Posts from "../components/Posts.vue";
+import AddPosts from "../components/addPost.vue";
 import Tarifa from "../components/Tarifa.vue";
 import Pago from "../components/Pago.vue";
 import Entrenamiento from "../components/Entrenamiento.vue";
@@ -14,6 +14,7 @@ import updateUsers from "../components/updateUsers.vue";
 import roleAdmin from "../components/rolesAdmin.vue";
 import updateRoles from "../components/updatRoles.vue";
 import Compania from "../components/Compania.vue";
+>>>>>>> df43d48871d1193346197b214d65b9ca5c580bc0
 import {createWebHistory, createRouter} from "vue-router";
 
 export const routes = [
@@ -34,7 +35,7 @@ export const routes = [
     },
     {
         name: "dashboard",
-        path: "/dashboard",
+        path: "/dashboard/:idUser",
         component: Dashboard,
     },
     {
@@ -55,7 +56,7 @@ export const routes = [
     },
     {
         name: "pago",
-        path: "/pago/:idtarifa",
+        path: "/pago/:idtarifa/:iduser",
         component: Pago,
     },
     {

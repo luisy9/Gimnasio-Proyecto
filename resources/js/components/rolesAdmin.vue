@@ -34,7 +34,7 @@
                                     <td class="text-center">
                                         <button
                                             class="btn btn-danger"
-                                            @click="deleteUsers(role.id)"
+                                            @click="deleteRole(role.id)"
                                         >
                                             Delete
                                         </button>
@@ -67,7 +67,7 @@ export default {
             error: null,
         };
     },
-    created() {
+    mounted() {
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
                 .get("/api/roles")
@@ -86,13 +86,15 @@ export default {
         updateRoles(id) {
             window.location.href = "/updateRoles/" + id;
         },
-
-        deleteUsers(id) {
+        deleteRole(id) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
                     .delete("/api/deleteRoles/" + id)
                     .then((response) => {
-                        this.roles = response.data;
+                        const index = this.roles.findIndex(
+                            (roles) => roles.id === id
+                        );
+                        this.roles.splice(index, 1);
                     })
                     .catch(function (error) {
                         console.log(error);

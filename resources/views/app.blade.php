@@ -12,10 +12,7 @@
 </head>
 
 <body>
-
-
     @if (Auth::check())
-        {!! Auth::user()->roles !!}
         <script>
             window.Laravel = {!! json_encode([
                 'isLoggedin' => true,

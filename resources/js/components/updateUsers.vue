@@ -79,7 +79,18 @@
                 <div class="form-group mb-2">
                     <label>Roles Actuales</label
                     ><span class="text-danger"> *</span>
-                   
+                    <tbody>
+                        <tr v-for="(role, index) in roles" :key="role.id">
+                            <td>{{ role.id }}</td>
+                            <td>{{ role.nombre_role }}</td>
+                            <input
+                                type="checkbox"
+                                :value="`${role.id}`"
+                                v-model="checked"
+                            />
+                        </tr>
+                    </tbody>
+                    {{ checked }}
                 </div>
                 <button
                     type="submit"
@@ -103,13 +114,50 @@ export default {
             email: "",
             password: "",
             fecha_nacimiento: "",
+            roles: [],
+            checked: [],
             strSuccess: "",
             strError: "",
         };
     },
-    mounted(){
-        
-    }, 
+    mounted() {
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get("/api/showUserUpdate")
+                .then((response) => {
+                    console.log(response);
+                    this.roles = response.data;
+                    console.log(this.roles);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get("/api/roles")
+                .then((response) => {
+                    console.log(response);
+                    this.roles = response.data;
+                    console.log(this.roles);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+        //belongsToMany para coger la relacion de los roles con usuarios
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get(`/api/rolesUser/${this.$route.params.id}`)
+                .then((response) => {
+                    console.log(response.data);
+                    // this.roles = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+    },
     methods: {
         updateUser(e) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
