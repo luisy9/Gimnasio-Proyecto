@@ -15,7 +15,7 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
         ></button>
-        <div class="" v-if="user_role.id == 2">
+       <div class="" v-if="user_role == 2">
             <a>Crear Users</a>
         </div>
         <div class="navbar-nav mx-auto">
@@ -42,32 +42,9 @@
             <a class="nav-item nav-link" style="cursor: pointer" @click="logout"
                 >Logout</a
             >
-<<<<<<< HEAD
-        </div>
-        <div class="navbar-nav mx-auto">
-            <router-link to="/entrenamiento" class="nav-item nav-link"
-                >Entrenamiento</router-link
-            >
-            <router-link to="/login" class="nav-item nav-link"
-                >Tarifas</router-link
-            >
-            <router-link to="/register" class="nav-item nav-link"
-                >¿Quienes somos?</router-link
-            >
-        </div>
-        <div class="movil-vis login-header">
-            <div class="nav-item" v-if="isLoggedin">
-                <a
-                    class="nav-item nav-link"
-                    style="cursor: pointer"
-                    @click="logout"
-                    >Logout</a
-                >
-                <a>{{ user.name }}</a>
-=======
             </div>
->>>>>>> df43d48871d1193346197b214d65b9ca5c580bc0
-            </div>
+        </div>
+        
             <a href="/login">
                 <img src="../img/logo_login.svg" />
             </a>

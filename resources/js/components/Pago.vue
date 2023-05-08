@@ -104,7 +104,11 @@
                 <div class="card card-default p-5">
                     <div class="card-body p-4">
                         <div class="text-center mb-4">
-                            <h3>Pago</h3>
+                            <p class="mb-3 fw-normal titulo-form">
+                                <b>
+                                    Pago
+                                </b>
+                            </p>
                         </div>
                         <form action="">
                             <div class="form-floating">
@@ -155,7 +159,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
 </section>
 </template>
 

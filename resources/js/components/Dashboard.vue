@@ -21,12 +21,16 @@
         >Logout</a
     >
 
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center mb-5">
             <div class="col-md-10 col-lg-8 col-xl-5">
                 <div class="card card-default p-5">
                     <div class="card-body p-4">
                         <div class="text-center mb-4">
-                            <h3>Dashboard</h3>
+                            <p class="mb-3 fw-normal titulo-form">
+                                <b>
+                                    Perfil
+                                </b>
+                            </p>
                         </div>
                         <form action="">
                             <div class="form-floating">

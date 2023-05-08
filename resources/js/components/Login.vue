@@ -11,9 +11,11 @@
                     <div class="card card-default p-5">
                     <main class="form-signin w-100 m-auto px-5">
                         <form>
-                            <h1 class="h3 mb-3 fw-normal">
-                                Inicia sesión para acceder a tu cuenta
-                            </h1>
+                            <p class="mb-3 fw-normal titulo-form">
+                                <b>
+                                    Inicia sesión para acceder a tu cuenta
+                                </b>
+                            </p>
                             <br/>
                             <div class="form-floating">
                                 <input id="email" type="text" class="form-control" v-model="email" required autofocus autocomplete="off" placeholder="Enter your email"/>

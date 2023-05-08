@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container mb-5">
         <div class="login-pag px-5">
             <div class="row jutify-content-center w-50 mx-auto mb-5">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -9,7 +9,11 @@
                 <div class="card card-default p-5">
                     <main class="form-signin w-100 m-auto px-5">
                         <form>
-                            <h1 class="h3 mb-3 fw-normal">Registrate</h1>
+                            <p class="mb-3 fw-normal titulo-form">
+                                <b>
+                                    Regístrate y crea tu cuenta
+                                </b>
+                            </p>
                             <br/>
                             <div class="form-floating">
                                 <input id="name" type="text" class="form-control" v-model="name" autofocus autocomplete="off" placeholder="Nombre"/>

@@ -17,18 +17,18 @@ class TarifaSeeder extends Seeder
             [
                 'tipo_tarifa' => 'TARIFA BASICA',
                 'precio' => 19.99,
-                'descripcion_tarifa' => 'Horario de 7 a 14, sin reserva, acceso a sala de musculación, mes de apertura gratuito,  acceso ilimitado',
+                'descripcion_tarifa' => 'Horario de 7 a 14, Sin reserva, Acceso a sala de musculación, Mes de apertura gratuito,  Acceso ilimitado',
             ],
 
             [
                 'tipo_tarifa' => 'TARIFA PREMIUM',
                 'precio' => 25.70,
-                'descripcion_tarifa' => 'Acceso a horario completo Reserva con 48h de antelacion, planes de entrenamiento online, acceso a todas las salas, mes de apertura gratuito, acceso ilimitado'
+                'descripcion_tarifa' => 'Acceso a horario completo Reserva con 48h de antelacion, Planes de entrenamiento online, Acceso a todas las salas, Mes de apertura gratuito, Acceso ilimitado'
             ],
             [
                 'tipo_tarifa' => 'TARIFA PRO',
                 'precio' => 29.90,
-                'descripcion_tarifa' => 'Acceso a horario completo, reserva con 36h de antelacion, acceso a sala de musculación, mes de apertura gratuito, acceso ilimitado'
+                'descripcion_tarifa' => 'Acceso a horario completo, Reserva con 36h de antelacion, Acceso a sala de musculación, Mes de apertura gratuito, Acceso ilimitado'
             ]
         ];
         tarifa::insert($tarifa);
