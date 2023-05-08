@@ -31,6 +31,7 @@
         </div>
         <div class="movil-vis login-header">
             <div class="nav-item" v-if="isLoggedin">
+<<<<<<< HEAD
                 <a
                     data-toggle="dropdown"
                     class="nav-item nav-link"
@@ -58,6 +59,22 @@
                 </div>
             </div>
             <!-- <div class="navbar-nav mx-auto">
+=======
+                <a data-toggle="dropdown" class="nav-item nav-link dropdown-toggle" role="button">{{ user.name }}</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <router-link to="/dashboard" class="nav-item nav-link"
+                >Dashboard</router-link
+            >
+            <router-link to="/posts" class="nav-item nav-link"
+                >xxxx</router-link
+            >
+            <a class="nav-item nav-link" style="cursor: pointer" @click="logout"
+                >Logout</a
+            >
+<<<<<<< HEAD
+        </div>
+        <div class="navbar-nav mx-auto">
+>>>>>>> 22fbc43fea100e3ddfd489d9ba770c7b5b665f76
             <router-link to="/entrenamiento" class="nav-item nav-link"
                 >Entrenamiento</router-link
             >
