@@ -1,15 +1,19 @@
 <template>
-    <div class="container">
+    <div class="container mb-5">
         <div class="login-pag px-5">
             <div class="row jutify-content-center w-50 mx-auto mb-5">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" v-if="error">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <strong>{{ error }}</strong>
                 </div>
                 <div class="card card-default p-5">
                     <main class="form-signin w-100 m-auto px-5">
                         <form>
-                            <h1 class="h3 mb-3 fw-normal">Registrate</h1>
+                            <p class="mb-3 fw-normal titulo-form">
+                                <b>
+                                    Regístrate y crea tu cuenta
+                                </b>
+                            </p>
                             <br/>
                             <div class="form-floating">
                                 <input id="name" type="text" class="form-control" v-model="name" autofocus autocomplete="off" placeholder="Nombre"/>
@@ -97,3 +101,24 @@ export default {
     },
 };
 </script>
+<style scoped>
+@media (max-width: 1500px) {
+    .login-pag{
+        padding: 0;
+    }
+    .w-50{
+        width: 70%!important;
+    }
+    .p-5{
+        padding: 1em!important;
+    }
+    .px-5{
+        padding: 0!important;
+    }
+}
+@media (max-width: 400px) {
+    .w-50{
+        width: 100%!important;
+    }
+}
+</style>

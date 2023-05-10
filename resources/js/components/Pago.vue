@@ -1,11 +1,15 @@
 <template>
     <section class="p-4 p-md-5">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-5">
+            <div class="col-md-10 col-lg-8 col-xl-5 mb-2">
                 <div class="card card-default p-5">
                     <div class="card-body p-4">
                         <div class="text-center mb-4">
-                            <h3>Pago</h3>
+                            <p class="mb-3 fw-normal titulo-form">
+                                <b>
+                                    Pago
+                                </b>
+                            </p>
                         </div>
                         <form action="">
                             <div class="form-floating">
@@ -145,7 +149,7 @@
                 </div>
             </div>
         </div>
-    </section>
+</section>
 </template>
 
 <script>
@@ -240,3 +244,10 @@ export default {
     },
 };
 </script>
+<style scoped>
+@media (max-width: 1500px) {
+    .p-5{
+        padding: 0!important;
+    }
+}
+</style>
