@@ -17,23 +17,14 @@
                             </div>
                             <div class="card-body carta-color tarjeta">
                                 <ul class="list-unstyled mt-3 mb-4">
-<<<<<<< HEAD
-                                    <li>{{ tarifa.descripcion_tarifa }}</li>
-                                </ul>
-                                <router-link
-                                    :to="`/pago/${tarifa.id}/${this.iduser}`"
-                                >
-                                    <button
-                                        class="button-primary"
-                                        @click="navigate"
-=======
                                     <div
                                         v-for="descripcion in tarifa.descripcion_tarifa.split(
                                             ','
                                         )"
->>>>>>> 22fbc43fea100e3ddfd489d9ba770c7b5b665f76
                                     >
-                                        <li class="tarjeta-text my-2">{{ descripcion }}</li>
+                                        <li class="tarjeta-text my-2">
+                                            {{ descripcion }}
+                                        </li>
                                     </div>
                                 </ul>
                             </div>
@@ -43,7 +34,9 @@
                                     >/mes</small
                                 >
                             </h1>
-                            <router-link :to="`/pago/${tarifa.id}`">
+                            <router-link
+                                :to="`/pago/${tarifa.id}/${this.iduser}`"
+                            >
                                 <button
                                     class="button-primary my-4"
                                     @click="navigate"
@@ -52,6 +45,10 @@
                                 </button>
                             </router-link>
                         </div>
+                        <button
+                            class="button-primary"
+                            @click="navigate"
+                        ></button>
                     </div>
                 </div>
             </div>
@@ -76,7 +73,7 @@ export default {
         var self = this;
         axios.get("/Tarifa").then(function (response) {
             return (self.item = response.data);
-        });
+        })
     },
     created() {
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {

@@ -1,6 +1,6 @@
 <template>
 <div class="row align-items-start sticky-top bg-light pt-2 mb-2">
-    <h2 class="col-6">Musculo por ejemplo hombro</h2>
+    <p class="col-6">Musculo por ejemplo hombro</p>
     <div class="col-6 text-right pl-3 mt-2">
         <a class="link-negro float-end mx-2" type="button">Ordenar</a>
         <a class="link-negro float-end mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">Filtros</a>

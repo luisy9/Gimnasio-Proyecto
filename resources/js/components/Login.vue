@@ -4,7 +4,7 @@
             <div class="row jutify-content-center w-50 mx-auto">
                 <div class="row jutify-content-center">
                        
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" v-if="error">
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         <strong>{{ error }}</strong>
                     </div>
@@ -91,3 +91,24 @@ export default {
     },
 };
 </script>
+<style scoped>
+@media (max-width: 1500px) {
+    .login-pag{
+        padding: 0;
+    }
+    .w-50{
+        width: 70%!important;
+    }
+    .p-5{
+        padding: 1em!important;
+    }
+    .px-5{
+        padding: 0!important;
+    }
+}
+@media (max-width: 400px) {
+    .w-50{
+        width: 106%!important;
+    }
+}
+</style>
