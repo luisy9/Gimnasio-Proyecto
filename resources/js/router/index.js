@@ -14,15 +14,11 @@ import updateUsers from "../components/updateUsers.vue";
 import roleAdmin from "../components/rolesAdmin.vue";
 import updateRoles from "../components/updatRoles.vue";
 import Compania from "../components/Compania.vue";
-<<<<<<< HEAD
 import CambiarTarifa from "../components/CambiarTarifa.vue";
 import GestionarTarifas from "../components/GestionarTarifas.vue";
 import CrearTarifas from "../components/crearTarifas.vue";
 import updateTarifas from "../components/updateTarifas.vue";
 import { createWebHistory, createRouter } from "vue-router";
-=======
-import {createWebHistory, createRouter} from "vue-router";
->>>>>>> f2cadd2614f057770416925f148b7fb0f7acfad8
 
 export const routes = [
     {

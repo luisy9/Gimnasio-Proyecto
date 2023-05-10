@@ -17,7 +17,6 @@
                             </div>
                             <div class="card-body carta-color tarjeta">
                                 <ul class="list-unstyled mt-3 mb-4">
-<<<<<<< HEAD
                                     <li>{{ tarifa.descripcion_tarifa }}</li>
                                 </ul>
                                 <div
@@ -29,18 +28,6 @@
                                         {{ descripcion }}
                                     </li>
                                 </div>
-=======
-                                    <div
-                                        v-for="descripcion in tarifa.descripcion_tarifa.split(
-                                            ','
-                                        )"
-                                    >
-                                        <li class="tarjeta-text my-2">
-                                            {{ descripcion }}
-                                        </li>
-                                    </div>
-                                </ul>
->>>>>>> f2cadd2614f057770416925f148b7fb0f7acfad8
                             </div>
                             <h1 class="card-title pricing-card-title precio">
                                 {{ tarifa.precio }}€<small
@@ -48,20 +35,15 @@
                                     >/mes</small
                                 >
                             </h1>
-<<<<<<< HEAD
 
                             <div v-if="!this.membership">
                                 <router-link
                                     :to="`/pago/${tarifa.id}/${this.iduser}`"
-=======
-                            <router-link
-                                :to="`/pago/${tarifa.id}/${this.iduser}`"
-                            >
-                                <button
-                                    class="button-primary my-4"
-                                    @click="navigate"
->>>>>>> f2cadd2614f057770416925f148b7fb0f7acfad8
                                 >
+                                    <button
+                                        class="button-primary my-4"
+                                        @click="navigate"
+                                    ></button>
                                     <button
                                         class="button-primary my-4"
                                         @click="navigate"
@@ -121,7 +103,6 @@ export default {
         var self = this;
         axios.get("/Tarifa").then(function (response) {
             return (self.item = response.data);
-<<<<<<< HEAD
         });
 
         if (window.Laravel.isLoggedin) {
@@ -141,9 +122,6 @@ export default {
                     console.log(error);
                 });
         });
-=======
-        })
->>>>>>> f2cadd2614f057770416925f148b7fb0f7acfad8
     },
     created() {
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {

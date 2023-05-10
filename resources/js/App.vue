@@ -15,8 +15,8 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
         ></button>
-<<<<<<< HEAD
-        <div class="" v-if="user_role == 2">
+
+        <!-- <div class="" v-if="user_role == 2">
             <a>Crear Users</a>
         </div>
         <div class="navbar-nav mx-auto">
@@ -24,36 +24,41 @@
                 >Entrenamiento</router-link
             >
             <router-link to="/tarifa" class="nav-item nav-link"
-                >Tarifas</router-link
-            >
+                >Tarifas</router-link -->
+        >
 
-            <!-- <div v-if="isLoggedin">
+        <!-- <div v-if="isLoggedin">
                 <router-link :to="`/tarifa/${this.iduser}`" class="nav-item nav-link"
                     >Tarifas</router-link
                 >
             </div> -->
-            <router-link to="/compania" class="nav-item nav-link"
+        <!-- <router-link to="/compania" class="nav-item nav-link"
                 >¿Quienes somos?</router-link
             >
-        </div>
-=======
+        </div> -->
+
         <div class="collapse navbar-collapse" id="collapsibleNavId">
-    <div class="" v-if="user_role == 2">
-        <a>Crear Users</a>
-    </div>
-    <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-            <router-link to="/entrenamiento" class="nav-link">Entrenamiento</router-link>
-        </li>
-        <li class="nav-item">
-            <router-link to="/tarifa" class="nav-link">Tarifas</router-link>
-        </li>
-        <li class="nav-item">
-            <router-link to="/compania" class="nav-link">¿Quienes somos?</router-link>
-        </li>
-    </ul>
-</div>
->>>>>>> f2cadd2614f057770416925f148b7fb0f7acfad8
+            <div class="" v-if="user_role == 2">
+                <a>Crear Users</a>
+            </div>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <router-link to="/entrenamiento" class="nav-link"
+                        >Entrenamiento</router-link
+                    >
+                </li>
+                <li class="nav-item">
+                    <router-link to="/tarifa" class="nav-link"
+                        >Tarifas</router-link
+                    >
+                </li>
+                <li class="nav-item">
+                    <router-link to="/compania" class="nav-link"
+                        >¿Quienes somos?</router-link
+                    >
+                </li>
+            </ul>
+        </div>
         <div class="movil-vis login-header">
             <div class="nav-item" v-if="isLoggedin">
                 <a
@@ -84,7 +89,6 @@
                     >
                 </div>
             </div>
-            
         </div>
         <div class="movil-vis login-header">
             <a href="/login">
