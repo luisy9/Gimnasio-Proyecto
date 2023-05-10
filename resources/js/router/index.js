@@ -14,6 +14,10 @@ import updateUsers from "../components/updateUsers.vue";
 import roleAdmin from "../components/rolesAdmin.vue";
 import updateRoles from "../components/updatRoles.vue";
 import Compania from "../components/Compania.vue";
+import CambiarTarifa from "../components/CambiarTarifa.vue";
+import GestionarTarifas from "../components/GestionarTarifas.vue";
+import CrearTarifas from "../components/crearTarifas.vue";
+import updateTarifas from "../components/updateTarifas.vue";
 import { createWebHistory, createRouter } from "vue-router";
 
 export const routes = [
@@ -97,6 +101,27 @@ export const routes = [
         name: "compania",
         path: "/compania",
         component: Compania,
+    },
+    {
+        name: "cambiarTarifa",
+        path: "/cambiarTarifa/:idTarifa/:idUser",
+        component: CambiarTarifa,
+    },
+
+    {
+        name: "GestionarTarifas",
+        path: "/GestionarTarifas",
+        component: GestionarTarifas,
+    },
+    {
+        name: "crearTarifas",
+        path: "/crearTarifas",
+        component: CrearTarifas,
+    },
+    {
+        name: "updateTarifas",
+        path: "/updateTarifas/:idTarifa",
+        component: updateTarifas,
     },
 ];
 

@@ -13,7 +13,10 @@ class PagoController extends Controller
     public function pagoFactura($idTarifa, $idUser, Request $req)
     {
         try {
+            
             $factura = new facturas();
+            $factura->nombre_completo = $req->nombre_completo;
+            $factura->numero_tarjeta = $req->numero_tarjeta;
             $factura->user_id = $idUser;
             $factura->tarifa_id = $idTarifa;
             $factura->save();
@@ -52,7 +55,7 @@ class PagoController extends Controller
 
     public function isMembership($id)
     {
-        $isMember = facturas::find($id);
+        $isMember = facturas::where('user_id', $id)->get();
         return $isMember;
     }
 }

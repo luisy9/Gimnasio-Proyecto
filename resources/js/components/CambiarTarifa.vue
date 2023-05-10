@@ -116,7 +116,7 @@
                                 <button
                                     type="submit"
                                     class="button-primary"
-                                    @click="pago"
+                                    @click="cambiarTarifa"
                                 >
                                     Pagar
                                 </button>
@@ -150,7 +150,7 @@
 
 <script>
 export default {
-    name: "Pago",
+    name: "CambiarTarifa",
     data() {
         return {
             nombre_completo: "",
@@ -159,19 +159,18 @@ export default {
             tarfiasArray: [],
             factura: null,
             membership: null,
-            idtarifa: this.$route.params.idtarifa,
-            iduser: this.$route.params.iduser,
+            idtarifa: this.$route.params.idTarifa,
+            iduser: this.$route.params.idUser,
             isLoggedin: false,
         };
     },
     created() {
-        console.log(this.iduser);
-        // console.log(thi);
         if (!window.Laravel.isLoggedin) {
             this.isLoggedin = true;
         }
     },
     mounted() {
+        console.log(this.idtarifa);
         this.iduser = window.Laravel.user.id;
         if (this.isLoggedin) {
             window.location.href = "/login";
@@ -187,55 +186,55 @@ export default {
                     console.log(error);
                 });
         });
-        this.$axios
-            .post("/api/tarifasSelect", {
-                id: this.idtarifa,
-            })
-            .then((response) => {
-                var tarifas = response.data;
-                this.tarfiasArray.push(tarifas);
-                console.log(tarifas);
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
-                .delete(`/api/cambiarTarifas/${this.idtarifa}/${this.iduser}`)
+                .post("/api/tarifasSelect", {
+                    id: this.idtarifa,
+                })
                 .then((response) => {
-                    const index = this.tarifas.findIndex(
-                        (tarifa) => tarifa.id === id
-                    );
-                    this.tarifas.splice(index, 1);
+                    var tarifas = response.data;
+                    this.tarfiasArray.push(tarifas);
+                    console.log("XXXXX");
+                    console.log(this.tarfiasArray);
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    console.error(error);
                 });
         });
     },
 
     methods: {
-        pago(e) {
+        cambiarTarifa(e) {
             e.preventDefault();
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
-                    .post(`/api/pago/${this.idtarifa}/${this.iduser}`, {
-                        nombre_completo: this.nombre_completo,
-                        numero_tarjeta: this.numero_tarjeta,
-                    })
+                    .delete(`/api/cambiarTarifas/${this.idtarifa}/${this.iduser}/${this.nombre_completo}/${this.numero_tarjeta}`)
                     .then((response) => {
-                        if (response.data.success) {
-                            existingObj.strSuccess = response.data.success;
-                            console.log(response.data);
-                        } else {
-                            console.log(response);
-                            this.error = response.data.message;
-                        }
+                        console.log(response.data);
+                        // const index = this.tarifas.findIndex(
+                        //     (tarifa) => tarifa.id === id
+                        // );
+                        // this.tarifas.splice(index, 1);
                     })
                     .catch(function (error) {
-                        console.error(error);
+                        console.log(error);
                     });
             });
+            // this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            //     this.$axios
+            //         .delete(
+            //             `/api/cambiarTarifas/${this.idtarifa}/${this.iduser}`
+            //         )
+            //         .then((response) => {
+            //             const index = this.tarifas.findIndex(
+            //                 (tarifa) => tarifa.id === id
+            //             );
+            //             this.tarifas.splice(index, 1);
+            //         })
+            //         .catch(function (error) {
+            //             console.log(error);
+            //         });
+            // });
         },
     },
 };

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('tarifa_id');
             $table->foreign('tarifa_id')->references('id')->on('tarifas')->onDelete('cascade');
+            $table->string("nombre_completo");
+            $table->string("numero_tarjeta");
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\role;
@@ -109,12 +110,60 @@ class AdminController extends Controller
 
     public function deleteTarifas($id)
     {
-        $tarifa = tarifa::findOrFail($id);
-        $tarifa->delete();
+        DB::delete('delete from tarifas where id = ?', [$id]);
+        DB::delete('delete from facturas where tarifa_id ? '[$id]);
         return response()->json(['success' => 'Tarifa deleted successfully']);
     }
 
-    public function updateTarifas()
+
+    public function showUser($id)
     {
+        $users = User::find($id);
+        return $users;
+    }
+
+    public function newTarifas(Request $req)
+    {
+        try {
+            $tarifa = new tarifa();
+            $tarifa->tipo_tarifa = $req->tipo_tarifa;
+            $tarifa->precio = $req->precio;
+            $tarifa->descripcion_tarifa = $req->descripcion_tarifa;
+            $tarifa->save();
+
+            $success = true;
+            $message = "Tarifa añadida correctamente";
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+
+
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+
+        return response()->json($response);
+    }
+
+    public function showTarifa($idtarifa)
+    {
+        $tarifas = tarifa::findOrFail($idtarifa);
+        return $tarifas;
+    }
+
+    public function updatetarifa(Request $req, $idtarifa)
+    {
+        $tarifa = tarifa::find($idtarifa);
+        $req->validate([
+            'tipo_tarifa' => 'required',
+            'precio' => 'required',
+            'descripcion_tarifa' => 'required'
+        ]);
+
+        $input = $req->all();
+        $tarifa->update($input);
+        return response()->json(['success' => 'Tarifa update successfully']);
     }
 }

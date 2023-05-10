@@ -17,25 +17,17 @@
                             </div>
                             <div class="card-body carta-color tarjeta">
                                 <ul class="list-unstyled mt-3 mb-4">
-<<<<<<< HEAD
                                     <li>{{ tarifa.descripcion_tarifa }}</li>
                                 </ul>
-                                <router-link
-                                    :to="`/pago/${tarifa.id}/${this.iduser}`"
+                                <div
+                                    v-for="descripcion in tarifa.descripcion_tarifa.split(
+                                        ','
+                                    )"
                                 >
-                                    <button
-                                        class="button-primary"
-                                        @click="navigate"
-=======
-                                    <div
-                                        v-for="descripcion in tarifa.descripcion_tarifa.split(
-                                            ','
-                                        )"
->>>>>>> 22fbc43fea100e3ddfd489d9ba770c7b5b665f76
-                                    >
-                                        <li class="tarjeta-text my-2">{{ descripcion }}</li>
-                                    </div>
-                                </ul>
+                                    <li class="tarjeta-text my-2">
+                                        {{ descripcion }}
+                                    </li>
+                                </div>
                             </div>
                             <h1 class="card-title pricing-card-title precio">
                                 {{ tarifa.precio }}€<small
@@ -43,14 +35,39 @@
                                     >/mes</small
                                 >
                             </h1>
-                            <router-link :to="`/pago/${tarifa.id}`">
-                                <button
-                                    class="button-primary my-4"
-                                    @click="navigate"
+
+                            <div v-if="!this.membership">
+                                <router-link
+                                    :to="`/pago/${tarifa.id}/${this.iduser}`"
                                 >
-                                    Seleccionar
-                                </button>
-                            </router-link>
+                                    <button
+                                        class="button-primary my-4"
+                                        @click="navigate"
+                                    >
+                                        Seleccionar
+                                    </button>
+                                </router-link>
+                            </div>
+                            <div v-if="this.membership">
+                                <div v-if="userRole == 'admin'" class="pb-3">
+                                    <button
+                                        class="btn btn-danger"
+                                        @click="deleteTarifa(tarifa.id)"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                                <router-link
+                                    :to="`/cambiarTarifa/${tarifa.id}/${this.iduser}`"
+                                >
+                                    <button
+                                        class="button-primary my-4"
+                                        @click="navigate"
+                                    >
+                                        Cambiar
+                                    </button>
+                                </router-link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,17 +82,37 @@ export default {
     data() {
         return {
             tarifas: [],
+            membership: null,
             iduser: null,
+            user: null,
+            userRole: null,
             strSuccess: "",
             strError: "",
         };
     },
 
     mounted() {
-        this.iduser = window.Laravel.user.id;
         var self = this;
         axios.get("/Tarifa").then(function (response) {
             return (self.item = response.data);
+        });
+
+        if (window.Laravel.isLoggedin) {
+            this.iduser = window.Laravel.user.id;
+            this.user = window.Laravel.user;
+            this.userRole = window.Laravel.user.roles[0].nombre_role;
+            // console.log(this.user);
+        }
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get(`/api/membership/${this.iduser}`)
+                .then((response) => {
+                    this.membership = response.data;
+                    console.log(this.membership);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         });
     },
     created() {

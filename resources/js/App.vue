@@ -25,13 +25,18 @@
             <router-link to="/tarifa" class="nav-item nav-link"
                 >Tarifas</router-link
             >
+
+            <!-- <div v-if="isLoggedin">
+                <router-link :to="`/tarifa/${this.iduser}`" class="nav-item nav-link"
+                    >Tarifas</router-link
+                >
+            </div> -->
             <router-link to="/compania" class="nav-item nav-link"
                 >¿Quienes somos?</router-link
             >
         </div>
         <div class="movil-vis login-header">
             <div class="nav-item" v-if="isLoggedin">
-<<<<<<< HEAD
                 <a
                     data-toggle="dropdown"
                     class="nav-item nav-link"
@@ -42,8 +47,10 @@
                     class="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
                 >
-                {{ this.user.id }}
-                    <router-link :to="`/dashboard/${this.user.id}`"  class="nav-item nav-link"
+                    {{ this.user.id }}
+                    <router-link
+                        :to="`/dashboard/${this.user.id}`"
+                        class="nav-item nav-link"
                         >Dashboard</router-link
                     >
                     >
@@ -206,8 +213,9 @@ export default {
         logout(e) {
             e.preventDefault();
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                console.log(response);
                 this.$axios
-                    .post("api/logout")
+                    .post("/api/logout")
                     .then((response) => {
                         if (response.data.success) {
                             window.location.href = "/";

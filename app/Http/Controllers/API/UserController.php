@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\role;
 use Illuminate\Support\Facades\Session;
+use App\Models\facturas;
 
 class UserController extends Controller
 {
@@ -46,7 +47,7 @@ class UserController extends Controller
             $user->fecha_nacimiento = $req->fecha_nacimiento;
             $user->save();
 
-            $role_default = role::where('nombre_role','default_user')->get();
+            $role_default = role::where('nombre_role', 'default_user')->get();
 
             // DB::insert('insert into rolesusuarios (user_id, role_id) values ('.$user->id.', '.$role_default->id.')');
             //DB::insert('insert into rolesusuarios (user_id, role_id) values ('.$user->id.', '.$role_default->id.')');
@@ -55,9 +56,9 @@ class UserController extends Controller
             // $test->roles()->attach($role_default->id);
             // $arrayRoles = $req->checked;
             $user->roles()->sync(2);
-            
+
             // return $user->roles;
-            
+
 
             $success = true;
             $message = "Usuario registrado correctamente";
@@ -100,8 +101,36 @@ class UserController extends Controller
         return $req->all();
     }
 
-    public function selectUser(Request $req){
+    public function selectUser(Request $req)
+    {
         $userSelecionado = User::find($req->id);
         return $userSelecionado;
+    }
+
+    public function changeTarifa($idTarifa, $idUser, $nombre_completo, $numero_tarjeta,Request $req)
+    {
+       
+        try {
+            $factura = facturas::where('user_id', $idUser)->get();
+            DB::delete('delete from facturas where user_id = ?',[$idUser]);
+            $factura = new facturas();
+            $factura->nombre_completo = $req->nombre_completo;
+            $factura->numero_tarjeta = $req->numero_tarjeta;
+            $factura->user_id = $idUser;
+            $factura->tarifa_id = $idTarifa;
+            $factura->save();
+            $success = true;
+            $message = "Cambio de tarifa correctamente";
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+
+        return response()->json(['success' => 'Cambio de tarifa correctamente']);
     }
 }

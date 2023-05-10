@@ -13,8 +13,14 @@
         <router-link to="/eliminarUsuarios" class="nav-item nav-link"
             >Eliminar Usuarios</router-link
         >
-        <router-link to="/roleAdmin " class="nav-item nav-link"
+        <router-link to="/roleAdmin" class="nav-item nav-link"
             >Gestionar Roles</router-link
+        >
+        <router-link to="/GestionarTarifas" class="nav-item nav-link"
+            >Gestionar Tarifas</router-link
+        >
+        <router-link to="/crearTarifas" class="nav-item nav-link"
+            >Crear Tarifas</router-link
         >
     </div>
     <a class="nav-item nav-link" style="cursor: pointer" @click="logout"
@@ -112,7 +118,7 @@ export default {
     mounted() {
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
-                .get(`/api/facturasTarifas/${this.user.id}`)
+                .get(`/api/facturasTarifas/${this.iduser}`)
                 .then((response) => {
                     this.id_tarifa = response.data;
                     this.hayTarifa = true;

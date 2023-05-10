@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between pb-2 mb-2">
-                <h5 class="card-title">Update User</h5>
+                <h5 class="card-title">Update Tarifas</h5>
                 <div>
                     <router-link :to="{ name: 'posts' }" class="btn btn-success"
                         >Go Back</router-link
@@ -40,65 +40,40 @@
 
             <form @submit.prevent="updatePost" enctype="multipart/form-data">
                 <div class="form-group mb-2">
-                    <label>Name</label><span class="text-danger"> *</span>
+                    <label>Tipo Tarifa</label
+                    ><span class="text-danger"> *</span>
                     <input
                         type="text"
                         class="form-control"
-                        v-model="name"
-                        
-                        placeholder="Enter post name"
+                        v-model="tipo_tarifa"
+                        placeholder="Enter post tarifa"
                     />
                 </div>
                 <div class="form-group mb-2">
-                    <label>email</label><span class="text-danger"> *</span>
+                    <label>Precio</label><span class="text-danger"> *</span>
                     <input
                         type="text"
                         class="form-control"
-                        v-model="email"
+                        v-model="precio"
                         placeholder="Enter post name"
                     />
                 </div>
                 <div class="form-group mb-2">
-                    <label>Contraseña</label><span class="text-danger"> *</span>
-                    <input
-                        type="password"
-                        class="form-control"
-                        v-model="password"
-                        placeholder="Enter post name"
-                    />
-                </div>
-                <div class="form-group mb-2">
-                    <label>Fecha de Nacimiento</label
+                    <label>descripcion</label
                     ><span class="text-danger"> *</span>
                     <input
-                        type="date"
+                        type="text"
                         class="form-control"
-                        v-model="fecha_nacimiento"
+                        v-model="descripcion"
                         placeholder="Enter post name"
                     />
-                </div>
-                <div class="form-group mb-2">
-                    <label>Roles Actuales</label
-                    ><span class="text-danger"> *</span>
-                    <tbody>
-                        <tr v-for="(role, index) in roles" :key="role.id">
-                            <td>{{ role.id }}</td>
-                            <td>{{ role.nombre_role }}</td>
-                            <input
-                                type="checkbox"
-                                :value="`${role.id}`"
-                                v-model="checked"
-                            />
-                        </tr>
-                    </tbody>
-                    {{ checked }}
                 </div>
                 <button
                     type="submit"
                     class="btn btn-primary mt-4 mb-4"
-                    @click="updateUser"
+                    @click="updateTarifa"
                 >
-                    Update User
+                    Update Tarifa
                 </button>
 
                 <!-- {{ this.user_role }} -->
@@ -113,12 +88,11 @@ export default {
     data() {
         return {
             id: "",
-            name: "",
-            email: "",
-            password: "",
-            fecha_nacimiento: "",
+            tipo_tarifa: "",
+            precio: "",
+            descripcion: "",
             user_role: null,
-            iduser: this.$route.params.id,
+            idtarifa: this.$route.params.idTarifa,
             roles: [],
             checked: [],
             strSuccess: "",
@@ -126,61 +100,25 @@ export default {
         };
     },
     mounted() {
-        this.user_role = window.Laravel.user_role;
-        console.log("dsadas");
+        // this.user_role = window.Laravel.user_role;
+        // console.log("dsadas");
         // console.log(window.Laravel.user.roles[0].nombre_role);
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
-                .get(`/api/showUserUpdate/${this.iduser}`)
-                .then((response) => {
-                    console.log(response.data.name);
-                    this.name = response.data.name;
-                    this.email = response.data.email;
-                    this.password = response.data.password;
-                    this.fecha_nacimiento = response.data.fecha_nacimiento;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        });
-        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-            this.$axios
-                .get("/api/roles")
-                .then((response) => {
-                    console.log(response);
-                    this.roles = response.data;
-                    console.log(this.roles);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        });
-        //belongsToMany para coger la relacion de los roles con usuarios
-        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-            this.$axios
-                .get(`/api/rolesUser/${this.$route.params.id}`)
+                .get(`/api/showTarifaUpdate/${this.idtarifa}`)
                 .then((response) => {
                     console.log(response.data);
-                    // this.roles = response.data;
+                    this.tipo_tarifa = response.data.tipo_tarifa;
+                    this.precio = response.data.precio;
+                    this.descripcion = response.data.descripcion_tarifa;
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         });
-        // this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-        //     this.$axios
-        //         .get(`/api/rolesUser/${this.$route.params.id}`)
-        //         .then((response) => {
-        //             console.log(response.data);
-        //             // this.roles = response.data;
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         });
-        // });
     },
     methods: {
-        updateUser(e) {
+        updateTarifa(e) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 let existingObj = this;
                 const config = {
@@ -190,14 +128,13 @@ export default {
                 };
 
                 const formData = new FormData();
-                formData.append("name", this.name);
-                formData.append("email", this.email);
-                formData.append("password", this.password);
-                formData.append("fecha_nacimiento", this.fecha_nacimiento);
+                formData.append("tipo_tarifa", this.tipo_tarifa);
+                formData.append("precio", this.precio);
+                formData.append("descripcion_tarifa", this.descripcion);
 
                 this.$axios
                     .post(
-                        `/api/update/${this.$route.params.id}`,
+                        `/api/updateTarifa/${this.idtarifa}`,
                         formData,
                         config
                     )

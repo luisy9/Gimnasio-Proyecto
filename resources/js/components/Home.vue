@@ -14,17 +14,13 @@
         </div>
     </div>
     <!-- SEC1 TARIFAS-->
-<<<<<<< HEAD
     <div v-if="this.membership && this.userRole == 'default_user'">
-        <h1 class="pt-5" style="text-align: center;">Clases del gimnasio!</h1>
+        <h1 class="pt-5" style="text-align: center">Clases del gimnasio!</h1>
     </div>
     <div v-if="!this.membership || this.userRole == 'admin'">
         <div class="seccion">
-            <div class="text-center text-titulo">
-                <h1>NUESTRAS TARIFAS</h1>
-            </div>
             <main>
-                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                <!-- <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
                     <div v-for="(tarifa, index) in tarifas" :key="index">
                         <div class="col">
                             <div
@@ -61,61 +57,100 @@
                                         :to="`/pago/${tarifa.id}/${this.iduser}`"
                                     >
                                         <button
-                                            class="button-primary"
+                                            class="button-primary my-4"
                                             @click="navigate"
                                         >
                                             Seleccionar
                                         </button>
                                     </router-link>
                                 </div>
-=======
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </main>
+        </div>
+    </div>
     <div class="seccion">
         <div class="text-center text-titulo">
             <h1>NUESTRAS TARIFAS</h1>
         </div>
         <main>
-            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-                <div v-for="(tarifa, index) in tarifas" :key="index">
-                    <div class="col">
-                        <div class="card mb-4 rounded-3 shadow-sm border-dark">
-                            <div class="card-header py-3 border-dark bg-dark">
-                                <h4 class="my-0 fw-normal text-light">
-                                    <b>
-                                        {{ tarifa.tipo_tarifa }}
-                                    </b>
-                                </h4>
-                            </div>
-                            <div class="card-body carta-color tarjeta">
-                                <ul class="list-unstyled mt-3 mb-4">
-                                    <div
-                                        v-for="descripcion in tarifa.descripcion_tarifa.split(
-                                            ','
-                                        )"
+            <div v-if="!this.membership || this.userRole == 'admin'">
+                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                    <div v-for="(tarifa, index) in tarifas" :key="index">
+                        <div class="col">
+                            <div
+                                class="card mb-4 rounded-3 shadow-sm border-dark"
+                            >
+                                <div
+                                    class="card-header py-3 border-dark bg-dark"
+                                >
+                                    <h4 class="my-0 fw-normal text-light">
+                                        <b>
+                                            {{ tarifa.tipo_tarifa }}
+                                        </b>
+                                    </h4>
+                                </div>
+                                <div class="card-body carta-color tarjeta">
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <div
+                                            v-for="descripcion in tarifa.descripcion_tarifa.split(
+                                                ','
+                                            )"
+                                        >
+                                            <li class="tarjeta-text my-2">
+                                                {{ descripcion }}
+                                            </li>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <h1
+                                    class="card-title pricing-card-title precio"
+                                >
+                                    {{ tarifa.precio }}€<small
+                                        class="text-body-secondary fw-light"
+                                        >/mes</small
                                     >
-                                        <li class="tarjeta-text my-2">{{ descripcion }}</li>
-                                    </div>
-                                </ul>
->>>>>>> 22fbc43fea100e3ddfd489d9ba770c7b5b665f76
+                                </h1>
+                                <div v-if="!this.membership">
+                                    <router-link
+                                        :to="`/pago/${tarifa.id}/${this.iduser}`"
+                                    >
+                                        <button
+                                            class="button-primary my-4"
+                                            @click="navigate"
+                                        >
+                                            Seleccionar
+                                        </button>
+                                    </router-link>
+                                </div>
+                                <div v-if="userRole == 'admin'" class="pb-3">
+                                    <button
+                                        class="btn btn-danger"
+                                        @click="deleteTarifa(tarifa.id)"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                                <div v-if="this.membership">
+                                    <router-link
+                                        :to="`/cambiarTarifa/${tarifa.id}/${this.iduser}`"
+                                    >
+                                        <button
+                                            class="button-primary my-4"
+                                            @click="navigate"
+                                        >
+                                            Cambiar
+                                        </button>
+                                    </router-link>
+                                </div>
                             </div>
-                            <h1 class="card-title pricing-card-title precio">
-                                {{ tarifa.precio }}€<small
-                                    class="text-body-secondary fw-light"
-                                    >/mes</small
-                                >
-                            </h1>
-                            <router-link :to="`/pago/${tarifa.id}`">
-                                <button
-                                    class="button-primary my-4"
-                                    @click="navigate"
-                                >
-                                    Seleccionar
-                                </button>
-                            </router-link>
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
+            </div>
+        </main>
     </div>
 
     <!-- SEC2  ELEGIRNOS-->
@@ -168,6 +203,7 @@ export default {
     data() {
         return {
             tarifas: [],
+            categorias: null,
             membership: null,
             userRole: null,
             iduser: null,
@@ -179,6 +215,7 @@ export default {
     mounted() {
         if (window.Laravel.isLoggedin) {
             this.iduser = window.Laravel.user.id;
+            console.log(this.iduser);
             this.userRole = window.Laravel.user.roles[0].nombre_role;
             console.log(this.userRole);
         }
@@ -192,7 +229,32 @@ export default {
                 .get(`/api/membership/${this.iduser}`)
                 .then((response) => {
                     this.membership = response.data;
-                    console.log(this.membership);
+                    if (this.membership == 0) {
+                        console.log("dkasmdkas");
+                        console.log((this.membership = false));
+                    } else {
+                        this.membership = true;
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get("/api/showCategorias")
+                .then((response) => {
+                    this.categorias =response.data;
+                    // this.categorias.push(response.data);
+                    console.log(this.categorias);
+                    // this.membership = response.data;
+                    // if (this.membership == 0) {
+                    //     console.log("dkasmdkas");
+                    //     console.log(this.membership = false);
+                    // }else{
+                    //     this.membership = true;
+                    // }
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -216,7 +278,7 @@ export default {
         deleteTarifa(id) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
-                    .delete("/api/deleteTarifas/" + id)
+                    .delete("/api/tarifasDelete/" + id)
                     .then((response) => {
                         const index = this.tarifas.findIndex(
                             (tarifa) => tarifa.id === id

@@ -13,6 +13,7 @@
 
 <body>
     @if (Auth::check())
+    {{ !! Auth::user()->roles }}
         <script>
             window.Laravel = {!! json_encode([
                 'isLoggedin' => true,
@@ -28,7 +29,7 @@
         </script>
     @endif
     <script>
-        //console.log(window.Laravel.user_role);
+        console.log(window.Laravel.user_role);
     </script>
 
     <div id="app"></div>
