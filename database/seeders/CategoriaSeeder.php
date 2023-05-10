@@ -18,7 +18,7 @@ class CategoriaSeeder extends Seeder
             [
                 'id' => 1,
                 'nombre_categoria' => 'Pecho',
-                'imagen_categoria' => 'img/Pectoral.jpg',
+                'imagen_categoria' => 'Pectorial.jpg',
             ],
             [
                 'id' => 2,
@@ -44,6 +44,11 @@ class CategoriaSeeder extends Seeder
                 'id' => 6,
                 'nombre_categoria' => 'Espalda',
                 'imagen_categoria' => 'Espalda.jpg',
+            ],
+            [
+                'id' => 7,
+                'nombre_categoria' => 'Abdominales',
+                'imagen_categoria' => 'Abdominales.jpg',
             ],
         ];
 
