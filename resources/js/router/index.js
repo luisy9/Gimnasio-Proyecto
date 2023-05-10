@@ -18,6 +18,14 @@ import CambiarTarifa from "../components/CambiarTarifa.vue";
 import GestionarTarifas from "../components/GestionarTarifas.vue";
 import CrearTarifas from "../components/crearTarifas.vue";
 import updateTarifas from "../components/updateTarifas.vue";
+import EjerciciosMusculo from "../components/EjerciciosMusculo.vue";
+// import PechoMusculo from "../components/PechoMusculo.vue";
+// import AbdominalesMusuculo from "../components/AbdominalesMusuculo.vue";
+// import BicepsMusculo from "../components/BicepsMusculo.vue";
+// import EspaldaMusculo from "../components/EspaldaMusculo.vue";
+// import HombroMusculo from "../components/HombroMusculo.vue";
+// import TricepsMusculo from "../components/BicepsMusculo.vue";
+// import PiernaMusculo from "../components/PiernaMusculo.vue";
 import { createWebHistory, createRouter } from "vue-router";
 
 export const routes = [
@@ -123,6 +131,31 @@ export const routes = [
         path: "/updateTarifas/:idTarifa",
         component: updateTarifas,
     },
+    {
+        name: "ejercicioMusculo",
+        path: "/ejercicioMusculo",
+        component: EjerciciosMusculo,
+    },
+    // {
+    //     name: "piernaMuculo",
+    //     path: "/piernaMuculo",
+    //     component: PiernaMusculo,
+    // },
+    // {
+    //     name: "pechoMusucu",
+    //     path: "/updateTarifas/:idTarifa",
+    //     component: PechoMusculo,
+    // },
+    // {
+    //     name: "updateTarifas",
+    //     path: "/updateTarifas/:idTarifa",
+    //     component: updateTarifas,
+    // },
+    // {
+    //     name: "updateTarifas",
+    //     path: "/updateTarifas/:idTarifa",
+    //     component: updateTarifas,
+    // },
 ];
 
 const router = createRouter({

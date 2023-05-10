@@ -73,10 +73,6 @@
                                 </router-link>
                             </div>
                         </div>
-                        <button
-                            class="button-primary"
-                            @click="navigate"
-                        ></button>
                     </div>
                 </div>
             </div>
