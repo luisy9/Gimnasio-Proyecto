@@ -57,3 +57,4 @@ Route::get('showCategorias', [EjerciciosController::class, 'categorias']);
 Route::post('createTarifas', [AdminController::class, 'newTarifas']);
 Route::get('showTarifaUpdate/{idtarifa}', [AdminController::class, 'showTarifa']);
 Route::post('updateTarifa/{idtarifa}', [AdminController::class, 'updatetarifa']);
+Route::get('showMuscles', [EntrenamientoController::class, 'showCategorias']);
