@@ -6,6 +6,7 @@
                 <img src="../img/nike_logo.svg" alt="Logo" />
             </a>
         </div>
+<<<<<<< HEAD
         <button
             class="navbar-toggler d-lg-none"
             type="button"
@@ -15,6 +16,9 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
         ></button>
+=======
+
+>>>>>>> acc2f9d1d6e742c3bb6886f1cccd1d9efc1e2047
         <!-- <div class="" v-if="user_role == 2">
             <a>Crear Users</a>
         </div>
@@ -24,6 +28,10 @@
             >
             <router-link to="/tarifa" class="nav-item nav-link"
                 >Tarifas</router-link -->
+<<<<<<< HEAD
+=======
+
+>>>>>>> acc2f9d1d6e742c3bb6886f1cccd1d9efc1e2047
         <!-- <div v-if="isLoggedin">
                 <router-link :to="`/tarifa/${this.iduser}`" class="nav-item nav-link"
                     >Tarifas</router-link
@@ -59,7 +67,7 @@
             <div class="nav-item" v-if="isLoggedin">
                 <a
                     data-toggle="dropdown"
-                    class="nav-item nav-link dropdown-toggle mx-2"
+                    class="nav-link dropdown-toggle mx-3"
                     role="button"
                     >{{ user.name }}</a
                 >
@@ -86,9 +94,17 @@
                 </div>
             </div>
         </div>
-        <div class="movil-vis login-header">
+        <div class="movil-vis login-header" v-if="!isLoggedin">
             <a href="/login">
                 <img src="../img/logo_login.svg" />
+            </a>
+        </div>
+        <div class="movil-vis logout-header" v-if="isLoggedin">
+            <a
+                style="cursor: pointer"
+                @click="logout"
+            >
+                <img src="../img/logo_logout.svg" />
             </a>
         </div>
     </nav>

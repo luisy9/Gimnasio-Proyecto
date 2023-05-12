@@ -1,57 +1,167 @@
 <template>
-    <div class="container">
-        <div class="login-pag px-5">
-            <div class="row jutify-content-center w-50 mx-auto mb-5">
-                <div
-                    class="alert alert-danger alert-dismissible fade show"
-                    role="alert"
-                >
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="alert"
-                        aria-label="Close"
-                    ></button>
-                    <strong>{{ error }}</strong>
+    <div class="container-fluid" v-if="this.user_role == 'admin'">
+        <div class="row">
+            <nav
+                id="sidebarMenu"
+                class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+            >
+                <div class="position-sticky pt-3">
+                    <h5
+                        class="d-flex justify-content-between px-3 mt-4 mb-1 my-3 text-muted"
+                    >
+                        <span>Dashboard</span
+                        ><a
+                            class="link-secondary"
+                            href="#"
+                            aria-label="Add a new report"
+                        >
+                            <img
+                                class="contraer-img pb-1"
+                                src="http://localhost:8000/img/logos/contraer_izq.svg"
+                            />
+                        </a>
+                    </h5>
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Usuario</span>
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <router-link to="/dashboard/4" class="nav-link"
+                                >Perfil</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/crearUsuarios" class="nav-link"
+                                >Crear Usuarios</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link
+                                to="/modificarUsuarios"
+                                class="nav-link"
+                                >Modificar Usuarios</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/eliminarUsuarios" class="nav-link"
+                                >Eliminar Usuarios</router-link
+                            >
+                        </li>
+                        </ul>
+                        <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Rol</span>
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <router-link to="/roleAdmin" class="nav-link"
+                                >Gestionar Roles</router-link
+                            >
+                        </li>
+                    </ul>
+
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Tarifa</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <router-link to="/GestionarTarifas" class="nav-link"
+                                >Gestionar Tarifas</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/crearTarifas" class="nav-link"
+                                >Crear Tarifas</router-link
+                            >
+                        </li>
+                    </ul>
                 </div>
-                <div class="card card-default p-5">
-                    <main class="form-signin w-100 m-auto px-5">
-                        <table class="table table-hover table-sm">
-                            <thead class="bg-dark text-light">
-                                <tr>
-                                    <th width="50" class="text-center">#</th>
-                                    <th>Name</th>
-                                    <th>email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr
-                                    v-for="(user, index) in usuarios"
-                                    :key="user.id"
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <section class="p-4 p-md-5">
+                    <div class="row d-flex justify-content-center mb-5">
+                        <!--<div class="login-pag px-5">-->
+                            <!--<div
+                                class="row jutify-content-center w-50 mx-auto mb-5"
+                            >-->
+                                <div
+                                    class="alert alert-danger alert-dismissible fade show"
+                                    role="alert"
+                                    v-if="error"
                                 >
-                                    <td>{{ user.name }}</td>
-                                    <td>{{ user.email }}</td>
-                                    <td class="text-center">
-                                        <button
-                                            class="btn btn-danger"
-                                            @click="deleteUsers(user.id)"
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="alert"
+                                        aria-label="Close"
+                                    ></button>
+                                    <strong>{{ error }}</strong>
+                                </div>
+                                <div class="card card-default p-5">
+                                    <main class="form-signin w-100 m-auto px-5">
+                                        <table
+                                            class="table table-hover table-sm"
                                         >
-                                            Delete
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            class="btn btn-primary mt-4 mb-4"
-                                            @click="updateUsers(user.id)"
-                                        >
-                                            Update User
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </main>
-                </div>
-            </div>
+                                            <thead class="bg-dark text-light">
+                                                <tr>
+                                                    <th
+                                                        width="50"
+                                                        class="text-center"
+                                                    >
+                                                        #
+                                                    </th>
+                                                    <th>Name</th>
+                                                    <th>email</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr
+                                                    v-for="(
+                                                        user, index
+                                                    ) in usuarios"
+                                                    :key="user.id"
+                                                >
+                                                    <td>{{ user.name }}</td>
+                                                    <td>{{ user.email }}</td>
+                                                    <td class="text-center">
+                                                        <button
+                                                            class="btn btn-danger"
+                                                            @click="
+                                                                deleteUsers(
+                                                                    user.id
+                                                                )
+                                                            "
+                                                        >
+                                                            Delete
+                                                        </button>
+                                                        <button
+                                                            type="submit"
+                                                            class="btn btn-primary mt-4 mb-4"
+                                                            @click="
+                                                                updateUsers(
+                                                                    user.id
+                                                                )
+                                                            "
+                                                        >
+                                                            Update User
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </main>
+                                </div>
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                </section>
+            </main>
         </div>
     </div>
 </template>
@@ -80,6 +190,18 @@ export default {
                     console.log(error);
                 });
         });
+        if (window.Laravel.isLoggedin) {
+            this.iduser = window.Laravel.user.id;
+            console.log(this.iduser);
+            this.isLoggedin = true;
+            this.user = window.Laravel.user;
+            this.isLoggedin = true;
+            this.user = window.Laravel.user;
+            this.user_role = window.Laravel.user_role;
+            console.log("=======");
+            console.log(window.Laravel.user.roles[0].nombre_role);
+            this.user_role = window.Laravel.user.roles[0].nombre_role;
+        }
     },
 
     methods: {
@@ -92,8 +214,10 @@ export default {
                 this.$axios
                     .delete("/api/deleteUsers/" + id)
                     .then((response) => {
-                        const index = this.usuarios.findIndex(user => user.id === id);
-                        this.usuarios.splice(index, 1)
+                        const index = this.usuarios.findIndex(
+                            (user) => user.id === id
+                        );
+                        this.usuarios.splice(index, 1);
                     })
                     .catch(function (error) {
                         console.log(error);

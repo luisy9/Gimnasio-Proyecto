@@ -1,11 +1,97 @@
 <template>
-    <div class="container">
-        <h1>Gestionar Tarifas</h1>
-        <div class="login-pag px-5">
-            <div class="row jutify-content-center w-50 mx-auto mb-5">
+
+<div class="container-fluid">
+        <div class="row">
+            <nav
+                id="sidebarMenu"
+                class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+            >
+                <div class="position-sticky pt-3">
+                    <h5
+                        class="d-flex justify-content-between px-3 mt-4 mb-1 my-3 text-muted"
+                    >
+                        <span>Dashboard</span
+                        ><a
+                            class="link-secondary"
+                            href="#"
+                            aria-label="Add a new report"
+                        >
+                            <img
+                                class="contraer-img pb-1"
+                                src="http://localhost:8000/img/logos/contraer_izq.svg"
+                            />
+                        </a>
+                    </h5>
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Usuario</span>
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <router-link to="/dashboard/4" class="nav-link"
+                                >Perfil</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/crearUsuarios" class="nav-link"
+                                >Crear Usuarios</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link
+                                to="/modificarUsuarios"
+                                class="nav-link"
+                                >Modificar Usuarios</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/eliminarUsuarios" class="nav-link"
+                                >Eliminar Usuarios</router-link
+                            >
+                        </li>
+                        </ul>
+                        <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Rol</span>
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <router-link to="/roleAdmin" class="nav-link"
+                                >Gestionar Roles</router-link
+                            >
+                        </li>
+                    </ul>
+
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Tarifa</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <router-link to="/GestionarTarifas" class="nav-link"
+                                >Gestionar Tarifas</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/crearTarifas" class="nav-link"
+                                >Crear Tarifas</router-link
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <section class="p-4 p-md-5">
+                    <div class="row d-flex justify-content-center mb-5">
+                        
                 <div
                     class="alert alert-danger alert-dismissible fade show"
                     role="alert"
+                    v-if="error"
                 >
                     <button
                         type="button"
@@ -25,6 +111,7 @@
                                     </th>
                                     <th>Precio</th>
                                     <th>descripcion</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,9 +142,27 @@
                         </table>
                     </main>
                 </div>
-            </div>
-        </div>
+            
     </div>
+                </section>
+                <div class="chartjs-size-monitor">
+                    <div class="chartjs-size-monitor-expand">
+                        <div class=""></div>
+                    </div>
+                    <div class="chartjs-size-monitor-shrink">
+                        <div class=""></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        </div>
+
+
+
+
+
+
+
 </template>
 
 <script>
