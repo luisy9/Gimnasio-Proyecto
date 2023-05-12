@@ -80,7 +80,7 @@
             <h1>NUESTRAS TARIFAS</h1>
         </div>
         <main>
-            <div v-if="!this.membership || this.userRole == 'admin'">
+            <div v-if="this.membership || ! this.membership">
                 <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
                     <div v-for="(tarifa, index) in tarifas" :key="index">
                         <div class="col">
@@ -154,6 +154,80 @@
                     </div>
                 </div>
             </div>
+            <!-- <div v-if="this.membership">
+                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                    <div v-for="(tarifa, index) in tarifas" :key="index">
+                        <div class="col">
+                            <div
+                                class="card mb-4 rounded-3 shadow-sm border-dark"
+                            >
+                                <div
+                                    class="card-header py-3 border-dark bg-dark"
+                                >
+                                    <h4 class="my-0 fw-normal text-light">
+                                        <b>
+                                            {{ tarifa.tipo_tarifa }}
+                                        </b>
+                                    </h4>
+                                </div>
+                                <div class="card-body carta-color tarjeta">
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <div
+                                            v-for="descripcion in tarifa.descripcion_tarifa.split(
+                                                ','
+                                            )"
+                                        >
+                                            <li class="tarjeta-text my-2">
+                                                {{ descripcion }}
+                                            </li>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <h1
+                                    class="card-title pricing-card-title precio"
+                                >
+                                    {{ tarifa.precio }}€<small
+                                        class="text-body-secondary fw-light"
+                                        >/mes</small
+                                    >
+                                </h1>
+                                <div v-if="!this.membership">
+                                    <router-link
+                                        :to="`/pago/${tarifa.id}/${this.iduser}`"
+                                    >
+                                        <button
+                                            class="button-primary my-4"
+                                            @click="navigate"
+                                        >
+                                            Seleccionar
+                                        </button>
+                                    </router-link>
+                                </div>
+                                <div v-if="userRole == 'admin'" class="pb-3">
+                                    <button
+                                        class="btn btn-danger"
+                                        @click="deleteTarifa(tarifa.id)"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                                <div v-if="this.membership">
+                                    <router-link
+                                        :to="`/cambiarTarifa/${tarifa.id}/${this.iduser}`"
+                                    >
+                                        <button
+                                            class="button-primary my-4"
+                                            @click="navigate"
+                                        >
+                                            Cambiar
+                                        </button>
+                                    </router-link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </main>
     </div>
     <!-- <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
@@ -303,6 +377,7 @@ export default {
                 .get("/api/tarifas")
                 .then((response) => {
                     this.tarifas = response.data;
+                    console.log(this.tarifas);
                 })
                 .catch(function (error) {
                     console.log(error);

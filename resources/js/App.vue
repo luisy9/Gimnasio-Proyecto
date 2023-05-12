@@ -15,7 +15,6 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
         ></button>
-
         <!-- <div class="" v-if="user_role == 2">
             <a>Crear Users</a>
         </div>
@@ -25,8 +24,6 @@
             >
             <router-link to="/tarifa" class="nav-item nav-link"
                 >Tarifas</router-link -->
-        >
-
         <!-- <div v-if="isLoggedin">
                 <router-link :to="`/tarifa/${this.iduser}`" class="nav-item nav-link"
                     >Tarifas</router-link
@@ -36,7 +33,6 @@
                 >¿Quienes somos?</router-link
             >
         </div> -->
-
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <div class="" v-if="user_role == 2">
                 <a>Crear Users</a>
