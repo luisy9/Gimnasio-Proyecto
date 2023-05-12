@@ -14,6 +14,8 @@ class ejercicio extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'ejercicio';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'id',
         'nombre_ejercicio',

@@ -60,16 +60,22 @@ class AdminController extends Controller
         return response()->json(['success' => 'User deleted successfully']);
     }
 
-    public function updateUsers($id, Request $request)
+    public function updateUsers($id,$idroles, Request $request)
     {
         $user = User::find($id);
         $request->validate([
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'fecha_nacimiento' => 'required'
+            'fecha_nacimiento' => 'required',
         ]);
 
+        $idroles->validate([
+            'user_id' => 'required',
+            'role_id' => 'required'
+        ]);
+        $roles = $idroles->all();
+        $rol = User::roles();
         $input = $request->all();
         $input["password"] = Hash::make($request->password);
         $user->update($input);

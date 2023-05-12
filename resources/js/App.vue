@@ -6,7 +6,19 @@
                 <img src="../img/nike_logo.svg" alt="Logo" />
             </a>
         </div>
+<<<<<<< HEAD
+        <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        ></button>
+=======
 
+>>>>>>> acc2f9d1d6e742c3bb6886f1cccd1d9efc1e2047
         <!-- <div class="" v-if="user_role == 2">
             <a>Crear Users</a>
         </div>
@@ -16,7 +28,10 @@
             >
             <router-link to="/tarifa" class="nav-item nav-link"
                 >Tarifas</router-link -->
+<<<<<<< HEAD
+=======
 
+>>>>>>> acc2f9d1d6e742c3bb6886f1cccd1d9efc1e2047
         <!-- <div v-if="isLoggedin">
                 <router-link :to="`/tarifa/${this.iduser}`" class="nav-item nav-link"
                     >Tarifas</router-link
@@ -26,7 +41,6 @@
                 >¿Quienes somos?</router-link
             >
         </div> -->
-
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <div class="" v-if="user_role == 2">
                 <a>Crear Users</a>

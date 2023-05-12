@@ -45,7 +45,6 @@
                         type="text"
                         class="form-control"
                         v-model="name"
-                        
                         placeholder="Enter post name"
                     />
                 </div>
@@ -84,11 +83,17 @@
                         <tr v-for="(role, index) in roles" :key="role.id">
                             <td>{{ role.id }}</td>
                             <td>{{ role.nombre_role }}</td>
-                            <input
-                                type="checkbox"
-                                :value="`${role.id}`"
-                                v-model="checked"
-                            />
+
+                            <div>
+                                <input 
+                                    type="checkbox"
+                                    name="test"
+                                    :value="`${role.id}`"
+                                    v-model="checked"
+                                />
+                            </div>
+                           
+                            
                         </tr>
                     </tbody>
                     {{ checked }}
@@ -127,6 +132,7 @@ export default {
     },
     mounted() {
         this.user_role = window.Laravel.user_role;
+        console.log(this.user_role[0]);
         console.log("dsadas");
         // console.log(window.Laravel.user.roles[0].nombre_role);
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
@@ -150,6 +156,7 @@ export default {
                     console.log(response);
                     this.roles = response.data;
                     console.log(this.roles);
+                    this.existeRole();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -160,26 +167,22 @@ export default {
             this.$axios
                 .get(`/api/rolesUser/${this.$route.params.id}`)
                 .then((response) => {
+                    this.user_role = window.Laravel.user_role;
                     console.log(response.data);
-                    // this.roles = response.data;
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         });
-        // this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-        //     this.$axios
-        //         .get(`/api/rolesUser/${this.$route.params.id}`)
-        //         .then((response) => {
-        //             console.log(response.data);
-        //             // this.roles = response.data;
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         });
-        // });
     },
     methods: {
+
+        existeRole() {
+            let list_name_role =  this.user_role.map(role => role.nombre_role);
+            this.roles.forEach((role,index) => {          
+                (list_name_role.includes(role.nombre_role) )? this.checked[index].push(role.id): null;
+            });
+        },
         updateUser(e) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 let existingObj = this;
@@ -194,10 +197,11 @@ export default {
                 formData.append("email", this.email);
                 formData.append("password", this.password);
                 formData.append("fecha_nacimiento", this.fecha_nacimiento);
+                formData.append("role_id",this.checked);
 
                 this.$axios
                     .post(
-                        `/api/update/${this.$route.params.id}`,
+                        `/api/update/${this.$route.params.id}/${this.checked}`,
                         formData,
                         config
                     )

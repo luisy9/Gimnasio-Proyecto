@@ -2,12 +2,44 @@
     <div class="banner-entrenamiento">
         <h1 class="text-center">Entrenamiento</h1>
     </div>
+    <div v-if="this.isPro">
+        <div class="banner-entrenamiento">
+            <h1>Crear Rutina</h1>
+            <router-link to="/crearRutina" class="nav-item nav-link"
+                >Gestionar Roles
+                <button>Crear</button>
+            </router-link>
+        </div>
+    </div>
     <div class="container">
+<<<<<<< HEAD
+        <div class="row">
+            <div
+                class="col flex justify-content-center"
+                v-for="(catego, index) in categorias"
+                :key="catego.id"
+            >
+                <div class="card-body">
+                    <p class="card-title mx-2">
+                        {{ catego.nombre_categoria }}
+                    </p>
+                </div>
+                <router-link
+                    class="link-negro"
+                    :to="`/ejercicioMusculo/${catego.id}`"
+                >
+                    <img
+                        class="img-fluid"
+                        :src="`img/${catego.imagen_categoria}`"
+                    />
+                </router-link>
+=======
 <!-- NO BORRAR GALERIA DE IMAGENES!!!
         <div class="galeria-ejercicios">
             <div class="galeria-imagen"
                 style="background-image: url('http://localhost:8000/img/musculos/hombro2.webp'); display: flex; justify-content: center; align-items: center;">
                 <p class="text-white">Hombro</p>
+>>>>>>> acc2f9d1d6e742c3bb6886f1cccd1d9efc1e2047
             </div>
             <div class="galeria-imagen"
                 style="background-image: url('http://localhost:8000/img/musculos/pecho2.webp'); display: flex; justify-content: center; align-items: center;">
@@ -348,12 +380,24 @@
 export default {
     name: "Entrenamiento",
 
+<<<<<<< HEAD
+    data() {
+        return {
+            categorias: null,
+            isPro: null,
+            isLoggedin: false,
+            user: null,
+            iduser: null,
+        };
+    },
+=======
     data() {},
 
+>>>>>>> acc2f9d1d6e742c3bb6886f1cccd1d9efc1e2047
     mounted() {
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
-                .get("/api/showCategorias")
+                .get("/api/showMuscles")
                 .then((response) => {
                     this.categorias = response.data;
                     console.log(this.categorias);
@@ -362,6 +406,28 @@ export default {
                     console.log(error);
                 });
         });
+
+        if (window.Laravel.isLoggedin) {
+            this.isLoggedin = true;
+            this.iduser = window.Laravel.user.id;
+            console.log(this.iduser);
+            this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                this.$axios
+                    .get("/api/isUserPro/" + this.iduser)
+                    .then((response) => {
+                        this.isPro = response.data;
+                        if (this.isPro == 0) {
+                            console.log("dkasmdkas");
+                            console.log((this.isPro = false));
+                        } else {
+                            this.isPro = true;
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            });
+        }
     },
 };
 </script>
