@@ -6,9 +6,7 @@
                     <div class="card-body p-4">
                         <div class="text-center mb-4">
                             <p class="mb-3 fw-normal titulo-form">
-                                <b>
-                                    Pago
-                                </b>
+                                <b> Pago </b>
                             </p>
                         </div>
                         <form action="">
@@ -47,7 +45,7 @@
                                     v-model="nombre_completo"
                                     required
                                     autofocus
-                                    autocomplete="off"
+                                    @input="saveToLocalStorage"
                                     placeholder="Nombre completo"
                                 />
                                 <label
@@ -149,7 +147,7 @@
                 </div>
             </div>
         </div>
-</section>
+    </section>
 </template>
 
 <script>
@@ -170,12 +168,20 @@ export default {
     },
     created() {
         console.log(this.iduser);
-        // console.log(thi);
-        if (!window.Laravel.isLoggedin) {
-            this.isLoggedin = true;
+        if (window.Laravel.isLoggedin) {
+            this.iduser = window.Laravel.user.id;
+            console.log(this.iduser);
+            this.userRole = window.Laravel.user.roles[0].nombre_role;
+            console.log(this.userRole);
+        } else {
+            window.location.href = "/login";
         }
     },
     mounted() {
+        const dataFromLocalStorage = localStorage.getItem("dataPago");
+        if (dataFromLocalStorage) {
+            this.nombre_completo = dataFromLocalStorage;
+        }
         this.iduser = window.Laravel.user.id;
         if (this.isLoggedin) {
             window.location.href = "/login";
@@ -219,6 +225,11 @@ export default {
     },
 
     methods: {
+        saveToLocalStorage() {
+            if (this.nombre_completo.trim() !== "") {
+                localStorage.setItem("dataPago", this.nombre_completo);
+            }
+        },
         pago(e) {
             e.preventDefault();
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
@@ -246,8 +257,8 @@ export default {
 </script>
 <style scoped>
 @media (max-width: 1500px) {
-    .p-5{
-        padding: 0!important;
+    .p-5 {
+        padding: 0 !important;
     }
 }
 </style>

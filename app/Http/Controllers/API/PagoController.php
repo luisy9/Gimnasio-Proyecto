@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\facturas;
 use App\Models\tarifa;
 
@@ -38,17 +39,17 @@ class PagoController extends Controller
 
     public function selectPagoTarifa($id)
     {
-        $facturaSelect = facturas::find($id);
-        $facturasTarifa = $facturaSelect->tarifa_id;
+        $facturaSelect = facturas::where('user_id', $id)->get();
+        // return $facturaSelect;
+        $facturasTarifa = $facturaSelect[0]->tarifa_id;
         $tarifaActual = tarifa::find($facturasTarifa);
         return $tarifaActual;
     }
 
     public function bajaFactura($id)
     {
-
-        $factura = facturas::find($id);
-        $factura->delete();
+        DB::delete('delete from facturas where user_id = ?', [$id]);
+        DB::delete('delete from rutina_users where user_id = ?', [$id]);
         return response()->json(['success' => 'Dado de baja correctamente']);
     }
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\categoria;
 use App\Models\ejercicio;
 use App\Models\facturas;
+use App\Models\rutina_users;
 use Illuminate\Support\Facades\DB;
 
 class EntrenamientoController extends Controller
@@ -41,4 +42,47 @@ class EntrenamientoController extends Controller
         return $isPro;
     }
 
+    public function createRutina($userid, Request $req)
+    {
+        try {
+            $rutina = new rutina_users();
+            $rutina->nombre_rutina = $req->nombre_rutina;
+            $rutina->dia_semana = $req->dia_semana;
+            $rutina->ejercicios = $req->ejercicios;
+            $rutina->user_id = $userid;
+            $rutina->save();
+
+            $rutina->save();
+
+            $success = true;
+            $message = "Rutina añadida correctamente";
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+
+
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+
+        return response()->json($response);
+    }
+
+    public function search(Request $req, $nombre)
+    {
+        $ejercicios = ejercicio::where('nombre_ejercicio', 'LIKE', '%' .  $nombre . '%')->get();
+
+        return response()->json($ejercicios);
+    }
+
+    public function hasTarifa($iduser){
+        $rutina_users = rutina_users::where('user_id', $iduser)->get();
+        return $rutina_users;
+    }
+
+    public function deleteEjericicio(){
+        
+    }
 }

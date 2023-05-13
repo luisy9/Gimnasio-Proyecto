@@ -4,55 +4,57 @@
             <h1>NUESTRAS TARIFAS</h1>
         </div>
         <main>
-            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-                <div v-for="(tarifa, index) in tarifas" :key="index">
-                    <div class="col">
-                        <div class="card mb-4 rounded-3 shadow-sm border-dark">
-                            <div class="card-header py-3 border-dark bg-dark">
-                                <h4 class="my-0 fw-normal text-light">
-                                    <b>
-                                        {{ tarifa.tipo_tarifa }}
-                                    </b>
-                                </h4>
-                            </div>
-                            <div class="card-body carta-color tarjeta">
-                                <ul class="list-unstyled mt-3 mb-4">
-                                    <li>{{ tarifa.descripcion_tarifa }}</li>
-                                </ul>
+            <div v-if="this.membership || !this.membership">
+                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                    <div v-for="(tarifa, index) in tarifas" :key="index">
+                        <div class="col">
+                            <div
+                                class="card mb-4 rounded-3 shadow-sm border-dark"
+                            >
                                 <div
-                                    v-for="descripcion in tarifa.descripcion_tarifa.split(
-                                        ','
-                                    )"
+                                    class="card-header py-3 border-dark bg-dark"
                                 >
-                                    <li class="tarjeta-text my-2">
-                                        {{ descripcion }}
-                                    </li>
+                                    <h4 class="my-0 fw-normal text-light">
+                                        <b>
+                                            {{ tarifa.tipo_tarifa }}
+                                        </b>
+                                    </h4>
                                 </div>
-                            </div>
-                            <h1 class="card-title pricing-card-title precio">
-                                {{ tarifa.precio }}€<small
-                                    class="text-body-secondary fw-light"
-                                    >/mes</small
-                                >
-                            </h1>
-
-                            <div v-if="!this.membership">
-                                <router-link
-                                    :to="`/pago/${tarifa.id}/${this.iduser}`"
-                                >
-                                    <button
-                                        class="button-primary my-4"
-                                        @click="navigate"
-                                    ></button>
-                                    <button
-                                        class="button-primary my-4"
-                                        @click="navigate"
+                                <div class="card-body carta-color tarjeta">
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <li>{{ tarifa.descripcion_tarifa }}</li>
+                                    </ul>
+                                    <div
+                                        v-for="descripcion in tarifa.descripcion_tarifa.split(
+                                            ','
+                                        )"
                                     >
-                                        Seleccionar
-                                    </button>
-                                </router-link>
-                            </div>
-                            <div v-if="this.membership">
+                                        <li class="tarjeta-text my-2">
+                                            {{ descripcion }}
+                                        </li>
+                                    </div>
+                                </div>
+                                <h1
+                                    class="card-title pricing-card-title precio"
+                                >
+                                    {{ tarifa.precio }}€<small
+                                        class="text-body-secondary fw-light"
+                                        >/mes</small
+                                    >
+                                </h1>
+
+                                <div v-if="!this.membership">
+                                    <router-link
+                                        :to="`/pago/${tarifa.id}/${this.iduser}`"
+                                    >
+                                        <button
+                                            class="button-primary my-4"
+                                            @click="navigate"
+                                        >
+                                            Seleccionar
+                                        </button>
+                                    </router-link>
+                                </div>
                                 <div v-if="userRole == 'admin'" class="pb-3">
                                     <button
                                         class="btn btn-danger"
@@ -61,16 +63,18 @@
                                         Delete
                                     </button>
                                 </div>
-                                <router-link
-                                    :to="`/cambiarTarifa/${tarifa.id}/${this.iduser}`"
-                                >
-                                    <button
-                                        class="button-primary my-4"
-                                        @click="navigate"
+                                <div v-if="this.membership">
+                                    <router-link
+                                        :to="`/cambiarTarifa/${tarifa.id}/${this.iduser}`"
                                     >
-                                        Cambiar
-                                    </button>
-                                </router-link>
+                                        <button
+                                            class="button-primary my-4"
+                                            @click="navigate"
+                                        >
+                                            Cambiar
+                                        </button>
+                                    </router-link>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,6 +90,7 @@ export default {
     data() {
         return {
             tarifas: [],
+            isLoggedin: false,
             membership: null,
             iduser: null,
             user: null,
@@ -96,6 +101,12 @@ export default {
     },
 
     mounted() {
+        if (window.Laravel.isLoggedin) {
+            this.iduser = window.Laravel.user.id;
+            console.log(this.iduser);
+            this.userRole = window.Laravel.user.roles[0].nombre_role;
+            console.log(this.userRole);
+        }
         var self = this;
         axios.get("/Tarifa").then(function (response) {
             return (self.item = response.data);
@@ -112,7 +123,12 @@ export default {
                 .get(`/api/membership/${this.iduser}`)
                 .then((response) => {
                     this.membership = response.data;
-                    console.log(this.membership);
+                    if (this.membership == 0) {
+                        console.log("dkasmdkas");
+                        console.log((this.membership = false));
+                    } else {
+                        this.membership = true;
+                    }
                 })
                 .catch(function (error) {
                     console.log(error);

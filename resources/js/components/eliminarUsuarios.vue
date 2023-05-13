@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid" v-if="this.user_role == 'admin'">
+    <div class="container-fluid" v-if="this.user_role == 'admin' || this.user_role == 'gestion_users'">
         <div class="row">
             <nav
                 id="sidebarMenu"
@@ -105,6 +105,7 @@
                                 </div>
                                 <div class="card card-default p-5">
                                     <main class="form-signin w-100 m-auto px-5">
+                                        <h2>Gestionar Usuarios</h2>
                                         <table
                                             class="table table-hover table-sm"
                                         >

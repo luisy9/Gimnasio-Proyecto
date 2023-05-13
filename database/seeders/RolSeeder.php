@@ -25,51 +25,20 @@ class RolSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'nombre_role' => 'crear_user'
+                'nombre_role' => 'gestion_users'
             ],
             [
                 'id' => 4,
-                'nombre_role' => 'modificar_user'
+                'nombre_role' => 'gestion_roles'
             ],
             [
                 'id' => 5,
-                'nombre_role' => 'eliminar_user'
+                'nombre_role' => 'gestion_tarifas'
             ],
             [
                 'id' => 6,
-                'nombre_role' => 'añadir_tarifa'
+                'nombre_role' => 'gestion_entrenamiento'
             ],
-            [
-                'id' => 7,
-                'nombre_role' => 'eliminar_tarifa'
-            ],
-            [
-                'id' => 8,
-                'nombre_role' => 'modificar_tarifa'
-            ],
-            [
-                'id' => 9,
-                'nombre_role' => 'crear_producto'
-            ],
-            [
-                'id' => 10,
-                'nombre_role' => 'modificar_producto'
-            ],
-            [
-                'id' => 11,
-                'nombre_role' => 'eliminar_producto'
-            ],
-            [
-                'id' => 12,
-                'nombre_role' => 'crear_musculo'
-            ],
-            [
-                'id' => 13,
-                'nombre_role' => 'eliminar_musculo'
-            ], [
-                'id' => 14,
-                'nombre_role' => 'modificar_musculo'
-            ]
 
         ];
         role::insert($role);

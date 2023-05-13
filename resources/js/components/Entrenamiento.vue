@@ -1,6 +1,9 @@
 <template>
     <div class="banner-entrenamiento">
         <h1 class="text-center">Entrenamiento</h1>
+        <router-link to="/buscarEjercicios" class="nav-item nav-link"
+            >Buscador Ejericicos</router-link
+        >
     </div>
     <div v-if="this.isPro">
         <div class="banner-entrenamiento">
@@ -12,7 +15,6 @@
         </div>
     </div>
     <div class="container">
-<<<<<<< HEAD
         <div class="row">
             <div
                 class="col flex justify-content-center"
@@ -33,13 +35,15 @@
                         :src="`img/${catego.imagen_categoria}`"
                     />
                 </router-link>
-=======
-<!-- NO BORRAR GALERIA DE IMAGENES!!!
+            </div>
+        </div>
+    </div>
+
+    <!-- NO BORRAR GALERIA DE IMAGENES!!!
         <div class="galeria-ejercicios">
             <div class="galeria-imagen"
                 style="background-image: url('http://localhost:8000/img/musculos/hombro2.webp'); display: flex; justify-content: center; align-items: center;">
                 <p class="text-white">Hombro</p>
->>>>>>> acc2f9d1d6e742c3bb6886f1cccd1d9efc1e2047
             </div>
             <div class="galeria-imagen"
                 style="background-image: url('http://localhost:8000/img/musculos/pecho2.webp'); display: flex; justify-content: center; align-items: center;">
@@ -71,163 +75,158 @@
             </div>
         </div>-->
 
-
-        <section class="pt-5 pb-5 mt-5 vis-desck">
-            <div class="row">
-                <div class="col-6 mb-2">
-                    <h3 class="mb-3"><b>Ejercicios especificos</b></h3>
-                </div>
-                <div class="col-6 text-end mb-2">
-                    <a
-                        class=""
-                        href="#carouselExampleIndicators2"
-                        role="button"
-                        data-slide="prev"
-                    >
-                        <img
-                            class="logo-flechas"
-                            src="../../img/logos/izquierda.svg"
-                        />
-                    </a>
-                    <a
-                        class=""
-                        href="#carouselExampleIndicators2"
-                        role="button"
-                        data-slide="next"
-                    >
-                        <img
-                            class="logo-flechas"
-                            src="../../img/logos/derecha.svg"
-                        />
-                    </a>
-                </div>
-                <div class="col-12">
-                    <div
-                        id="carouselExampleIndicators2"
-                        class="carousel slide"
-                        data-ride="carousel"
-                    >
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row">
-                                    <div class="col-md-3 mb-3 pad-carrusel">
-                                        <a
-                                            class="link-negro"
-                                            href="/ejercicioMusculo"
-                                        >
-                                            <img
-                                                class="img-fluid"
-                                                src="../../img/musculos/hombro2.webp"
-                                            />
-                                            <div class="card-body">
-                                                <p class="card-title mx-2">
-                                                    Hombro
-                                                </p>
-                                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3 mb-3 pad-carrusel">
-                                        <a class="link-negro" href="#">
-                                            <img
-                                                class="img-fluid"
-                                                src="../../img/musculos/pecho2.webp"
-                                            />
-                                            <div class="card-body">
-                                                <p class="card-title">Pecho</p>
-                                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3 mb-3 pad-carrusel">
-                                        <a class="link-negro" href="#">
-                                            <img
-                                                class="img-fluid"
-                                                src="../../img/musculos/biceps.webp"
-                                            />
-                                            <div class="card-body">
-                                                <p class="card-title">Biceps</p>
-                                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3 mb-3 pad-carrusel">
-                                        <a class="link-negro" href="#">
-                                            <img
-                                                class="img-fluid"
-                                                src="../../img/musculos/triceps.webp"
-                                            />
-                                            <div class="card-body">
-                                                <p class="card-title">
-                                                    Triceps
-                                                </p>
-                                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-                                            </div>
-                                        </a>
-                                    </div>
+    <section class="pt-5 pb-5 mt-5 vis-desck">
+        <div class="row">
+            <div class="col-6 mb-2">
+                <h3 class="mb-3"><b>Ejercicios especificos</b></h3>
+            </div>
+            <div class="col-6 text-end mb-2">
+                <a
+                    class=""
+                    href="#carouselExampleIndicators2"
+                    role="button"
+                    data-slide="prev"
+                >
+                    <img
+                        class="logo-flechas"
+                        src="../../img/logos/izquierda.svg"
+                    />
+                </a>
+                <a
+                    class=""
+                    href="#carouselExampleIndicators2"
+                    role="button"
+                    data-slide="next"
+                >
+                    <img
+                        class="logo-flechas"
+                        src="../../img/logos/derecha.svg"
+                    />
+                </a>
+            </div>
+            <div class="col-12">
+                <div
+                    id="carouselExampleIndicators2"
+                    class="carousel slide"
+                    data-ride="carousel"
+                >
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-md-3 mb-3 pad-carrusel">
+                                    <a
+                                        class="link-negro"
+                                        href="/ejercicioMusculo"
+                                    >
+                                        <img
+                                            class="img-fluid"
+                                            src="../../img/musculos/hombro2.webp"
+                                        />
+                                        <div class="card-body">
+                                            <p class="card-title mx-2">
+                                                Hombro
+                                            </p>
+                                            <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3 pad-carrusel">
+                                    <a class="link-negro" href="#">
+                                        <img
+                                            class="img-fluid"
+                                            src="../../img/musculos/pecho2.webp"
+                                        />
+                                        <div class="card-body">
+                                            <p class="card-title">Pecho</p>
+                                            <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3 pad-carrusel">
+                                    <a class="link-negro" href="#">
+                                        <img
+                                            class="img-fluid"
+                                            src="../../img/musculos/biceps.webp"
+                                        />
+                                        <div class="card-body">
+                                            <p class="card-title">Biceps</p>
+                                            <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3 pad-carrusel">
+                                    <a class="link-negro" href="#">
+                                        <img
+                                            class="img-fluid"
+                                            src="../../img/musculos/triceps.webp"
+                                        />
+                                        <div class="card-body">
+                                            <p class="card-title">Triceps</p>
+                                            <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="carousel-item">
-                                <div class="row">
-                                    <div class="col-md-3 mb-3 pad-carrusel">
-                                        <a class="link-negro" href="#">
-                                            <img
-                                                class="img-fluid"
-                                                src="../../img/musculos/abdominales2.webp"
-                                            />
-                                            <div class="card-body">
-                                                <p class="card-title mx-2">
-                                                    Abdominales
-                                                </p>
-                                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3 mb-3 pad-carrusel">
-                                        <a class="link-negro" href="#">
-                                            <img
-                                                class="img-fluid"
-                                                src="../../img/musculos/espalda.webp"
-                                            />
-                                            <div class="card-body">
-                                                <p class="card-title">
-                                                    Espalda
-                                                </p>
-                                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3 mb-3 pad-carrusel">
-                                        <a class="link-negro" href="#">
-                                            <img
-                                                class="img-fluid"
-                                                src="../../img/musculos/pierna.webp"
-                                            />
-                                            <div class="card-body">
-                                                <p class="card-title">Pierna</p>
-                                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3 mb-3 pad-carrusel">
-                                        <a class="link-negro" href="#">
-                                            <img
-                                                class="img-fluid"
-                                                src="../../img/musculos/otros.webp"
-                                            />
-                                            <div class="card-body">
-                                                <p class="card-title">Otros</p>
-                                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-                                            </div>
-                                        </a>
-                                    </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-md-3 mb-3 pad-carrusel">
+                                    <a class="link-negro" href="#">
+                                        <img
+                                            class="img-fluid"
+                                            src="../../img/musculos/abdominales2.webp"
+                                        />
+                                        <div class="card-body">
+                                            <p class="card-title mx-2">
+                                                Abdominales
+                                            </p>
+                                            <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3 pad-carrusel">
+                                    <a class="link-negro" href="#">
+                                        <img
+                                            class="img-fluid"
+                                            src="../../img/musculos/espalda.webp"
+                                        />
+                                        <div class="card-body">
+                                            <p class="card-title">Espalda</p>
+                                            <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3 pad-carrusel">
+                                    <a class="link-negro" href="#">
+                                        <img
+                                            class="img-fluid"
+                                            src="../../img/musculos/pierna.webp"
+                                        />
+                                        <div class="card-body">
+                                            <p class="card-title">Pierna</p>
+                                            <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3 pad-carrusel">
+                                    <a class="link-negro" href="#">
+                                        <img
+                                            class="img-fluid"
+                                            src="../../img/musculos/otros.webp"
+                                        />
+                                        <div class="card-body">
+                                            <p class="card-title">Otros</p>
+                                            <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
     <!-- <div class="row vis-mov">
         <div class="col-6 mb-2">
@@ -337,50 +336,47 @@
             </div>
         </div>-->
 
-        <section class="part2">
-            <div class="text-center mb-2 mt-2">
-                <h3 class="mb-3"><b>Rutinas</b></h3>
+    <section class="part2">
+        <div class="text-center mb-2 mt-2">
+            <h3 class="mb-3"><b>Rutinas</b></h3>
+        </div>
+        <div class="row mb-5 mt-5">
+            <div class="col-md-4 pad-rutinas">
+                <a class="link-negro" href="#">
+                    <img
+                        alt=""
+                        class="resize-image center-block w-100"
+                        src="../../img/rutinas/kettlebell-g3e8f94e67_1280.webp"
+                    />
+                    <h4 class="text-center m-4">Rutina basica</h4>
+                </a>
             </div>
-            <div class="row mb-5 mt-5">
-                <div class="col-md-4 pad-rutinas">
-                    <a class="link-negro" href="#">
-                        <img
-                            alt=""
-                            class="resize-image center-block w-100"
-                            src="../../img/rutinas/kettlebell-g3e8f94e67_1280.webp"
-                        />
-                        <h4 class="text-center m-4">Rutina basica</h4>
-                    </a>
-                </div>
-                <div class="col-md-4 pad-rutinas">
-                    <a class="link-negro" href="#">
-                        <img
-                            alt=""
-                            class="resize-image center-block w-100"
-                            src="../../img/rutinas/kettlebell-g1b482f877_1280.webp"
-                        />
-                        <h4 class="text-center m-4">Rutina intermedia</h4>
-                    </a>
-                </div>
-                <div class="col-md-4 pad-rutinas">
-                    <a class="link-negro" href="#">
-                        <img
-                            alt=""
-                            class="resize-image center-block w-100"
-                            src="../../img/rutinas/kettlebell-g0c3db8563_1280.webp"
-                        />
-                        <h4 class="text-center m-4">Rutina pro</h4>
-                    </a>
-                </div>
+            <div class="col-md-4 pad-rutinas">
+                <a class="link-negro" href="#">
+                    <img
+                        alt=""
+                        class="resize-image center-block w-100"
+                        src="../../img/rutinas/kettlebell-g1b482f877_1280.webp"
+                    />
+                    <h4 class="text-center m-4">Rutina intermedia</h4>
+                </a>
             </div>
-        </section>
-    </div>
+            <div class="col-md-4 pad-rutinas">
+                <a class="link-negro" href="#">
+                    <img
+                        alt=""
+                        class="resize-image center-block w-100"
+                        src="../../img/rutinas/kettlebell-g0c3db8563_1280.webp"
+                    />
+                    <h4 class="text-center m-4">Rutina pro</h4>
+                </a>
+            </div>
+        </div>
+    </section>
 </template>
 <script>
 export default {
     name: "Entrenamiento",
-
-<<<<<<< HEAD
     data() {
         return {
             categorias: null,
@@ -390,10 +386,6 @@ export default {
             iduser: null,
         };
     },
-=======
-    data() {},
-
->>>>>>> acc2f9d1d6e742c3bb6886f1cccd1d9efc1e2047
     mounted() {
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
@@ -429,6 +421,10 @@ export default {
             });
         }
     },
+
+    methods: {
+        buscadorEjercicios() {},
+    },
 };
 </script>
 <style scoped>
@@ -460,4 +456,19 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}</style>
+}
+
+.day-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.day-button.selected {
+    background-color: blue;
+}
+</style>

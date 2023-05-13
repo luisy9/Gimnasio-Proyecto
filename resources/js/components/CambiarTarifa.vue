@@ -41,6 +41,7 @@
                                     type="text"
                                     class="form-control"
                                     v-model="nombre_completo"
+                                    @input="saveToLocalStorage"
                                     required
                                     autofocus
                                     autocomplete="off"
@@ -170,6 +171,10 @@ export default {
         }
     },
     mounted() {
+        const dataFromLocalStorage = localStorage.getItem("dataPago");
+        if (dataFromLocalStorage) {
+            this.nombre_completo = dataFromLocalStorage;
+        }
         console.log(this.idtarifa);
         this.iduser = window.Laravel.user.id;
         if (this.isLoggedin) {
@@ -204,11 +209,18 @@ export default {
     },
 
     methods: {
+        saveToLocalStorage() {
+            if (this.nombre_completo.trim() !== "") {
+                localStorage.setItem("dataPago", this.nombre_completo);
+            }
+        },
         cambiarTarifa(e) {
             e.preventDefault();
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
-                    .delete(`/api/cambiarTarifas/${this.idtarifa}/${this.iduser}/${this.nombre_completo}/${this.numero_tarjeta}`)
+                    .delete(
+                        `/api/cambiarTarifas/${this.idtarifa}/${this.iduser}/${this.nombre_completo}/${this.numero_tarjeta}`
+                    )
                     .then((response) => {
                         console.log(response.data);
                         // const index = this.tarifas.findIndex(

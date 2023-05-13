@@ -102,6 +102,7 @@ export default {
                 "Domingo",
             ],
             selectedDay: null,
+            userid: window.Laravel.user.id,
             diaSemana: "",
             activeDay: null,
             selectedDate: "",
@@ -115,6 +116,7 @@ export default {
         };
     },
     mounted() {
+        console.log(this.userid);
         console.log("day: " + this.activeDay);
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
@@ -127,20 +129,6 @@ export default {
                     console.log(error);
                 });
         });
-        //Post datos Rutina
-        // this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-        //     this.$axios
-        //         .post("/api/crearRutina", {ejericicos: this.checkEjer})
-        //         .then((response) => {
-        //             console.log(response.data);
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         });
-        // });
-
-        const arrayJSON = JSON.stringify(this.checkEjer);
-        localStorage.setItem("checkEjer", arrayJSON);
     },
     methods: {
         selectDay(index) {
@@ -158,6 +146,22 @@ export default {
         },
         handleSubmit() {
             console.log("Hola");
+            //Post datos Rutina
+            const formData = new FormData();
+            formData.append('nombre_rutina', this.nombreRutina);
+            formData.append('dia_semana', this.selectedDay);
+            formData.append('ejercicios',this.checkEjer)
+            // formData.append('user_id', this.userid)
+            this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                this.$axios
+                    .post("/api/crearRutina/" + this.userid, formData)
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            });
             const data = {
                 diaSeleccionado: this.selectedDay,
                 nombreRutina: this.nombreRutina,

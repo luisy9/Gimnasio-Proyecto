@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rutina', function (Blueprint $table) {
+        Schema::create('rutina_users', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_rutina');
-            $table->string('tipo');
+            $table->string('dia_semana');
+            $table->string('ejercicios');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rutina');
+        Schema::dropIfExists('rutina_users');
     }
 };

@@ -56,6 +56,7 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
         $user->roles()->detach();
+        DB::delete('delete from rutina_users where user_id ? '[$id]);
         $user->delete();
         return response()->json(['success' => 'User deleted successfully']);
     }
@@ -171,5 +172,20 @@ class AdminController extends Controller
         $input = $req->all();
         $tarifa->update($input);
         return response()->json(['success' => 'Tarifa update successfully']);
+    }
+
+    public function editUser($iduser,Request $req){
+        $user = User::find($iduser);
+        $req->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'fecha_nacimiento' => 'required',
+        ]);
+
+        $input = $req->all();
+        $input["password"] = Hash::make($req->password);
+        $user->update($input);
+        return response()->json(['success' => 'User update successfully']);
     }
 }

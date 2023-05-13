@@ -129,7 +129,7 @@
                                         </button>
                                     </router-link>
                                 </div>
-                                <div v-if="userRole == 'admin'" class="pb-3">
+                                <div v-if="userRole == 'admin' || userRole == 'gestion_tarifas'" class="pb-3">
                                     <button
                                         class="btn btn-danger"
                                         @click="deleteTarifa(tarifa.id)"

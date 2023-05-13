@@ -1,5 +1,15 @@
 <template>
-    <div class="container-fluid" v-if="this.user_role == 'admin'">
+    <div
+        class="container-fluid"
+        v-if="
+            this.user_role == 'admin' ||
+            this.user_role == 'default_user' ||
+            this.user_role == 'gestion_roles' ||
+            this.user_role == 'gestion_users' ||
+            this.user_role == 'gestion_tarifas' ||
+            this.user_role == 'gestion_entrenamiento'
+        "
+    >
         <div class="row">
             <nav
                 id="sidebarMenu"
@@ -28,41 +38,72 @@
                     </h6>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <router-link to="/dashboard/4" class="nav-link"
+                            <router-link
+                                :to="`/dashboard/${this.iduser}`"
+                                class="nav-link"
                                 >Perfil</router-link
                             >
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/crearUsuarios" class="nav-link"
-                                >Crear Usuarios</router-link
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <router-link
-                                to="/modificarUsuarios"
-                                class="nav-link"
-                                >Modificar Usuarios</router-link
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/eliminarUsuarios" class="nav-link"
-                                >Eliminar Usuarios</router-link
-                            >
-                        </li>
-                        </ul>
-                        <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-                    >
-                        <span>Rol</span>
-                    </h6>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <router-link to="/roleAdmin" class="nav-link"
-                                >Gestionar Roles</router-link
-                            >
+                            <div v-if="this.tieneRutina == true">
+                                <router-link
+                                    :to="`/tuRutina/${this.iduser}`"
+                                    class="nav-link"
+                                    >Tu Rutina</router-link
+                                >
+                            </div>
                         </li>
                     </ul>
-
+                    <div
+                        v-if="
+                            this.user_role == 'admin' ||
+                            this.user_role == 'gestion_users'
+                        "
+                    >
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Gestion Usuarios</span>
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link
+                                    to="/crearUsuarios"
+                                    class="nav-link"
+                                    >Crear Usuarios</router-link
+                                >
+                            </li>
+                        </ul>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link
+                                    to="/eliminarUsuarios"
+                                    class="nav-link"
+                                    >Modificar Usuarios</router-link
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div v-if="this.user_role == 'gestion_users'">
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Rol</span>
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link to="/createRole" class="nav-link"
+                                    >Crear Roles</router-link
+                                >
+                            </li>
+                        </ul>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link to="/roleAdmin" class="nav-link"
+                                    >Gestionar Roles</router-link
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div v-if="this.user_role == 'gestion_entrenamiento'">
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
                     >
@@ -81,6 +122,26 @@
                         </li>
                     </ul>
                 </div>
+                <div v-if="this.user_role == 'gestion_entrenamiento'">
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Entrenamiento</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <router-link to="/GestionarTarifas" class="nav-link"
+                                >Gestionar Ejercicios</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/crearTarifas" class="nav-link"
+                                >Gestionar Musculos</router-link
+                            >
+                        </li>
+                    </ul>
+                </div>
+                </div>
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -94,13 +155,12 @@
                                             <b> Perfil </b>
                                         </p>
                                     </div>
-                                    <form @submit.prevent="editarUsuario">
+                                    <form>
                                         <div class="form-floating">
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                v-model="user.name"
-                                                :readonly="!editing"
+                                                v-model="name"
                                             />
                                             <label for="nombre">Nombre</label>
                                         </div>
@@ -109,10 +169,20 @@
                                             <input
                                                 type="email"
                                                 class="form-control"
-                                                v-model="user.email"
-                                                :readonly="!editing"
+                                                v-model="email"
                                             />
                                             <label for="email">Email</label>
+                                        </div>
+                                        <br />
+                                        <div class="form-group mb-2">
+                                            <label>Contraseña</label
+                                            ><span class="text-danger"> *</span>
+                                            <input
+                                                type="password"
+                                                class="form-control"
+                                                v-model="password"
+                                                placeholder="Enter post name"
+                                            />
                                         </div>
                                         <br />
                                         <div class="form-floating">
@@ -121,8 +191,7 @@
                                                 class="form-control"
                                                 min="1899-01-01"
                                                 max="2000-01-01"
-                                                v-model="user.fecha_nacimiento"
-                                                :readonly="!editing"
+                                                v-model="fecha_nacimiento"
                                             />
                                             <label for="fecha_nacimiento"
                                                 >Fecha de nacimiento</label
@@ -146,36 +215,54 @@
                                             >
                                                 Confirmar
                                             </button>
+                                            <!-- {{ this.rolesActualesUser }} -->
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <!--<div class="col-md-10 col-lg-8 col-xl-3" v-if="this.hayTarifa">-->
-                        <div class="col-md-10 col-lg-8 col-xl-4">
-                            <div class="card card-default p-5">
-                                <div class="text-center">
-                                    <p class="mb-3 fw-normal titulo-form">
-                                        <b> Tarifa Actual </b>
-                                    </p>
-                                    <h4>{{ this.id_tarifa.tipo_tarifa }}</h4>
-                                    <button
-                                        type="submit"
-                                        class="button-primary"
-                                        @click=""
-                                    >
-                                        Cambiar tarifa
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        class="button-primary"
-                                        @click="darbaja(this.iduser)"
-                                    >
-                                        Dar de baja
-                                    </button>
+                            <div v-if="this.membership == false" class="col-md-10 col-lg-8 col-xl-4">
+                                <div class="card card-default p-5">
+                                    <div class="text-center">
+                                        <p class="mb-3 fw-normal titulo-form">
+                                            <h3>!Unete a Nosotros¡</h3>
+                                            <button
+                                            type="submit"
+                                            class="button-primary"
+                                            @click=""
+                                        >
+                                            Abonates
+                                        </button>
+                                        </p>
+                                    </div>
+                                </div>
+                        </div>
+                            <div v-if="this.membership == true" class="col-md-10 col-lg-8 col-xl-4">
+                                <div class="card card-default p-5">
+                                    <div class="text-center">
+                                        <p class="mb-3 fw-normal titulo-form">
+                                            <b> Tarifa Actual </b>
+                                        </p>
+                                        <h4>{{ this.id_tarifa }}</h4>
+                                        <button
+                                            type="submit"
+                                            class="button-primary"
+                                            @click=""
+                                        >
+                                            Cambiar tarifa
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            class="button-primary"
+                                            @click="darbaja(this.iduser)"
+                                        >
+                                            Dar de baja
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        
                     </div>
                 </section>
                 <div class="chartjs-size-monitor">
@@ -198,7 +285,7 @@
         <router-link to="/GestionarTarifas" class="nav-item nav-link">Gestionar Tarifas</router-link>
         <router-link to="/crearTarifas" class="nav-item nav-link">Crear Tarifas</router-link>
     </div>-->
-    <section class="p-4 p-md-5" v-if="this.user_role != 'admin'">
+    <!-- <section class="p-4 p-md-5" v-if="this.user_role != 'admin'">
         <div class="row d-flex justify-content-center mb-5 mt-5">
             <div class="col-md-10 col-lg-8 col-xl-5">
                 <div class="card card-default p-5">
@@ -264,9 +351,9 @@
                         </form>
                     </div>
                 </div>
-            </div>
-            <!--<div class="col-md-10 col-lg-8 col-xl-3" v-if="this.hayTarifa">-->
-            <div class="col-md-10 col-lg-8 col-xl-4">
+            </div> -->
+    <!--<div class="col-md-10 col-lg-8 col-xl-3" v-if="this.hayTarifa">-->
+    <!-- <div class="col-md-10 col-lg-8 col-xl-4">
                 <div class="card card-default p-5">
                     <div class="text-center">
                         <p class="mb-3 fw-normal titulo-form">
@@ -287,20 +374,26 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 </template>
-
 <script>
 export default {
     name: "Dashboard",
     data() {
         return {
+            iduser: this.$route.params.idUser,
+            membership: false,
+            name: "",
+            email: "",
+            fecha_nacimiento: "",
             isLoggedin: false,
             isAdmin: false,
+            tieneRutina: false,
             user: null,
             factura: null,
             iduser: null,
             id_tarifa: [],
+            rolesActualesUser: [],
             tarifa_actual: null,
             hayTarifa: null,
             editing: false,
@@ -309,11 +402,56 @@ export default {
     mounted() {
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
+                .get(`/api/membership/${this.iduser}`)
+                .then((response) => {
+                    this.membership = response.data;
+                    if (this.membership == 0) {
+                        console.log("dkasmdkas");
+                        console.log((this.membership = false));
+                    } else {
+                        this.membership = true;
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get(`/api/hasTarifa/${this.iduser}`)
+                .then((response) => {
+                    console.log(response.data);
+                    this.tieneRutina = response.data;
+                    if (this.tieneRutina == 0) {
+                        console.log("dkasmdkas");
+                        console.log((this.tieneRutina = false));
+                    } else {
+                        this.tieneRutina = true;
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get(`/api/showUserUpdate/${this.iduser}`)
+                .then((response) => {
+                    console.log(response.data.name);
+                    this.name = response.data.name;
+                    this.email = response.data.email;
+                    this.fecha_nacimiento = response.data.fecha_nacimiento;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
                 .get(`/api/facturasTarifas/${this.iduser}`)
                 .then((response) => {
-                    this.id_tarifa = response.data;
-                    this.hayTarifa = true;
-                    console.log(this.hayTarifa);
+                    this.id_tarifa = response.data.tipo_tarifa;
+                    console.log(response.data.tipo_tarifa);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -330,7 +468,12 @@ export default {
             this.user = window.Laravel.user;
             this.user_role = window.Laravel.user_role;
             console.log("=======");
-            console.log(window.Laravel.user.roles[0].nombre_role);
+            for (let i = 0; i < window.Laravel.user.roles.length; i++) {
+                console.log(this.user_role[i]);
+                this.rolesActualesUser.push(this.user_role[i]);
+            }
+            // console.log(window.Laravel.user.roles[0].nombre_role);
+            // console.log(window.Laravel.user.roles[1].nombre_role);
             this.user_role = window.Laravel.user.roles[0].nombre_role;
         }
     },
@@ -379,7 +522,31 @@ export default {
         },
         saveProfile() {
             // Aquí iría la lógica para guardar los cambios del perfil en el servidor
+            this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                let existingObj = this;
+                const config = {
+                    headers: {
+                        "content-type": "multipart/form-data",
+                    },
+                };
 
+                const formData = new FormData();
+                formData.append("name", this.name);
+                formData.append("email", this.email);
+                formData.append("password", this.password);
+                formData.append("fecha_nacimiento", this.fecha_nacimiento);
+
+                this.$axios
+                    .post("/api/editUser/" + this.iduser, formData, config)
+                    .then((response) => {
+                        existingObj.strError = "";
+                        existingObj.strSuccess = response.data.success;
+                    })
+                    .catch(function (error) {
+                        existingObj.strSuccess = "";
+                        existingObj.strError = error.response.data.message;
+                    });
+            });
             // Deshabilitar la edición de los valores de los inputs
             const inputs = document.querySelectorAll("input:not([readonly])");
             for (let i = 0; i < inputs.length; i++) {
