@@ -223,6 +223,7 @@ export default {
                     )
                     .then((response) => {
                         console.log(response.data);
+                        window.location.href = `/dashboard/${this.iduser}`;
                         // const index = this.tarifas.findIndex(
                         //     (tarifa) => tarifa.id === id
                         // );

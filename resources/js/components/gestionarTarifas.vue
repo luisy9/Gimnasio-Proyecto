@@ -26,28 +26,63 @@
                     >
                         <span>Usuario</span>
                     </h6>
+                    <!-- <div v-if="restriccion('admin')">
+                        <h1>Hola</h1>
+                    </div> -->
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <router-link to="/dashboard/4" class="nav-link"
+                            <router-link
+                                :to="`/dashboard/${this.iduser}`"
+                                class="nav-link"
                                 >Perfil</router-link
                             >
+                            <div v-if="this.tieneRutina == true">
+                                <router-link
+                                    :to="`/tuRutina/${this.iduser}`"
+                                    class="nav-link"
+                                    >Tu Rutina</router-link
+                                >
+                            </div>
                         </li>
+                    </ul>
+                    <!-- <div
+                        v-if="
+                            this.user_role == 'admin' ||
+                            this.user_role == 'gestion_users'
+                        "
+                    > -->
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Gestion Usuarios</span>
+                    </h6>
+                    <ul class="nav flex-column">
                         <li class="nav-item">
                             <router-link to="/crearUsuarios" class="nav-link"
                                 >Crear Usuarios</router-link
                             >
                         </li>
+                    </ul>
+                    <ul class="nav flex-column">
                         <li class="nav-item">
                             <router-link to="/eliminarUsuarios" class="nav-link"
                                 >Modificar Usuarios</router-link
                             >
                         </li>
                     </ul>
+                    <!-- </div> -->
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
                     >
                         <span>Rol</span>
                     </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <router-link to="/createRole" class="nav-link"
+                                >Crear Roles</router-link
+                            >
+                        </li>
+                    </ul>
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <router-link to="/roleAdmin" class="nav-link"
@@ -70,6 +105,26 @@
                         <li class="nav-item">
                             <router-link to="/crearTarifas" class="nav-link"
                                 >Crear Tarifas</router-link
+                            >
+                        </li>
+                    </ul>
+
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Entrenamiento</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <router-link
+                                to="/gestionarEjercicios"
+                                class="nav-link"
+                                >Gestionar Ejercicios</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/crearEjercicio" class="nav-link"
+                                >Crear Ejercicio</router-link
                             >
                         </li>
                     </ul>
@@ -115,24 +170,34 @@
                                             <td>
                                                 {{ tarifa.descripcion_tarifa }}
                                             </td>
-                                            <td class="text-center">
-                                                <button
-                                                    class="btn btn-danger"
-                                                    @click="
-                                                        deleteTarifa(tarifa.id)
-                                                    "
-                                                >
-                                                    Delete
-                                                </button>
-                                                <button
-                                                    type="submit"
-                                                    class="btn btn-primary mt-4 mb-4"
+                                            <td class="text-center py-4">
+                                                <a
+                                                    class="px-5"
+                                                    style="cursor: pointer"
                                                     @click="
                                                         updateTarifa(tarifa.id)
                                                     "
                                                 >
-                                                    Update User
-                                                </button>
+                                                    <img
+                                                        style="height: 20px"
+                                                        class="logo-editar"
+                                                        src="/img/logos/editar.svg"
+                                                    />
+                                                </a>
+
+                                                <a
+                                                    class=""
+                                                    style="cursor: pointer"
+                                                    @click="
+                                                        deleteTarifa(tarifa.id)
+                                                    "
+                                                >
+                                                    <img
+                                                        style="height: 20px"
+                                                        class="logo-x"
+                                                        src="/img/logos/x.svg"
+                                                    />
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -185,7 +250,8 @@ export default {
             } else {
                 if (
                     window.Laravel.user.roles[0].nombre_role == "admin" ||
-                    window.Laravel.user.roles[0].nombre_role == "gestion_tarifas"
+                    window.Laravel.user.roles[0].nombre_role ==
+                        "gestion_tarifas"
                 ) {
                     this.$nextTick();
                 } else {

@@ -15,7 +15,7 @@ import roleAdmin from "../components/rolesAdmin.vue";
 import updateRoles from "../components/updatRoles.vue";
 import Compania from "../components/Compania.vue";
 import CambiarTarifa from "../components/CambiarTarifa.vue";
-import GestionarTarifas from "../components/GestionarTarifas.vue";
+import GestionarTarifas from "../components/gestionarTarifas.vue";
 import CrearTarifas from "../components/crearTarifas.vue";
 import updateTarifas from "../components/updateTarifas.vue";
 import EjerciciosMusculo from "../components/EjerciciosMusculo.vue";

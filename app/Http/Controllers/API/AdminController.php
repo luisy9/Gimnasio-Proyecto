@@ -87,10 +87,6 @@ class AdminController extends Controller
         return response()->json(['success' => 'User update successfully']);
     }
 
-    public function userRoles($id, Request $req)
-    {
-    }
-
     public function addTarifas(Request $req)
     {
         try {
