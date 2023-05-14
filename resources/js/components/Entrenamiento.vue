@@ -2,7 +2,6 @@
     <div class="banner-entrenamiento">
         <h1 class="text-light text-center">ENTRENAMIENTO</h1>
     </div>
-
     <div class="vis-desck px-5">
         <div class="text-center my-5">
             <h3 class="mb-3"><b>Ejercicios especificos</b></h3>
@@ -38,25 +37,23 @@
         </div>
     </div>
 
-    <div class="row vis-mov">
-        <div class="text-center">
+    <div class="vis-mov mb-5">
+        <div class="text-center vis-mov">
             <h3 class="mb-3"><b>Ejercicios especificos</b></h3>
         </div>
 
         <div
-            id="carouselExampleControls"
-            class="carousel slide"
-            data-bs-ride="carousel"
+            class=""
             v-for="(catego, index) in categorias"
             :key="catego.id"
         >
-            <div class="carousel-inner mb-3 px-5">
+            <div class="px-3 ">
                 <router-link
                     class="link-negro"
                     :to="`/ejercicioMusculo/${catego.id}`"
                     :style="`width: 100% ; height: 100%;`"
                 >
-                    <div class="carousel-item active">
+                    <div class="">
                         <div
                             class="img-fluid centrar-ent w-100"
                             :style="`background-image: url('http://localhost:8000/img/${catego.imagen_categoria}');`"
@@ -71,7 +68,7 @@
         </div>
     </div>
 
-    <section class="part3 px-3 ">
+    <section class="part3 px-5 pb-5 ">
   <div class="text-center mb-2 mt-2">
     <h3 class="mb-3"><b>Rutinas</b></h3>
   </div>
@@ -250,5 +247,10 @@ a{
 
 .day-button.selected {
     background-color: blue;
+}
+@media (max-width: 400px) {
+.vis-mov{
+    display: block;
+}
 }
 </style>
