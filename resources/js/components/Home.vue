@@ -129,14 +129,6 @@
                                         </button>
                                     </router-link>
                                 </div>
-                                <div v-if="userRole == 'admin' || userRole == 'gestion_tarifas'" class="pb-3">
-                                    <button
-                                        class="btn btn-danger"
-                                        @click="deleteTarifa(tarifa.id)"
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
                                 <div v-if="this.membership">
                                     <router-link
                                         :to="`/cambiarTarifa/${tarifa.id}/${this.iduser}`"

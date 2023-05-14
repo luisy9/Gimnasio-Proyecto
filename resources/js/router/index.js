@@ -183,6 +183,11 @@ export const routes = [
         path: "/updateRutina/:id",
         component: updateRutina,
     },
+    // {
+    //     name: "ejerciciosMusculos",
+    //     path: "/ejerciciosMusculos/:idcategoria",
+    //     component: ejerciciosMusculo,
+    // },
 ];
 
 const router = createRouter({
