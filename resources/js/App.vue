@@ -6,15 +6,26 @@
                 <img src="../img/nike_logo.svg" alt="Logo" />
             </a>
         </div>
-        <button
-            class="navbar-toggler d-lg-none"
+        
+        <a
+            class=" d-lg-none mx-2"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapsibleNavId"
             aria-controls="collapsibleNavId"
             aria-expanded="false"
             aria-label="Toggle navigation"
-        ></button>
+        ><img src="../img/menu.svg" width="55px"></a>
+        
+        <!--<button
+            class="navbar-toggler d-lg-none mx-3"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        ></button>-->
 
         <!-- <div class="" v-if="user_role == 2">
             <a>Crear Users</a>
@@ -54,9 +65,36 @@
                         >¿Quienes somos?</router-link
                     >
                 </li>
+                <li class="nav-item">
+                    <div class="nav-item" v-if="isLoggedin">
+                <a
+                    data-toggle="dropdown"
+                    class="nav-link dropdown-toggle"
+                    role="button"
+                    >{{ user.name }}</a
+                >
+
+                <div
+                    class="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                >
+                    <router-link
+                        :to="`/dashboard/${this.user.id}`"
+                        class="nav-item nav-link px-4"
+                        >Dashboard</router-link
+                    >
+                    <router-link
+                        :to="`/tuRutina/${this.iduser}`"
+                        class="nav-item nav-link px-4"
+                        >Mi Rutina</router-link
+                    >
+
+                </div>
+            </div>
+                </li>
             </ul>
         </div>
-        <div class="movil-vis login-header">
+        <div class=" vis-desck login-header">
             <div class="nav-item" v-if="isLoggedin">
                 <a
                     data-toggle="dropdown"
@@ -75,17 +113,11 @@
                         >Dashboard</router-link
                     >
                     <router-link
-                        v-if="this.tieneRutina == true"
                         :to="`/tuRutina/${this.iduser}`"
                         class="nav-item nav-link px-4"
                         >Mi Rutina</router-link
                     >
-                    <a
-                        class="nav-item nav-link px-4"
-                        style="cursor: pointer"
-                        @click="logout"
-                        >Logout</a
-                    >
+
                 </div>
             </div>
         </div>
@@ -246,3 +278,21 @@ export default {
     },
 };
 </script>
+<style scoped>
+li a.nav-link {
+  font-size: 18px;
+}
+.nav-padding{
+    padding-left: 2em;
+    padding-right: 2em;
+}
+.d-lg-none:hover{
+    opacity: 0.5;
+}
+@media (max-width: 400px) {
+.dropdown-menu{
+    border: 0;
+    --bs-dropdown-bg: transparent;
+}
+}
+</style>
