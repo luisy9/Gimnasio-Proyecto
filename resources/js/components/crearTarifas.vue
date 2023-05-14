@@ -26,28 +26,63 @@
                     >
                         <span>Usuario</span>
                     </h6>
+                    <!-- <div v-if="restriccion('admin')">
+                        <h1>Hola</h1>
+                    </div> -->
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <router-link to="/dashboard/4" class="nav-link"
+                            <router-link
+                                :to="`/dashboard/${this.iduser}`"
+                                class="nav-link"
                                 >Perfil</router-link
                             >
+                            <div v-if="this.tieneRutina == true">
+                                <router-link
+                                    :to="`/tuRutina/${this.iduser}`"
+                                    class="nav-link"
+                                    >Tu Rutina</router-link
+                                >
+                            </div>
                         </li>
+                    </ul>
+                    <!-- <div
+                        v-if="
+                            this.user_role == 'admin' ||
+                            this.user_role == 'gestion_users'
+                        "
+                    > -->
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Gestion Usuarios</span>
+                    </h6>
+                    <ul class="nav flex-column">
                         <li class="nav-item">
                             <router-link to="/crearUsuarios" class="nav-link"
                                 >Crear Usuarios</router-link
                             >
                         </li>
+                    </ul>
+                    <ul class="nav flex-column">
                         <li class="nav-item">
                             <router-link to="/eliminarUsuarios" class="nav-link"
                                 >Modificar Usuarios</router-link
                             >
                         </li>
                     </ul>
+                    <!-- </div> -->
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
                     >
                         <span>Rol</span>
                     </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <router-link to="/createRole" class="nav-link"
+                                >Crear Roles</router-link
+                            >
+                        </li>
+                    </ul>
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <router-link to="/roleAdmin" class="nav-link"
@@ -70,6 +105,26 @@
                         <li class="nav-item">
                             <router-link to="/crearTarifas" class="nav-link"
                                 >Crear Tarifas</router-link
+                            >
+                        </li>
+                    </ul>
+
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Entrenamiento</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <router-link
+                                to="/gestionarEjercicios"
+                                class="nav-link"
+                                >Gestionar Ejercicios</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/crearEjercicio" class="nav-link"
+                                >Crear Ejercicio</router-link
                             >
                         </li>
                     </ul>
@@ -175,90 +230,6 @@
                     </div>
                 </div>
             </main>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="login-pag px-5">
-            <div class="row jutify-content-center w-50 mx-auto mb-5">
-                <div
-                    class="alert alert-danger alert-dismissible fade show"
-                    role="alert"
-                    v-if="error"
-                >
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="alert"
-                        aria-label="Close"
-                    ></button>
-                    <strong>{{ error }}</strong>
-                </div>
-                <div class="card card-default p-5">
-                    <main class="form-signin w-100 m-auto px-5">
-                        <form>
-                            <h1 class="h3 mb-3 fw-normal">Crear Tarifa</h1>
-                            <br />
-                            <div class="form-floating">
-                                <input
-                                    id="tipo_tarifa"
-                                    type="text"
-                                    class="form-control"
-                                    v-model="tipo_tarifa"
-                                    autofocus
-                                    autocomplete="off"
-                                    placeholder="nombre tarifa"
-                                />
-                                <label
-                                    for="name"
-                                    class="col-sm-4 col-form-label text-md-right"
-                                    >Nombre Tarifa</label
-                                >
-                            </div>
-                            <br />
-                            <div class="form-floating">
-                                <input
-                                    id="precio"
-                                    type="text"
-                                    class="form-control"
-                                    v-model="precio"
-                                    autocomplete="off"
-                                    placeholder="precio"
-                                />
-                                <label
-                                    for="precio"
-                                    class="col-md-4 col-form-label text-md-right"
-                                    >Precio</label
-                                >
-                            </div>
-                            <br />
-                            <div class="form-floating">
-                                <input
-                                    id="descripcion_tarifa"
-                                    type="text"
-                                    class="form-control"
-                                    v-model="descripcion_tarifa"
-                                    autocomplete="off"
-                                    placeholder="descripcion_tarifa"
-                                />
-                                <label
-                                    for="descripcion_tarifa"
-                                    class="col-md-4 col-form-label text-md-right"
-                                    >Descripcion</label
-                                >
-                            </div>
-                            <br />
-                            <button
-                                type="submit"
-                                class="button-primary"
-                                @click="createTarifa"
-                            >
-                                Añadir
-                            </button>
-                        </form>
-                    </main>
-                </div>
-            </div>
         </div>
     </div>
 </template>
