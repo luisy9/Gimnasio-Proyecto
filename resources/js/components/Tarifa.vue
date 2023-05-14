@@ -1,7 +1,10 @@
 <template>
     <div class="seccion">
-        <div class="text-center text-titulo">
+        <div class="text-center text-titulo" v-if="membership == 0">
             <h1>NUESTRAS TARIFAS</h1>
+        </div>
+        <div class="text-center text-titulo" v-if="membership != 0">
+            <h1>CAMBIA TU TARIFA</h1>
         </div>
         <main>
             <div v-if="this.membership || ! this.membership">

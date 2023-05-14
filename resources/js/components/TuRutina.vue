@@ -38,50 +38,53 @@
                                                 >
                                                     #
                                                 </th>
-                                                <th class="px-2">Nombre Rutina</th>
-                                                <th class="px-2">Nombre Ejercicio</th>
-                                                <th class="px-5">Editar</th>
-                                                <th class="">Eliminar</th>
+                                                <th class="px-2 text-center">Nombre Rutina</th>
+                                                <th class="px-2 text-center">Nombre Ejercicio</th>
+                                                <th class="px-2 text-center">Editar</th>
+                                                <th class="text-center">Eliminar</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr
-                                                v-for="(
-                                                    rutina, index
+                                        <tbody v-for="(
+                                                    rutinas, index
                                                 ) in miRutina"
-                                                :key="rutina.id"
+                                                :key="rutina.id">
+                                            <tr
+                                                v-if="rutina.dia_semana === rutinas.dia_semana"
                                             >
-                                                <td>{{ rutina.id }}</td>
+                                                <td >{{ rutinas.id }}</td>
                                                 <td>
-                                                    {{ rutina.nombre_rutina }}
+                                                    {{ rutinas.nombre_rutina }}
                                                 </td>
-                                                <td>{{ rutina.ejercicios }}</td>
+                                                <td>{{ rutinas.ejercicios }}</td>
                                                 <td class="text-center">
                                                     <a
                                                         class="px-5"
                                                         style="cursor: pointer"
                                                         @click="
-                                                            editarRutina(rutina.id)
+                                                            editarRutina(rutinas.id)
                                                         "
                                                     >
                                                         <img
-                                                            src="/img/editar.png"
-                                                            style="height: 23px"
+                                                        class="logo-editar"
+                                                            src="/img/logos/editar.svg"
                                                         />
                                                     </a>
+                                                    </td>
+                                                    <td class="text-center">
                                                     <a
                                                         class="px-5"
                                                         style="cursor: pointer"
                                                         @click="
-                                                            deleteRutina(rutina.id)
+                                                            deleteRutina(rutinas.id)
                                                         "
                                                     >
                                                         <img
-                                                            src="/img/x.png"
-                                                            style="height: 20px"
+                                                        class="logo-x"
+                                                            src="/img/logos/x.svg"
                                                         />
                                                     </a>
                                                 </td>
+
                                             </tr>
                                         </tbody>
                                     </table>
@@ -148,9 +151,22 @@ export default {
 };
 </script>
 <style scoped>
+.logo-x{
+height: 20px
+}
+.logo-editar{
+    height: 23px
+}
+.logo-x:hover{
+opacity: 0.5;
+}
+.logo-editar:hover{
+opacity: 0.5;
+}
 @media (max-width: 1500px) {
     .p-5 {
         padding: 0 !important;
     }
+   
 }
 </style>

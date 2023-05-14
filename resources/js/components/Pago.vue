@@ -213,10 +213,12 @@ export default {
             this.$axios
                 .delete(`/api/cambiarTarifas/${this.idtarifa}/${this.iduser}`)
                 .then((response) => {
+                    /*alert("Has cambiado tu tarifa");*/
                     const index = this.tarifas.findIndex(
                         (tarifa) => tarifa.id === id
                     );
                     this.tarifas.splice(index, 1);
+                    
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -240,8 +242,10 @@ export default {
                     })
                     .then((response) => {
                         if (response.data.success) {
+                            window.location.href = `/dashboard/${this.iduser}`;
                             existingObj.strSuccess = response.data.success;
                             console.log(response.data);
+                            
                         } else {
                             console.log(response);
                             this.error = response.data.message;
