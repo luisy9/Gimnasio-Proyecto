@@ -4,7 +4,7 @@
             <h1>NUESTRAS TARIFAS</h1>
         </div>
         <main>
-            <div v-if="this.membership || !this.membership">
+            <div v-if="this.membership || ! this.membership">
                 <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
                     <div v-for="(tarifa, index) in tarifas" :key="index">
                         <div class="col">
@@ -22,17 +22,16 @@
                                 </div>
                                 <div class="card-body carta-color tarjeta">
                                     <ul class="list-unstyled mt-3 mb-4">
-                                        <li>{{ tarifa.descripcion_tarifa }}</li>
+                                        <div
+                                            v-for="descripcion in tarifa.descripcion_tarifa.split(
+                                                ','
+                                            )"
+                                        >
+                                            <li class="tarjeta-text my-2">
+                                                {{ descripcion }}
+                                            </li>
+                                        </div>
                                     </ul>
-                                    <div
-                                        v-for="descripcion in tarifa.descripcion_tarifa.split(
-                                            ','
-                                        )"
-                                    >
-                                        <li class="tarjeta-text my-2">
-                                            {{ descripcion }}
-                                        </li>
-                                    </div>
                                 </div>
                                 <h1
                                     class="card-title pricing-card-title precio"
@@ -42,7 +41,6 @@
                                         >/mes</small
                                     >
                                 </h1>
-
                                 <div v-if="!this.membership">
                                     <router-link
                                         :to="`/pago/${tarifa.id}/${this.iduser}`"
@@ -55,7 +53,7 @@
                                         </button>
                                     </router-link>
                                 </div>
-                                <div v-if="userRole == 'admin'" class="pb-3">
+                                <div v-if="userRole == 'admin' || userRole == 'gestion_tarifas'" class="pb-3">
                                     <button
                                         class="btn btn-danger"
                                         @click="deleteTarifa(tarifa.id)"
