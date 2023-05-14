@@ -1,9 +1,10 @@
 /* GENERAL */
 .vis-mov{
-    width: 0;
-    height: 0;
+    width: 0 ;
+    height: 0 ;
     visibility: hidden;
 }
+
 /* Container */
 .container {
     min-height: 42.19em;
@@ -193,15 +194,7 @@ a.link-login {
     color: #000000;
 }
 
-/* ENTRENAMIENTO 
-.banner-entrenamiento {
-    background-image: url("../img/banner3.webp");
-    height: 35em;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.9;
-    background-repeat: no-repeat;
-}*/
+
 .img-fluid {
     height: 15em !important;
     object-fit: cover;
@@ -283,8 +276,8 @@ a.link-login {
     }
     .vis-desck{
         visibility: hidden;
-        height: 0em;
-        width: 0em;
+        height: 0em !important;
+        width: 0em !important;
     }
     .vis-mov{
         visibility: visible;
