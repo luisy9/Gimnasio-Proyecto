@@ -58,14 +58,16 @@
                 <div class="card card-default p-5">
                     <div class="text-center mb-4">
                         <p class="mb-3 fw-normal titulo-form">
-                            <b> Tu rutina </b>
+                            <b> Tu rutina {{"del " + selectedDay }}</b>
                         </p>
+                        <p>{{ nombreRutina }}</p>
                     </div>
-                    <span>Seleccionado: {{ selectedDay }} </span>
+                    <span>Seleccionado: {{ categorias }} </span>
                     <div class="col">
                         {{ checkEjer }}
                     </div>
                     {{ this.diaSemana }}
+                    
                     <div
                         class="card-body p-4"
                         v-for="(tarifa, index) in tarfiasArray"
