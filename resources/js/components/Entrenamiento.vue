@@ -249,8 +249,15 @@ a{
     background-color: blue;
 }
 @media (max-width: 400px) {
+h1{
+    font-size: 2.5em;
+}
 .vis-mov{
     display: block;
+}
+.px-5{
+    padding-left: 1em !important;
+    padding-right: 1em !important;
 }
 }
 </style>
