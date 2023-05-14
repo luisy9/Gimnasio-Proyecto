@@ -11,21 +11,7 @@
             v-for="(catego, index) in categorias"
             :key="catego.id"
         >
-<<<<<<< HEAD
-    </div>
-    <div v-if="this.isPro">
-        <div class="banner-entrenamiento">
-            <h1>Crear Rutina</h1>
-            <router-link to="/crearRutina" class="nav-item nav-link"
-                >Crea tu propia Rutina!
-                <button>Crear</button>
-            </router-link>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-=======
->>>>>>> e057591456ab221974f809919265e1e5ad689e2a
+
             <div
                 class="galeria-imagen"
                 :style="`background-image: url('http://localhost:8000/img/${catego.imagen_categoria}');

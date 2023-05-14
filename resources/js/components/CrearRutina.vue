@@ -1,6 +1,6 @@
 <template>
     <div class="text-center my-3">
-        <h1>NUESTRAS TARIFAS</h1>
+        <h1>Rutina</h1>
     </div>
     <div id="app">
         <h4 class="text-center">Elige el dia de la semana:</h4>
@@ -8,8 +8,8 @@
             <button
                 v-for="(day, index) in daysOfWeek"
                 :key="index"
-                class="button-secondary"
-                :class="{ selected: selectedDay === index }"
+                
+                :class="{ 'button-primary': selectedDay === day, 'button-secondary': selectedDay !== day }"
                 @click="selectDay(index)"
             >
                 {{ day }}
@@ -56,13 +56,22 @@
             </div>
             <div class="col-md-10 col-lg-8 col-xl-3">
                 <div class="card card-default p-5">
-                    <div class="text-center mb-4">
+                    <div class="text-center mb-4" v-if="selectedDay ===null">
+                        <p class="mb-3 fw-normal titulo-form">
+                            <b> Tu rutina</b>
+                        </p>
+                        <p>{{ nombreRutina }}</p>
+                    </div><div class="text-center mb-4" v-if="selectedDay != null">
                         <p class="mb-3 fw-normal titulo-form">
                             <b> Tu rutina {{"del " + selectedDay }}</b>
                         </p>
                         <p>{{ nombreRutina }}</p>
                     </div>
-                    <span>Seleccionado: {{ categorias }} </span>
+                    <div  v-for="categoria in categorias"
+                            :value="categoria.id"
+                        >
+                    <span>Seleccionado: {{ categoria.nombre_categoria}} </span>
+                    </div>
                     <div class="col">
                         {{ checkEjer }}
                     </div>
