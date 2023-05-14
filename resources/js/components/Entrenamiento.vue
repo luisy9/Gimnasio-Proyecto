@@ -71,76 +71,47 @@
         </div>
     </div>
 
-    <section class="part3 px-5 pb-5">
-        <div class="text-center mb-2 mt-2">
-            <h3 class="mb-3"><b>Rutinas</b></h3>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-4 mb-3">
-                <div class="position-relative">
-                    <img
-                        src="../../img/rutinas/kettlebell-g1b482f877_1280.webp"
-                        alt=""
-                        class="w-100"
-                    />
-                    <a
-                        href="#"
-                        class="btn button-secondary position-absolute bottom-0 start-50 translate-middle"
-                        >Basica</a
-                    >
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="position-relative">
-                    <img
-                        src="../../img/rutinas/kettlebell-g1b482f877_1280.webp"
-                        alt=""
-                        class="w-100"
-                    />
-                    <a
-                        href="#"
-                        class="btn button-secondary position-absolute bottom-0 start-50 translate-middle"
-                        >Media</a
-                    >
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="position-relative">
-                    <img
-                        src="../../img/rutinas/kettlebell-g1b482f877_1280.webp"
-                        alt=""
-                        class="w-100"
-                    />
-                    <a
-                        href="#"
-                        class="btn button-secondary position-absolute bottom-0 start-50 translate-middle"
-                        >Pro</a
-                    >
-                </div>
-            </div>
-            <div class="col-md-4 mb-3 vis-mov" v-if="this.isPro">
-                <div class="position-relative">
-                    <img
-                        src="http://localhost:8000/img/kettlebell-g30da63dfe_1280_osc.webp"
-                        alt=""
-                        class="w-100"
-                    />
-                    <a
-                        href="/crearRutina"
-                        class="btn button-secondary position-absolute top-50 start-50 translate-middle"
-                        >Crear</a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="vis-desck mb-5" v-if="this.isPro">
-            <div class="banner-entrenamiento">
-                <a href="/crearRutina">
-                    <button class="button-secondary">Crear rutina</button>
-                </a>
-            </div>
-        </div>
-    </section>
+    <section class="part3 px-3 ">
+  <div class="text-center mb-2 mt-2">
+    <h3 class="mb-3"><b>Rutinas</b></h3>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-4 mb-3">
+      <div class="position-relative">
+        <img src="../../img/rutinas/kettlebell-g1b482f877_1280.webp" alt="" class="w-100">
+        <a href="#" class="btn button-secondary position-absolute bottom-0 start-50 translate-middle">Basica</a>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="position-relative">
+        <img src="../../img/rutinas/kettlebell-g1b482f877_1280.webp" alt="" class="w-100">
+        <a href="#" class="btn button-secondary position-absolute bottom-0 start-50 translate-middle">Media</a>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="position-relative">
+        <img src="../../img/rutinas/kettlebell-g1b482f877_1280.webp" alt="" class="w-100">
+        <a href="#" class="btn button-secondary position-absolute bottom-0 start-50 translate-middle">Pro</a>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3 vis-mov" v-if="this.isPro">
+      <div class="position-relative">
+        <img src="http://localhost:8000/img/kettlebell-g30da63dfe_1280_osc.webp" alt="" class="w-100">
+        <a href="/crearRutina" class="btn button-secondary position-absolute top-50 start-50 translate-middle">Crear</a>
+      </div>
+    </div>
+  </div>
+  <div class="vis-desck mb-5" v-if="this.isPro">
+    <div class="banner-entrenamiento">
+        <a href="/crearRutina">
+        <button class="button-secondary">Crear rutina</button>
+        </a>
+    </div>
+    </div>
+</section>
+
+
+
 </template>
 <script>
 export default {

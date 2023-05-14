@@ -97,7 +97,6 @@
         </div>
     </section>
 </template>
-
 <script>
 export default {
     data() {
@@ -201,7 +200,7 @@ export default {
 };
 </script>
 <style>
-.button-secondary{
+.button-secondary {
     border: 1px solid black;
 }
 button {
