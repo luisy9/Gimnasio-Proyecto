@@ -1,90 +1,90 @@
 <template>
+    <div class="text-center my-3">
+        <h1>NUESTRAS TARIFAS</h1>
+    </div>
     <div id="app">
-        <h1>Crea tu propia rutina</h1>
-        <h4>Rutina para el dia de la semana:</h4>
-        <div>
+        <h4 class="text-center">Elige el dia de la semana:</h4>
+        <div class="text-center">
             <button
                 v-for="(day, index) in daysOfWeek"
                 :key="index"
-                class="day-button"
+                class="button-secondary"
                 :class="{ selected: selectedDay === index }"
                 @click="selectDay(index)"
             >
                 {{ day }}
             </button>
         </div>
-        <!-- <div>
-            <button class="day-button" @click="logDay('Lunes')">Lunes</button>
-            <button class="day-button" @click="logDay('Martes')">
-                Tuesday
-            </button>
-            <button class="day-button" @click="logDay('Miercoles')">
-                Wednesday
-            </button>
-            <button class="day-button" @click="logDay('Jueves')">
-                Thursday
-            </button>
-            <button class="day-button" @click="logDay('Viernes')">Friday</button>
-            <button class="day-button" @click="logDay('Sabado')">
-                Saturday
-            </button>
-            <button class="day-button" @click="logDay('Domingo')">Sunday</button>
-        </div> -->
-        <!-- <button
-            v-for="(day, index) in days"
-            :key="index"
-            :class="{ active: activeDay === index }"
-            @click="activeDay = index"
-        >
-            {{ day }}
-        </button>
-        {{ activeDay }} -->
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <!-- Contenido de la columna izquierda aquí -->
-            </div>
-            <div class="col-md-6">
-                <!-- Contenido de la columna derecha aquí -->
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="container-fluid">
-            <div class="col">
-                <h3>Crea tu rutina</h3>
-                <span>Nombre de tu Rutina: </span
-                ><input type="text" v-model="nombreRutina" /><br />
-                <select v-model="selected" @change="muculosMuestra">
-                    <option disabled value="">Seleccione un elemento</option>
-                    <option
-                        v-for="categoria in categorias"
-                        :value="categoria.id"
-                    >
-                        {{ categoria.nombre_categoria }}
-                    </option>
-                </select>
 
-                <p v-for="ejerci in ejercicios">
-                    {{ ejerci.nombre_ejercicio }}
-                    <input
-                        type="checkbox"
-                        :value="`${ejerci.nombre_ejercicio}`"
-                        v-model="checkEjer"
-                    />
-                </p>
-                <br />
-                <button @click="handleSubmit">Crear Rutina</button>
+    <section class="p-4 p-md-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-5 mb-2">
+                <div class="card card-default p-5">
+                    <div class="text-center mb-4">
+                        <p class="mb-3 fw-normal titulo-form">
+                            <b> Crea tu rutina </b>
+                        </p>
+                    </div>
+                    <span>Nombre de tu Rutina: </span
+                    ><input type="text" v-model="nombreRutina" /><br />
+                    <select v-model="selected" @change="muculosMuestra">
+                        <option disabled value="">
+                            Seleccione un elemento
+                        </option>
+                        <option
+                            v-for="categoria in categorias"
+                            :value="categoria.id"
+                        >
+                            {{ categoria.nombre_categoria }}
+                        </option>
+                    </select>
+
+                    <p v-for="ejerci in ejercicios">
+                        {{ ejerci.nombre_ejercicio }}
+                        <input
+                            type="checkbox"
+                            :value="`${ejerci.nombre_ejercicio}`"
+                            v-model="checkEjer"
+                        />
+                    </p>
+                    <br />
+                    <button class="button-primary m-auto" @click="handleSubmit">
+                        Crear Rutina
+                    </button>
+                </div>
             </div>
-            <span>Seleccionado: {{ selected }} </span>
-            <div class="col">
-                <h3>Tu Rutina</h3>
-                {{ checkEjer }}
+            <div class="col-md-10 col-lg-8 col-xl-3">
+                <div class="card card-default p-5">
+                    <div class="text-center mb-4">
+                        <p class="mb-3 fw-normal titulo-form">
+                            <b> Tu rutina </b>
+                        </p>
+                    </div>
+                    <span>Seleccionado: {{ selectedDay }} </span>
+                    <div class="col">
+                        {{ checkEjer }}
+                    </div>
+                    {{ this.diaSemana }}
+                    <div
+                        class="card-body p-4"
+                        v-for="(tarifa, index) in tarfiasArray"
+                        :key="tarifa.id"
+                    >
+                        <div class="text-center mb-4">
+                            <h3>{{ tarifa.tipo_tarifa }}</h3>
+                        </div>
+                        <div class="col">
+                            <p>{{ tarifa.id }}</p>
+                            <p>{{ tarifa.tipo_tarifa }}</p>
+                            <p>{{ tarifa.precio }}</p>
+                            <p>{{ tarifa.descripcion_tarifa }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {{ this.diaSemana }}
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -148,9 +148,9 @@ export default {
             console.log("Hola");
             //Post datos Rutina
             const formData = new FormData();
-            formData.append('nombre_rutina', this.nombreRutina);
-            formData.append('dia_semana', this.selectedDay);
-            formData.append('ejercicios',this.checkEjer)
+            formData.append("nombre_rutina", this.nombreRutina);
+            formData.append("dia_semana", this.selectedDay);
+            formData.append("ejercicios", this.checkEjer);
             // formData.append('user_id', this.userid)
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
@@ -189,6 +189,9 @@ export default {
 };
 </script>
 <style>
+.button-secondary{
+    border: 1px solid black;
+}
 button {
     padding: 10px;
     margin-right: 10px;
