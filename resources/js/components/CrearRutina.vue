@@ -8,8 +8,8 @@
             <button
                 v-for="(day, index) in daysOfWeek"
                 :key="index"
-                class="button-secondary"
-                :class="{ selected: selectedDay === index }"
+                
+                :class="{ 'button-primary': selectedDay === day, 'button-secondary': selectedDay !== day }"
                 @click="selectDay(index)"
             >
                 {{ day }}
@@ -155,7 +155,7 @@ export default {
             }
         },
         handleSubmit() {
-            console.log("Hola");
+            console.log("Rutina creada");
             //Post datos Rutina
             const formData = new FormData();
             formData.append("nombre_rutina", this.nombreRutina);
@@ -167,6 +167,7 @@ export default {
                     .post("/api/crearRutina/" + this.userid, formData)
                     .then((response) => {
                         console.log(response.data);
+                        window.location.href = `/tuRutina/${this.userid}`;
                     })
                     .catch(function (error) {
                         console.log(error);

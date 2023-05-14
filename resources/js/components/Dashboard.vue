@@ -490,8 +490,10 @@ export default {
                     .then((response) => {
                         const index = this.factura.findIndex(
                             (factura) => factura.id === id
+                            
                         );
                         this.factura.splice(index, 1);
+                        location.reload();
                     })
                     .catch(function (error) {
                         console.log(error);

@@ -198,7 +198,7 @@ export default {
 
 .galeria-imagen:hover {
     cursor: pointer;
-    width: 300px;
+    width: 500px;
     opacity: 1;
     filter: contrast(120%);
 }
