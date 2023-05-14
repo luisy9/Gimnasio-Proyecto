@@ -38,19 +38,12 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <router-link
-                                to="/modificarUsuarios"
-                                class="nav-link"
+                            <router-link to="/eliminarUsuarios" class="nav-link"
                                 >Modificar Usuarios</router-link
                             >
                         </li>
-                        <li class="nav-item">
-                            <router-link to="/eliminarUsuarios" class="nav-link"
-                                >Eliminar Usuarios</router-link
-                            >
-                        </li>
-                        </ul>
-                        <h6
+                    </ul>
+                    <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
                     >
                         <span>Rol</span>
@@ -87,86 +80,90 @@
                 <section class="p-4 p-md-5">
                     <div class="row d-flex justify-content-center mb-5">
                         <div class="login-pag px-5">
-            <div class="row jutify-content-center w-50 mx-auto mb-5">
-                <div
-                    class="alert alert-danger alert-dismissible fade show"
-                    role="alert"
-                    v-if="error"
-                >
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="alert"
-                        aria-label="Close"
-                    ></button>
-                    <strong>{{ error }}</strong>
-                </div>
-                <div class="card card-default p-5">
-                    <main class="form-signin w-100 m-auto px-5">
-                        <form>
-                            <h1 class="h3 mb-3 fw-normal">Crear Tarifa</h1>
-                            <br />
-                            <div class="form-floating">
-                                <input
-                                    id="tipo_tarifa"
-                                    type="text"
-                                    class="form-control"
-                                    v-model="tipo_tarifa"
-                                    autofocus
-                                    autocomplete="off"
-                                    placeholder="nombre tarifa"
-                                />
-                                <label
-                                    for="name"
-                                    class="col-sm-4 col-form-label text-md-right"
-                                    >Nombre Tarifa</label
-                                >
-                            </div>
-                            <br />
-                            <div class="form-floating">
-                                <input
-                                    id="precio"
-                                    type="text"
-                                    class="form-control"
-                                    v-model="precio"
-                                    autocomplete="off"
-                                    placeholder="precio"
-                                />
-                                <label
-                                    for="precio"
-                                    class="col-md-4 col-form-label text-md-right"
-                                    >Precio</label
-                                >
-                            </div>
-                            <br />
-                            <div class="form-floating">
-                                <input
-                                    id="descripcion_tarifa"
-                                    type="text"
-                                    class="form-control"
-                                    v-model="descripcion_tarifa"
-                                    autocomplete="off"
-                                    placeholder="descripcion_tarifa"
-                                />
-                                <label
-                                    for="descripcion_tarifa"
-                                    class="col-md-4 col-form-label text-md-right"
-                                    >Descripcion</label
-                                >
-                            </div>
-                            <br />
-                            <button
-                                type="submit"
-                                class="button-primary"
-                                @click="createTarifa"
+                            <div
+                                class="row jutify-content-center w-50 mx-auto mb-5"
                             >
-                                Añadir
-                            </button>
-                        </form>
-                    </main>
-                </div>
-            </div>
-        </div>
+                                <div
+                                    class="alert alert-danger alert-dismissible fade show"
+                                    role="alert"
+                                    v-if="error"
+                                >
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="alert"
+                                        aria-label="Close"
+                                    ></button>
+                                    <strong>{{ error }}</strong>
+                                </div>
+                                <div class="card card-default p-5">
+                                    <main class="form-signin w-100 m-auto px-5">
+                                        <form>
+                                            <h1 class="h3 mb-3 fw-normal">
+                                                Crear Tarifa
+                                            </h1>
+                                            <br />
+                                            <div class="form-floating">
+                                                <input
+                                                    id="tipo_tarifa"
+                                                    type="text"
+                                                    class="form-control"
+                                                    v-model="tipo_tarifa"
+                                                    autofocus
+                                                    autocomplete="off"
+                                                    placeholder="nombre tarifa"
+                                                />
+                                                <label
+                                                    for="name"
+                                                    class="col-sm-4 col-form-label text-md-right"
+                                                    >Nombre Tarifa</label
+                                                >
+                                            </div>
+                                            <br />
+                                            <div class="form-floating">
+                                                <input
+                                                    id="precio"
+                                                    type="text"
+                                                    class="form-control"
+                                                    v-model="precio"
+                                                    autocomplete="off"
+                                                    placeholder="precio"
+                                                />
+                                                <label
+                                                    for="precio"
+                                                    class="col-md-4 col-form-label text-md-right"
+                                                    >Precio</label
+                                                >
+                                            </div>
+                                            <br />
+                                            <div class="form-floating">
+                                                <input
+                                                    id="descripcion_tarifa"
+                                                    type="text"
+                                                    class="form-control"
+                                                    v-model="descripcion_tarifa"
+                                                    autocomplete="off"
+                                                    placeholder="descripcion_tarifa"
+                                                />
+                                                <label
+                                                    for="descripcion_tarifa"
+                                                    class="col-md-4 col-form-label text-md-right"
+                                                    >Descripcion</label
+                                                >
+                                            </div>
+                                            <br />
+                                            <button
+                                                type="submit"
+                                                class="button-primary"
+                                                @click="createTarifa"
+                                            >
+                                                Añadir
+                                            </button>
+                                        </form>
+                                    </main>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
                 <div class="chartjs-size-monitor">
@@ -181,11 +178,6 @@
         </div>
     </div>
 
-
-
-
-
-    
     <div class="container">
         <div class="login-pag px-5">
             <div class="row jutify-content-center w-50 mx-auto mb-5">
@@ -281,7 +273,30 @@ export default {
             error: null,
         };
     },
-
+    created() {
+        if (window.Laravel.isLoggedin) {
+            this.isLoggedin = true;
+            this.iduser = window.Laravel.user.id;
+            console.log(this.iduser);
+            this.user = window.Laravel.user;
+            this.user_role = window.Laravel.user_role;
+            console.log("=======");
+            console.log(window.Laravel.user.roles[0].nombre_role);
+            this.user_role = window.Laravel.user_role;
+            if (!window.Laravel.isLoggedin) {
+                window.location.href = "/";
+            } else {
+                if (
+                    window.Laravel.user.roles[0].nombre_role == "admin" ||
+                    window.Laravel.user.roles[0].nombre_role == "gestion_tarifa"
+                ) {
+                    this.$nextTick();
+                } else {
+                    window.location.href = "/";
+                }
+            }
+        }
+    },
     methods: {
         createTarifa(e) {
             e.preventDefault();

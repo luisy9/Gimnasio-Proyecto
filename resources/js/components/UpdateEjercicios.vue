@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between pb-2 mb-2">
-                <h5 class="card-title">Update User</h5>
+                <h5 class="card-title">Update Ejericio</h5>
                 <div>
                     <router-link :to="{ name: 'posts' }" class="btn btn-success"
                         >Go Back</router-link
@@ -38,66 +38,31 @@
                 <strong>{{ strError }}</strong>
             </div>
 
-            <form @submit.prevent="updatePost" enctype="multipart/form-data">
+            <form
+                @submit.prevent="updateEjercicio"
+                enctype="multipart/form-data"
+            >
                 <div class="form-group mb-2">
-                    <label>Name</label><span class="text-danger"> *</span>
+                    <label>Nombre Ejericio</label
+                    ><span class="text-danger"> *</span>
                     <input
                         type="text"
                         class="form-control"
-                        v-model="name"
+                        v-model="nombre_ejercicio"
                         placeholder="Enter post name"
                     />
                 </div>
                 <div class="form-group mb-2">
-                    <label>email</label><span class="text-danger"> *</span>
-                    <input
-                        type="text"
-                        class="form-control"
-                        v-model="email"
-                        placeholder="Enter post name"
-                    />
-                </div>
-                <div class="form-group mb-2">
-                    <label>Contraseña</label><span class="text-danger"> *</span>
-                    <input
-                        type="password"
-                        class="form-control"
-                        v-model="password"
-                        placeholder="Enter post name"
-                    />
-                </div>
-                <div class="form-group mb-2">
-                    <label>Fecha de Nacimiento</label
+                    <label>Imagen Ejercicio</label
                     ><span class="text-danger"> *</span>
                     <input
-                        type="date"
+                        type="file"
                         class="form-control"
-                        v-model="fecha_nacimiento"
+                        v-on:change="onChangeImg"
                         placeholder="Enter post name"
                     />
                 </div>
-                <div class="form-group mb-2">
-                    <label>Roles Actuales</label
-                    ><span class="text-danger"> *</span>
-                    <tbody>
-                        <tr v-for="(role, index) in roles" :key="role.id">
-                            <td>{{ role.id }}</td>
-                            <td>{{ role.nombre_role }}</td>
 
-                            <div>
-                                <input 
-                                    type="checkbox"
-                                    name="test"
-                                    :value="`${role.id}`"
-                                    v-model="checked"
-                                />
-                            </div>
-                           
-                            
-                        </tr>
-                    </tbody>
-                    {{ checked }}
-                </div>
                 <button
                     type="submit"
                     class="btn btn-primary mt-4 mb-4"
@@ -118,13 +83,11 @@ export default {
     data() {
         return {
             id: "",
-            name: "",
-            email: "",
-            password: "",
-            fecha_nacimiento: "",
+            nombre_ejercicio: "",
+            file: "",
+            categorias: [],
             user_role: null,
-            iduser: this.$route.params.id,
-            roles: [],
+            idejercicio: this.$route.params.id,
             checked: [],
             strSuccess: "",
             strError: "",
@@ -137,13 +100,11 @@ export default {
         // console.log(window.Laravel.user.roles[0].nombre_role);
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
-                .get(`/api/showUserUpdate/${this.iduser}`)
+                .get(`/api/showEjercicioUpdate/${this.idejercicio}`)
                 .then((response) => {
                     console.log(response.data.name);
-                    this.name = response.data.name;
-                    this.email = response.data.email;
-                    this.password = response.data.password;
-                    this.fecha_nacimiento = response.data.fecha_nacimiento;
+                    this.nombre_ejercicio = response.data.nombre_ejercicio;
+                    this.imagen_ejericio = response.data.imagen_ejericio;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -151,24 +112,10 @@ export default {
         });
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
-                .get("/api/roles")
+                .get("/api/ejercicios")
                 .then((response) => {
-                    console.log(response);
-                    this.roles = response.data;
-                    console.log(this.roles);
-                    this.existeRole();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        });
-        //belongsToMany para coger la relacion de los roles con usuarios
-        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-            this.$axios
-                .get(`/api/rolesUser/${this.$route.params.id}`)
-                .then((response) => {
-                    this.user_role = window.Laravel.user_role;
                     console.log(response.data);
+                    this.ejercicios = response.data;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -176,10 +123,29 @@ export default {
         });
     },
     methods: {
+        onChangeImg(e) {
+            this.file = e.target.files[0];
+            let reader = new FileReader();
+            reader.addEventListener(
+                "load",
+                function () {
+                    this.imgPreview = reader.result;
+                }.bind(this),
+                false
+            );
+
+            if (this.file) {
+                if (/\.(jpe?g|png|gif)$/i.test(this.file.name)) {
+                    reader.readAsDataURL(this.file);
+                }
+            }
+        },
         existeRole() {
-            let list_name_role =  this.user_role.map(role => role.nombre_role);
-            this.roles.forEach((role,index) => {          
-                (list_name_role.includes(role.nombre_role) )? this.checked[index].push(role.id): null;
+            let list_name_role = this.user_role.map((role) => role.nombre_role);
+            this.roles.forEach((role, index) => {
+                list_name_role.includes(role.nombre_role)
+                    ? this.checked[index].push(role.id)
+                    : null;
             });
         },
         updateUser(e) {
@@ -192,15 +158,12 @@ export default {
                 };
 
                 const formData = new FormData();
-                formData.append("name", this.name);
-                formData.append("email", this.email);
-                formData.append("password", this.password);
-                formData.append("fecha_nacimiento", this.fecha_nacimiento);
-                formData.append("role_id",this.checked);
+                formData.append("nombre_ejercicio", this.nombre_ejercicio);
+                formData.append("file", this.file);
 
                 this.$axios
                     .post(
-                        `/api/update/${this.$route.params.id}/${this.checked}`,
+                        `/api/updateEjercicio/${this.idejercicio}`,
                         formData,
                         config
                     )

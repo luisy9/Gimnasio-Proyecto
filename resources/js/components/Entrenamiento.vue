@@ -9,7 +9,7 @@
         <div class="banner-entrenamiento">
             <h1>Crear Rutina</h1>
             <router-link to="/crearRutina" class="nav-item nav-link"
-                >Gestionar Roles
+                >Crea tu propia Rutina!
                 <button>Crear</button>
             </router-link>
         </div>

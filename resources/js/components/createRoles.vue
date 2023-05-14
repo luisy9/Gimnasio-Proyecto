@@ -193,7 +193,30 @@ export default {
             checked: [],
         };
     },
-
+    created() {
+        if (window.Laravel.isLoggedin) {
+            this.isLoggedin = true;
+            this.iduser = window.Laravel.user.id;
+            console.log(this.iduser);
+            this.user = window.Laravel.user;
+            this.user_role = window.Laravel.user_role;
+            console.log("=======");
+            console.log(window.Laravel.user.roles[0].nombre_role);
+            this.user_role = window.Laravel.user_role;
+            if (!window.Laravel.isLoggedin) {
+                window.location.href = "/";
+            } else {
+                if (
+                    window.Laravel.user.roles[0].nombre_role == "admin" ||
+                    window.Laravel.user.roles[0].nombre_role == "gestion_roles"
+                ) {
+                    this.$nextTick();
+                } else {
+                    window.location.href = "/";
+                }
+            }
+        }
+    },
     methods: {
         createUser(e) {
             e.preventDefault();

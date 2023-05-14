@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid" v-if="this.user_role == 'admin' || this.user_role == 'gestion_users'">
+    <div class="container-fluid">
         <div class="row">
             <nav
                 id="sidebarMenu"
@@ -44,13 +44,8 @@
                                 >Modificar Usuarios</router-link
                             >
                         </li>
-                        <li class="nav-item">
-                            <router-link to="/eliminarUsuarios" class="nav-link"
-                                >Eliminar Usuarios</router-link
-                            >
-                        </li>
-                        </ul>
-                        <h6
+                    </ul>
+                    <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
                     >
                         <span>Rol</span>
@@ -87,78 +82,67 @@
                 <section class="p-4 p-md-5">
                     <div class="row d-flex justify-content-center mb-5">
                         <!--<div class="login-pag px-5">-->
-                            <!--<div
+                        <!--<div
                                 class="row jutify-content-center w-50 mx-auto mb-5"
                             >-->
-                                <div
-                                    class="alert alert-danger alert-dismissible fade show"
-                                    role="alert"
-                                    v-if="error"
-                                >
-                                    <button
-                                        type="button"
-                                        class="btn-close"
-                                        data-bs-dismiss="alert"
-                                        aria-label="Close"
-                                    ></button>
-                                    <strong>{{ error }}</strong>
-                                </div>
-                                <div class="card card-default p-5">
-                                    <main class="form-signin w-100 m-auto px-5">
-                                        <h2>Gestionar Usuarios</h2>
-                                        <table
-                                            class="table table-hover table-sm"
+                        <div
+                            class="alert alert-danger alert-dismissible fade show"
+                            role="alert"
+                            v-if="error"
+                        >
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="alert"
+                                aria-label="Close"
+                            ></button>
+                            <strong>{{ error }}</strong>
+                        </div>
+                        <div class="card card-default p-5">
+                            <main class="form-signin w-100 m-auto px-5">
+                                <h2>Gestionar Usuarios</h2>
+                                <table class="table table-hover table-sm">
+                                    <thead class="bg-dark text-light">
+                                        <tr>
+                                            <th width="50" class="text-center">
+                                                #
+                                            </th>
+                                            <th>Name</th>
+                                            <th>email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            v-for="(user, index) in usuarios"
+                                            :key="user.id"
                                         >
-                                            <thead class="bg-dark text-light">
-                                                <tr>
-                                                    <th
-                                                        width="50"
-                                                        class="text-center"
-                                                    >
-                                                        #
-                                                    </th>
-                                                    <th>Name</th>
-                                                    <th>email</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr
-                                                    v-for="(
-                                                        user, index
-                                                    ) in usuarios"
-                                                    :key="user.id"
+                                            <td>{{ user.name }}</td>
+                                            <td>{{ user.email }}</td>
+                                            <td class="text-center">
+                                                <button
+                                                    class="btn btn-danger"
+                                                    @click="
+                                                        deleteUsers(user.id)
+                                                    "
                                                 >
-                                                    <td>{{ user.name }}</td>
-                                                    <td>{{ user.email }}</td>
-                                                    <td class="text-center">
-                                                        <button
-                                                            class="btn btn-danger"
-                                                            @click="
-                                                                deleteUsers(
-                                                                    user.id
-                                                                )
-                                                            "
-                                                        >
-                                                            Delete
-                                                        </button>
-                                                        <button
-                                                            type="submit"
-                                                            class="btn btn-primary mt-4 mb-4"
-                                                            @click="
-                                                                updateUsers(
-                                                                    user.id
-                                                                )
-                                                            "
-                                                        >
-                                                            Update User
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </main>
-                                </div>
-                            <!--</div>-->
+                                                    Delete
+                                                </button>
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-primary mt-4 mb-4"
+                                                    @click="
+                                                        updateUsers(user.id)
+                                                    "
+                                                >
+                                                    Update User
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </main>
+                        </div>
+                        <!--</div>-->
                         <!--</div>-->
                     </div>
                 </section>
@@ -176,6 +160,7 @@ export default {
             strSuccess: "",
             strError: "",
             error: null,
+            user_role: null,
         };
     },
     created() {
@@ -192,16 +177,26 @@ export default {
                 });
         });
         if (window.Laravel.isLoggedin) {
+            this.isLoggedin = true;
             this.iduser = window.Laravel.user.id;
             console.log(this.iduser);
-            this.isLoggedin = true;
-            this.user = window.Laravel.user;
-            this.isLoggedin = true;
             this.user = window.Laravel.user;
             this.user_role = window.Laravel.user_role;
             console.log("=======");
             console.log(window.Laravel.user.roles[0].nombre_role);
-            this.user_role = window.Laravel.user.roles[0].nombre_role;
+            this.user_role = window.Laravel.user_role;
+            if (!window.Laravel.isLoggedin) {
+                window.location.href = "/";
+            } else {
+                if (
+                    window.Laravel.user.roles[0].nombre_role == "admin" ||
+                    window.Laravel.user.roles[0].nombre_role == "gestion_users"
+                ) {
+                    this.$nextTick();
+                } else {
+                    window.location.href = "/";
+                }
+            }
         }
     },
 

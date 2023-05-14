@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class rutina_ejercicios extends Model
 {
     use HasFactory;
+
+    
 }

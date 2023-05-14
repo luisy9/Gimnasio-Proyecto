@@ -23,8 +23,11 @@ import CrearRutina from "../components/CrearRutina.vue";
 import BuscarEjercicios from "../components/BuscarEjercicios.vue";
 import tuRutina from "../components/TuRutina.vue";
 import gestionarEjercicios from "../components/GestionarEjericios.vue";
-import gestionarMusculos from "../components/GestionarMuculos.vue";
+// import gestionarMusculos from "../components/GestionarMuculos.vue";
 import createRole from "../components/createRoles.vue";
+import updateEjercicio from "../components/UpdateEjercicios.vue";
+import crearEjercicios from "../components/CrearEjercicio.vue";
+import updateRutina from "../components/updateRutina.vue";
 import { createWebHistory, createRouter } from "vue-router";
 
 export const routes = [
@@ -155,15 +158,30 @@ export const routes = [
         path: "/gestionarEjercicios",
         component: gestionarEjercicios,
     },
-    {
-        name: "gestionarMusculos",
-        path: "/gestionarMusculos",
-        component: gestionarMusculos,
-    },
+    // {
+    //     name: "gestionarMusculos",
+    //     path: "/gestionarMusculos",
+    //     component: gestionarMusculos,
+    // },
     {
         name: "createRole",
         path: "/createRole",
         component: createRole,
+    },
+    {
+        name: "updateEjercicio",
+        path: "/updateEjercicio/:id",
+        component: updateEjercicio,
+    },
+    {
+        name: "crearEjercicio",
+        path: "/crearEjercicio",
+        component: crearEjercicios,
+    },
+    {
+        name: "updateRutina",
+        path: "/updateRutina/:id",
+        component: updateRutina,
     },
 ];
 

@@ -107,15 +107,15 @@
                                     <main class="form-signin w-100 m-auto px-5">
                                         <form>
                                             <h1 class="h3 mb-3 fw-normal">
-                                                Crear Usuarios
+                                                Crear Ejercicio
                                             </h1>
                                             <br />
                                             <div class="form-floating">
                                                 <input
-                                                    id="name"
+                                                    id="nombre_ejercicio"
                                                     type="text"
                                                     class="form-control"
-                                                    v-model="name"
+                                                    v-model="nombre_ejercicio"
                                                     autofocus
                                                     autocomplete="off"
                                                     placeholder="Nombre"
@@ -123,86 +123,38 @@
                                                 <label
                                                     for="name"
                                                     class="col-sm-4 col-form-label text-md-right"
-                                                    >Nombre</label
+                                                    >Nombre Ejercicio</label
                                                 >
                                             </div>
                                             <br />
-                                            <div class="form-floating">
+                                            <div class="form-group mb-2">
                                                 <input
-                                                    id="email"
-                                                    type="email"
+                                                    type="file"
                                                     class="form-control"
-                                                    v-model="email"
-                                                    autocomplete="off"
-                                                    placeholder="Email"
+                                                    v-on:change="onChangeImg"
+                                                    placeholder="Enter post name"
                                                 />
-                                                <label
-                                                    for="email"
-                                                    class="col-md-4 col-form-label text-md-right"
-                                                    >Email</label
+                                            </div>
+                                            <select
+                                                v-model="selected"
+                                                class="d-flex my-3"
+                                            >
+                                                <option disabled value="">
+                                                    Seleccione un elemento
+                                                </option>
+                                                <option
+                                                    v-for="categoria in categorias"
+                                                    :value="categoria.id"
                                                 >
-                                            </div>
-                                            <br />
-                                            <div class="form-floating">
-                                                <input
-                                                    id="password"
-                                                    type="password"
-                                                    class="form-control"
-                                                    v-model="password"
-                                                    autocomplete="off"
-                                                    placeholder="Contraseña"
-                                                />
-                                                <label
-                                                    for="password"
-                                                    class="col-md-4 col-form-label text-md-right"
-                                                    >Contraseña</label
-                                                >
-                                            </div>
-                                            <br />
-                                            <div class="form-floating">
-                                                <input
-                                                    id="fecha_nacimiento"
-                                                    type="date"
-                                                    min="1899-01-01"
-                                                    max="2000-01-01"
-                                                    class="form-control"
-                                                    v-model="fecha_nacimiento"
-                                                    autocomplete="off"
-                                                    placeholder="Teclea tu fecha nacimiento"
-                                                />
-                                                <label
-                                                    for="fecha_nacimiento"
-                                                    class="col-md-4 col-form-label text-md-right"
-                                                    >fecha nacimiento</label
-                                                >
-                                            </div>
-
-                                            <br />
-                                            <div class="containerBotons">
-                                                <h5>Añadir Roles</h5>
-                                                <div id="">
-                                                    <div
-                                                        v-for="(
-                                                            role, index
-                                                        ) in roles"
-                                                    >
-                                                        {{ role.nombre_role }}
-                                                        <input
-                                                            type="checkbox"
-                                                            :value="role.id"
-                                                            v-model="checked"
-                                                        />
-                                                    </div>
-                                                    <p>
-                                                        Has Seleeccionado:
-                                                        {{ checked }}
-                                                    </p>
-                                                </div>
-                                            </div>
+                                                    {{
+                                                        categoria.nombre_categoria
+                                                    }}
+                                                </option>
+                                            </select>
                                             <button
                                                 type="submit"
                                                 class="button-primary"
-                                                @click="createUser"
+                                                @click="createEjercicio"
                                             >
                                                 Añadir
                                             </button>
@@ -223,38 +175,15 @@ export default {
     name: "crearUsuarios",
     data() {
         return {
-            name: "",
-            email: "",
-            password: "",
-            fecha_nacimiento: "",
+            nombre_ejercicio: "",
+            img: "",
             error: null,
+            categorias: [],
             checked: [],
             roles: [],
+            selected: "",
+            checkcategorias: [],
         };
-    },
-    created() {
-        if (window.Laravel.isLoggedin) {
-            this.isLoggedin = true;
-            this.iduser = window.Laravel.user.id;
-            console.log(this.iduser);
-            this.user = window.Laravel.user;
-            this.user_role = window.Laravel.user_role;
-            console.log("=======");
-            console.log(window.Laravel.user.roles[0].nombre_role);
-            this.user_role = window.Laravel.user_role;
-            if (!window.Laravel.isLoggedin) {
-                window.location.href = "/";
-            } else {
-                if (
-                    window.Laravel.user.roles[0].nombre_role == "admin" ||
-                    window.Laravel.user.roles[0].nombre_role == "gestion_users"
-                ) {
-                    this.$nextTick();
-                } else {
-                    window.location.href = "/";
-                }
-            }
-        }
     },
     mounted() {
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
@@ -269,29 +198,62 @@ export default {
                     console.log(error);
                 });
         });
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get("/api/showCategorias")
+                .then((response) => {
+                    console.log(response.data);
+                    this.categorias = response.data;
+                    console.log(this.categorias);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
     },
     methods: {
-        createUser(e) {
+        onChangeImg(e) {
+            this.img = e.target.files[0];
+            let reader = new FileReader();
+            reader.addEventListener(
+                "load",
+                function () {
+                    this.imgPreview = reader.result;
+                }.bind(this),
+                false
+            );
+
+            if (this.img) {
+                if (/\.(jpe?g|png|gif)$/i.test(this.img.name)) {
+                    console.log(this.img.name);
+                    reader.readAsDataURL(this.img);
+                }
+            }
+        },
+        createEjercicio(e) {
             e.preventDefault();
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                let existObj = this;
+                const config = {
+                    headers: {
+                        "content-type": "multipart/form-data",
+                    },
+                };
+
+                const formData = new FormData();
+                formData.append("nombre_ejercicio", this.nombre_ejercicio);
+                formData.append("imagen_ejercicio", this.img);
+                formData.append("categoria_id", this.selected);
+
                 this.$axios
-                    .post("api/createUsers", {
-                        name: this.name,
-                        email: this.email,
-                        password: this.password,
-                        checked: this.checked,
-                        fecha_nacimiento: this.fecha_nacimiento,
-                    })
+                    .post("/api/createEjercicio", formData, config)
                     .then((response) => {
-                        if (response.data.success) {
-                            console.log(response.data.checked);
-                        } else {
-                            console.log(response);
-                            this.error = response.data.message;
-                        }
+                        existObj.strError = "";
+                        existObj.strSuccess = response.data.success;
                     })
                     .catch(function (error) {
-                        console.error(error);
+                        existObj.strError = error.response.data.message;
+                        existObj.strSuccess = "";
                     });
             });
         },

@@ -1,5 +1,8 @@
 <template>
-    <div class="container-fluid">
+    <div
+        class="container-fluid"
+        v-if="this.user_role == 'gestion_entrenamiento'"
+    >
         <div class="row">
             <nav
                 id="sidebarMenu"
@@ -38,7 +41,9 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <router-link to="/eliminarUsuarios" class="nav-link"
+                            <router-link
+                                to="/modificarUsuarios"
+                                class="nav-link"
                                 >Modificar Usuarios</router-link
                             >
                         </li>
@@ -79,6 +84,10 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <section class="p-4 p-md-5">
                     <div class="row d-flex justify-content-center mb-5">
+                        <!--<div class="login-pag px-5">-->
+                        <!--<div
+                                class="row jutify-content-center w-50 mx-auto mb-5"
+                            >-->
                         <div
                             class="alert alert-danger alert-dismissible fade show"
                             role="alert"
@@ -94,61 +103,58 @@
                         </div>
                         <div class="card card-default p-5">
                             <main class="form-signin w-100 m-auto px-5">
+                                <h2>Gestionar Musculo</h2>
                                 <table class="table table-hover table-sm">
                                     <thead class="bg-dark text-light">
                                         <tr>
                                             <th width="50" class="text-center">
-                                                Tipo tarifa
+                                                #
                                             </th>
-                                            <th>Precio</th>
-                                            <th>descripcion</th>
-                                            <th>dsad</th>
+                                            <th>nombre_ejericio</th>
+                                            <th>Foto</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr
-                                            v-for="(tarifa, index) in tarifas"
-                                            :key="tarifa.id"
-                                        >
-                                            <td>{{ tarifa.tipo_tarifa }}</td>
-                                            <td>{{ tarifa.precio }}</td>
-                                            <td>
-                                                {{ tarifa.descripcion_tarifa }}
-                                            </td>
-                                            <td class="text-center">
-                                                <button
-                                                    class="btn btn-danger"
-                                                    @click="
-                                                        deleteTarifa(tarifa.id)
-                                                    "
+                                                    v-for="(
+                                                        ejercicio, index
+                                                    ) in ejercicios"
+                                                    :key="ejercicio.id"
                                                 >
-                                                    Delete
-                                                </button>
-                                                <button
-                                                    type="submit"
-                                                    class="btn btn-primary mt-4 mb-4"
-                                                    @click="
-                                                        updateTarifa(tarifa.id)
-                                                    "
-                                                >
-                                                    Update User
-                                                </button>
-                                            </td>
-                                        </tr>
+                                                    <td>{{ ejercicio.nombre_ejercicio }}</td>
+                                                    <img :src="`img/${ejercicio.imagen_ejercicio}`">
+                                                    <td class="text-center">
+                                                        <button
+                                                            class="btn btn-danger"
+                                                            @click="
+                                                                deleteEjercicios(
+                                                                    ejercicio.id
+                                                                )
+                                                            "
+                                                        >
+                                                            Delete
+                                                        </button>
+                                                        <button
+                                                            type="submit"
+                                                            class="btn btn-primary mt-4 mb-4"
+                                                            @click="
+                                                                updateEjercicios(
+                                                                    ejercicio.id
+                                                                )
+                                                            "
+                                                        >
+                                                            Update
+                                                        </button>
+                                                    </td>
+                                                </tr>
                                     </tbody>
                                 </table>
                             </main>
                         </div>
+                        <!--</div>-->
+                        <!--</div>-->
                     </div>
                 </section>
-                <div class="chartjs-size-monitor">
-                    <div class="chartjs-size-monitor-expand">
-                        <div class=""></div>
-                    </div>
-                    <div class="chartjs-size-monitor-shrink">
-                        <div class=""></div>
-                    </div>
-                </div>
             </main>
         </div>
     </div>
@@ -156,68 +162,55 @@
 
 <script>
 export default {
-    name: "GestionarTarifas",
+    name: "crearUsuarios",
     data() {
         return {
-            tarifas: [],
+            ejercicios: [],
             strSuccess: "",
             strError: "",
             error: null,
         };
     },
-    mounted() {
-        if (!window.Laravel.isLoggedin) {
-            window.location.href = "/login";
-        }
-    },
     created() {
-        if (window.Laravel.isLoggedin) {
-            this.isLoggedin = true;
-            this.iduser = window.Laravel.user.id;
-            console.log(this.iduser);
-            this.user = window.Laravel.user;
-            this.user_role = window.Laravel.user_role;
-            console.log("=======");
-            console.log(window.Laravel.user.roles[0].nombre_role);
-            this.user_role = window.Laravel.user_role;
-            if (!window.Laravel.isLoggedin) {
-                window.location.href = "/";
-            } else {
-                if (
-                    window.Laravel.user.roles[0].nombre_role == "admin" ||
-                    window.Laravel.user.roles[0].nombre_role == "gestion_tarifas"
-                ) {
-                    this.$nextTick();
-                } else {
-                    window.location.href = "/";
-                }
-            }
-        }
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
-                .get("/api/tarifas")
+                .get("/api/ejercicios")
                 .then((response) => {
-                    this.tarifas = response.data;
+                    console.log(response.data);
+                    this.ejercicios = response.data;
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         });
+        if (window.Laravel.isLoggedin) {
+            this.iduser = window.Laravel.user.id;
+            console.log(this.iduser);
+            this.isLoggedin = true;
+            this.user = window.Laravel.user;
+            this.isLoggedin = true;
+            this.user = window.Laravel.user;
+            this.user_role = window.Laravel.user_role;
+            console.log("=======");
+            console.log(window.Laravel.user.roles[0].nombre_role);
+            this.user_role = window.Laravel.user.roles[0].nombre_role;
+        }
     },
 
     methods: {
-        updateTarifa(id) {
-            window.location.href = "/updateTarifas/" + id;
+        updateEjercicios(id) {
+            window.location.href = "/updateEjercicio/" + id;
         },
-        deleteTarifa(id) {
+
+        deleteEjercicios(id) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
-                    .delete("/api/tarifasDelete/" + id)
+                    .delete("/api/deleteEjercicios/" + id)
                     .then((response) => {
-                        const index = this.tarifas.findIndex(
-                            (tarifa) => tarifa.id === id
+                        const index = this.ejercicios.findIndex(
+                            (ejercicio) => ejercicio.id === id
                         );
-                        this.tarifas.splice(index, 1);
+                        this.usuarios.splice(index, 1);
                     })
                     .catch(function (error) {
                         console.log(error);

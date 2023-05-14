@@ -14,4 +14,8 @@ class EjerciciosController extends Controller
     return $categorias;
    }
 
+   public function crearEjercicios(){
+      
+   }
+
 }

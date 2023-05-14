@@ -64,22 +64,24 @@
                     role="button"
                     >{{ user.name }}</a
                 >
+
                 <div
                     class="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
                 >
-                    {{ this.user.id }}
                     <router-link
                         :to="`/dashboard/${this.user.id}`"
-                        class="nav-item nav-link"
+                        class="nav-item nav-link px-4"
                         >Dashboard</router-link
                     >
-                    >
-                    <router-link to="/posts" class="nav-item nav-link"
-                        >xxxx</router-link
+                    <router-link
+                        v-if="this.tieneRutina == true"
+                        :to="`/tuRutina/${this.iduser}`"
+                        class="nav-item nav-link px-4"
+                        >Mi Rutina</router-link
                     >
                     <a
-                        class="nav-item nav-link"
+                        class="nav-item nav-link px-4"
                         style="cursor: pointer"
                         @click="logout"
                         >Logout</a
@@ -182,19 +184,42 @@ export default {
     data() {
         return {
             isLoggedin: false,
+            iduser: null,
             isAdmin: false,
             user: null,
             user_role: null,
             arrayUserRole: [],
+            tieneRutina: false,
         };
+    },
+    mounted() {
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get(`/api/hasTarifa/${this.iduser}`)
+                .then((response) => {
+                    console.log("tiene rutina?");
+                    console.log(response.data);
+                    this.tieneRutina = response.data;
+                    if (this.tieneRutina == 0) {
+                        console.log("dkasmdkas");
+                        console.log((this.tieneRutina = false));
+                    } else {
+                        this.tieneRutina = true;
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
     },
     created() {
         if (window.Laravel.isLoggedin) {
+            this.iduser = window.Laravel.user.id;
             this.isLoggedin = true;
             this.user = window.Laravel.user;
             this.user_role = window.Laravel.user_role;
             console.log("=======");
-            console.log(window.Laravel.user.roles[0].nombre_role);
+            // console.log(window.Laravel.user.roles[1].nombre_role);
             this.user_role = window.Laravel.user.roles[0].nombre_role;
             console.log(this.user.name);
         }
