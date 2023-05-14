@@ -1,39 +1,45 @@
 <template>
     <div class="banner-entrenamiento">
-        <h1 class="text-light text-center">Entrenamiento</h1>
+        <h1 class="text-light text-center">ENTRENAMIENTO</h1>
     </div>
-    <router-link to="/buscarEjercicios" class="nav-item nav-link"
-        >Buscador Ejericicos</router-link
-    >
-    <div class="galeria-ejercicios vis-desck">
-        <div
-            class="col flex justify-content-center galeria-ejercicios"
-            v-for="(catego, index) in categorias"
-            :key="catego.id"
-        >
 
+    <div class="vis-desck px-5">
+        <div class="text-center my-5">
+            <h3 class="mb-3"><b>Ejercicios especificos</b></h3>
+        </div>
+        <div class="galeria-ejercicios">
             <div
-                class="galeria-imagen"
-                :style="`background-image: url('http://localhost:8000/img/${catego.imagen_categoria}');
-                   display: flex;
-                   justify-content: center;
-                   align-items: center;`"
+                class="col flex justify-content-center galeria-ejercicios"
+                v-for="(catego, index) in categorias"
+                :key="catego.id"
             >
-                <router-link
-                    class="link-negro"
-                    :to="`/ejercicioMusculo/${catego.id}`"
-                    :style="`width: 100% ; height: 100%;`"
+                <div
+                    class="galeria-imagen centrar-ent"
+                    :style="`background-image: url('http://localhost:8000/img/${catego.imagen_categoria}');`"
                 >
-                    <p class="text-white">
-                        {{ catego.nombre_categoria }}
-                    </p>
-                </router-link>
+                    <router-link
+                        class="link-negro"
+                        :to="`/ejercicioMusculo/${catego.id}`"
+                        :style="`width: 100% ; height: 100%;`"
+                    >
+                        <p class="text-white">
+                            {{ catego.nombre_categoria }}
+                        </p>
+                    </router-link>
+                </div>
+            </div>
+        </div>
+        <div class="vis-desck mb-5">
+            <div class="banner-buscar">
+                <a href="/buscarEjercicios" class="w-100 h-100 centrar-ent">
+                    <p class="text-white text-center">Buscador Ejericicos</p>
+                </a>
             </div>
         </div>
     </div>
 
     <div class="row vis-mov">
-        <div class="col-6 mb-2">
+        <div class="text-center">
             <h3 class="mb-3"><b>Ejercicios especificos</b></h3>
         </div>
 
@@ -44,72 +50,97 @@
             v-for="(catego, index) in categorias"
             :key="catego.id"
         >
-        <div class="carousel-inner mb-3 px-3">
+            <div class="carousel-inner mb-3 px-5">
                 <router-link
                     class="link-negro"
                     :to="`/ejercicioMusculo/${catego.id}`"
                     :style="`width: 100% ; height: 100%;`"
                 >
-                <div class="carousel-item active">
-                    <div
-                class="img-fluid w-100"
-                :style="`background-image: url('http://localhost:8000/img/${catego.imagen_categoria}');
-                   display: flex;
-                   justify-content: center;
-                   align-items: center;`"
-            >
-                        
-                    <p class="text-white card-title">
-                        {{ catego.nombre_categoria }}
-                    </p>
+                    <div class="carousel-item active">
+                        <div
+                            class="img-fluid centrar-ent w-100"
+                            :style="`background-image: url('http://localhost:8000/img/${catego.imagen_categoria}');`"
+                        >
+                            <p class="text-white card-title">
+                                {{ catego.nombre_categoria }}
+                            </p>
+                        </div>
                     </div>
-                </div>
                 </router-link>
             </div>
         </div>
     </div>
 
-    <section class="part3 px-3 ">
-  <div class="text-center mb-2 mt-2">
-    <h3 class="mb-3"><b>Rutinas</b></h3>
-  </div>
-  <div class="row mt-5">
-    <div class="col-md-4 mb-3">
-      <div class="position-relative">
-        <img src="../../img/rutinas/kettlebell-g1b482f877_1280.webp" alt="" class="w-100">
-        <a href="#" class="btn button-secondary position-absolute bottom-0 start-50 translate-middle">Basica</a>
-      </div>
-    </div>
-    <div class="col-md-4 mb-3">
-      <div class="position-relative">
-        <img src="../../img/rutinas/kettlebell-g1b482f877_1280.webp" alt="" class="w-100">
-        <a href="#" class="btn button-secondary position-absolute bottom-0 start-50 translate-middle">Media</a>
-      </div>
-    </div>
-    <div class="col-md-4 mb-3">
-      <div class="position-relative">
-        <img src="../../img/rutinas/kettlebell-g1b482f877_1280.webp" alt="" class="w-100">
-        <a href="#" class="btn button-secondary position-absolute bottom-0 start-50 translate-middle">Pro</a>
-      </div>
-    </div>
-    <div class="col-md-4 mb-3 vis-mov" v-if="this.isPro">
-      <div class="position-relative">
-        <img src="http://localhost:8000/img/kettlebell-g30da63dfe_1280_osc.webp" alt="" class="w-100">
-        <a href="/crearRutina" class="btn button-secondary position-absolute top-50 start-50 translate-middle">Crear</a>
-      </div>
-    </div>
-  </div>
-  <div class="vis-desck mb-5" v-if="this.isPro">
-    <div class="banner-entrenamiento">
-        <a href="/crearRutina">
-        <button class="button-secondary">Crear rutina</button>
-        </a>
-    </div>
-    </div>
-</section>
-
-
-
+    <section class="part3 px-5 pb-5">
+        <div class="text-center mb-2 mt-2">
+            <h3 class="mb-3"><b>Rutinas</b></h3>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4 mb-3">
+                <div class="position-relative">
+                    <img
+                        src="../../img/rutinas/kettlebell-g1b482f877_1280.webp"
+                        alt=""
+                        class="w-100"
+                    />
+                    <a
+                        href="#"
+                        class="btn button-secondary position-absolute bottom-0 start-50 translate-middle"
+                        >Basica</a
+                    >
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="position-relative">
+                    <img
+                        src="../../img/rutinas/kettlebell-g1b482f877_1280.webp"
+                        alt=""
+                        class="w-100"
+                    />
+                    <a
+                        href="#"
+                        class="btn button-secondary position-absolute bottom-0 start-50 translate-middle"
+                        >Media</a
+                    >
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="position-relative">
+                    <img
+                        src="../../img/rutinas/kettlebell-g1b482f877_1280.webp"
+                        alt=""
+                        class="w-100"
+                    />
+                    <a
+                        href="#"
+                        class="btn button-secondary position-absolute bottom-0 start-50 translate-middle"
+                        >Pro</a
+                    >
+                </div>
+            </div>
+            <div class="col-md-4 mb-3 vis-mov" v-if="this.isPro">
+                <div class="position-relative">
+                    <img
+                        src="http://localhost:8000/img/kettlebell-g30da63dfe_1280_osc.webp"
+                        alt=""
+                        class="w-100"
+                    />
+                    <a
+                        href="/crearRutina"
+                        class="btn button-secondary position-absolute top-50 start-50 translate-middle"
+                        >Crear</a
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="vis-desck mb-5" v-if="this.isPro">
+            <div class="banner-entrenamiento">
+                <a href="/crearRutina">
+                    <button class="button-secondary">Crear rutina</button>
+                </a>
+            </div>
+        </div>
+    </section>
 </template>
 <script>
 export default {
@@ -165,6 +196,32 @@ export default {
 };
 </script>
 <style scoped>
+a{
+    text-decoration:none;
+}
+.banner-buscar:hover{
+    opacity: 1;
+}
+.centrar-ent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banner-buscar {
+    background-image: url("http://localhost:8000/img/banner3.webp");
+    height: 13.5em;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.banner-buscar h1 {
+    -webkit-text-stroke: 1px black;
+}
 .banner-entrenamiento {
     background-image: url("http://localhost:8000/img/banner3.webp");
     height: 35em;
