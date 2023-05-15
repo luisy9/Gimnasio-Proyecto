@@ -16,28 +16,71 @@
                         required
                         name="nombre"
                         v-model="nombre"
-                        style="width: 60%;"
+                        style="width: 60%"
                     />
-                    <button type="button" class="button-primary" @click="buscar">
+                    <button
+                        type="button"
+                        class="button-primary"
+                        @click="buscar"
+                    >
                         Buscar
                     </button>
                 </div>
             </form>
         </div>
-        <div v-if="mostrarResultados === false">hola
-            <h2>Ejericios</h2>
-                <ul>
-                    <li v-for="allEjercicios in ejercicios">
-                        {{ ejercicio.nombre_ejercicio }}
-                        <img
-                            class="img-fluid"
-                            :src="`img/${ejercicio.imagen_ejercicio}`"
-                        />
-                    </li>
-                </ul>
+        <div v-if="mostrarResultados === false">
+            
+            <div class="container px-4 py-5" id="custom-cards">
+                <h2 class="pb-2 border-bottom">Ejercicios</h2>
+                <div
+                    class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5"
+                    v-for="allEjercicios in allEjercicios"
+                >
+                    <div class="col">
+                        <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" :style="{ backgroundImage: 'url(/img/' + allEjercicios.imagen_ejercicio + ')' }">
+                            <div
+                                class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
+                            >
+                                <h2
+                                    class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"
+                                >
+                                {{ allEjercicios.nombre_ejercicio }}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>                  
+                    
+                </div>
+            </div>
         </div>
 
-        <div class="container-fluid container-buscador" v-if="mostrarResultados">
+
+
+
+
+
+
+
+
+
+
+
+            <h2>Ejericios</h2>
+            <ul>
+                <li v-for="allEjercicios in allEjercicios">
+                    {{ allEjercicios.nombre_ejercicio }}
+                    <img
+                        class="img-fluid"
+                        :src="`img/${allEjercicios.imagen_ejercicio}`"
+                    />
+                </li>
+            </ul>
+            
+
+        <div
+            class="container-fluid container-buscador"
+            v-if="mostrarResultados"
+        >
             <div class="col my-3 mx-3 border border-black py-3">
                 <!-- Contenido de la segunda columna -->
                 <h2>Ejericios</h2>
