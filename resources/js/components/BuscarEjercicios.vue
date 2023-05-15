@@ -6,7 +6,7 @@
 
         <div class="align-items-start sticky-top pb-2 text-center">
             <form class="form-control py-4 w-100 border-0">
-                <div>
+                <div class="pl-3">
                     <label for="nombre" class="px-3 py-4"
                         ><p>Introduce el ejercicio:</p>
                     </label>
@@ -24,7 +24,20 @@
                 </div>
             </form>
         </div>
-        <div class="container-fluid container-buscador">
+        <div v-if="mostrarResultados === false">hola
+            <h2>Ejericios</h2>
+                <ul>
+                    <li v-for="allEjercicios in ejercicios">
+                        {{ ejercicio.nombre_ejercicio }}
+                        <img
+                            class="img-fluid"
+                            :src="`img/${ejercicio.imagen_ejercicio}`"
+                        />
+                    </li>
+                </ul>
+        </div>
+
+        <div class="container-fluid container-buscador" v-if="mostrarResultados">
             <div class="col my-3 mx-3 border border-black py-3">
                 <!-- Contenido de la segunda columna -->
                 <h2>Ejericios</h2>
@@ -50,6 +63,7 @@ export default {
             nombre: "",
             ejercicios: [],
             allEjercicios: [],
+            mostrarResultados: false,
         };
     },
     mounted() {
@@ -78,6 +92,7 @@ export default {
                         console.log(error);
                     });
             });
+            this.mostrarResultados = true;
         },
     },
 };
@@ -127,8 +142,7 @@ button[type="submit"]:hover {
 }
 .form-control {
     display: inline-block;
-    width: calc(80% - 100px);
-    margin-right: 20px;
+    width: 60%;
 }
 .form-group {
     display: inline-block;
