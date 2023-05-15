@@ -103,7 +103,7 @@
             <div class="nav-item" v-if="isLoggedin">
                 <a
                     data-toggle="dropdown"
-                    class="nav-link dropdown-toggle mx-3"
+                    class="nav-link dropdown-toggle mx-3 login-nav"
                     role="button"
                     >{{ user.name }}</a
                 >
@@ -288,6 +288,12 @@ export default {
 };
 </script>
 <style scoped>
+.login-nav {
+    position: absolute;
+    top: 50%;
+    left: 88%;
+    transform: translate(-50%, -50%);
+}
 li a.nav-link {
     font-size: 18px;
 }
@@ -297,6 +303,14 @@ li a.nav-link {
 }
 .d-lg-none:hover {
     opacity: 0.5;
+}
+@media (max-width: 1500px) {
+.login-nav {
+    position: absolute;
+    top: 50%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+}
 }
 @media (max-width: 400px) {
     .dropdown-menu {
