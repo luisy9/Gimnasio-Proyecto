@@ -1,4 +1,5 @@
 <template>
+    <div class="container-fluid">
     <div class="row">
         <nav
             id="sidebarMenu"
@@ -202,6 +203,7 @@
             </section>
         </main>
     </div>
+</div>
 </template>
 
 <script>
