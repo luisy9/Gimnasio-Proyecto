@@ -59,8 +59,8 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
         $user->roles()->detach();
-        DB::delete('delete from rutina_users where user_id ? '[$id]);
         $user->delete();
+        DB::delete('delete from rutina_users where user_id ? '[$id]);
         return response()->json(['success' => 'User deleted successfully']);
     }
 
@@ -79,7 +79,7 @@ class AdminController extends Controller
             'role_id' => 'required'
         ]);
         $roles = $idroles->all();
-        $rol = User::roles();
+        // $rol = User::roles();
         $input = $request->all();
         $input["password"] = Hash::make($request->password);
         $user->update($input);
@@ -338,5 +338,28 @@ class AdminController extends Controller
         }
         $clase->update($input);
         return response()->json(['success' => 'Ejercicio update successfully']);
+    }
+
+    public function createRoles(Request $req){
+        try {
+            $role = new role();
+            $role->nombre_role = $req->nombre_role;
+            $role->save();
+
+
+            $success = true;
+            $message = "Usuario registrado correctamente";
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+
+
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+
+        return response()->json($response);
     }
 }

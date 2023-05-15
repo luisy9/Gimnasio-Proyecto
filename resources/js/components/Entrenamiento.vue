@@ -65,69 +65,11 @@
     </div>
 
     <section class="part3 px-5 pb-5">
-        <div class="text-center mb-2 mt-2">
-            <h3 class="mb-3"><b>Rutinas</b></h3>
+        <div class="text-center  ">
+            <!-- <h3 class="mb-3"><b>Rutinas</b></h3> -->
         </div>
-        <div class="row mt-5">
-            <div class="col-md-4 mb-3">
-                <div class="position-relative">
-                    <img
-                        src="../../img/rutinas/kettlebell-g1b482f877_1280.webp"
-                        alt=""
-                        class="w-100"
-                    />
-                    <a
-                        href="#"
-                        class="btn button-secondary position-absolute bottom-0 start-50 translate-middle"
-                        >Basica</a
-                    >
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="position-relative">
-                    <img
-                        src="../../img/rutinas/kettlebell-g1b482f877_1280.webp"
-                        alt=""
-                        class="w-100"
-                    />
-                    <a
-                        href="#"
-                        class="btn button-secondary position-absolute bottom-0 start-50 translate-middle"
-                        >Media</a
-                    >
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="position-relative">
-                    <img
-                        src="../../img/rutinas/kettlebell-g1b482f877_1280.webp"
-                        alt=""
-                        class="w-100"
-                    />
-                    <a
-                        href="#"
-                        class="btn button-secondary position-absolute bottom-0 start-50 translate-middle"
-                        >Pro</a
-                    >
-                </div>
-            </div>
-            <div class="col-md-4 mb-3 vis-mov" v-if="this.isPro">
-                <div class="position-relative">
-                    <img
-                        src="http://localhost:8000/img/kettlebell-g30da63dfe_1280_osc.webp"
-                        alt=""
-                        class="w-100"
-                    />
-                    <a
-                        href="/crearRutina"
-                        class="btn button-secondary position-absolute top-50 start-50 translate-middle"
-                        >Crear</a
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="vis-desck mb-5" v-if="this.isPro">
-            <div class="banner-entrenamiento">
+        <div class="vis-desck" v-if="this.isPro">
+            <div class="banner-rutina">
                 <a href="/crearRutina">
                     <button class="button-secondary">Crear rutina</button>
                 </a>
@@ -189,7 +131,7 @@ export default {
 };
 </script>
 <style scoped>
-.vis-mov{
+.vis-mov {
     display: none;
 }
 a {
@@ -220,6 +162,18 @@ a {
 }
 .banner-entrenamiento {
     background-image: url("http://localhost:8000/img/banner3.webp");
+    height: 35em;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.banner-rutina {
+    background-image: url("http://localhost:8000/img/clases.jpg");
     height: 35em;
     background-size: cover;
     background-position: center;
