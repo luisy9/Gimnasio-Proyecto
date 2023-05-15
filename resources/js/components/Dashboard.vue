@@ -274,7 +274,7 @@
                                     <p class="mb-3 fw-normal titulo-form">
                                         <b> Tarifa Actual </b>
                                     </p>
-                                    <h4 class="mb-4">{{ this.id_tarifa }}</h4>
+                                    <h4 class="mb-4">{{ this.nombre_tarifa }}</h4>
                                     <router-link :to="`/cambiarTarifa/${this.iduser}/${this.nombre_tarifa}`" ></router-link>
                                     
                                     <button
