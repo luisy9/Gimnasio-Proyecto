@@ -151,8 +151,8 @@
                                     ></button>
                                     <strong>{{ error }}</strong>
                                 </div>
-                                <div class="card card-default p-5">
-                                    <main class="form-signin w-100 m-auto px-5">
+                                <div class="card card-default ">
+                                    <main class="form-signin w-100 m-auto px-5 py-5">
                                         <form>
                                             <h1 class="h3 mb-3 fw-normal">
                                                 Crear Ejercicio
@@ -311,8 +311,22 @@ export default {
 
 <style scoped>
 @media (max-width: 1500px) {
-    .p-5 {
-        padding: 0 !important;
+    .login-pag{
+        padding: 0;
+    }
+    .w-50{
+        width: 70%!important;
+    }
+    .p-5{
+        padding: 1em!important;
+    }
+    .px-5{
+        padding: 0!important;
+    }
+}
+@media (max-width: 400px) {
+    .w-50{
+        width: 106%!important;
     }
 }
 </style>

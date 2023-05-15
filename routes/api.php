@@ -85,3 +85,5 @@ Route::post('createClases', [AdminController::class, 'createClases']);
 Route::get('clases', [AdminController::class, 'clases']);
 Route::get('updateClases', [AdminController::class, 'clases']);
 Route::delete('ClasesDelete/{id}', [AdminController::class, 'deleteClases']);
+Route::get('showClaseUpdate/{id}', [AdminController::class, 'showClases']);
+Route::post('updateClase/{id}', [AdminController::class, 'updateClases']);

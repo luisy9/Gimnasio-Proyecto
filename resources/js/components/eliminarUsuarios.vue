@@ -125,6 +125,23 @@
                         >
                     </li>
                 </ul>
+                <h6
+                    class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                >
+                    <span>Clases</span>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <router-link to="/gestionarClases" class="nav-link"
+                            >Gestionar Clases</router-link
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/crearClases" class="nav-link"
+                            >Crear Clases</router-link
+                        >
+                    </li>
+                </ul>
             </div>
         </nav>
 
@@ -150,15 +167,17 @@
                     </div>
                     <div class="card card-default p-5">
                         <main class="form-signin w-100 m-auto px-5">
-                            <h2>Gestionar Usuarios</h2>
+                            <h2>Gestionar usuarios</h2>
                             <table class="table table-hover table-sm">
                                 <thead class="bg-dark text-light">
                                     <tr>
                                         <th width="50" class="text-center">
-                                            #
+                                            #id
                                         </th>
                                         <th>Name</th>
-                                        <th>email</th>
+                                        <th>Email</th>
+                                        <th class="text-center">Editar</th>
+                                        <th class="text-center">Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -166,31 +185,34 @@
                                         v-for="(user, index) in usuarios"
                                         :key="user.id"
                                     >
-                                        <td>{{ user.name }}</td>
-                                        <td>{{ user.email }}</td>
                                         <td class="text-center py-4">
+                                            {{ user.id }}
+                                        </td>
+                                        <td class="py-4">{{ user.name }}</td>
+                                        <td class="py-4">{{ user.email }}</td>
+                                        <td class="text-center">
                                             <a
-                                                class="px-5"
+                                                class="text-center"
                                                 style="cursor: pointer"
-                                                @click="deleteUsers(user.id)"
+                                                @click="updateUsers(user.id)"
                                             >
                                                 <img
+                                                    class="logo-editar my-4"
                                                     style="height: 20px"
-                                                    class="logo-x"
-                                                    src="/img/logos/x.svg"
+                                                    src="/img/logos/editar.svg"
                                                 />
                                             </a>
+                                        </td>
+                                        <td class="text-center">
                                             <a
-                                                class="px-5"
+                                                class="text-enter"
                                                 style="cursor: pointer"
-                                                @click="
-                                                    editarRutina(rutinas.id)
-                                                "
+                                                @click="deleteRole(user.id)"
                                             >
                                                 <img
-                                                    style="height: 20px;"
-                                                    class="logo-editar"
-                                                    src="/img/logos/editar.svg"
+                                                    class="logo-x my-4"
+                                                    style="height: 20px"
+                                                    src="/img/logos/x.svg"
                                                 />
                                             </a>
                                         </td>

@@ -234,7 +234,7 @@ class AdminController extends Controller
     public function createEjercicio(Request $req)
     {
         $req->validate([
-            'nombre_ejercicio'=> 'required',
+            'nombre_ejercicio' => 'required',
             'imagen_ejercicio' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'categoria_id' => 'required'
         ]);
@@ -242,7 +242,7 @@ class AdminController extends Controller
         $input = $req->all();
         $imageName = NULL;
 
-        if($image = $req->file('imagen_ejercicio')){
+        if ($image = $req->file('imagen_ejercicio')) {
             $destinationPath = 'img/';
             $imageName = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $imageName);
@@ -253,7 +253,8 @@ class AdminController extends Controller
         return response()->json(['success' => 'Ejercicio creado correctamente.']);
     }
 
-    public function updateRutina(Request $req, $idrutina){
+    public function updateRutina(Request $req, $idrutina)
+    {
         // $rutina_user = rutina_users::where('user_id', $iduser)->get();
         $rutina_user = rutina_users::find($idrutina);
         $req->validate([
@@ -268,15 +269,17 @@ class AdminController extends Controller
         return response()->json(['success' => 'Rutina update successfully']);
     }
 
-    public function deleteRutina($idrutina){
+    public function deleteRutina($idrutina)
+    {
         $rutina = rutina_users::find($idrutina);
         $rutina->delete();
         return response()->json(['success' => 'Rutina deleted successfully']);
     }
 
-    public function createClases(Request $req){
+    public function createClases(Request $req)
+    {
         $req->validate([
-            'nombre_clase'=> 'required',
+            'nombre_clase' => 'required',
             'descripcion' => 'required',
             'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
@@ -284,7 +287,7 @@ class AdminController extends Controller
         $input = $req->all();
         $imageName = NULL;
 
-        if($image = $req->file('imagen_ejercicio')){
+        if ($image = $req->file('imagen_ejercicio')) {
             $destinationPath = 'img/';
             $imageName = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $imageName);
@@ -295,15 +298,45 @@ class AdminController extends Controller
         return response()->json(['success' => 'Ejercicio creado correctamente.']);
     }
 
-    public function clases(Request $req){
+    public function clases(Request $req)
+    {
         $clases = clase::all()->toArray();
         return $clases;
     }
 
-    public function deleteClases($id){
+    public function deleteClases($id)
+    {
 
         DB::table('usuario_clase')->where('clase_id', $id)->delete();
         DB::table('clase')->where('id', $id)->delete();
         return response()->json(['success' => 'Clase deleted successfully']);
+    }
+
+    public function showClases($id)
+    {
+        $clase = clase::find($id);
+        return $clase;
+    }
+
+    public function updateClases(Request $req, $id)
+    {
+        $clase = clase::find($id);
+        $req->validate([
+            'nombre_clase' => 'required',
+            'descripcion' => 'required',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'
+        ]);
+
+        $input = $req->all();
+        $imageName = NULL;
+        if ($image = $req->file('file')) {
+            $destinationPath = 'img/';
+            $imageName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageName);
+            $input['image'] = $imageName;
+            unlink('img/' . $clase->image);
+        }
+        $clase->update($input);
+        return response()->json(['success' => 'Ejercicio update successfully']);
     }
 }

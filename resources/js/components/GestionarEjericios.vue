@@ -150,12 +150,17 @@
                     </div>
                     <div class="card card-default p-5">
                         <main class="form-signin w-100 m-auto px-5">
-                            <h2>Gestionar Ejercicios</h2>
+                            <h2>Gestionar ejercicios</h2>
                             <table class="table table-sm">
                                 <thead class="bg-dark text-light">
                                     <tr>
-                                        <th>nombre_ejericio</th>
-                                        <th>Foto</th>
+                                        <th width="50" class="text-center">
+                                            #id
+                                        </th>
+                                        <th>Nombre ejericio</th>
+                                        <th>Imagen</th>
+                                        <th class="text-center" width="80">Editar</th>
+                                        <th class="text-center" width="80">Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -163,7 +168,10 @@
                                         v-for="(ejercicio, index) in ejercicios"
                                         :key="ejercicio.id"
                                     >
-                                        <td>
+                                        <td class="text-center py-4">
+                                            {{ ejercicio.id }}
+                                        </td>
+                                        <td class="py-4">
                                             {{ ejercicio.nombre_ejercicio }}
                                         </td>
                                         <img
@@ -171,32 +179,26 @@
                                         />
                                         <td class="text-center">
                                             <a
-                                                class="px-5"
+                                                class="text-center"
                                                 style="cursor: pointer"
-                                                @click="
-                                                    updateEjercicios(
-                                                        ejercicio.id
-                                                    )
-                                                "
+                                                @click="updateRoles(role.id)"
                                             >
                                                 <img
+                                                    class="logo-editar my-4"
                                                     style="height: 20px"
-                                                    class="logo-editar"
                                                     src="/img/logos/editar.svg"
                                                 />
                                             </a>
+                                        </td>
+                                        <td class="text-center">
                                             <a
-                                                class="px-5"
+                                                class="text-enter"
                                                 style="cursor: pointer"
-                                                @click="
-                                                    deleteEjercicios(
-                                                        ejercicio.id
-                                                    )
-                                                "
+                                                @click="deleteRole(role.id)"
                                             >
                                                 <img
+                                                    class="logo-x my-4"
                                                     style="height: 20px"
-                                                    class="logo-x"
                                                     src="/img/logos/x.svg"
                                                 />
                                             </a>

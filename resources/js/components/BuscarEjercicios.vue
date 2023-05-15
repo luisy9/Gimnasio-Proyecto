@@ -3,39 +3,40 @@
         <div class="banner-entrenamiento">
             <h1 class="text-light text-center">Busca tu Ejercicio!</h1>
         </div>
+
+        <div class="align-items-start sticky-top pb-2 text-center">
+            <form class="form-control py-4 w-100 border-0">
+                <div>
+                    <label for="nombre" class="px-3 py-4"
+                        ><p>Introduce el ejercicio:</p>
+                    </label>
+                    <input
+                        class="form-control"
+                        type="text"
+                        required
+                        name="nombre"
+                        v-model="nombre"
+                        style="width: 60%;"
+                    />
+                    <button type="button" class="button-primary" @click="buscar">
+                        Buscar
+                    </button>
+                </div>
+            </form>
+        </div>
         <div class="container-fluid container-buscador">
-            <div class="row">
-                <div class="col my-3 mx-3 border border-black py-4 px-4">
-                    <!-- Contenido de la primera columna -->
-                    <h2 class="pb-3">Introduce el Ejericio</h2>
-                    <form class="form-control py-4">
-                        <div>
-                            <label for="nombre" class="px-3 py-4">Nombre: </label>
-                            <input
-                                class="form-control"
-                                type="text"
-                                required
-                                name="nombre"
-                                v-model="nombre"
-                            />
-                            <button type="button" class="" @click="buscar">Buscar</button>
-                        </div>
-                        
-                    </form>
-                </div>
-                <div class="col my-3 mx-3 border border-black py-3">
-                    <!-- Contenido de la segunda columna -->
-                    <h2>Ejericios</h2>
-                    <ul>
-                        <li v-for="ejercicio in ejercicios" :key="ejercicio.id">
-                            {{ ejercicio.nombre_ejercicio }}
-                            <img
-                                class="img-fluid"
-                                :src="`img/${ejercicio.imagen_ejercicio}`"
-                            />
-                        </li>
-                    </ul>
-                </div>
+            <div class="col my-3 mx-3 border border-black py-3">
+                <!-- Contenido de la segunda columna -->
+                <h2>Ejericios</h2>
+                <ul>
+                    <li v-for="ejercicio in ejercicios" :key="ejercicio.id">
+                        {{ ejercicio.nombre_ejercicio }}
+                        <img
+                            class="img-fluid"
+                            :src="`img/${ejercicio.imagen_ejercicio}`"
+                        />
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -135,7 +136,7 @@ button[type="submit"]:hover {
     max-width: 500px;
     margin-bottom: 20px;
 }
-input.form-control{
+input.form-control {
     border: 1px solid black;
     border-radius: 8px;
 }

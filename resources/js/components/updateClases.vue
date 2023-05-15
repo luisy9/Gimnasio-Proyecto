@@ -3,11 +3,6 @@
         <div class="card-body">
             <div class="d-flex justify-content-between pb-2 mb-2">
                 <h5 class="card-title">Update Clases</h5>
-                <div>
-                    <router-link :to="{ name: 'posts' }" class="btn btn-success"
-                        >Go Back</router-link
-                    >
-                </div>
             </div>
 
             <div
@@ -71,9 +66,9 @@
                 <button
                     type="submit"
                     class="btn btn-primary mt-4 mb-4"
-                    @click="updateUser"
+                    @click="updateClase"
                 >
-                    Update User
+                    Update Clase
                 </button>
 
                 <!-- {{ this.user_role }} -->
@@ -88,12 +83,11 @@ export default {
     data() {
         return {
             id: "",
-            name: "",
-            email: "",
-            password: "",
-            fecha_nacimiento: "",
+            nombre_clase: "",
+            Descripcion: "",
+            file: "",
             user_role: null,
-            iduser: this.$route.params.id,
+            idclase: this.$route.params.id,
             roles: [],
             checked: [],
             strSuccess: "",
@@ -107,13 +101,11 @@ export default {
         // console.log(window.Laravel.user.roles[0].nombre_role);
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
-                .get(`/api/showUserUpdate/${this.iduser}`)
+                .get(`/api/showClaseUpdate/${this.idclase}`)
                 .then((response) => {
-                    console.log(response.data.name);
-                    this.name = response.data.name;
-                    this.email = response.data.email;
-                    this.password = response.data.password;
-                    this.fecha_nacimiento = response.data.fecha_nacimiento;
+                    console.log(response.data);
+                    this.nombre_clase = response.data.nombre_clase;
+                    this.Descripcion = response.data.descripcion;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -146,6 +138,23 @@ export default {
         });
     },
     methods: {
+        onChangeImg(e) {
+            this.file = e.target.files[0];
+            let reader = new FileReader();
+            reader.addEventListener(
+                "load",
+                function () {
+                    this.imgPreview = reader.result;
+                }.bind(this),
+                false
+            );
+
+            if (this.file) {
+                if (/\.(jpe?g|png|gif)$/i.test(this.file.name)) {
+                    reader.readAsDataURL(this.file);
+                }
+            }
+        },
         existeRole() {
             let list_name_role = this.user_role.map((role) => role.nombre_role);
             this.roles.forEach((role, index) => {
@@ -154,7 +163,7 @@ export default {
                     : null;
             });
         },
-        updateUser(e) {
+        updateClase(e) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 let existingObj = this;
                 const config = {
@@ -164,15 +173,12 @@ export default {
                 };
 
                 const formData = new FormData();
-                formData.append("name", this.name);
-                formData.append("email", this.email);
-                formData.append("password", this.password);
-                formData.append("fecha_nacimiento", this.fecha_nacimiento);
-                formData.append("role_id", this.checked);
-
+                formData.append("nombre_clase", this.nombre_clase);
+                formData.append("descripcion", this.Descripcion);
+                formData.append("file", this.file);
                 this.$axios
                     .post(
-                        `/api/update/${this.$route.params.id}/${this.checked}`,
+                        `/api/updateClase/${this.idclase}`,
                         formData,
                         config
                     )

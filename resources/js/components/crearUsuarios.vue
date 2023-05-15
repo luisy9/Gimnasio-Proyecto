@@ -149,7 +149,7 @@
                                 <strong>{{ error }}</strong>
                             </div>
                             <div class="card card-default p-5">
-                                <main class="form-signin w-100 m-auto px-5">
+                                <main class="form-signin w-100 m-auto px-5 py-5">
                                     <form>
                                         <h1 class="h3 mb-3 fw-normal">
                                             Crear Usuarios

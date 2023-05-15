@@ -29,8 +29,8 @@
                         </p>
                     </div>
                     <span>Nombre de tu Rutina: </span
-                    ><input type="text" v-model="nombreRutina" /><br />
-                    <select v-model="selected" @change="muculosMuestra">
+                    ><input type="text" style="height: 40px;" v-model="nombreRutina" /><br />
+                    <select style="height: 40px;" v-model="selected" @change="muculosMuestra">
                         <option disabled value="">
                             Seleccione un elemento
                         </option>

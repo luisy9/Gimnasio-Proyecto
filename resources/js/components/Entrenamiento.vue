@@ -189,6 +189,9 @@ export default {
 };
 </script>
 <style scoped>
+.vis-mov{
+    display: none;
+}
 a {
     text-decoration: none;
 }

@@ -259,7 +259,7 @@ export default {
                 if (
                     window.Laravel.user.roles[0].nombre_role == "admin" ||
                     window.Laravel.user.roles[0].nombre_role ==
-                        "gestion_tarifas"
+                        "gestion_clases"
                 ) {
                     this.$nextTick();
                 } else {
