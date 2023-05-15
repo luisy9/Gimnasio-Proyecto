@@ -6,17 +6,18 @@
                 <img src="../img/nike_logo.svg" alt="Logo" />
             </a>
         </div>
-        
+
         <a
-            class=" d-lg-none mx-2"
+            class="d-lg-none mx-2"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapsibleNavId"
             aria-controls="collapsibleNavId"
             aria-expanded="false"
             aria-label="Toggle navigation"
-        ><img src="../img/menu.svg" width="55px"></a>
-        
+            ><img src="../img/menu.svg" width="55px"
+        /></a>
+
         <!--<button
             class="navbar-toggler d-lg-none mx-3"
             type="button"
@@ -67,34 +68,38 @@
                 </li>
                 <li class="nav-item vis-mov">
                     <div class="nav-item" v-if="isLoggedin">
-                <a
-                    data-toggle="dropdown"
-                    class="nav-link dropdown-toggle"
-                    role="button"
-                    >{{ user.name }}</a
-                >
+                        <a
+                            data-toggle="dropdown"
+                            class="nav-link dropdown-toggle"
+                            role="button"
+                            >{{ user.name }}</a
+                        >
 
-                <div
-                    class="dropdown-menu"
-                    aria-labelledby="navbarDropdownMenuLink"
-                >
-                    <router-link
-                        :to="`/dashboard/${this.user.id}`"
-                        class="nav-item nav-link px-4"
-                        >Dashboard</router-link
-                    >
-                    <router-link
-                        :to="`/tuRutina/${this.iduser}`"
-                        class="nav-item nav-link px-4"
-                        >Mi Rutina</router-link
-                    >
-
-                </div>
-            </div>
+                        <div
+                            class="dropdown-menu"
+                            aria-labelledby="navbarDropdownMenuLink"
+                        >
+                            <router-link
+                                :to="`/dashboard/${this.user.id}`"
+                                class="nav-item nav-link px-4"
+                                >Dashboard</router-link
+                            >
+                            <router-link
+                                :to="`/tuRutina/${this.iduser}`"
+                                class="nav-item nav-link px-4"
+                                >Mi Rutina</router-link
+                            >
+                            <router-link
+                                :to="`/tuRutina/${this.iduser}`"
+                                class="nav-item nav-link px-4"
+                                >Clases</router-link
+                            >
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
-        <div class=" vis-desck login-header">
+        <div class="vis-desck login-header">
             <div class="nav-item" v-if="isLoggedin">
                 <a
                     data-toggle="dropdown"
@@ -109,15 +114,19 @@
                 >
                     <router-link
                         :to="`/dashboard/${this.user.id}`"
-                        class="nav-item nav-link px-4"
+                        class="nav-item nav-link px-4 py-1"
                         >Dashboard</router-link
                     >
                     <router-link
                         :to="`/tuRutina/${this.iduser}`"
-                        class="nav-item nav-link px-4"
+                        class="nav-item nav-link px-4 py-1"
                         >Mi Rutina</router-link
                     >
-
+                    <router-link
+                        to="/misClases"
+                        class="nav-item nav-link px-4 py-1"
+                        >Clases</router-link
+                    >
                 </div>
             </div>
         </div>
@@ -280,19 +289,19 @@ export default {
 </script>
 <style scoped>
 li a.nav-link {
-  font-size: 18px;
+    font-size: 18px;
 }
-.nav-padding{
+.nav-padding {
     padding-left: 2em;
     padding-right: 2em;
 }
-.d-lg-none:hover{
+.d-lg-none:hover {
     opacity: 0.5;
 }
 @media (max-width: 400px) {
-.dropdown-menu{
-    border: 0;
-    --bs-dropdown-bg: transparent;
-}
+    .dropdown-menu {
+        border: 0;
+        --bs-dropdown-bg: transparent;
+    }
 }
 </style>

@@ -28,6 +28,12 @@ import createRole from "../components/createRoles.vue";
 import updateEjercicio from "../components/UpdateEjercicios.vue";
 import crearEjercicios from "../components/CrearEjercicio.vue";
 import updateRutina from "../components/updateRutina.vue";
+import clasesDirigidas from "../components/clasesDirigidas.vue";
+import claseSeleccionada from "../components/claseSeleccionada.vue";
+import misClases from "../components/misClases.vue";
+import gestionarClases from "../components/GestionarClases.vue";
+import crearClases from "../components/CrearClases.vue";
+import updateClases from "../components/updateClases.vue";
 import { createWebHistory, createRouter } from "vue-router";
 
 export const routes = [
@@ -183,11 +189,31 @@ export const routes = [
         path: "/updateRutina/:id",
         component: updateRutina,
     },
-    // {
-    //     name: "ejerciciosMusculos",
-    //     path: "/ejerciciosMusculos/:idcategoria",
-    //     component: ejerciciosMusculo,
-    // },
+    {
+        name: "clasesDirigidas",
+        path: "/clasesDirigidas",
+        component: clasesDirigidas,
+    },
+    {
+        name: "claseSeleccionada",
+        path: "/claseSeleccionada/:idclase",
+        component: claseSeleccionada,
+    },
+    {
+        name: "misClases",
+        path: "/misClases",
+        component: misClases,
+    },
+    {
+        name: "gestionarClases",
+        path: "/gestionarClases",
+        component: gestionarClases,
+    },
+    {
+        name: "updateClases",
+        path: "/updateClases/:id",
+        component: updateClases,
+    },
 ];
 
 const router = createRouter({

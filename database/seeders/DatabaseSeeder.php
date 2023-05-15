@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             RolSeeder::class,
             TarifaSeeder::class,
             CategoriaSeeder::class,
-            EjercicioSeeder::class
+            EjercicioSeeder::class,
+            ClasesSeeder::class
         ]);
     }
 }

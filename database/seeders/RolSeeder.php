@@ -39,6 +39,10 @@ class RolSeeder extends Seeder
                 'id' => 6,
                 'nombre_role' => 'gestion_entrenamiento'
             ],
+            [
+                'id' => 7,
+                'nombre_role' => 'gestion_clases'
+            ],
 
         ];
         role::insert($role);

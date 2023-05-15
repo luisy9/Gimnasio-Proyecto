@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_clase');
             $table->string('descripcion');
-            $table->string('horarios');
+            $table->string('imagen');
             $table->timestamps();
         });
     }

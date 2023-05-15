@@ -149,100 +149,60 @@
                         </div>
                         <div class="card card-default p-5">
                             <main class="form-signin w-100 m-auto px-5">
-                                <h2>Gestionar tarifas</h2>
                                 <table class="table table-hover table-sm">
                                     <thead class="bg-dark text-light">
                                         <tr>
                                             <th width="50" class="text-center">
-                                                #id
+                                                Clase
                                             </th>
-                                            <th width="150">Tipo tarifa</th>
-                                            <th width="80" class="text-center">
-                                                Precio
-                                            </th>
-                                            <th>descripcion</th>
-                                            <th width="80" class="text-center">
-                                                Editar
-                                            </th>
-                                            <th width="80" class="text-center">
-                                                Eliminar
-                                            </th>
+                                            <th>Descripcion</th>
+                                            <th class="">Imagen</th>
+                                            <th class=""></th>
+                                            <th class="pr-5">Eliminar</th>
+                                            <th class="">Editar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr
-                                            v-for="(tarifa, index) in tarifas"
-                                            :key="tarifa.id"
+                                            v-for="(clase, index) in clases"
+                                            :key="clase.id"
                                         >
-                                            <td class="text-center py-4">
-                                                {{ tarifa.id }}
-                                            </td>
-                                            <td class="py-4">
-                                                {{ tarifa.tipo_tarifa }}
-                                            </td>
-                                            <td class="py-4 text-center">
-                                                {{ tarifa.precio }}
-                                            </td>
-                                            <td class="py-4">
-                                                {{ tarifa.descripcion_tarifa }}
+                                            <td>{{ clase.nombre_clase }}</td>
+                                            <td>{{ clase.descripcion }}</td>
+                                            <td>
+                                                {{ clase.descripcion_tarifa }}
                                             </td>
                                             <td>
-                                                {{ tarifa.num_clases }}
+                                                <img
+                                                    :src="`img/${clase.imagen}`"
+                                                    style="height: 10rem"
+                                                />
                                             </td>
                                             <td class="text-center py-4">
                                                 <a
                                                     class="px-5"
                                                     style="cursor: pointer"
                                                     @click="
-                                                        updateTarifa(tarifa.id)
-                                                    "
-                                                >
-                                                    <img
-                                                        style="height: 20px"
-                                                        class="logo-editar"
-                                                        src="/img/logos/editar.svg"
-                                                    />
-                                                </a>
-
-                                                <a
-                                                    class=""
-                                                    style="cursor: pointer"
-                                                    @click="
-                                                        deleteTarifa(tarifa.id)
+                                                        updateClase(clase.id)
                                                     "
                                                 >
                                                     <img
                                                         style="height: 20px"
                                                         class="logo-x"
-                                                        src="/img/logos/x.svg"
-                                                    />
-                                                </a>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <a
-                                                    class="text-center"
-                                                    style="cursor: pointer"
-                                                    @click="
-                                                        updateRoles(role.id)
-                                                    "
-                                                >
-                                                    <img
-                                                        class="logo-editar my-4"
-                                                        style="height: 20px"
                                                         src="/img/logos/editar.svg"
                                                     />
                                                 </a>
-                                            </td>
-                                            <td class="text-center">
+
                                                 <a
-                                                    class="text-enter"
+                                                    class="px-5"
                                                     style="cursor: pointer"
-                                                    @click="deleteRole(role.id)"
+                                                    @click="
+                                                        deleteClase(clase.id)
+                                                    "
                                                 >
                                                     <img
-                                                        class="logo-x my-4"
                                                         style="height: 20px"
+                                                        class="logo-x"
                                                         src="/img/logos/x.svg"
                                                     />
                                                 </a>
@@ -272,7 +232,7 @@ export default {
     name: "GestionarTarifas",
     data() {
         return {
-            tarifas: [],
+            clases: [],
             strSuccess: "",
             strError: "",
             error: null,
@@ -299,7 +259,7 @@ export default {
                 if (
                     window.Laravel.user.roles[0].nombre_role == "admin" ||
                     window.Laravel.user.roles[0].nombre_role ==
-                        "gestion_tarifas"
+                        "gestion_clases"
                 ) {
                     this.$nextTick();
                 } else {
@@ -309,9 +269,9 @@ export default {
         }
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
-                .get("/api/tarifas")
+                .get("/api/clases")
                 .then((response) => {
-                    this.tarifas = response.data;
+                    this.clases = response.data;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -320,18 +280,18 @@ export default {
     },
 
     methods: {
-        updateTarifa(id) {
-            window.location.href = "/updateTarifas/" + id;
+        updateClase(id) {
+            window.location.href = "/updateClases/" + id;
         },
-        deleteTarifa(id) {
+        deleteClase(id) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
-                    .delete("/api/tarifasDelete/" + id)
+                    .delete("/api/ClasesDelete/" + id)
                     .then((response) => {
-                        const index = this.tarifas.findIndex(
-                            (tarifa) => tarifa.id === id
+                        const index = this.clases.findIndex(
+                            (clase) => clase.id === id
                         );
-                        this.tarifas.splice(index, 1);
+                        this.clases.splice(index, 1);
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -342,8 +302,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.nav-link:active {
-    color: red;
-}
-</style>
+<style scoped></style>
