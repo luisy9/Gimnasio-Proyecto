@@ -180,7 +180,18 @@
                                             <label for="email">Email</label>
                                         </div>
                                         <br />
-                                        <div class="form-group mb-2">
+                                        <div class="form-floating">
+                                            <input
+                                                type="password"
+                                                class="form-control"
+                                                v-model="password"
+                                                placeholder="Enter post name"
+                                            />
+                                            <label>Contraseña</label
+                                            >
+                                        </div>
+                                        <br>
+                                        <!--<div class="form-group mb-2">
                                             <label>Contraseña</label
                                             ><span class="text-danger"> *</span>
                                             <input
@@ -189,15 +200,14 @@
                                                 v-model="password"
                                                 placeholder="Enter post name"
                                             />
-                                        </div>
-                                        <br />
+                                        </div>-->
                                         <div class="form-floating">
                                             <input
                                                 type="date"
                                                 class="form-control"
                                                 min="1899-01-01"
-                                                max="2000-01-01"
-                                                v-model="fecha_nacimiento"
+                                                :max="maxFechaNacimiento" 
+                                                v-model="fechaNacimiento"
                                             />
                                             <label for="fecha_nacimiento"
                                                 >Fecha de nacimiento</label
@@ -259,24 +269,25 @@
                             v-if="this.membership == true"
                             class="col-md-10 col-lg-8 col-xl-4"
                         >
-                            <div class="card card-default p-5">
-                                <div class="text-center">
+                        <div class="card card-default p-5">
+                                <div class="text-center py-4">
                                     <p class="mb-3 fw-normal titulo-form">
                                         <b> Tarifa Actual </b>
                                     </p>
-                                    <h4>{{ this.nombre_tarifa }}</h4>
-                                    <router-link
-                                        :to="`/cambiarTarifa/${this.iduser}/${this.nombre_tarifa}`"
-                                    ></router-link>
+                                    <h4 class="mb-4">{{ this.id_tarifa }}</h4>
+                                    <router-link :to="`/cambiarTarifa/${this.iduser}/${this.nombre_tarifa}`" ></router-link>
+                                    
                                     <button
                                         type="submit"
                                         class="button-primary"
+                                        style="padding-left: 10px;padding-right: 10px;"
                                     >
                                         Cambiar tarifa
                                     </button>
                                     <button
                                         type="submit"
                                         class="button-primary"
+                                        style="padding-left: 10px;padding-right: 10px;"
                                         @click="darbaja(this.iduser)"
                                     >
                                         Dar de baja
