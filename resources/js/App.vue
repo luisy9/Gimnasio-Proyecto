@@ -65,7 +65,7 @@
                         >¿Quienes somos?</router-link
                     >
                 </li>
-                <li class="nav-item">
+                <li class="nav-item vis-mov">
                     <div class="nav-item" v-if="isLoggedin">
                 <a
                     data-toggle="dropdown"
