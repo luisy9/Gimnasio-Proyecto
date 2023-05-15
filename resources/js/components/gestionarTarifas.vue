@@ -128,6 +128,23 @@
                             >
                         </li>
                     </ul>
+                    <h6
+                    class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                >
+                    <span>Clases</span>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <router-link to="/gestionarClases" class="nav-link"
+                            >Gestionar Clases</router-link
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/crearClases" class="nav-link"
+                            >Crear Clases</router-link
+                        >
+                    </li>
+                </ul>
                 </div>
             </nav>
 
@@ -214,35 +231,6 @@
                                                     <img
                                                         style="height: 20px"
                                                         class="logo-x"
-                                                        src="/img/logos/x.svg"
-                                                    />
-                                                </a>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <a
-                                                    class="text-center"
-                                                    style="cursor: pointer"
-                                                    @click="
-                                                        updateRoles(role.id)
-                                                    "
-                                                >
-                                                    <img
-                                                        class="logo-editar my-4"
-                                                        style="height: 20px"
-                                                        src="/img/logos/editar.svg"
-                                                    />
-                                                </a>
-                                            </td>
-                                            <td class="text-center">
-                                                <a
-                                                    class="text-enter"
-                                                    style="cursor: pointer"
-                                                    @click="deleteRole(role.id)"
-                                                >
-                                                    <img
-                                                        class="logo-x my-4"
-                                                        style="height: 20px"
                                                         src="/img/logos/x.svg"
                                                     />
                                                 </a>
