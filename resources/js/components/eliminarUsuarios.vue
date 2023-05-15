@@ -97,13 +97,13 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <router-link to="/GestionarTarifas" class="nav-link"
-                            >Gestionar Tarifas</router-link
+                        <router-link to="/crearTarifas" class="nav-link"
+                            >Crear Tarifas</router-link
                         >
                     </li>
                     <li class="nav-item">
-                        <router-link to="/crearTarifas" class="nav-link"
-                            >Crear Tarifas</router-link
+                        <router-link to="/GestionarTarifas" class="nav-link"
+                            >Gestionar Tarifas</router-link
                         >
                     </li>
                 </ul>
@@ -115,13 +115,13 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <router-link to="/gestionarEjercicios" class="nav-link"
-                            >Gestionar Ejercicios</router-link
+                        <router-link to="/crearEjercicio" class="nav-link"
+                            >Crear Ejercicio</router-link
                         >
                     </li>
                     <li class="nav-item">
-                        <router-link to="/crearEjercicio" class="nav-link"
-                            >Crear Ejercicio</router-link
+                        <router-link to="/gestionarEjercicios" class="nav-link"
+                            >Gestionar Ejercicios</router-link
                         >
                     </li>
                 </ul>
@@ -132,13 +132,13 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <router-link to="/gestionarClases" class="nav-link"
-                            >Gestionar Clases</router-link
+                        <router-link to="/crearClases" class="nav-link"
+                            >Crear Clases</router-link
                         >
                     </li>
                     <li class="nav-item">
-                        <router-link to="/crearClases" class="nav-link"
-                            >Crear Clases</router-link
+                        <router-link to="/gestionarClases" class="nav-link"
+                            >Gestionar Clases</router-link
                         >
                     </li>
                 </ul>

@@ -3,11 +3,6 @@
         <div class="card-body">
             <div class="d-flex justify-content-between pb-2 mb-2">
                 <h5 class="card-title">Update User</h5>
-                <div>
-                    <router-link :to="{ name: 'posts' }" class="btn btn-success"
-                        >Go Back</router-link
-                    >
-                </div>
             </div>
 
             <div
@@ -100,7 +95,7 @@
                 </div>
                 <button
                     type="submit"
-                    class="btn btn-primary mt-4 mb-4"
+                    class="btn button-primary mt-4 mb-4"
                     @click="updateUser"
                 >
                     Update User

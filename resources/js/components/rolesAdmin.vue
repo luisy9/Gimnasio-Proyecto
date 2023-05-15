@@ -97,15 +97,15 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <router-link to="/GestionarTarifas" class="nav-link"
-                            >Gestionar Tarifas</router-link
-                        >
-                    </li>
-                    <li class="nav-item">
                         <router-link to="/crearTarifas" class="nav-link"
                             >Crear Tarifas</router-link
                         >
                     </li>
+                    <li class="nav-item">
+                        <router-link to="/GestionarTarifas" class="nav-link"
+                            >Gestionar Tarifas</router-link
+                        >
+                    </li>       
                 </ul>
 
                 <h6
@@ -115,13 +115,13 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <router-link to="/gestionarEjercicios" class="nav-link"
-                            >Gestionar Ejercicios</router-link
+                        <router-link to="/crearEjercicio" class="nav-link"
+                            >Crear Ejercicio</router-link
                         >
                     </li>
                     <li class="nav-item">
-                        <router-link to="/crearEjercicio" class="nav-link"
-                            >Crear Ejercicio</router-link
+                        <router-link to="/gestionarEjercicios" class="nav-link"
+                            >Gestionar Ejercicios</router-link
                         >
                     </li>
                 </ul>
