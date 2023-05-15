@@ -1,6 +1,6 @@
 <template>
     <!-- BANNER-->
-    <div class="banner-home">
+    <div v-if="this.membership == false" class="banner-home">
         <div class="banner-text">
             <p class="text-white">
                 Transforma tu cuerpo y mejora tu salud con nuestro gimnasio.
@@ -10,6 +10,17 @@
             </p>
             <a href="/Tarifa">
                 <button class="button-secondary">Abonarse</button>
+            </a>
+        </div>
+    </div>
+    <div v-if="this.membership == true" class="banner-home">
+        <div class="banner-text">
+            <p class="text-white">
+               Ya eres de los nuestros!<br>
+               Quieres reservar tu primera clase?
+            </p>
+            <a href="/clasesDirigidas">
+                <button class="button-secondary">Clases Dirigidas</button>
             </a>
         </div>
     </div>
@@ -80,7 +91,7 @@
             <h1>NUESTRAS TARIFAS</h1>
         </div>
         <main>
-            <div v-if="this.membership || ! this.membership">
+            <div v-if="this.membership || !this.membership">
                 <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
                     <div v-for="(tarifa, index) in tarifas" :key="index">
                         <div class="col">

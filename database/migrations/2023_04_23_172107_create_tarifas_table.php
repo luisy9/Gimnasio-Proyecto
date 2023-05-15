@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('tipo_tarifa');
             $table->double('precio');
             $table->string('descripcion_tarifa');
+            $table->unsignedBigInteger('num_clases');
             $table->timestamps();
         });
     }

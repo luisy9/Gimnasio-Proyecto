@@ -128,6 +128,25 @@
                             >
                         </li>
                     </ul>
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Clases</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <router-link
+                                to="/gestionarClases"
+                                class="nav-link"
+                                >Gestionar Clases</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/crearClases" class="nav-link"
+                                >Crear Clases</router-link
+                            >
+                        </li>
+                    </ul>
                 </div>
             </nav>
 
@@ -155,77 +174,54 @@
                                     <main class="form-signin w-100 m-auto px-5">
                                         <form>
                                             <h1 class="h3 mb-3 fw-normal">
-                                                Crear Tarifa
+                                                Crear Clase
                                             </h1>
                                             <br />
                                             <div class="form-floating">
                                                 <input
-                                                    id="tipo_tarifa"
+                                                    id="nombre_clase"
                                                     type="text"
                                                     class="form-control"
-                                                    v-model="tipo_tarifa"
+                                                    v-model="nombre_clase"
                                                     autofocus
                                                     autocomplete="off"
-                                                    placeholder="nombre tarifa"
+                                                    placeholder="Nombre"
                                                 />
                                                 <label
-                                                    for="name"
+                                                    for="nombre_clase"
                                                     class="col-sm-4 col-form-label text-md-right"
-                                                    >Nombre Tarifa</label
+                                                    >Nombre Clase</label
                                                 >
                                             </div>
                                             <br />
-                                            <div class="form-floating">
+                                            <div class="form-floating my-4">
                                                 <input
-                                                    id="precio"
+                                                    id="descripcion"
                                                     type="text"
                                                     class="form-control"
-                                                    v-model="precio"
+                                                    v-model="descripcion"
+                                                    autofocus
                                                     autocomplete="off"
-                                                    placeholder="precio"
+                                                    placeholder="Nombre"
                                                 />
                                                 <label
-                                                    for="precio"
-                                                    class="col-md-4 col-form-label text-md-right"
-                                                    >Precio</label
+                                                    for="descripcion"
+                                                    class="col-sm-4 col-form-label text-md-right"
+                                                    >descripcion</label
                                                 >
                                             </div>
-                                            <br />
-                                            <div class="form-floating">
+                                            <div class="form-group my-5">
                                                 <input
-                                                    id="descripcion_tarifa"
-                                                    type="text"
+                                                    type="file"
                                                     class="form-control"
-                                                    v-model="descripcion_tarifa"
-                                                    autocomplete="off"
-                                                    placeholder="descripcion_tarifa"
+                                                    v-on:change="onChangeImg"
+                                                    placeholder="Enter post name"
                                                 />
-                                                <label
-                                                    for="descripcion_tarifa"
-                                                    class="col-md-4 col-form-label text-md-right"
-                                                    >Descripcion</label
-                                                >
-                                            </div>
-                                            <br />
-                                            <div class="form-floating">
-                                                <input
-                                                    id="num_clases"
-                                                    type="number"
-                                                    class="form-control"
-                                                    v-model="num_clases"
-                                                    autocomplete="off"
-                                                    placeholder="num_clases"
-                                                />
-                                                <label
-                                                    for="num_clases"
-                                                    class="col-md-4 col-form-label text-md-right"
-                                                    >Numero de Clases</label
-                                                >
                                             </div>
                                             <button
                                                 type="submit"
-                                                class="button-primary my-4"
-                                                @click="createTarifa"
+                                                class="button-primary"
+                                                @click="createClase"
                                             >
                                                 Añadir
                                             </button>
@@ -236,75 +232,96 @@
                         </div>
                     </div>
                 </section>
-                <div class="chartjs-size-monitor">
-                    <div class="chartjs-size-monitor-expand">
-                        <div class=""></div>
-                    </div>
-                    <div class="chartjs-size-monitor-shrink">
-                        <div class=""></div>
-                    </div>
-                </div>
             </main>
         </div>
     </div>
 </template>
+
 <script>
 export default {
     name: "crearUsuarios",
     data() {
         return {
-            tipo_tarifa: "",
-            precio: "",
-            descripcion_tarifa: "",
-            num_clases: "",
+            nombre_clase: "",
+            img: "",
+            descripcion: "",
             error: null,
+            categorias: [],
+            checked: [],
+            roles: [],
+            selected: "",
+            checkcategorias: [],
         };
     },
-    created() {
-        if (window.Laravel.isLoggedin) {
-            this.isLoggedin = true;
-            this.iduser = window.Laravel.user.id;
-            console.log(this.iduser);
-            this.user = window.Laravel.user;
-            this.user_role = window.Laravel.user_role;
-            console.log("=======");
-            console.log(window.Laravel.user.roles[0].nombre_role);
-            this.user_role = window.Laravel.user_role;
-            if (!window.Laravel.isLoggedin) {
-                window.location.href = "/";
-            } else {
-                if (
-                    window.Laravel.user.roles[0].nombre_role == "admin" ||
-                    window.Laravel.user.roles[0].nombre_role == "gestion_tarifa"
-                ) {
-                    this.$nextTick();
-                } else {
-                    window.location.href = "/";
-                }
-            }
-        }
+    mounted() {
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get("/api/roles")
+                .then((response) => {
+                    console.log(response);
+                    this.roles = response.data;
+                    console.log(this.roles);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get("/api/showCategorias")
+                .then((response) => {
+                    console.log(response.data);
+                    this.categorias = response.data;
+                    console.log(this.categorias);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
     },
     methods: {
-        createTarifa(e) {
+        onChangeImg(e) {
+            this.img = e.target.files[0];
+            let reader = new FileReader();
+            reader.addEventListener(
+                "load",
+                function () {
+                    this.imgPreview = reader.result;
+                }.bind(this),
+                false
+            );
+
+            if (this.img) {
+                if (/\.(jpe?g|png|gif)$/i.test(this.img.name)) {
+                    console.log(this.img.name);
+                    reader.readAsDataURL(this.img);
+                }
+            }
+        },
+        createClase(e) {
             e.preventDefault();
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                let existObj = this;
+                const config = {
+                    headers: {
+                        "content-type": "multipart/form-data",
+                    },
+                };
+
+                const formData = new FormData();
+                formData.append("nombre_clase", this.nombre_clase);
+                formData.append("descripcion", this.descripcion);
+                formData.append("imagen", this.img);
+
                 this.$axios
-                    .post("api/createTarifas", {
-                        tipo_tarifa: this.tipo_tarifa,
-                        precio: this.precio,
-                        descripcion_tarifa: this.descripcion_tarifa,
-                        num_clases: this.num_clases,
-                    })
+                    .post("/api/createClases", formData, config)
                     .then((response) => {
-                        if (response.data.success) {
-                            console.log(response.data.checked);
-                        } else {
-                            console.log(response);
-                            this.error = response.data.message;
-                        }
+                        existObj.strError = "";
+                        existObj.strSuccess = response.data.success;
                     })
                     .catch(function (error) {
-                        console.error(error);
+                        existObj.strError = error.response.data.message;
+                        existObj.strSuccess = "";
                     });
             });
         },
@@ -312,4 +329,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@media (max-width: 1500px) {
+    .p-5 {
+        padding: 0 !important;
+    }
+}
+</style>

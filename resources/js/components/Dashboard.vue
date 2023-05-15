@@ -1,9 +1,5 @@
 <template>
-    <div
-        class="container-fluid"
-        v-if="
-            this.user_role == 'admin'"
-    >
+    <div class="container-fluid" v-if="this.user_role == 'admin'">
         <div class="row">
             <nav
                 id="sidebarMenu"
@@ -132,6 +128,25 @@
                             >
                         </li>
                     </ul>
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    >
+                        <span>Clases</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <router-link
+                                to="/gestionarClases"
+                                class="nav-link"
+                                >Gestionar Clases</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/crearClases" class="nav-link"
+                                >Crear Clases</router-link
+                            >
+                        </li>
+                    </ul>
                 </div>
             </nav>
 
@@ -219,7 +234,9 @@
                             class="col-md-10 col-lg-8 col-xl-4"
                         >
                             <div class="card card-default">
-                                <div class="text-center imagen-container hovereffect">
+                                <div
+                                    class="text-center imagen-container hovereffect"
+                                >
                                     <a
                                         style="cursor: pointer"
                                         @click="editarRutina(rutina.id)"
@@ -247,8 +264,10 @@
                                     <p class="mb-3 fw-normal titulo-form">
                                         <b> Tarifa Actual </b>
                                     </p>
-                                    <h4>{{ this.id_tarifa }}</h4>
-                                    <router-link :to="`/cambiarTarifa/${this.iduser}/${this.nombre_tarifa}`" ></router-link>
+                                    <h4>{{ this.nombre_tarifa }}</h4>
+                                    <router-link
+                                        :to="`/cambiarTarifa/${this.iduser}/${this.nombre_tarifa}`"
+                                    ></router-link>
                                     <button
                                         type="submit"
                                         class="button-primary"
@@ -279,138 +298,134 @@
         </div>
     </div>
 
-    <section class="p-4 p-md-5" v-if="
-            this.user_role != 'admin'">
-                    <div class="row d-flex justify-content-center mb-5 mt-5">
-                        <div class="col-md-10 col-lg-8 col-xl-5">
-                            <div class="card card-default p-5">
-                                <div class="card-body p-4">
-                                    <div class="text-center mb-4">
-                                        <p class="mb-3 fw-normal titulo-form">
-                                            <b> Perfil </b>
-                                        </p>
-                                    </div>
-                                    <form>
-                                        <div class="form-floating">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                v-model="name"
-                                            />
-                                            <label for="nombre">Nombre</label>
-                                        </div>
-                                        <br />
-                                        <div class="form-floating">
-                                            <input
-                                                type="email"
-                                                class="form-control"
-                                                v-model="email"
-                                            />
-                                            <label for="email">Email</label>
-                                        </div>
-                                        <br />
-                                        <div class="form-group mb-2">
-                                            <label>Contraseña</label
-                                            ><span class="text-danger"> *</span>
-                                            <input
-                                                type="password"
-                                                class="form-control"
-                                                v-model="password"
-                                                placeholder="Enter post name"
-                                            />
-                                        </div>
-                                        <br />
-                                        <div class="form-floating">
-                                            <input
-                                                type="date"
-                                                class="form-control"
-                                                min="1899-01-01"
-                                                max="2000-01-01"
-                                                v-model="fecha_nacimiento"
-                                            />
-                                            <label for="fecha_nacimiento"
-                                                >Fecha de nacimiento</label
-                                            >
-                                        </div>
-                                        <br />
-                                        <div class="text-center">
-                                            <button
-                                                v-if="!editing"
-                                                type="button"
-                                                class="button-primary"
-                                                @click="editProfile"
-                                            >
-                                                Editar
-                                            </button>
-                                            <button
-                                                v-else
-                                                type="submit"
-                                                class="button-primary"
-                                                @click="saveProfile"
-                                            >
-                                                Confirmar
-                                            </button>
-                                            <!-- {{ this.rolesActualesUser }} -->
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+    <section class="p-4 p-md-5" v-if="this.user_role != 'admin'">
+        <div class="row d-flex justify-content-center mb-5 mt-5">
+            <div class="col-md-10 col-lg-8 col-xl-5">
+                <div class="card card-default p-5">
+                    <div class="card-body p-4">
+                        <div class="text-center mb-4">
+                            <p class="mb-3 fw-normal titulo-form">
+                                <b> Perfil </b>
+                            </p>
                         </div>
-                        <!--<div class="col-md-10 col-lg-8 col-xl-3" v-if="this.hayTarifa">-->
-
-                        <div
-                            v-if="this.membership == false"
-                            class="col-md-10 col-lg-8 col-xl-4"
-                        >
-                            <div class="card card-default">
-                                <div class="text-center imagen-container hovereffect">
-                                    <a
-                                        style="cursor: pointer"
-                                        @click="editarRutina(rutina.id)"
-                                        href="/tarifa"
-                                    >
-                                        <img
-                                            class="w-100"
-                                            src="/img/unete.jpg"
-                                        />
-                                        <h4
-                                            class="position-absolute top-50 start-50 translate-middle text-light imagen-texto"
-                                        >
-                                            Abonate
-                                        </h4>
-                                    </a>
-                                </div>
+                        <form>
+                            <div class="form-floating">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    v-model="name"
+                                />
+                                <label for="nombre">Nombre</label>
                             </div>
-                        </div>
-                        <div
-                            v-if="this.membership == true"
-                            class="col-md-10 col-lg-8 col-xl-4"
-                        >
-                            <div class="card card-default p-5">
-                                <div class="text-center">
-                                    <p class="mb-3 fw-normal titulo-form">
-                                        <b> Tarifa Actual </b>
-                                    </p>
-                                    <h4>{{ this.id_tarifa }}</h4>
-                                    <router-link :to="`/cambiarTarifa/${this.iduser}/${this.nombre_tarifa}`" ></router-link>
-                                    <button
-                                        type="submit"
-                                        class="button-primary"
-                                    >
-                                        Cambiar tarifa
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        class="button-primary"
-                                        @click="darbaja(this.iduser)"
-                                    >
-                                        Dar de baja
-                                    </button>
-                                </div>
+                            <br />
+                            <div class="form-floating">
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    v-model="email"
+                                />
+                                <label for="email">Email</label>
                             </div>
-                        </div>
+                            <br />
+                            <div class="form-group mb-2">
+                                <label>Contraseña</label
+                                ><span class="text-danger"> *</span>
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    v-model="password"
+                                    placeholder="Enter post name"
+                                />
+                            </div>
+                            <br />
+                            <div class="form-floating">
+                                <input
+                                    type="date"
+                                    class="form-control"
+                                    min="1899-01-01"
+                                    max="2000-01-01"
+                                    v-model="fecha_nacimiento"
+                                />
+                                <label for="fecha_nacimiento"
+                                    >Fecha de nacimiento</label
+                                >
+                            </div>
+                            <br />
+                            <div class="text-center">
+                                <button
+                                    v-if="!editing"
+                                    type="button"
+                                    class="button-primary"
+                                    @click="editProfile"
+                                >
+                                    Editar
+                                </button>
+                                <button
+                                    v-else
+                                    type="submit"
+                                    class="button-primary"
+                                    @click="saveProfile"
+                                >
+                                    Confirmar
+                                </button>
+                                <!-- {{ this.rolesActualesUser }} -->
+                            </div>
+                        </form>
                     </div>
-                </section>
+                </div>
+            </div>
+            <!--<div class="col-md-10 col-lg-8 col-xl-3" v-if="this.hayTarifa">-->
+
+            <div
+                v-if="this.membership == false"
+                class="col-md-10 col-lg-8 col-xl-4"
+            >
+                <div class="card card-default">
+                    <div class="text-center imagen-container hovereffect">
+                        <a
+                            style="cursor: pointer"
+                            @click="editarRutina(rutina.id)"
+                            href="/tarifa"
+                        >
+                            <img class="w-100" src="/img/unete.jpg" />
+                            <h4
+                                class="position-absolute top-50 start-50 translate-middle text-light imagen-texto"
+                            >
+                                Abonate
+                            </h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                v-if="this.membership == true"
+                class="col-md-10 col-lg-8 col-xl-4"
+            >
+                <div class="card card-default p-5">
+                    <div class="text-center">
+                        <p class="mb-3 fw-normal titulo-form">
+                            <b> Tarifa Actual </b>
+                        </p>
+                        <h4>{{ this.nombre_tarifa }}</h4>
+                        <router-link
+                            :to="`/cambiarTarifa/${this.idtarifa}/${this.iduser}`"
+                        >
+                            <button class="button-primary" @click="navigate">
+                                Cambiar tarifa
+                            </button>
+                        </router-link>
+                        <button
+                            type="submit"
+                            class="button-primary"
+                            @click="darbaja(this.iduser)"
+                        >
+                            Dar de baja
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!--<div class="mt-5 text-center" v-if="this.user_role == 'admin'">
         <router-link to="/crearUsuarios" class="nav-item nav-link">Crear Usuarios</router-link>
@@ -536,7 +551,7 @@ export default {
             tarifa_actual: null,
             hayTarifa: null,
             editing: false,
-            nombre_tarifa: []
+            nombre_tarifa: [],
         };
     },
     mounted() {
@@ -589,8 +604,8 @@ export default {
             this.$axios
                 .get(`/api/facturasTarifas/${this.iduser}`)
                 .then((response) => {
-                    this.nombre_tarifa = response.data.id;
-                    this.id_tarifa = response.data.tipo_tarifa;
+                    this.idtarifa = response.data.id;
+                    this.nombre_tarifa = response.data.tipo_tarifa;
                     // console.log(response.data.tipo_tarifa);
                 })
                 .catch(function (error) {
@@ -620,7 +635,6 @@ export default {
                     .then((response) => {
                         const index = this.factura.findIndex(
                             (factura) => factura.id === id
-                            
                         );
                         this.factura.splice(index, 1);
                         location.reload();
@@ -716,71 +730,72 @@ export default {
 }
 
 .hovereffect {
-float:left;
-overflow:hidden;
-position:relative;
-text-align:center;
-cursor:default;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
 }
 
 .hovereffect .overlay {
-width:100%;
-height:100%;
-position:absolute;
-overflow:hidden;
-top:0;
-left:0;
-opacity:0;
-background-color:rgba(0,0,0,0.5);
--webkit-transition:all .4s ease-in-out;
-transition:all .4s ease-in-out
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
 
 .hovereffect img {
-display:block;
-position:relative;
--webkit-transition:all .4s linear;
-transition:all .4s linear;
+    display: block;
+    position: relative;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
 }
 .hovereffect a.info {
-text-decoration:none;
-display:inline-block;
-text-transform:uppercase;
-color:#fff;
-background-color:transparent;
-opacity:0;
-filter:alpha(opacity=0);
--webkit-transition:all .2s ease-in-out;
-transition:all .2s ease-in-out;
-margin:170px 0 0;
-padding:7px 14px;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: transparent;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    margin: 170px 0 0;
+    padding: 7px 14px;
 }
 
 .hovereffect a.info:hover {
-border-radius: 10px;
+    border-radius: 10px;
 }
 
 .hovereffect:hover img {
--ms-transform:scale(1.2);
--webkit-transform:scale(1.2);
-transform:scale(1.2);
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .hovereffect:hover .overlay {
-opacity:1;
-filter:alpha(opacity=100);
+    opacity: 1;
+    filter: alpha(opacity=100);
 }
 
-.hovereffect:hover h2,.hovereffect:hover a.info {
-opacity:1;
-filter:alpha(opacity=100);
--ms-transform:translatey(0);
--webkit-transform:translatey(0);
-transform:translatey(0);
+.hovereffect:hover h2,
+.hovereffect:hover a.info {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -ms-transform: translatey(0);
+    -webkit-transform: translatey(0);
+    transform: translatey(0);
 }
 
 .hovereffect:hover a.info {
--webkit-transition-delay:.2s;
-transition-delay:.2s;
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
 }
 </style>
