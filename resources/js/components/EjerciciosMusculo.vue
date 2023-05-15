@@ -1,6 +1,30 @@
 <template>
     <h1 class="text-center py-4">Ejercicios de {{ this.nombre_categoria }}</h1>
-    <div class="container">
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 nav-padding">
+        <div
+            class="col h-carta"
+            v-for="(ejercicio, index) in ejercicios"
+            :key="ejercicio.id"
+        >
+            <div
+                class="card card-cover h-100 overflow-hidden text-white d-flex"
+                :style="{
+                    backgroundImage:
+                        'url(/img/' + ejercicio.imagen_ejercicio + ')',
+                }"
+            >
+                <div
+                    class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 align-items-center justify-content-center"
+                >
+                    <h2 class="text-center">
+                        {{ ejercicio.nombre_ejercicio }}
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="container">
         <div class="row">
             <div
                 class="col-6 py-4 hovereffect"
@@ -16,7 +40,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 </template>
 <script>
 export default {
@@ -88,72 +112,73 @@ export default {
 }
 
 .hovereffect {
-float:left;
-overflow:hidden;
-position:relative;
-text-align:center;
-cursor:default;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
 }
 
 .hovereffect .overlay {
-width:100%;
-height:100%;
-position:absolute;
-overflow:hidden;
-top:0;
-left:0;
-opacity:0;
-background-color:rgba(0,0,0,0.5);
--webkit-transition:all .4s ease-in-out;
-transition:all .4s ease-in-out
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
 
 .hovereffect img {
-display:block;
-position:relative;
--webkit-transition:all .4s linear;
-transition:all .4s linear;
+    display: block;
+    position: relative;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
 }
 .hovereffect a.info {
-text-decoration:none;
-display:inline-block;
-text-transform:uppercase;
-color:#fff;
-background-color:transparent;
-opacity:0;
-filter:alpha(opacity=0);
--webkit-transition:all .2s ease-in-out;
-transition:all .2s ease-in-out;
-margin:170px 0 0;
-padding:7px 14px;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: transparent;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    margin: 170px 0 0;
+    padding: 7px 14px;
 }
 
 .hovereffect a.info:hover {
-border-radius: 10px;
+    border-radius: 10px;
 }
 
 .hovereffect:hover img {
--ms-transform:scale(1.2);
--webkit-transform:scale(1.2);
-transform:scale(1.2);
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .hovereffect:hover .overlay {
-opacity:1;
-filter:alpha(opacity=100);
+    opacity: 1;
+    filter: alpha(opacity=100);
 }
 
-.hovereffect:hover h2,.hovereffect:hover a.info {
-opacity:1;
-filter:alpha(opacity=100);
--ms-transform:translatey(0);
--webkit-transform:translatey(0);
-transform:translatey(0);
+.hovereffect:hover h2,
+.hovereffect:hover a.info {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -ms-transform: translatey(0);
+    -webkit-transform: translatey(0);
+    transform: translatey(0);
 }
 
 .hovereffect:hover a.info {
--webkit-transition-delay:.2s;
-transition-delay:.2s;
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
 }
 </style>
 
