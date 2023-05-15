@@ -1,7 +1,7 @@
 /* GENERAL */
-.vis-mov{
-    width: 0 ;
-    height: 0 ;
+.vis-mov {
+    width: 0;
+    height: 0;
     visibility: hidden;
 }
 
@@ -22,11 +22,11 @@
     font-family: "titulo";
     src: url("../fonts/Futura Bold.otf");
 }
-li{
+li {
     font-family: "texto";
     font-size: 1.5em;
 }
-small{
+small {
     font-family: "texto";
 }
 p {
@@ -44,36 +44,40 @@ h1 {
     font-size: 3em;
     font-family: "ARIAL";
 }
-h2{
+h2 {
     font-family: "texto";
     font-size: 3em;
 }
-h3{
+h3 {
     font-family: "texto";
     font-size: 2.5em;
 }
-h4{
+h4 {
     font-family: "texto";
     font-size: 2em;
 }
-.nav-item{
-    color:#000000!important;
+.nav-item {
+    color: #000000 !important;
     font-size: 1.3em;
 }
 /*DASHBOARD */
-.contraer-img{
-width: 1.2em;
+.contraer-img {
+    width: 1.2em;
 }
-#sidebarMenu{
+#sidebarMenu {
     border-right: 1px solid black;
     border-right-color: rgba(0, 0, 0, 0.3);
 }
-.logo-x:hover{
+.logo-x:hover {
     opacity: 0.5;
-    }
-    .logo-editar:hover{
+}
+.logo-editar:hover {
     opacity: 0.5;
-    }
+}
+
+.h-carta {
+    height: 400px;
+}
 /* Estilos para el boton */
 .button-primary {
     padding: 0.875em 2em;
@@ -186,8 +190,8 @@ width: 1.2em;
 /* MOVIL HOME */
 
 /* LOGIN */
-.titulo-form{
-    font-size:2em;
+.titulo-form {
+    font-size: 2em;
 }
 .login-pag {
     margin-top: 3.125em;
@@ -199,11 +203,9 @@ a.link-login {
     color: #000000;
 }
 
-
 .img-fluid {
     height: 15em !important;
     object-fit: cover;
-    
 }
 .img-fluid:hover {
     opacity: 0.7;
@@ -244,12 +246,11 @@ a.link-login {
 }
 /** TABLET */
 @media (max-width: 1500px) {
-
 }
 /** MOVIL */
 @media (max-width: 400px) {
     /*texto*/
-    li{
+    li {
         font-size: 1.3em;
     }
     p {
@@ -264,30 +265,29 @@ a.link-login {
     .precio {
         font-size: 3em;
     }
-    h2{
+    h2 {
         font-size: 3em;
     }
-    h4{
+    h4 {
         font-size: 2em;
     }
     /*GENERAL*/
-    .seccion{
+    .seccion {
         margin: 0;
         padding-left: 2em;
         padding-right: 2em;
     }
-    .text-titulo{
+    .text-titulo {
         margin-top: 5em;
     }
-    .vis-desck{
+    .vis-desck {
         visibility: hidden;
         height: 0em !important;
         width: 0em !important;
     }
-    .vis-mov{
+    .vis-mov {
         visibility: visible;
         height: auto;
         width: auto;
     }
-    
 }
