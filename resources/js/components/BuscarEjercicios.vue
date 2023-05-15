@@ -5,53 +5,96 @@
         </div>
 
         <div class="align-items-start sticky-top pb-2 text-center">
-            <form class="form-control py-4 w-100 border-0">
+            <form class="form-control pt-4 w-100 border-0">
                 <div class="pl-3">
-                    <label for="nombre" class="px-3 py-4"
+                    <label for="nombre" class="py-4"
                         ><p>Introduce el ejercicio:</p>
                     </label>
                     <input
-                        class="form-control"
+                        class="form-control mx-3"
                         type="text"
                         required
                         name="nombre"
                         v-model="nombre"
-                        style="width: 60%;"
+                        style="width: 60%"
                     />
-                    <button type="button" class="button-primary" @click="buscar">
+                    <button
+                        type="button"
+                        class="button-primary"
+                        @click="buscar"
+                    >
                         Buscar
                     </button>
                 </div>
             </form>
         </div>
-        <div v-if="mostrarResultados === false">hola
-            <h2>Ejericios</h2>
-                <ul>
-                    <li v-for="allEjercicios in ejercicios">
-                        {{ ejercicio.nombre_ejercicio }}
-                        <img
-                            class="img-fluid"
-                            :src="`img/${ejercicio.imagen_ejercicio}`"
-                        />
-                    </li>
-                </ul>
-        </div>
-
-        <div class="container-fluid container-buscador" v-if="mostrarResultados">
-            <div class="col my-3 mx-3 border border-black py-3">
-                <!-- Contenido de la segunda columna -->
-                <h2>Ejericios</h2>
-                <ul>
-                    <li v-for="ejercicio in ejercicios" :key="ejercicio.id">
-                        {{ ejercicio.nombre_ejercicio }}
-                        <img
-                            class="img-fluid"
-                            :src="`img/${ejercicio.imagen_ejercicio}`"
-                        />
-                    </li>
-                </ul>
+        <div v-if="mostrarResultados === false">
+            <div class="container px-4 py-5" id="custom-cards">
+                <h2 class="pb-2 border-bottom">Ejercicios</h2>
+                <div
+                    class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5"
+                >
+                    <div
+                        class="col h-carta"
+                        v-for="allEjercicios in allEjercicios"
+                    >
+                        <div
+                            class="card card-cover h-100 overflow-hidden text-white d-flex"
+                            :style="{
+                                backgroundImage:
+                                    'url(/img/' +
+                                    allEjercicios.imagen_ejercicio +
+                                    ')',
+                            }"
+                        >
+                            <div
+                                class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 align-items-center justify-content-center"
+                            >
+                                <h2 class="text-center">
+                                    {{ allEjercicios.nombre_ejercicio }}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+
+
+
+        <div v-if="mostrarResultados">
+            <div class="container px-4 py-5" id="custom-cards">
+                <h2>Ejericios</h2>
+                <div
+                    class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5"
+                >
+                    <div
+                        class="col h-carta"
+                        v-for="ejercicio in ejercicios" :key="ejercicio.id"
+                    >
+                        <div
+                            class="card card-cover h-100 overflow-hidden text-white d-flex"
+                            :style="{
+                                backgroundImage:
+                                    'url(/img/' +
+                                    ejercicio.imagen_ejercicio +
+                                    ')',
+                            }"
+                        >
+                            <div
+                                class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 align-items-center justify-content-center"
+                            >
+                                <h2 class="text-center">
+                                    {{ ejercicio.nombre_ejercicio }}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -98,6 +141,15 @@ export default {
 };
 </script>
 <style scoped>
+.h-carta {
+    height: 400px;
+}
+.container {
+    max-width: none;
+    width: 100%;
+    padding-left: 3em !important;
+    padding-right: 3em !important;
+}
 form {
     display: flex;
     align-items: center;
