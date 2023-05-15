@@ -141,9 +141,7 @@ export default {
 };
 </script>
 <style scoped>
-.h-carta {
-    height: 400px;
-}
+
 .container {
     max-width: none;
     width: 100%;
