@@ -150,47 +150,50 @@
                     </div>
                     <div class="card card-default p-5">
                         <main class="form-signin w-100 m-auto px-5">
-                            <h2>Gestionar Usuarios</h2>
+                            <h2>Gestionar usuarios</h2>
                             <table class="table table-hover table-sm">
                                 <thead class="bg-dark text-light">
                                     <tr>
                                         <th width="50" class="text-center">
-                                            #
+                                            #id
                                         </th>
                                         <th>Name</th>
-                                        <th>email</th>
+                                        <th>Email</th>
+                                        <th class="text-center">Editar</th>
+                                        <th class="text-center">Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr
                                         v-for="(user, index) in usuarios"
-                                        :key="user.id"
+                                        :key="user.id" 
                                     >
-                                        <td>{{ user.name }}</td>
-                                        <td>{{ user.email }}</td>
-                                        <td class="text-center py-4">
+                                        <td class="text-center py-4">{{ user.id }}</td>
+                                        <td class="py-4">{{ user.name }}</td>
+                                        <td class="py-4">{{ user.email }}</td>
+                                        <td class="text-center">
                                             <a
-                                                class="px-5"
+                                                class=" text-center"
                                                 style="cursor: pointer"
-                                                @click="deleteUsers(user.id)"
+                                                @click="updateRoles(role.id)"
                                             >
                                                 <img
+                                                    class="logo-editar my-4"
                                                     style="height: 20px"
-                                                    class="logo-x"
-                                                    src="/img/logos/x.svg"
+                                                    src="/img/logos/editar.svg"
                                                 />
                                             </a>
+                                        </td>
+                                        <td class="text-center">
                                             <a
-                                                class="px-5"
+                                                class="text-enter"
                                                 style="cursor: pointer"
-                                                @click="
-                                                    editarRutina(rutinas.id)
-                                                "
+                                                @click="deleteRole(role.id)"
                                             >
                                                 <img
-                                                    style="height: 20px;"
-                                                    class="logo-editar"
-                                                    src="/img/logos/editar.svg"
+                                                    class="logo-x my-4"
+                                                    style="height: 20px"
+                                                    src="/img/logos/x.svg"
                                                 />
                                             </a>
                                         </td>

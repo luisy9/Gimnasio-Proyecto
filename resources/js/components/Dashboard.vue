@@ -1,10 +1,7 @@
 <template>
-    <div
-        class="container-fluid"
-        v-if="
-            this.user_role == 'admin'"
-    >
-        <div class="row">
+
+        <div class="row" v-if="
+            this.user_role == 'admin'">
             <nav
                 id="sidebarMenu"
                 class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
@@ -138,7 +135,7 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <section class="p-4 p-md-5">
                     <div class="row d-flex justify-content-center mb-5 mt-5">
-                        <div class="col-md-10 col-lg-8 col-xl-5">
+                        <div class="col-md-10 col-lg-8 col-xl-5 pb-5">
                             <div class="card card-default p-5">
                                 <div class="card-body p-4">
                                     <div class="text-center mb-4">
@@ -165,7 +162,18 @@
                                             <label for="email">Email</label>
                                         </div>
                                         <br />
-                                        <div class="form-group mb-2">
+                                        <div class="form-floating">
+                                            <input
+                                                type="password"
+                                                class="form-control"
+                                                v-model="password"
+                                                placeholder="Enter post name"
+                                            />
+                                            <label>Contraseña</label
+                                            >
+                                        </div>
+                                        <br>
+                                        <!--<div class="form-group mb-2">
                                             <label>Contraseña</label
                                             ><span class="text-danger"> *</span>
                                             <input
@@ -174,15 +182,14 @@
                                                 v-model="password"
                                                 placeholder="Enter post name"
                                             />
-                                        </div>
-                                        <br />
+                                        </div>-->
                                         <div class="form-floating">
                                             <input
                                                 type="date"
                                                 class="form-control"
                                                 min="1899-01-01"
-                                                max="2000-01-01"
-                                                v-model="fecha_nacimiento"
+                                                :max="maxFechaNacimiento" 
+                                                v-model="fechaNacimiento"
                                             />
                                             <label for="fecha_nacimiento"
                                                 >Fecha de nacimiento</label
@@ -243,7 +250,7 @@
                             class="col-md-10 col-lg-8 col-xl-4"
                         >
                             <div class="card card-default p-5">
-                                <div class="text-center">
+                                <div class="text-center py-4">
                                     <p class="mb-3 fw-normal titulo-form">
                                         <b> Tarifa Actual </b>
                                     </p>
@@ -277,12 +284,12 @@
                 </div>
             </main>
         </div>
-    </div>
+ 
 
     <section class="p-4 p-md-5" v-if="
             this.user_role != 'admin'">
                     <div class="row d-flex justify-content-center mb-5 mt-5">
-                        <div class="col-md-10 col-lg-8 col-xl-5">
+                        <div class="col-md-10 col-lg-8 col-xl-5 pb-5">
                             <div class="card card-default p-5">
                                 <div class="card-body p-4">
                                     <div class="text-center mb-4">
@@ -309,15 +316,15 @@
                                             <label for="email">Email</label>
                                         </div>
                                         <br />
-                                        <div class="form-group mb-2">
-                                            <label>Contraseña</label
-                                            ><span class="text-danger"> *</span>
+                                        <div class="form-floating">
                                             <input
                                                 type="password"
                                                 class="form-control"
                                                 v-model="password"
                                                 placeholder="Enter post name"
                                             />
+                                            <label>Contraseña</label
+                                            >
                                         </div>
                                         <br />
                                         <div class="form-floating">
@@ -325,8 +332,8 @@
                                                 type="date"
                                                 class="form-control"
                                                 min="1899-01-01"
-                                                max="2000-01-01"
-                                                v-model="fecha_nacimiento"
+                                                :max="maxFechaNacimiento" 
+                                                v-model="fechaNacimiento"
                                             />
                                             <label for="fecha_nacimiento"
                                                 >Fecha de nacimiento</label
@@ -387,7 +394,7 @@
                             class="col-md-10 col-lg-8 col-xl-4"
                         >
                             <div class="card card-default p-5">
-                                <div class="text-center">
+                                <div class="text-center p-4">
                                     <p class="mb-3 fw-normal titulo-form">
                                         <b> Tarifa Actual </b>
                                     </p>
@@ -536,9 +543,17 @@ export default {
             tarifa_actual: null,
             hayTarifa: null,
             editing: false,
-            nombre_tarifa: []
+            nombre_tarifa: [],
+            fechaNacimiento: '',
         };
     },
+    computed: {
+    maxFechaNacimiento() {
+      const fechaMaxima = new Date();
+      fechaMaxima.setFullYear(fechaMaxima.getFullYear() - 16);
+      return fechaMaxima.toISOString().split('T')[0];
+    },
+  },
     mounted() {
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
