@@ -3,6 +3,8 @@
     width: 0 ;
     height: 0 ;
     visibility: hidden;
+    display: none;
+
 }
 
 /* Container */
@@ -68,7 +70,12 @@ width: 1.2em;
     border-right: 1px solid black;
     border-right-color: rgba(0, 0, 0, 0.3);
 }
-
+.logo-x:hover{
+    opacity: 0.5;
+    }
+    .logo-editar:hover{
+    opacity: 0.5;
+    }
 /* Estilos para el boton */
 .button-primary {
     padding: 0.875em 2em;
