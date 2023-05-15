@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <main class="ms-sm-auto px-md-4">
-                <section class="p-4 p-md-5">
+                <section class="p-4">
                     <div class="row d-flex justify-content-center mb-5">
                         <!--<div class="login-pag px-5">-->
                         <!--<div
@@ -22,7 +22,22 @@
                             ></button>
                             <strong>{{ error }}</strong>
                         </div>
-                        <div class="card card-default p-5">
+                        <div
+                            class="vis-desck mb-5"
+                            v-if="this.clasesUser.length == 0"
+                        >
+                            <div class="banner-clases">
+                                <a href="/clasesDirigidas">
+                                    <button class="button-secondary">
+                                        Apuntate
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <div
+                            class="card card-default p-5"
+                            v-if="this.clasesUser.length >= 1"
+                        >
                             <main class="form-signin w-100 m-auto px-5">
                                 <table class="table table-hover table-sm">
                                     <thead class="bg-dark text-light">
@@ -30,14 +45,10 @@
                                             <th width="50" class="">
                                                 Numero Clase
                                             </th>
-                                            <th class="px-1">
-                                                Fecha Clase
-                                            </th>
-                                            <th class="">
-                                                Hora Clase
-                                            </th>
+                                            <th class="px-1">Fecha Clase</th>
+                                            <th class="">Hora Clase</th>
 
-                                            <th class="text-center px-3 ">
+                                            <th class="text-center px-3">
                                                 Cancelar Clase
                                             </th>
                                         </tr>
@@ -51,10 +62,10 @@
                                             <td class="py-4">
                                                 {{ clases.clase_id }}
                                             </td>
-                                            <td  class="py-4">
+                                            <td class="py-4">
                                                 {{ clases.fecha_clase }}
                                             </td>
-                                            <td  class="py-4">
+                                            <td class="py-4">
                                                 {{ clases.hora_clase }}
                                             </td>
                                             <td class="text-center py-4">
@@ -76,16 +87,11 @@
                                 </table>
                             </main>
                         </div>
-                        <!--</div>-->
-                        <!--</div>-->
                     </div>
                 </section>
             </main>
         </div>
     </div>
-    <!-- <div v-for="rutina in miRutina">
-                {{ rutina.nombre_rutina }}
-            </div> -->
 </template>
 
 <script>
@@ -145,6 +151,14 @@ export default {
 };
 </script>
 <style scoped>
+.banner-clases {
+    background-image: url("http://localhost:8000/img/clases.jpg");
+    height: 50em;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    background-repeat: no-repeat;
+}
 .logo-x {
     height: 20px;
 }

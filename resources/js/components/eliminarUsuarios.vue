@@ -207,7 +207,7 @@
                                             <a
                                                 class="text-enter"
                                                 style="cursor: pointer"
-                                                @click="deleteRole(user.id)"
+                                                @click="deleteUsers(user.id)"
                                             >
                                                 <img
                                                     class="logo-x my-4"

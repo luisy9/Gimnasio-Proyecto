@@ -148,7 +148,9 @@
                                 <strong>{{ error }}</strong>
                             </div>
                             <div class="card card-default">
-                                <main class="form-signin w-100 m-auto px-5 py-5">
+                                <main
+                                    class="form-signin w-100 m-auto px-5 py-5"
+                                >
                                     <form>
                                         <h1 class="h3 mb-3 fw-normal">
                                             Crear Roles
@@ -156,97 +158,25 @@
                                         <br />
                                         <div class="form-floating">
                                             <input
-                                                id="name"
+                                                id="nombre_role"
                                                 type="text"
                                                 class="form-control"
-                                                v-model="name"
+                                                v-model="nombre_role"
                                                 autofocus
                                                 autocomplete="off"
                                                 placeholder="Nombre"
                                             />
                                             <label
-                                                for="name"
+                                                for="nombre_role"
                                                 class="col-sm-4 col-form-label text-md-right"
-                                                >Nombre</label
+                                                >Nombre Role</label
                                             >
                                         </div>
                                         <br />
-                                        <div class="form-floating">
-                                            <input
-                                                id="email"
-                                                type="email"
-                                                class="form-control"
-                                                v-model="email"
-                                                autocomplete="off"
-                                                placeholder="Email"
-                                            />
-                                            <label
-                                                for="email"
-                                                class="col-md-4 col-form-label text-md-right"
-                                                >Email</label
-                                            >
-                                        </div>
-                                        <br />
-                                        <div class="form-floating">
-                                            <input
-                                                id="password"
-                                                type="password"
-                                                class="form-control"
-                                                v-model="password"
-                                                autocomplete="off"
-                                                placeholder="Contraseña"
-                                            />
-                                            <label
-                                                for="password"
-                                                class="col-md-4 col-form-label text-md-right"
-                                                >Contraseña</label
-                                            >
-                                        </div>
-                                        <br />
-                                        <div class="form-floating">
-                                            <input
-                                                id="fecha_nacimiento"
-                                                type="date"
-                                                min="1899-01-01"
-                                                max="2000-01-01"
-                                                class="form-control"
-                                                v-model="fecha_nacimiento"
-                                                autocomplete="off"
-                                                placeholder="Teclea tu fecha nacimiento"
-                                            />
-                                            <label
-                                                for="fecha_nacimiento"
-                                                class="col-md-4 col-form-label text-md-right"
-                                                >fecha nacimiento</label
-                                            >
-                                        </div>
-
-                                        <br />
-                                        <div class="containerBotons">
-                                            <h5>Añadir Roles</h5>
-                                            <div id="">
-                                                <div
-                                                    v-for="(
-                                                        role, index
-                                                    ) in roles"
-                                                >
-                                                    {{ role.nombre_role }}
-                                                    <input
-                                                        type="checkbox"
-                                                        :value="role.id"
-                                                        v-model="checked"
-                                                    />
-                                                </div>
-                                                <p>
-                                                    Has Seleeccionado:
-                                                    {{ checked }}
-                                                </p>
-                                            </div>
-                                        </div>
                                         <button
                                             type="submit"
                                             class="button-primary"
-                                            @click="createUser"
+                                            @click="createRoles"
                                         >
                                             Añadir
                                         </button>
@@ -266,10 +196,7 @@ export default {
     name: "createRoles",
     data() {
         return {
-            name: "",
-            email: "",
-            password: "",
-            fecha_nacimiento: "",
+            nombre_role: "",
             error: null,
             checked: [],
             roles: [],
@@ -313,16 +240,12 @@ export default {
         });
     },
     methods: {
-        createUser(e) {
+        createRoles(e) {
             e.preventDefault();
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
-                    .post("api/createUsers", {
-                        name: this.name,
-                        email: this.email,
-                        password: this.password,
-                        checked: this.checked,
-                        fecha_nacimiento: this.fecha_nacimiento,
+                    .post("api/createRoles", {
+                        nombre_role: this.nombre_role,
                     })
                     .then((response) => {
                         if (response.data.success) {
@@ -343,22 +266,22 @@ export default {
 
 <style scoped>
 @media (max-width: 1500px) {
-    .login-pag{
+    .login-pag {
         padding: 0;
     }
-    .w-50{
-        width: 70%!important;
+    .w-50 {
+        width: 70% !important;
     }
-    .p-5{
-        padding: 1em!important;
+    .p-5 {
+        padding: 1em !important;
     }
-    .px-5{
-        padding: 0!important;
+    .px-5 {
+        padding: 0 !important;
     }
 }
 @media (max-width: 400px) {
-    .w-50{
-        width: 106%!important;
+    .w-50 {
+        width: 106% !important;
     }
 }
 </style>
