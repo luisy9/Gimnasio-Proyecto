@@ -1,15 +1,17 @@
 <template>
-    <div class="text-center my-3">
-        <h1>Rutina</h1>
+    <div class="banner-entrenamiento text-center">
+        <h1 class="text-light">Rutina</h1>
     </div>
     <div id="app">
-        <h4 class="text-center">Elige el dia de la semana:</h4>
+        <h4 class="text-center py-5">Elige el dia de la semana:</h4>
         <div class="text-center">
             <button
                 v-for="(day, index) in daysOfWeek"
                 :key="index"
-                
-                :class="{ 'button-primary': selectedDay === day, 'button-secondary': selectedDay !== day }"
+                :class="{
+                    'button-primary': selectedDay === day,
+                    'button-secondary': selectedDay !== day,
+                }"
                 @click="selectDay(index)"
             >
                 {{ day }}
@@ -56,27 +58,20 @@
             </div>
             <div class="col-md-10 col-lg-8 col-xl-3">
                 <div class="card card-default p-5">
-                    <div class="text-center mb-4" v-if="selectedDay ===null">
+                    <div class="text-center mb-4" v-if="selectedDay != null">
                         <p class="mb-3 fw-normal titulo-form">
-                            <b> Tu rutina</b>
-                        </p>
-                        <p>{{ nombreRutina }}</p>
-                    </div><div class="text-center mb-4" v-if="selectedDay != null">
-                        <p class="mb-3 fw-normal titulo-form">
-                            <b> Tu rutina {{"del " + selectedDay }}</b>
+                            <b> Tu rutina {{ "del " + selectedDay }}</b>
                         </p>
                         <p>{{ nombreRutina }}</p>
                     </div>
-                    <div  v-for="categoria in categorias"
-                            :value="categoria.id"
-                        >
-                    <span>Seleccionado: {{ categoria.nombre_categoria}} </span>
+                    <div v-for="categoria in categorias" :value="categoria.id">
+                        <span
+                            >
+                        </span>
                     </div>
                     <div class="col">
                         {{ checkEjer }}
                     </div>
-                    {{ this.diaSemana }}
-                    
                     <div
                         class="card-body p-4"
                         v-for="(tarifa, index) in tarfiasArray"
@@ -200,6 +195,18 @@ export default {
 };
 </script>
 <style>
+.banner-entrenamiento {
+    background-image: url("http://localhost:8000/img/banner3.webp");
+    height: 25em;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 .button-secondary {
     border: 1px solid black;
 }
