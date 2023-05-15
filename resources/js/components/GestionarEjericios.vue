@@ -198,7 +198,7 @@
                                             <a
                                                 class="text-center"
                                                 style="cursor: pointer"
-                                                @click="updateRoles(role.id)"
+                                                @click="updateEjercicios(ejercicio.id)"
                                             >
                                                 <img
                                                     class="logo-editar my-4"
@@ -211,7 +211,7 @@
                                             <a
                                                 class="text-enter"
                                                 style="cursor: pointer"
-                                                @click="deleteRole(role.id)"
+                                                @click="deleteEjercicios(ejercicio.id)"
                                             >
                                                 <img
                                                     class="logo-x my-4"
