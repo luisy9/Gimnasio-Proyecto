@@ -74,7 +74,7 @@
                         v-for="ejercicio in ejercicios" :key="ejercicio.id"
                     >
                         <div
-                            class="card card-cover h-100 overflow-hidden d-flex"
+                            class="card card-cover h-100 overflow-hidden d-flex ejercicio"
                             :style="{
                                 backgroundImage:
                                     'url(/img/' +
@@ -142,7 +142,7 @@ export default {
 </script>
 <style scoped>
 h2{
- color: aqua;
+ color: rgb(0, 0, 0);
 }
 h2:hover{
     transform: 1.5em;
@@ -153,7 +153,7 @@ h2:hover{
     opacity: 0.5;
 }
 .ejercicio:hover{
-    opacity: 2;
+    opacity: 1;
 }
 
 .container {
