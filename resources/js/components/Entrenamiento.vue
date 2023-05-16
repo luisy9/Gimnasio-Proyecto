@@ -11,7 +11,7 @@
         <div class="my-5">
             <div class="banner-buscar">
                 <a href="/buscarEjercicios" class="w-100 h-100 centrar-ent">
-                    <p class="text-white text-center">Buscador Ejericicos</p>
+                    <button class="button-secondary">Crear rutina</button>
                 </a>
             </div>
         </div>
@@ -140,9 +140,6 @@ export default {
 a {
     text-decoration: none;
 }
-.banner-buscar:hover {
-    opacity: 1;
-}
 .centrar-ent {
     display: flex;
     justify-content: center;
@@ -154,7 +151,6 @@ a {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.8;
     display: flex;
     justify-content: center;
     align-items: center;
