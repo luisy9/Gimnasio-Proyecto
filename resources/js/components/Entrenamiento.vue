@@ -15,7 +15,7 @@
                 </a>
             </div>
         </div>
-        <div class="galeria-ejercicios">
+        <div class="galeria-ejercicios vis-desck">
             <div
                 class="col flex justify-content-center galeria-ejercicios"
                 v-for="(catego, index) in categorias"
