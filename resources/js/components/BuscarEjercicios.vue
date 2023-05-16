@@ -39,7 +39,7 @@
                         v-for="allEjercicios in allEjercicios"
                     >
                         <div
-                            class="card card-cover h-100 overflow-hidden text-white d-flex"
+                            class="card card-cover h-100 overflow-hidden text-white d-flex ejercicio"
                             :style="{
                                 backgroundImage:
                                     'url(/img/' +
@@ -85,7 +85,7 @@
                             <div
                                 class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 align-items-center justify-content-center"
                             >
-                                <h2 class="text-center">
+                                <h2 class="text-center text-ejercicio">
                                     {{ ejercicio.nombre_ejercicio }}
                                 </h2>
                             </div>
@@ -141,6 +141,10 @@ export default {
 };
 </script>
 <style scoped>
+.ejercicio{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .container {
     max-width: none;

@@ -11,7 +11,7 @@
         <div class="my-5">
             <div class="banner-buscar">
                 <a href="/buscarEjercicios" class="w-100 h-100 centrar-ent">
-                    <button class="button-secondary">Crear rutina</button>
+                    <button class="button-secondary">Todos</button>
                 </a>
             </div>
         </div>
@@ -71,7 +71,7 @@
         <div class="text-center  ">
             <!-- <h3 class="mb-3"><b>Rutinas</b></h3> -->
         </div>
-        <div class="vis-desck" v-if="this.isPro">
+        <div class="vis-desck mt-5" v-if="this.isPro">
             <div class="banner-rutina">
                 <a href="/crearRutina">
                     <button class="button-secondary">Crear rutina</button>
