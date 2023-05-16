@@ -299,8 +299,8 @@ li a.nav-link {
     font-size: 18px;
 }
 .nav-padding {
-    padding-left: 2em;
-    padding-right: 2em;
+    padding-left: 2.5em;
+    padding-right: 3em;
 }
 .d-lg-none:hover {
     opacity: 0.5;

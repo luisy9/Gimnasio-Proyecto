@@ -18,37 +18,37 @@ class CategoriaSeeder extends Seeder
             [
                 'id' => 1,
                 'nombre_categoria' => 'Pecho',
-                'imagen_categoria' => 'Pectorial.jpg',
+                'imagen_categoria' => 'pectoral.webp',
             ],
             [
                 'id' => 2,
                 'nombre_categoria' => 'Hombro',
-                'imagen_categoria' => 'Hombro.jpg',
+                'imagen_categoria' => 'hombro.webp',
             ],
             [
                 'id' => 3,
                 'nombre_categoria' => 'Pierna',
-                'imagen_categoria' => 'Pierna.jpg',
+                'imagen_categoria' => 'pierna.webp',
             ],
             [
                 'id' => 4,
                 'nombre_categoria' => 'Biceps',
-                'imagen_categoria' => 'Biceps.jpg',
+                'imagen_categoria' => 'biceps.webp',
             ],
             [
                 'id' => 5,
                 'nombre_categoria' => 'Triceps',
-                'imagen_categoria' => 'Triceps.jpg',
+                'imagen_categoria' => 'triceps.webp',
             ],
             [
                 'id' => 6,
                 'nombre_categoria' => 'Espalda',
-                'imagen_categoria' => 'Espalda.jpg',
+                'imagen_categoria' => 'espalda.webp',
             ],
             [
                 'id' => 7,
                 'nombre_categoria' => 'Abdominales',
-                'imagen_categoria' => 'Abdominales.jpg',
+                'imagen_categoria' => 'abdominales.webp',
             ],
         ];
 
