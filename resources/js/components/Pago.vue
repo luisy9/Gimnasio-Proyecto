@@ -138,9 +138,8 @@
                             <h3>{{ tarifa.tipo_tarifa }}</h3>
                         </div>
                         <div class="col">
-                            <p>{{ tarifa.id }}</p>
                             <p>{{ tarifa.tipo_tarifa }}</p>
-                            <p>{{ tarifa.precio }}</p>
+                            <b><p>{{ tarifa.precio }}€ / mes</p></b>
                             <p>{{ tarifa.descripcion_tarifa }}</p>
                         </div>
                     </div>
