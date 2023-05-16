@@ -65,7 +65,7 @@
 
         <div v-if="mostrarResultados">
             <div class="container px-4 py-5" id="custom-cards">
-                <h3>Ejericios</h3>
+                <h3 class="pb-2 border-bottom">Ejercicios</h3>
                 <div
                     class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5"
                 >
@@ -142,18 +142,12 @@ export default {
 </script>
 <style scoped>
 h2{
- color: rgb(0, 0, 0);
-}
-h2:hover{
-    transform: 1.5em;
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 .ejercicio{
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.5;
-}
-.ejercicio:hover{
-    opacity: 1;
 }
 
 .container {

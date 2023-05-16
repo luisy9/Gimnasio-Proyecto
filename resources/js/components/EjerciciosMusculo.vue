@@ -7,7 +7,7 @@
             :key="ejercicio.id"
         >
             <div
-                class="card card-cover h-100 overflow-hidden text-white d-flex"
+                class="card card-cover h-100 overflow-hidden text-white d-flex ejercicio"
                 :style="{
                     backgroundImage:
                         'url(/img/' + ejercicio.imagen_ejercicio + ')',
@@ -92,6 +92,14 @@ export default {
 </script>
 
 <style scoped>
+h2{
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.ejercicio{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .overlay {
     position: absolute;
     top: 0;
