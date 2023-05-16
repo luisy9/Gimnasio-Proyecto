@@ -3,11 +3,6 @@
         <div class="card-body">
             <div class="d-flex justify-content-between pb-2 mb-2">
                 <h5 class="card-title">Update Ejericio</h5>
-                <div>
-                    <router-link :to="{ name: 'posts' }" class="btn btn-success"
-                        >Go Back</router-link
-                    >
-                </div>
             </div>
 
             <div
@@ -62,13 +57,21 @@
                         placeholder="Enter post name"
                     />
                 </div>
-
+                <select v-model="selected" class="d-flex my-3">
+                    <option disabled value="">Seleccione un elemento</option>
+                    <option
+                        v-for="categoria in categorias"
+                        :value="categoria.id"
+                    >
+                        {{ categoria.nombre_categoria }}
+                    </option>
+                </select>
                 <button
                     type="submit"
                     class="btn btn-primary mt-4 mb-4"
-                    @click="updateUser"
+                    @click="updateEjercicios"
                 >
-                    Update User
+                    Update
                 </button>
 
                 <!-- {{ this.user_role }} -->
@@ -84,11 +87,13 @@ export default {
         return {
             id: "",
             nombre_ejercicio: "",
-            file: "",
+            img: "",
+            selected: "",
             categorias: [],
             user_role: null,
             idejercicio: this.$route.params.id,
             checked: [],
+            checkcategorias: [],
             strSuccess: "",
             strError: "",
         };
@@ -104,7 +109,7 @@ export default {
                 .then((response) => {
                     console.log(response.data.name);
                     this.nombre_ejercicio = response.data.nombre_ejercicio;
-                    this.imagen_ejericio = response.data.imagen_ejericio;
+                    this.file = response.data.file;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -121,10 +126,22 @@ export default {
                     console.log(error);
                 });
         });
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get("/api/showCategorias")
+                .then((response) => {
+                    console.log(response.data);
+                    this.categorias = response.data;
+                    console.log(this.categorias);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
     },
     methods: {
         onChangeImg(e) {
-            this.file = e.target.files[0];
+            this.img = e.target.files[0];
             let reader = new FileReader();
             reader.addEventListener(
                 "load",
@@ -134,9 +151,10 @@ export default {
                 false
             );
 
-            if (this.file) {
-                if (/\.(jpe?g|png|gif)$/i.test(this.file.name)) {
-                    reader.readAsDataURL(this.file);
+            if (this.img) {
+                if (/\.(jpe?g|png|gif)$/i.test(this.img.name)) {
+                    console.log(this.img.name);
+                    reader.readAsDataURL(this.img);
                 }
             }
         },
@@ -148,7 +166,7 @@ export default {
                     : null;
             });
         },
-        updateUser(e) {
+        updateEjercicios(e) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 let existingObj = this;
                 const config = {
@@ -159,7 +177,8 @@ export default {
 
                 const formData = new FormData();
                 formData.append("nombre_ejercicio", this.nombre_ejercicio);
-                formData.append("file", this.file);
+                formData.append("imagen_ejercicio", this.img);
+                formData.append("categoria_id", this.selected);
 
                 this.$axios
                     .post(

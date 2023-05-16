@@ -1,15 +1,9 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <div class="d-flex justify-content-between pb-2 mb-2">
-                <h5 class="card-title">Update Rutina</h5>
-                <div>
-                    <router-link :to="{ name: 'posts' }" class="btn btn-success"
-                        >Go Back</router-link
-                    >
-                </div>
-            </div>
-
+            <!-- <div class="d-flex justify-content-between pb-2 mb-2">
+                <h5 class="text-center">Actualiza Rutina</h5>
+            </div> -->
             <div
                 v-if="strSuccess"
                 class="alert alert-success alert-dismissible fade show"
@@ -39,7 +33,96 @@
             </div>
 
             <form @submit.prevent="updateRutina" enctype="multipart/form-data">
-                <button
+                <h2 class="text-center py-4">Actualiza Rutina</h2>
+                <div class="text-center">
+                    <button
+                        v-for="(day, index) in daysOfWeek"
+                        :key="index"
+                        :class="{
+                            'button-primary': selectedDay === day,
+                            'button-secondary': selectedDay !== day,
+                        }"
+                        @click="selectDay(index)"
+                    >
+                        {{ day }}
+                    </button>
+                </div>
+                <section class="p-4 p-md-5">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-5 mb-2">
+                            <div class="card card-default p-5">
+                                <div class="text-center mb-4">
+                                    <p class="mb-3 fw-normal titulo-form">
+                                        <b> Crea tu rutina </b>
+                                    </p>
+                                </div>
+                                <span>Nombre de tu Rutina: </span
+                                ><input
+                                    type="text"
+                                    style="height: 40px"
+                                    v-model="nombreRutina"
+                                /><br />
+                                <select
+                                    style="height: 40px"
+                                    v-model="selected"
+                                    @change="muculosMuestra"
+                                >
+                                    <option disabled value="">
+                                        Seleccione un elemento
+                                    </option>
+                                    <option
+                                        v-for="categoria in categorias"
+                                        :value="categoria.id"
+                                    >
+                                        {{ categoria.nombre_categoria }}
+                                    </option>
+                                </select>
+
+                                <p v-for="ejerci in ejercicios">
+                                    {{ ejerci.nombre_ejercicio }}
+                                    <input
+                                        type="checkbox"
+                                        :value="`${ejerci.nombre_ejercicio}`"
+                                        v-model="checkEjer"
+                                    />
+                                </p>
+                                <br />
+                                <button
+                                    class="button-primary m-auto"
+                                    @click="handleSubmit"
+                                >
+                                    Crear Rutina
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-lg-8 col-xl-3">
+                            <div class="card card-default p-5">
+                                <div
+                                    class="text-center mb-4"
+                                    v-if="selectedDay != null"
+                                >
+                                    <p class="mb-3 fw-normal titulo-form">
+                                        <b>
+                                            Tu rutina
+                                            {{ "del " + selectedDay }}</b
+                                        >
+                                    </p>
+                                    <p>{{ nombreRutina }}</p>
+                                </div>
+                                <div
+                                    v-for="categoria in categorias"
+                                    :value="categoria.id"
+                                >
+                                    <span> </span>
+                                </div>
+                                <div class="col">
+                                    {{ checkEjer }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- <button
                     v-for="(day, index) in daysOfWeek"
                     :key="index"
                     class="day-button"
@@ -47,8 +130,8 @@
                     @click="selectDay(index)"
                 >
                     {{ day }}</button
-                ><br />
-                <span>Nombre de tu Rutina: </span><br /><input
+                ><br /> -->
+                <!-- <span>Nombre de tu Rutina: </span><br /><input
                     type="text"
                     v-model="nombreRutina"
                 /><br />
@@ -81,7 +164,7 @@
                     @click="updateRutina"
                 >
                     Update Rutina
-                </button>
+                </button> -->
             </form>
         </div>
     </div>

@@ -110,7 +110,7 @@ export const routes = [
     },
     {
         name: "updateRoles",
-        path: "/updateRoles",
+        path: "/updateRoles/:id",
         component: updateRoles,
     },
     {

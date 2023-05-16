@@ -78,7 +78,7 @@ class AdminController extends Controller
             'user_id' => 'required',
             'role_id' => 'required'
         ]);
-        $roles = $idroles->all();
+        $idroles->roles()->detach();
         // $rol = User::roles();
         $input = $request->all();
         $input["password"] = Hash::make($request->password);
@@ -215,12 +215,13 @@ class AdminController extends Controller
         $ejercicio = ejercicio::find($idejercicio);
         $req->validate([
             'nombre_ejercicio' => 'required',
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'
+            'imagen_ejercicio' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'categoria_id' => 'required'
         ]);
 
         $input = $req->all();
         $imageName = NULL;
-        if ($image = $req->file('file')) {
+        if ($image = $req->file('imagen_ejercicio')) {
             $destinationPath = 'img/';
             $imageName = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $imageName);
