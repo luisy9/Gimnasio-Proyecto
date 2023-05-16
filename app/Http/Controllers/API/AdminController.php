@@ -341,7 +341,8 @@ class AdminController extends Controller
         return response()->json(['success' => 'Ejercicio update successfully']);
     }
 
-    public function createRoles(Request $req){
+    public function createRoles(Request $req)
+    {
         try {
             $role = new role();
             $role->nombre_role = $req->nombre_role;
@@ -362,5 +363,17 @@ class AdminController extends Controller
         ];
 
         return response()->json($response);
+    }
+
+    public function updateRoles(Request $req, $idrole)
+    {
+        $role = role::find($idrole);
+        $req->validate([
+            'nombre_role' => 'required',
+        ]);
+
+        $input = $req->all();
+        $role->update($input);
+        return response()->json(['success' => 'Role update successfully']);
     }
 }

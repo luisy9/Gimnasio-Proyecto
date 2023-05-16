@@ -1,14 +1,7 @@
 <template>
     <div class="card">
         <div class="card-body">
-            <div class="d-flex justify-content-between pb-2 mb-2">
-                <h5 class="card-title">Update Post Data</h5>
-                <div>
-                    <router-link :to="{ name: 'posts' }" class="btn btn-success"
-                        >Go Back</router-link
-                    >
-                </div>
-            </div>
+            <div class="d-flex justify-content-between pb-2 mb-2"></div>
 
             <div
                 v-if="strSuccess"
@@ -38,44 +31,27 @@
                 <strong>{{ strError }}</strong>
             </div>
 
-            <form @submit.prevent="updatePost" enctype="multipart/form-data">
-                <div class="form-group mb-2">
-                    <label>Name</label><span class="text-danger"> *</span>
+            <form @submit.prevent="updateRole" enctype="multipart/form-data">
+                <h1 class="h3 mb-3 fw-normal">Update Roles</h1>
+                <br />
+                <div class="form-floating">
                     <input
+                        id="nombre_role"
                         type="text"
                         class="form-control"
-                        v-model="name"
-                        placeholder="Enter post name"
+                        v-model="nombre_role"
+                        autofocus
+                        autocomplete="off"
+                        placeholder="Nombre"
                     />
+                    <label
+                        for="nombre_role"
+                        class="col-sm-4 col-form-label text-md-right"
+                        >Nombre Role</label
+                    >
                 </div>
-
-                <div class="form-group mb-2">
-                    <label>Description</label
-                    ><span class="text-danger"> *</span>
-                    <textarea
-                        class="form-control"
-                        rows="3"
-                        v-model="description"
-                        placeholder="Enter post description"
-                    ></textarea>
-                </div>
-
-                <div class="form-gorup mb-2">
-                    <label>Image</label><span class="text-danger"> *</span>
-                    <input
-                        type="file"
-                        class="form-control mb-2"
-                        v-on:change="onChange"
-                    />
-
-                    <div v-if="img">
-                        <img v-bind:src="imgPreview" width="100" height="100" />
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary mt-4 mb-4">
-                    Update Post
-                </button>
+                <br />
+                <button type="submit" class="button-primary">Update</button>
             </form>
         </div>
     </div>
@@ -87,9 +63,7 @@ export default {
     data() {
         return {
             id: "",
-            name: "",
-            description: "",
-            img: "",
+            nombre_role: "",
             strSuccess: "",
             strError: "",
             imgPreview: null,
@@ -129,7 +103,7 @@ export default {
                 }
             }
         },
-        updatePost(e) {
+        updateRole(e) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 let existingObj = this;
                 const config = {
@@ -139,13 +113,11 @@ export default {
                 };
 
                 const formData = new FormData();
-                formData.append("name", this.name);
-                formData.append("description", this.description);
-                formData.append("file", this.img);
+                formData.append("nombre_role", this.nombre_role);
 
                 this.$axios
                     .post(
-                        `/api/posts/update/${this.$route.params.id}`,
+                        `/api/updateRoles/${this.$route.params.id}`,
                         formData,
                         config
                     )

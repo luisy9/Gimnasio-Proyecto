@@ -61,100 +61,112 @@
                             this.user_role == 'gestion_users'
                         "
                     > -->
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-                    >
-                        <span>Gestion Usuarios</span>
-                    </h6>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <router-link to="/crearUsuarios" class="nav-link"
-                                >Crear Usuarios</router-link
-                            >
-                        </li>
-                    </ul>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <router-link to="/eliminarUsuarios" class="nav-link"
-                                >Modificar Usuarios</router-link
-                            >
-                        </li>
-                    </ul>
-                    <!-- </div> -->
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-                    >
-                        <span>Rol</span>
-                    </h6>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <router-link to="/createRole" class="nav-link"
-                                >Crear Roles</router-link
-                            >
-                        </li>
-                    </ul>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <router-link to="/roleAdmin" class="nav-link"
-                                >Gestionar Roles</router-link
-                            >
-                        </li>
-                    </ul>
+                    <div v-if="this.user_role == 'admin'">
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Gestion Usuarios</span>
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link
+                                    to="/crearUsuarios"
+                                    class="nav-link"
+                                    >Crear Usuarios</router-link
+                                >
+                            </li>
+                        </ul>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link
+                                    to="/eliminarUsuarios"
+                                    class="nav-link"
+                                    >Modificar Usuarios</router-link
+                                >
+                            </li>
+                        </ul>
+                        <!-- </div> -->
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Rol</span>
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link to="/createRole" class="nav-link"
+                                    >Crear Roles</router-link
+                                >
+                            </li>
+                        </ul>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link to="/roleAdmin" class="nav-link"
+                                    >Gestionar Roles</router-link
+                                >
+                            </li>
+                        </ul>
 
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-                    >
-                        <span>Tarifa</span>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <router-link to="/crearTarifas" class="nav-link"
-                                >Crear Tarifas</router-link
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/GestionarTarifas" class="nav-link"
-                                >Gestionar Tarifas</router-link
-                            >
-                        </li>
-                    </ul>
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Tarifa</span>
+                        </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <router-link to="/crearTarifas" class="nav-link"
+                                    >Crear Tarifas</router-link
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <router-link
+                                    to="/GestionarTarifas"
+                                    class="nav-link"
+                                    >Gestionar Tarifas</router-link
+                                >
+                            </li>
+                        </ul>
 
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-                    >
-                        <span>Entrenamiento</span>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <router-link to="/crearEjercicio" class="nav-link"
-                                >Crear Ejercicio</router-link
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <router-link
-                                to="/gestionarEjercicios"
-                                class="nav-link"
-                                >Gestionar Ejercicios</router-link
-                            >
-                        </li>
-                    </ul>
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-                    >
-                        <span>Clases</span>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <router-link to="/crearClases" class="nav-link"
-                                >Crear Clases</router-link
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/gestionarClases" class="nav-link"
-                                >Gestionar Clases</router-link
-                            >
-                        </li>
-                    </ul>
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Entrenamiento</span>
+                        </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <router-link
+                                    to="/crearEjercicio"
+                                    class="nav-link"
+                                    >Crear Ejercicio</router-link
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <router-link
+                                    to="/gestionarEjercicios"
+                                    class="nav-link"
+                                    >Gestionar Ejercicios</router-link
+                                >
+                            </li>
+                        </ul>
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Clases</span>
+                        </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <router-link to="/crearClases" class="nav-link"
+                                    >Crear Clases</router-link
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <router-link
+                                    to="/gestionarClases"
+                                    class="nav-link"
+                                    >Gestionar Clases</router-link
+                                >
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
 
