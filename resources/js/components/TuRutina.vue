@@ -4,7 +4,7 @@
             <a href="/crearRutina">
                 <button class="button-secondary mb-5">Crear rutina</button>
             </a>
-            <h1 class="text-center text-light pt-5">Tu Rutina</h1>
+            <h1 class="text-center text-light pt-5" style="-webkit-text-stroke: 1px black;">Tu Rutina</h1>
         </div>
     </div>
     <h1 class="text-center pt-5" v-if="this.miRutina.length > 0">Tu Rutina</h1>
@@ -170,7 +170,7 @@ export default {
     height: 50em;
     background-size: cover;
     background-position: center;
-    opacity: 0.9;
+    /* opacity: 0.9; */
     background-repeat: no-repeat;
     display: flex;
     justify-content: space-between;
