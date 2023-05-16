@@ -166,8 +166,8 @@ export default {
 </script>
 <style scoped>
 .banner-rutina {
-    background-image: url("http://localhost:8000/img/banner3.webp");
-    height: 35em;
+    background-image: url("http://localhost:8000/img/gimnasio_rutina.jpg");
+    height: 50em;
     background-size: cover;
     background-position: center;
     opacity: 0.9;
