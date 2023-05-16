@@ -30,7 +30,7 @@
         </div>
         <div v-if="mostrarResultados === false">
             <div class="container px-4 py-5" id="custom-cards">
-                <h2 class="pb-2 border-bottom">Ejercicios</h2>
+                <h3 class="pb-2 border-bottom">Ejercicios</h3>
                 <div
                     class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5"
                 >
@@ -65,7 +65,7 @@
 
         <div v-if="mostrarResultados">
             <div class="container px-4 py-5" id="custom-cards">
-                <h2>Ejericios</h2>
+                <h3 class="pb-2 border-bottom">Ejercicios</h3>
                 <div
                     class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5"
                 >
@@ -74,7 +74,7 @@
                         v-for="ejercicio in ejercicios" :key="ejercicio.id"
                     >
                         <div
-                            class="card card-cover h-100 overflow-hidden text-white d-flex"
+                            class="card card-cover h-100 overflow-hidden d-flex ejercicio"
                             :style="{
                                 backgroundImage:
                                     'url(/img/' +
@@ -83,9 +83,9 @@
                             }"
                         >
                             <div
-                                class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 align-items-center justify-content-center"
+                                class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1 align-items-center justify-content-center"
                             >
-                                <h2 class="text-center text-ejercicio">
+                                <h2 class="text-center text-dark">
                                     {{ ejercicio.nombre_ejercicio }}
                                 </h2>
                             </div>
@@ -141,6 +141,10 @@ export default {
 };
 </script>
 <style scoped>
+h2{
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 0.5);
+}
 .ejercicio{
     background-repeat: no-repeat;
     background-size: cover;
