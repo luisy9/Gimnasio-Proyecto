@@ -1,6 +1,14 @@
 <template>
-    <h1 class="text-center pt-5">Tu Rutina</h1>
-    <div class="container-fluid">
+    <div class="" v-if="this.miRutina.length == 0">
+        <div class="banner-rutina">
+            <a href="/crearRutina">
+                <button class="button-secondary mb-5">Crear rutina</button>
+            </a>
+            <h1 class="text-center text-light pt-5">Tu Rutina</h1>
+        </div>
+    </div>
+    <h1 class="text-center pt-5" v-if="this.miRutina.length > 0">Tu Rutina</h1>
+    <div class="container-fluid" v-if="this.miRutina.length > 0">
         <div class="row">
             <main class="ms-sm-auto px-md-4">
                 <section class="p-4">
@@ -18,21 +26,12 @@
                             ></button>
                             <strong>{{ error }}</strong>
                         </div>
-                        <div class="vis-desck mb-5" v-if="this.miRutina.length == 0">
-                            <div class="banner-rutina">
-                                <a href="/crearRutina">
-                                    <button class="button-secondary">
-                                        Crear rutina
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
                         <div
                             class="card card-default p-5"
                             v-if="this.miRutina.length"
                         >
                             <main class="form-signin w-100 m-auto px-5">
-                                <table
+                                <table class="table table-hover table-sm"
                                     v-for="(rutina, index) in miRutina"
                                     :key="rutina.id"
                                 >
@@ -40,16 +39,10 @@
                                     <table class="table table-hover table-sm">
                                         <thead class="bg-dark text-light">
                                             <tr>
-                                                <th
-                                                    width="50"
-                                                    class="text-center"
-                                                >
-                                                    #
-                                                </th>
-                                                <th class="px-2 text-center">
+                                                <th class="px-2">
                                                     Nombre Rutina
                                                 </th>
-                                                <th class="px-2 text-center">
+                                                <th class="px-2">
                                                     Nombre Ejercicio
                                                 </th>
                                                 <th class="px-2 text-center">
@@ -70,7 +63,6 @@
                                                     rutinas.dia_semana
                                                 "
                                             >
-                                                <td>{{ rutinas.id }}</td>
                                                 <td>
                                                     {{ rutinas.nombre_rutina }}
                                                 </td>
@@ -173,7 +165,7 @@ export default {
 };
 </script>
 <style scoped>
-.banner-rutina{
+.banner-rutina {
     background-image: url("http://localhost:8000/img/banner3.webp");
     height: 35em;
     background-size: cover;
@@ -181,9 +173,10 @@ export default {
     opacity: 0.9;
     background-repeat: no-repeat;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
+    flex-direction: column-reverse;
 }
 .logo-x {
     height: 20px;

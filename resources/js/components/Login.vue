@@ -70,7 +70,7 @@ export default {
                         if (response.data.success) {
                             console.error("OK");
                             console.error(response.data.message);
-                            window.location.href = "/"
+                            window.location.href = "/";
                             //window.location.href = "/login";
                         } else {
                             console.error("No loggin");

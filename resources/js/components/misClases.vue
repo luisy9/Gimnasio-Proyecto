@@ -1,6 +1,14 @@
 <template>
-    <h1 class="text-center pt-5">Clases Añadidas</h1>
-    <div class="container-fluid">
+    <div class="" v-if="this.clasesUser.length == 0">
+        <div class="banner-clases">
+            <a href="/clasesDirigidas">
+                <button class="button-secondary mb-5">Apuntate</button>
+            </a>
+            <h1 class="text-center pt-5">Clases Añadidas</h1>
+        </div>
+    </div>
+    <h1 class="text-center pt-5" v-if="this.clasesUser.length > 0">Clases Añadidas</h1>
+    <div class="container-fluid" v-if="this.clasesUser.length > 0">
         <div class="row">
             <main class="ms-sm-auto px-md-4">
                 <section class="p-4">
@@ -23,18 +31,6 @@
                             <strong>{{ error }}</strong>
                         </div>
                         <div
-                            class="vis-desck mb-5"
-                            v-if="this.clasesUser.length == 0"
-                        >
-                            <div class="banner-clases">
-                                <a href="/clasesDirigidas">
-                                    <button class="button-secondary">
-                                        Apuntate
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div
                             class="card card-default p-5"
                             v-if="this.clasesUser.length >= 1"
                         >
@@ -42,11 +38,11 @@
                                 <table class="table table-hover table-sm">
                                     <thead class="bg-dark text-light">
                                         <tr>
-                                            <th width="50" class="">
+                                            <th  class="text-center">
                                                 Numero Clase
                                             </th>
                                             <th class="px-1">Fecha Clase</th>
-                                            <th class="">Hora Clase</th>
+                                            <th class="text-center">Hora Clase</th>
 
                                             <th class="text-center px-3">
                                                 Cancelar Clase
@@ -59,13 +55,13 @@
                                         class="py-5"
                                     >
                                         <tr>
-                                            <td class="py-4">
+                                            <td class="text-center py-4">
                                                 {{ clases.clase_id }}
                                             </td>
                                             <td class="py-4">
                                                 {{ clases.fecha_clase }}
                                             </td>
-                                            <td class="py-4">
+                                            <td class="py-4 text-center">
                                                 {{ clases.hora_clase }}
                                             </td>
                                             <td class="text-center py-4">
@@ -158,6 +154,11 @@ export default {
     background-position: center;
     opacity: 0.9;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    flex-direction: column-reverse;
 }
 .logo-x {
     height: 20px;
