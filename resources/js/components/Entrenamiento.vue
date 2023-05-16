@@ -2,9 +2,18 @@
     <div class="banner-entrenamiento">
         <h1 class="text-light text-center">ENTRENAMIENTO</h1>
     </div>
-    <div class="vis-desck px-5">
+
+    
+    <div class="px-5">
         <div class="text-center my-5">
             <h3 class="mb-3"><b>Ejercicios especificos</b></h3>
+        </div>
+        <div class="my-5">
+            <div class="banner-buscar">
+                <a href="/buscarEjercicios" class="w-100 h-100 centrar-ent">
+                    <p class="text-white text-center">Buscador Ejericicos</p>
+                </a>
+            </div>
         </div>
         <div class="galeria-ejercicios">
             <div
@@ -28,13 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="vis-desck mb-5">
-            <div class="banner-buscar">
-                <a href="/buscarEjercicios" class="w-100 h-100 centrar-ent">
-                    <p class="text-white text-center">Buscador Ejericicos</p>
-                </a>
-            </div>
-        </div>
+        
     </div>
 
     <div class="vis-mov mb-5">
@@ -146,8 +149,8 @@ a {
     align-items: center;
 }
 .banner-buscar {
-    background-image: url("http://localhost:8000/img/banner3.webp");
-    height: 13.5em;
+    background-image: url("http://localhost:8000/img/1.jpg");
+    height: 26.5em;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
