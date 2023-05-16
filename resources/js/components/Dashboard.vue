@@ -1,5 +1,15 @@
 <template>
-    <div class="container-fluid" v-if="this.user_role == 'admin' || 'gestion_clases' || 'gestion_users' || 'gestion_roles' || 'gestion_tarifas' || 'gestion_entrenamiento'">
+    <div
+        class="container-fluid"
+        v-if="
+            this.user_role == 'admin' ||
+            'gestion_clases' ||
+            'gestion_users' ||
+            'gestion_roles' ||
+            'gestion_tarifas' ||
+            'gestion_entrenamiento'
+        "
+    >
         <div class="row">
             <nav
                 id="sidebarMenu"
@@ -51,102 +61,112 @@
                             this.user_role == 'gestion_users'
                         "
                     > -->
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-                    >
-                        <span>Gestion Usuarios</span>
-                    </h6>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <router-link to="/crearUsuarios" class="nav-link"
-                                >Crear Usuarios</router-link
-                            >
-                        </li>
-                    </ul>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <router-link to="/eliminarUsuarios" class="nav-link"
-                                >Modificar Usuarios</router-link
-                            >
-                        </li>
-                    </ul>
-                    <!-- </div> -->
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-                    >
-                        <span>Rol</span>
-                    </h6>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <router-link to="/createRole" class="nav-link"
-                                >Crear Roles</router-link
-                            >
-                        </li>
-                    </ul>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <router-link to="/roleAdmin" class="nav-link"
-                                >Gestionar Roles</router-link
-                            >
-                        </li>
-                    </ul>
+                    <div v-if="this.user_role == 'admin'">
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Gestion Usuarios</span>
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link
+                                    to="/crearUsuarios"
+                                    class="nav-link"
+                                    >Crear Usuarios</router-link
+                                >
+                            </li>
+                        </ul>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link
+                                    to="/eliminarUsuarios"
+                                    class="nav-link"
+                                    >Modificar Usuarios</router-link
+                                >
+                            </li>
+                        </ul>
+                        <!-- </div> -->
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Rol</span>
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link to="/createRole" class="nav-link"
+                                    >Crear Roles</router-link
+                                >
+                            </li>
+                        </ul>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <router-link to="/roleAdmin" class="nav-link"
+                                    >Gestionar Roles</router-link
+                                >
+                            </li>
+                        </ul>
 
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-                    >
-                        <span>Tarifa</span>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <router-link to="/crearTarifas" class="nav-link"
-                                >Crear Tarifas</router-link
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/GestionarTarifas" class="nav-link"
-                                >Gestionar Tarifas</router-link
-                            >
-                        </li>
-                    </ul>
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Tarifa</span>
+                        </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <router-link to="/crearTarifas" class="nav-link"
+                                    >Crear Tarifas</router-link
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <router-link
+                                    to="/GestionarTarifas"
+                                    class="nav-link"
+                                    >Gestionar Tarifas</router-link
+                                >
+                            </li>
+                        </ul>
 
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-                    >
-                        <span>Entrenamiento</span>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <router-link to="/crearEjercicio" class="nav-link"
-                                >Crear Ejercicio</router-link
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <router-link
-                                to="/gestionarEjercicios"
-                                class="nav-link"
-                                >Gestionar Ejercicios</router-link
-                            >
-                        </li>
-                    </ul>
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-                    >
-                        <span>Clases</span>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <router-link to="/crearClases" class="nav-link"
-                                >Crear Clases</router-link
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <router-link
-                                to="/gestionarClases"
-                                class="nav-link"
-                                >Gestionar Clases</router-link
-                            >
-                        </li>
-                    </ul>
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Entrenamiento</span>
+                        </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <router-link
+                                    to="/crearEjercicio"
+                                    class="nav-link"
+                                    >Crear Ejercicio</router-link
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <router-link
+                                    to="/gestionarEjercicios"
+                                    class="nav-link"
+                                    >Gestionar Ejercicios</router-link
+                                >
+                            </li>
+                        </ul>
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Clases</span>
+                        </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <router-link to="/crearClases" class="nav-link"
+                                    >Crear Clases</router-link
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <router-link
+                                    to="/gestionarClases"
+                                    class="nav-link"
+                                    >Gestionar Clases</router-link
+                                >
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
 
@@ -187,10 +207,9 @@
                                                 v-model="password"
                                                 placeholder="Enter post name"
                                             />
-                                            <label>Contraseña</label
-                                            >
+                                            <label>Contraseña</label>
                                         </div>
-                                        <br>
+                                        <br />
                                         <!--<div class="form-group mb-2">
                                             <label>Contraseña</label
                                             ><span class="text-danger"> *</span>
@@ -206,7 +225,7 @@
                                                 type="date"
                                                 class="form-control"
                                                 min="1899-01-01"
-                                                :max="maxFechaNacimiento" 
+                                                :max="maxFechaNacimiento"
                                                 v-model="fechaNacimiento"
                                             />
                                             <label for="fecha_nacimiento"
@@ -269,25 +288,35 @@
                             v-if="this.membership == true"
                             class="col-md-10 col-lg-8 col-xl-4"
                         >
-                        <div class="card card-default p-5">
+                            <div class="card card-default p-5">
                                 <div class="text-center py-4">
                                     <p class="mb-3 fw-normal titulo-form">
                                         <b> Tarifa Actual </b>
                                     </p>
-                                    <h4 class="mb-4">{{ this.nombre_tarifa }}</h4>
-                                    <router-link :to="`/cambiarTarifa/${this.iduser}/${this.nombre_tarifa}`" ></router-link>
-                                    
-                                    <button
-                                        type="submit"
-                                        class="button-primary"
-                                        style="padding-left: 10px;padding-right: 10px;"
+                                    <h4 class="mb-4">
+                                        {{ this.nombre_tarifa }}
+                                    </h4>
+                                    <router-link
+                                        :to="`/cambiarTarifa/${this.iduser}/${this.idtarifa}`"
                                     >
-                                        Cambiar tarifa
-                                    </button>
+                                        <button
+                                            type="submit"
+                                            class="button-primary"
+                                            style="
+                                                padding-left: 10px;
+                                                padding-right: 10px;
+                                            "
+                                        >
+                                            Cambiar tarifa
+                                        </button></router-link
+                                    >
                                     <button
                                         type="submit"
                                         class="button-primary"
-                                        style="padding-left: 10px;padding-right: 10px;"
+                                        style="
+                                            padding-left: 10px;
+                                            padding-right: 10px;
+                                        "
                                         @click="darbaja(this.iduser)"
                                     >
                                         Dar de baja
