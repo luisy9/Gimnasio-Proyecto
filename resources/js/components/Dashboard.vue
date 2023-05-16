@@ -1,5 +1,15 @@
 <template>
-    <div class="container-fluid" v-if="this.user_role == 'admin' || 'gestion_clases' || 'gestion_users' || 'gestion_roles' || 'gestion_tarifas' || 'gestion_entrenamiento'">
+    <div
+        class="container-fluid"
+        v-if="
+            this.user_role == 'admin' ||
+            'gestion_clases' ||
+            'gestion_users' ||
+            'gestion_roles' ||
+            'gestion_tarifas' ||
+            'gestion_entrenamiento'
+        "
+    >
         <div class="row">
             <nav
                 id="sidebarMenu"
@@ -140,9 +150,7 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <router-link
-                                to="/gestionarClases"
-                                class="nav-link"
+                            <router-link to="/gestionarClases" class="nav-link"
                                 >Gestionar Clases</router-link
                             >
                         </li>
@@ -187,10 +195,9 @@
                                                 v-model="password"
                                                 placeholder="Enter post name"
                                             />
-                                            <label>Contraseña</label
-                                            >
+                                            <label>Contraseña</label>
                                         </div>
-                                        <br>
+                                        <br />
                                         <!--<div class="form-group mb-2">
                                             <label>Contraseña</label
                                             ><span class="text-danger"> *</span>
@@ -206,7 +213,7 @@
                                                 type="date"
                                                 class="form-control"
                                                 min="1899-01-01"
-                                                :max="maxFechaNacimiento" 
+                                                :max="maxFechaNacimiento"
                                                 v-model="fechaNacimiento"
                                             />
                                             <label for="fecha_nacimiento"
@@ -269,25 +276,35 @@
                             v-if="this.membership == true"
                             class="col-md-10 col-lg-8 col-xl-4"
                         >
-                        <div class="card card-default p-5">
+                            <div class="card card-default p-5">
                                 <div class="text-center py-4">
                                     <p class="mb-3 fw-normal titulo-form">
                                         <b> Tarifa Actual </b>
                                     </p>
-                                    <h4 class="mb-4">{{ this.nombre_tarifa }}</h4>
-                                    <router-link :to="`/cambiarTarifa/${this.iduser}/${this.nombre_tarifa}`" ></router-link>
-                                    
-                                    <button
-                                        type="submit"
-                                        class="button-primary"
-                                        style="padding-left: 10px;padding-right: 10px;"
+                                    <h4 class="mb-4">
+                                        {{ this.nombre_tarifa }}
+                                    </h4>
+                                    <router-link
+                                        :to="`/cambiarTarifa/${this.iduser}/${this.idtarifa}`"
                                     >
-                                        Cambiar tarifa
-                                    </button>
+                                        <button
+                                            type="submit"
+                                            class="button-primary"
+                                            style="
+                                                padding-left: 10px;
+                                                padding-right: 10px;
+                                            "
+                                        >
+                                            Cambiar tarifa
+                                        </button></router-link
+                                    >
                                     <button
                                         type="submit"
                                         class="button-primary"
-                                        style="padding-left: 10px;padding-right: 10px;"
+                                        style="
+                                            padding-left: 10px;
+                                            padding-right: 10px;
+                                        "
                                         @click="darbaja(this.iduser)"
                                     >
                                         Dar de baja
