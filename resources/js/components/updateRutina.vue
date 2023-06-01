@@ -98,6 +98,33 @@
                         <span> </span>
                     </div>
                     <div class="col">
+                        <h2 class="mb-4">Tu Rutina</h2>
+                        <div v-for="(ejercicio, id) in lengthRutina">
+                            <h5>{{ ejercicio.ejercicio }}</h5>
+                            <!-- <img :src="`/img/${ejercicio.imagen}`" /> -->
+                            <b>Series: </b>
+                            <input
+                                type="number"
+                                class="mb-2"
+                                :value="ejercicio.series"
+                                style="width: 5rem"
+                            />
+                            <br>
+                            <b>Descansos entre series: </b>
+                            <input
+                                type="text"
+                                class="mb-2"
+                                :value="ejercicio.descanso"
+                                style="width: 8rem"
+                            />
+                            <b>Repeticiones: </b>
+                            <input
+                                type="number"
+                                class="mb-2"
+                                :value="ejercicio.repeticiones"
+                                style="width: 5rem"
+                            />
+                        </div>
                         <div
                             class="imagen-container"
                             v-for="(objetoImagen, id) in this.imgEjer"
@@ -146,8 +173,8 @@
                             />
                         </div>
                     </div>
-                    <button class="button-primary m-auto" @click="handleSubmit">
-                        Crear Rutina
+                    <button class="button-primary m-auto mt-4" @click="handleSubmit">
+                        Actualizar Rutina
                     </button>
                 </div>
             </div>
@@ -170,10 +197,10 @@ export default {
             ],
             selectedDay: null,
             userid: window.Laravel.user.id,
+            nombreRutina: this.$route.params.nombre_rutina,
             diaSemana: "",
             activeDay: null,
             selectedDate: "",
-            nombreRutina: "",
             categorias: null,
             ejercicios: null,
             selected: "",
@@ -182,9 +209,12 @@ export default {
             nombreEjer: [],
             strSuccess: "",
             strError: "",
+            diaSemana: "",
+            lengthRutina: [],
         };
     },
     mounted() {
+        console.log(this.nombreRutina);
         console.log(this.userid);
         console.log("day: " + this.activeDay);
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
@@ -193,6 +223,19 @@ export default {
                 .then((response) => {
                     this.categorias = response.data;
                     console.log(this.categorias);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get("/api/rutinaUser/" + this.nombreRutina)
+                .then((response) => {
+                    console.log(response.data);
+                    this.diaSemana = response.data[0].dia_semana;
+                    this.lengthRutina = response.data;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -216,7 +259,7 @@ export default {
                                 response.data[0].imagen_ejercicio,
                                 1,
                                 1,
-                                0
+                                0,
                             ];
                             console.log(this.imgEjer);
                         })
