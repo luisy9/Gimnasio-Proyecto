@@ -23,7 +23,7 @@
                 Ya eres de los nuestros!<br />
                 Quieres reservar tu primera clase?
             </p>
-            <a href="/clasesDirigidas" v-if="this.isPro">
+            <a href="/crearRutina" v-if="this.isPro">
                 <button class="button-secondary">Crear Rutina</button>
             </a>
             <a href="/clasesDirigidas">

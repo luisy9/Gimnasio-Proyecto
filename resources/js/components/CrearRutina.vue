@@ -102,10 +102,10 @@
                             class="imagen-container"
                             v-for="(objetoImagen, id) in this.imgEjer"
                         >
-                            <p v-for="nombre in this.nombreEjer">
+                            <h5 v-for="nombre in this.nombreEjer">
                                 {{ nombre.nombre_ejercicio }}
-                            </p>
-                            {{ objetoImagen[0] }}
+                            </h5>
+                            <h5>{{ objetoImagen[0] }}</h5>
                             <div
                                 class="imagen-seleccionada"
                                 :style="{
