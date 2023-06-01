@@ -48,7 +48,10 @@ class EntrenamientoController extends Controller
             $rutina = new rutina_users();
             $rutina->nombre_rutina = $req->nombre_rutina;
             $rutina->dia_semana = $req->dia_semana;
-            $rutina->ejercicios = $req->ejercicios;
+            $rutina->ejercicio = $req->ejercicio;
+            $rutina->descanso = $req->descanso;
+            $rutina->series = $req->series;
+            $rutina->repeticiones = $req->repeticiones;
             $rutina->user_id = $userid;
             $rutina->save();
 
@@ -84,5 +87,10 @@ class EntrenamientoController extends Controller
 
     public function deleteEjericicio(){
         
+    }
+
+    public function busquedaImg($dato){
+        $img = ejercicio::where('id', $dato)->get();
+        return $img;
     }
 }

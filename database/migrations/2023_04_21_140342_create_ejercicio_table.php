@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_ejercicio');
             $table->string('imagen_ejercicio');
+            $table->longText('descripcion_ejercicio');
             $table->unsignedBigInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categoria');
             $table->timestamps();

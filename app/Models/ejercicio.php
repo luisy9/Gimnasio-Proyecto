@@ -20,6 +20,7 @@ class ejercicio extends Model
         'id',
         'nombre_ejercicio',
         'imagen_ejercicio',
+        'descripcion_ejercicio',
         'categoria_id',
     ];
 }

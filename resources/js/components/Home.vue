@@ -15,10 +15,17 @@
     </div>
     <div v-if="this.membership == true" class="banner-home">
         <div class="banner-text">
-            <p class="text-white">
-               Ya eres de los nuestros!<br>
-               Quieres reservar tu primera clase?
+            <p class="text-white" v-if="this.isPro">
+                Enhorabuena eres Miembro Pro!<br />
+                Crear tu primera rutina o Inscribete en nuestras clases!
             </p>
+            <p class="text-white" v-else>
+                Ya eres de los nuestros!<br />
+                Quieres reservar tu primera clase?
+            </p>
+            <a href="/clasesDirigidas" v-if="this.isPro">
+                <button class="button-secondary">Crear Rutina</button>
+            </a>
             <a href="/clasesDirigidas">
                 <button class="button-secondary">Clases Dirigidas</button>
             </a>
@@ -233,45 +240,42 @@
             </div> -->
         </main>
     </div>
-    <!-- <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-        <div v-for="(tarifa, index) in tarifas" :key="index">
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm border-dark">
-                    <div class="card-header py-3 border-dark bg-dark">
-                        <h4 class="my-0 fw-normal text-light">
-                            <b>
-                                {{ tarifa.tipo_tarifa }}
-                            </b>
-                        </h4>
-                    </div>
-                    <div class="card-body carta-color tarjeta">
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <div
-                                v-for="descripcion in tarifa.descripcion_tarifa.split(
-                                    ','
-                                )"
-                            >
-                                <li class="tarjeta-text my-2">
-                                    {{ descripcion }}
-                                </li>
-                            </div>
-                        </ul>
-                    </div>
-                    <h1 class="card-title pricing-card-title precio">
-                        {{ tarifa.precio }}€<small
-                            class="text-body-secondary fw-light"
-                            >/mes</small
-                        >
-                    </h1>
-                    <router-link :to="`/pago/${tarifa.id}`">
-                        <button class="button-primary my-4" @click="navigate">
-                            Seleccionar
-                        </button>
-                    </router-link>
+    <div class="seccion mx-0 mb-0" v-if="isPro">
+        <div class="text-center text-titulo">
+            <h1>Crea tu Rutina</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12 imagen-rutina">
+                <div class="banner-text">
+                    <section>
+                        <h2 class=""><b>Eres miembro Pro enhorabuena!</b></h2>
+                            <p class="pt-3">Siendo miemnbro Pro podras crear tus propias rutinas y poder verlas cuando quieras</p>
+                            <router-link to="/crearRutina">
+                                <button class="button-secondary my-2">Crear Rutina</button>
+                            </router-link>
+                    </section>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+    <div v-else class="seccion mx-0 mb-0">
+        <div class="text-center text-titulo">
+            <h1>Miembro Pro</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12 imagen-rutina">
+                <div class="banner-text">
+                    <section>
+                        <h2 class=""><b>Hazte miembro Pro!</b></h2>
+                            <p class="pt-3">Si te haces miembro Pro, podras tener acceso a todas las rutinas que quieras totalmente personalizadas solo para ti!!</p>
+                            <router-link to="/Tarifa">
+                                <button class="button-primary my-2">Hacerme Pro</button>
+                            </router-link>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- SEC2  ELEGIRNOS-->
     <div class="seccion mx-0 mb-0">
@@ -322,6 +326,7 @@ export default {
             iduser: null,
             strSuccess: "",
             strError: "",
+            isPro: null
         };
     },
 
@@ -373,6 +378,23 @@ export default {
                     console.log(error);
                 });
         });
+
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                this.$axios
+                    .get("/api/isUserPro/" + this.iduser)
+                    .then((response) => {
+                        this.isPro = response.data;
+                        if (this.isPro == 0) {
+                            console.log("dkasmdkas");
+                            console.log((this.isPro = false));
+                        } else {
+                            this.isPro = true;
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            });
     },
     created() {
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
@@ -424,9 +446,15 @@ export default {
     width: 40em;
 }
 
+.imagen-rutina {
+    background-image: url("../../img/creaTuRutina.jpg");
+    height: 40.5rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 .imagen-prueba {
     background-image: url("../../img/seccion3.webp");
-    height: 37.5em;
+    /* height: 37.5em; */
     background-size: cover;
     background-repeat: no-repeat;
 }

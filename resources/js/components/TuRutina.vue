@@ -4,7 +4,12 @@
             <a href="/crearRutina">
                 <button class="button-secondary mb-5">Crear rutina</button>
             </a>
-            <h1 class="text-center text-light pt-5" style="-webkit-text-stroke: 1px black;">Tu Rutina</h1>
+            <h1
+                class="text-center text-light pt-5"
+                style="-webkit-text-stroke: 1px black"
+            >
+                Tu Rutina
+            </h1>
         </div>
     </div>
     <h1 class="text-center pt-5" v-if="this.miRutina.length > 0">Tu Rutina</h1>
@@ -31,11 +36,12 @@
                             v-if="this.miRutina.length"
                         >
                             <main class="form-signin w-100 m-auto px-5">
-                                <table class="table table-hover table-sm"
-                                    v-for="(rutina, index) in miRutina"
-                                    :key="rutina.id"
+                                <table
+                                    class="table table-hover table-sm"
+                                    v-for="dia in this.diaSemana"
+                                    :key="dia"
                                 >
-                                    <h2>{{ rutina.dia_semana }}</h2>
+                                    <h2>{{ dia }}</h2>
                                     <table class="table table-hover table-sm">
                                         <thead class="bg-dark text-light">
                                             <tr>
@@ -45,6 +51,11 @@
                                                 <th class="px-2">
                                                     Nombre Ejercicio
                                                 </th>
+                                                <th class="px-2">Series</th>
+                                                <th class="px-2">
+                                                    Repeticiones
+                                                </th>
+                                                <th class="px-2">Imagen</th>
                                                 <th class="px-2 text-center">
                                                     Editar
                                                 </th>
@@ -55,19 +66,35 @@
                                         </thead>
                                         <tbody
                                             v-for="(rutinas, index) in miRutina"
-                                            :key="rutina.id"
+                                            :key="rutinas.nombre_rutina"
                                         >
                                             <tr
                                                 v-if="
-                                                    rutina.dia_semana ===
-                                                    rutinas.dia_semana
+                                                    dia === rutinas.dia_semana
                                                 "
                                             >
                                                 <td>
                                                     {{ rutinas.nombre_rutina }}
                                                 </td>
                                                 <td>
-                                                    {{ rutinas.ejercicios }}
+                                                    {{ rutinas.ejercicio }}
+                                                </td>
+                                                <td>
+                                                    {{ rutinas.series }}
+                                                </td>
+                                                <td>
+                                                    {{ rutinas.repeticiones }}
+                                                </td>
+                                                <td>
+                                                    <div
+                                                        class="imagen-seleccionada"
+                                                        :style="{
+                                                            backgroundImage:
+                                                                'url(/img/' +
+                                                                rutinas.img +
+                                                                ')',
+                                                        }"
+                                                    ></div>
                                                 </td>
                                                 <td class="text-center">
                                                     <a
@@ -126,6 +153,15 @@ export default {
             nombre: "",
             miRutina: [],
             ejercicios: [],
+            diaSemana: [
+                "Lunes",
+                "Martes",
+                "Miercoles",
+                "Jueves",
+                "Viernes",
+                "Sabado",
+                "Domingo",
+            ],
         };
     },
     mounted() {
@@ -134,6 +170,24 @@ export default {
                 .get("/api/hasTarifa/" + this.iduser)
                 .then((response) => {
                     this.miRutina = response.data;
+                    console.log(this.miRutina);
+                    this.miRutina.forEach((e) => {
+                        console.log(e.ejercicio);
+                        this.$axios
+                            .get("/sanctum/csrf-cookie")
+                            .then((response) => {
+                                this.$axios
+                                    .get("/api/getImg/" + e.ejercicio)
+                                    .then((response) => {
+                                        console.log(response.data);
+                                        e.img = response.data.imagen_ejercicio;
+                                    })
+                                    .catch(function (error) {
+                                        console.error(error);
+                                    });
+                            });
+                    });
+                    console.log("hola")
                     console.log(this.miRutina);
                 })
                 .catch(function (error) {

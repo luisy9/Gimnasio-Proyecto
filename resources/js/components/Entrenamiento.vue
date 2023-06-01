@@ -1,88 +1,184 @@
 <template>
     <div class="banner-entrenamiento">
-        <h1 class="text-light text-center">ENTRENAMIENTO</h1>
+        <h1 class="text-light text-center">Mis Rutinas</h1>
     </div>
-
-    
-    <div class="px-5">
+    <div class="px-5" v-if="isPro">
         <div class="text-center my-5">
-            <h3 class="mb-3"><b>Ejercicios especificos</b></h3>
+            <h3 class="mb-3"><b>Crea tu Rutina</b></h3>
         </div>
         <div class="my-5">
             <div class="banner-buscar">
-                <a href="/buscarEjercicios" class="w-100 h-100 centrar-ent">
-                    <button class="button-secondary">Todos</button>
-                </a>
-            </div>
-        </div>
-        <div class="galeria-ejercicios vis-desck">
-            <div
-                class="col flex justify-content-center galeria-ejercicios"
-                v-for="(catego, index) in categorias"
-                :key="catego.id"
-            >
-                <div
-                    class="galeria-imagen centrar-ent"
-                    :style="`background-image: url('http://localhost:8000/img/${catego.imagen_categoria}');`"
-                >
-                    <router-link
-                        class="link-negro"
-                        :to="`/ejercicioMusculo/${catego.id}`"
-                        :style="`width: 100% ; height: 100%;`"
-                    >
-                        <p class="text-white">
-                            {{ catego.nombre_categoria }}
-                        </p>
-                    </router-link>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-
-    <div class="vis-mov mb-5">
-        <div class="text-center vis-mov">
-            <h3 class="mb-3"><b>Ejercicios especificos</b></h3>
-        </div>
-
-        <div class="" v-for="(catego, index) in categorias" :key="catego.id">
-            <div class="px-3">
-                <router-link
-                    class="link-negro"
-                    :to="`/ejercicioMusculo/${catego.id}`"
-                    :style="`width: 100% ; height: 100%;`"
-                >
-                    <div class="">
-                        <div
-                            class="img-fluid centrar-ent w-100"
-                            :style="`background-image: url('http://localhost:8000/img/${catego.imagen_categoria}');`"
-                        >
-                            <p class="text-white card-title">
-                                {{ catego.nombre_categoria }}
-                            </p>
-                        </div>
-                    </div>
+                <router-link :to="`/crearRutina`">
+                    <button class="button-secondary">Crear</button>
                 </router-link>
             </div>
         </div>
     </div>
-
-    <section class="part3 px-5 pb-5">
-        <div class="text-center  ">
-            <!-- <h3 class="mb-3"><b>Rutinas</b></h3> -->
-        </div>
-        <div class="vis-desck mt-5" v-if="this.isPro">
-            <div class="banner-rutina">
-                <a href="/crearRutina">
-                    <button class="button-secondary">Crear rutina</button>
-                </a>
+    <div v-else>
+        <div class="my-5">
+            <div class="text-center my-5">
+                <h3 class="mb-3"><b>Crea tu Rutina</b></h3>
+            </div>
+            <div class="banner-buscar">
+                <div class="text-center">
+                    <h2 class="mb-5 text-white"><b>Hazte miembro Pro!</b></h2>
+                    <router-link :to="`/tarifa`">
+                        <button v-if="!isPro" class="button-secondary mt-5">
+                            Cambiar Tarifa
+                        </button>
+                    </router-link>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+    <h3 class="text-center pt-5" v-if="this.miRutina.length > 0">
+        <b>Tu Rutina</b>
+    </h3>
+    <div class="container-fluid" v-if="this.miRutina.length > 0">
+        <div class="row">
+            <main class="ms-sm-auto px-md-4">
+                <section class="p-4">
+                    <div class="row d-flex justify-content-center mb-5">
+                        <div
+                            class="alert alert-danger alert-dismissible fade show"
+                            role="alert"
+                            v-if="error"
+                        >
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="alert"
+                                aria-label="Close"
+                            ></button>
+                            <strong>{{ error }}</strong>
+                        </div>
+                        <div
+                            class="card card-default p-5"
+                            v-if="this.miRutina.length"
+                        >
+                            <main class="form-signin w-100 m-auto px-5">
+                                <table
+                                    class="table table-hover table-sm"
+                                    v-for="dia in this.diaSemana"
+                                    :key="dia"
+                                >
+                                    <h2>{{ dia }}</h2>
+                                    <table class="table table-hover table-sm">
+                                        <thead class="bg-dark text-light">
+                                            <tr class="">
+                                                <th class="">
+                                                    Nombre Rutina
+                                                </th>
+                                                <th class="px-5">
+                                                    Nombre Ejercicio
+                                                </th>
+                                                <th class="px-4">Series</th>
+                                                <th class="px-4">
+                                                    Descanso entre Series
+                                                </th>
+                                                <th class="px-4">
+                                                    Repeticiones
+                                                </th>
+                                                <th class="px-4">Imagen</th>
+                                                <th class="px-4">
+                                                    Descripcion Ejercicio
+                                                </th>
+                                                <th class="px-4 text-center">
+                                                    Editar
+                                                </th>
+                                                <th class="text-center">
+                                                    Eliminar
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody
+                                            v-for="(rutinas, index) in miRutina"
+                                            :key="rutinas.nombre_rutina"
+                                        >
+                                            <tr
+                                                v-if="
+                                                    dia === rutinas.dia_semana
+                                                "
+                                            >
+                                                <td class="">
+                                                    {{ rutinas.nombre_rutina }}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ rutinas.ejercicio }}
+                                                </td>
+
+                                                <td class="text-center">
+                                                    {{ rutinas.series }}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ rutinas.descanso }}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ rutinas.repeticiones }}
+                                                </td>
+                                                <td>
+                                                    <div
+                                                        class="imagen-seleccionada"
+                                                        :style="{
+                                                            backgroundImage:
+                                                                'url(/img/' +
+                                                                rutinas.imagen_ejercicio +
+                                                                ')',
+                                                        }"
+                                                    ></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    {{
+                                                        rutinas.descripcion_ejercicio
+                                                    }}
+                                                </td>
+                                                <td class="text-center">
+                                                    <a
+                                                        class="px-5"
+                                                        style="cursor: pointer"
+                                                        @click="
+                                                            editarRutina(
+                                                                rutinas.id
+                                                            )
+                                                        "
+                                                    >
+                                                        <img
+                                                            class="logo-editar"
+                                                            src="/img/logos/editar.svg"
+                                                        />
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a
+                                                        class="px-5"
+                                                        style="cursor: pointer"
+                                                        @click="
+                                                            deleteRutina(
+                                                                rutinas.id
+                                                            )
+                                                        "
+                                                    >
+                                                        <img
+                                                            class="logo-x"
+                                                            src="/img/logos/x.svg"
+                                                        />
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </table>
+                            </main>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
 </template>
 <script>
 export default {
-    name: "Entrenamiento",
+    name: "WikiEjercicios",
     data() {
         return {
             categorias: null,
@@ -90,6 +186,17 @@ export default {
             isLoggedin: false,
             user: null,
             iduser: null,
+            diaSemana: [
+                "Lunes",
+                "Martes",
+                "Miercoles",
+                "Jueves",
+                "Viernes",
+                "Sabado",
+                "Domingo",
+            ],
+            miRutina: [],
+            ejercicios: [],
         };
     },
     mounted() {
@@ -102,6 +209,39 @@ export default {
                 })
                 .catch(function (error) {
                     console.log(error);
+                });
+        });
+
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+            this.$axios
+                .get("/api/hasTarifa/" + this.iduser)
+                .then((response) => {
+                    this.miRutina = response.data;
+                    console.log(this.miRutina);
+                    this.miRutina.forEach((e) => {
+                        console.log(e.ejercicio);
+                        this.$axios
+                            .get("/sanctum/csrf-cookie")
+                            .then((response) => {
+                                this.$axios
+                                    .get("/api/getImg/" + e.ejercicio)
+                                    .then((response) => {
+                                        console.log(response.data);
+                                        e.imagen_ejercicio =
+                                            response.data[0].imagen_ejercicio;
+                                        e.descripcion_ejercicio =
+                                            response.data[0].descripcion_ejercicio;
+                                    })
+                                    .catch(function (error) {
+                                        console.error(error);
+                                    });
+                            });
+                    });
+                    console.log("hola");
+                    console.log(this.miRutina);
+                })
+                .catch(function (error) {
+                    console.error(error);
                 });
         });
 
@@ -127,13 +267,74 @@ export default {
             });
         }
     },
-
-    methods: {
-        buscadorEjercicios() {},
-    },
 };
 </script>
 <style scoped>
+.image-container {
+    width: 400px;
+    height: 300px;
+    background-image: url("ruta_de_tu_imagen.jpg");
+    background-size: cover;
+    position: relative;
+}
+
+.image-description {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+}
+
+.image-container:hover .image-description {
+    display: block;
+}
+
+.image-description a {
+    color: white;
+    text-decoration: none;
+}
+.image-link {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.image-link img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.image-link .description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.image-link:hover .description {
+    opacity: 1;
+}
+.logo-x {
+    height: 20px;
+}
+.logo-editar {
+    height: 23px;
+}
+.logo-x:hover {
+    opacity: 0.5;
+}
+.logo-editar:hover {
+    opacity: 0.5;
+}
 .vis-mov {
     display: none;
 }

@@ -53,7 +53,7 @@
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <router-link to="/entrenamiento" class="nav-link"
-                        >Entrenamiento</router-link
+                        >Mis Rutinas</router-link
                     >
                 </li>
                 <li class="nav-item">
@@ -62,10 +62,15 @@
                     >
                 </li>
                 <li class="nav-item">
+                    <router-link to="/wikiEjercicios" class="nav-link"
+                        >Wiki de Ejercicios</router-link
+                    >
+                </li>
+                <!-- <li class="nav-item">
                     <router-link to="/compania" class="nav-link"
                         >¿Quienes somos?</router-link
                     >
-                </li>
+                </li> -->
                 <li class="nav-item vis-mov">
                     <div class="nav-item" v-if="isLoggedin">
                         <a

@@ -34,6 +34,7 @@ import misClases from "../components/misClases.vue";
 import gestionarClases from "../components/GestionarClases.vue";
 import crearClases from "../components/CrearClases.vue";
 import updateClases from "../components/updateClases.vue";
+import WikiEjercicios from "../components/WikiEjercicios.vue";
 import { createWebHistory, createRouter } from "vue-router";
 
 export const routes = [
@@ -213,6 +214,11 @@ export const routes = [
         name: "updateClases",
         path: "/updateClases/:id",
         component: updateClases,
+    },
+    {
+        name: "WikiEjercicios",
+        path: "/wikiEjercicios",
+        component: WikiEjercicios,
     },
 ];
 

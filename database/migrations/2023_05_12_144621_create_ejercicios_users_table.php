@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_rutina');
             $table->string('dia_semana');
-            $table->string('ejercicios');
+            $table->string('ejercicio');
+            $table->unsignedBigInteger('series');
+            $table->unsignedBigInteger('repeticiones');
+            $table->string('descanso');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

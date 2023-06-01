@@ -89,3 +89,5 @@ Route::get('showClaseUpdate/{id}', [AdminController::class, 'showClases']);
 Route::post('updateClase/{id}', [AdminController::class, 'updateClases']);
 Route::post('createRoles', [AdminController::class, 'createRoles']);
 Route::post('updateRoles/{idrole}', [AdminController::class, 'updateRoles']);
+Route::get('busquedaImgRutina/{data}', [EntrenamientoController::class, 'busquedaImg']);
+Route::get('getImg/{nombre_ejercicio}', [EjerciciosController::class, 'getImg']);
