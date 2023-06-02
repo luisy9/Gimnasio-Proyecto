@@ -98,9 +98,33 @@
                         <span> </span>
                     </div>
                     <div class="col">
-                        <h2 class="mb-4">Tu Rutina</h2>
-                        <div v-for="(ejercicio, id) in lengthRutina">
-                            <h5>{{ ejercicio.ejercicio }}</h5>
+                        <!-- <h2 class="mb-4">Tu Rutina</h2> -->
+                        <!-- <h4><b>{{ nombreRutina }}</b></h4> -->
+                        <div v-for="(ejercicio, id) in rutinaUsuario">
+                            <h5 class="mt-4">
+                                {{ ejercicio.ejercicio }}
+                                <a
+                                    class="px-5"
+                                    style="cursor: pointer"
+                                    @click="deleteRutina(ejercicio.id)"
+                                >
+                                    <img
+                                        class="logo-x"
+                                        src="/img/logos/x.svg"
+                                        style="height: 19px; width: 19px"
+                                    />
+                                </a>
+                            </h5>
+
+                            <div
+                                class="imagen-seleccionada"
+                                :style="{
+                                    backgroundImage:
+                                        'url(/img/' +
+                                        ejercicio.imagen_ejercicio +
+                                        ')',
+                                }"
+                            ></div>
                             <!-- <img :src="`/img/${ejercicio.imagen}`" /> -->
                             <b>Series: </b>
                             <input
@@ -109,7 +133,7 @@
                                 :value="ejercicio.series"
                                 style="width: 5rem"
                             />
-                            <br>
+                            <br />
                             <b>Descansos entre series: </b>
                             <input
                                 type="text"
@@ -125,7 +149,7 @@
                                 style="width: 5rem"
                             />
                         </div>
-                        <div
+                        <!-- <div
                             class="imagen-container"
                             v-for="(objetoImagen, id) in this.imgEjer"
                         >
@@ -171,9 +195,12 @@
                                 "
                                 style="width: 5rem"
                             />
-                        </div>
+                        </div> -->
                     </div>
-                    <button class="button-primary m-auto mt-4" @click="handleSubmit">
+                    <button
+                        class="button-primary m-auto mt-4"
+                        @click="handleSubmit"
+                    >
                         Actualizar Rutina
                     </button>
                 </div>
@@ -198,6 +225,8 @@ export default {
             selectedDay: null,
             userid: window.Laravel.user.id,
             nombreRutina: this.$route.params.nombre_rutina,
+            rutinaUsuario: [],
+            miRutina: [],
             diaSemana: "",
             activeDay: null,
             selectedDate: "",
@@ -241,8 +270,86 @@ export default {
                     console.log(error);
                 });
         });
+        this.$axios
+            .get("/sanctum/csrf-cookie")
+            .then((response) => {
+                this.$axios
+                    .get(
+                        "/api/hasRutinaUser/" +
+                            this.userid +
+                            "/" +
+                            this.nombreRutina
+                    )
+                    .then((response) => {
+                        this.rutinaUsuario = response.data;
+                        console.log(response.data, "User Rutina");
+                        this.rutinaUsuario.forEach((e) => {
+                            this.$axios
+                                .get(`/api/getImgEjercicio/${e.ejercicio}`)
+                                .then((response) => {
+                                    console.log(response.data);
+                                    e.imagen_ejercicio =
+                                        response.data[0].imagen_ejercicio;
+                                })
+                                .catch(function (error) {
+                                    console.error(error);
+                                });
+                        });
+                        console.log("hola");
+                        console.log(this.miRutina);
+                    });
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+
+        // this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+        //     this.$axios
+        //         .get("/api/hasTarifa/" + this.userid)
+        //         .then((response) => {
+        //             this.miRutina = response.data;
+        //             console.log(this.miRutina);
+        //             this.miRutina.forEach((e) => {
+        //                 console.log(e.ejercicio);
+        //                 this.$axios
+        //                     .get("/sanctum/csrf-cookie")
+        //                     .then((response) => {
+        //                         this.$axios
+        //                             .get("/api/getImg/" + e.ejercicio)
+        //                             .then((response) => {
+        //                                 console.log(response.data);
+        //                                 e.imagen_ejercicio =
+        //                                     response.data[0].imagen_ejercicio;
+        //                             })
+        //                             .catch(function (error) {
+        //                                 console.error(error);
+        //                             });
+        //                     });
+        //             });
+        //             console.log("hola");
+        //             console.log(this.miRutina);
+        //         })
+        //         .catch(function (error) {
+        //             console.error(error);
+        //         });
+        // });
     },
     methods: {
+        deleteRutina(id) {
+            this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                this.$axios
+                    .delete("/api/deleteRutina/" + id)
+                    .then((response) => {
+                        const index = this.rutinaUsuario.findIndex(
+                            (rutina) => rutina.id === id
+                        );
+                        this.rutinaUsuario.splice(index, 1);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            });
+        },
         busquedaImg(event) {
             console.log(event);
             console.log(event.target.checked);

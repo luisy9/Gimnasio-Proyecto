@@ -92,3 +92,5 @@ Route::post('updateRoles/{idrole}', [AdminController::class, 'updateRoles']);
 Route::get('busquedaImgRutina/{data}', [EntrenamientoController::class, 'busquedaImg']);
 Route::get('getImg/{nombre_ejercicio}', [EjerciciosController::class, 'getImg']);
 Route::get('rutinaUser/{nombre_rutina}',[EjerciciosController::class, 'showRutina']);
+Route::get('hasRutinaUser/{idUser}/{nombreRutina}',[EjerciciosController::class, 'RutinaPrintUpdate']);
+Route::get('getImgEjercicio/{ejercicio}',[EjerciciosController::class, 'imagenEjercicio']);

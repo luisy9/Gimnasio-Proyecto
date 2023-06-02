@@ -31,4 +31,16 @@ class EjerciciosController extends Controller
       return $rutina_user;
    }
 
+   public function RutinaPrintUpdate($idUser,$nombre_rutina){
+      $ejercicio_user = rutina_users::where('nombre_rutina', $nombre_rutina)
+      ->where('user_id', $idUser)->get();
+
+      return $ejercicio_user;
+   }
+
+   public function imagenEjercicio($ejercicio){
+      $imagen = ejercicio::where('nombre_ejercicio', $ejercicio)->get();
+      return $imagen;
+   }
+
 }
