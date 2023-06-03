@@ -282,10 +282,10 @@ export default {
         deleteRutinaX(id){
             delete this.imgEjer[id];
         },
-        deleteRutina(nombre) {
+        deleteRutinaAnterior(nombre) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
-                    .delete("/api/deleteRutina/" + nombre)
+                    .delete("/api/deleteRutinaAnterior/" + nombre)
                     .then((response) => {
                         const index = this.rutinaUsuario.findIndex(
                             (rutina) => rutina.nombre_rutina === nombre
@@ -354,7 +354,7 @@ export default {
             }
         },
         handleSubmit() {
-            this.deleteRutina(this.nombreRutinaAnterior);
+            this.deleteRutinaAnterior(this.nombreRutinaAnterior);
             for (const [id, e] of Object.entries(this.imgEjer)) {
                 const formData = new FormData();
                 formData.append("nombre_rutina", this.nombreRutina);

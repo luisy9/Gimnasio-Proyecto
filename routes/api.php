@@ -74,7 +74,7 @@ Route::get('showEjercicioUpdate/{id}', [AdminController::class, 'showEjericioUpd
 Route::post('updateEjercicio/{idejercicio}', [AdminController::class, 'updateEjercicio']);
 Route::post('createEjercicio', [AdminController::class, 'createEjercicio']);
 Route::post('updateRutina/{idrutina}', [AdminController::class, 'updateRutina']);
-Route::delete('deleteRutina/{nombre}', [AdminController::class, 'deleteRutina']);
+Route::delete('deleteRutina/{id}', [AdminController::class, 'deleteRutina']);
 Route::get('clases', [ClasesController::class, 'clases']);
 Route::get('claseSeleccionada/{idclase}', [ClasesController::class, 'clasesSelect']);
 Route::post('unirteClase/{iduser}/{idclase}', [ClasesController::class, 'unirseClase']);
@@ -94,3 +94,5 @@ Route::get('getImg/{nombre_ejercicio}', [EjerciciosController::class, 'getImg'])
 Route::get('rutinaUser/{nombre_rutina}',[EjerciciosController::class, 'showRutina']);
 Route::get('hasRutinaUser/{idUser}/{nombreRutina}',[EjerciciosController::class, 'RutinaPrintUpdate']);
 Route::get('getImgEjercicio/{ejercicio}',[EjerciciosController::class, 'imagenEjercicio']);
+Route::delete('deleteRutinaAnterior/{nombre}',[EjerciciosController::class, 'deleteRutinaAnterior']);
+
