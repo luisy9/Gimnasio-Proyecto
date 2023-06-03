@@ -51,7 +51,7 @@
                     <div
                         class=""
                         v-for="(ejerci, index) in ejercicios"
-                        :key="index"
+                        :key="ejerci.id"
                     >
                         <div class="image-container">
                             <div
@@ -74,6 +74,7 @@
                                             name="test"
                                             :value="`${ejerci.id}`"
                                             @change="busquedaImg"
+                                            :id="`${ejerci.id}`"
                                         />
                                         <!-- <input type="number" :value="" -->
                                     </p>
@@ -100,13 +101,19 @@
                     <div class="col">
                         <!-- <h2 class="mb-4">Tu Rutina</h2> -->
                         <!-- <h4><b>{{ nombreRutina }}</b></h4> -->
-                        <div v-for="(ejercicio, id) in rutinaUsuario">
-                            <h5 class="mt-4">
-                                {{ ejercicio.ejercicio }}
+                        <div
+                            class="imagen-container"
+                            v-for="(objetoImagen, id) in this.imgEjer"
+                        >
+                            <h5 v-for="nombre in this.nombreEjer">
+                                {{ nombre.nombre_ejercicio }}
+                            </h5>
+                            <h5>
+                                {{ objetoImagen[0] }}
                                 <a
                                     class="px-5"
                                     style="cursor: pointer"
-                                    @click="deleteRutina(ejercicio.id)"
+                                    @click="deleteRutinaX(id)"
                                 >
                                     <img
                                         class="logo-x"
@@ -115,37 +122,42 @@
                                     />
                                 </a>
                             </h5>
-
                             <div
                                 class="imagen-seleccionada"
                                 :style="{
                                     backgroundImage:
-                                        'url(/img/' +
-                                        ejercicio.imagen_ejercicio +
-                                        ')',
+                                        'url(/img/' + objetoImagen[1] + ')',
                                 }"
                             ></div>
-                            <!-- <img :src="`/img/${ejercicio.imagen}`" /> -->
-                            <b>Series: </b>
+                            Series:
                             <input
                                 type="number"
                                 class="mb-2"
-                                :value="ejercicio.series"
+                                :value="objetoImagen[2]"
+                                @input="
+                                    actualizarSeries(id, $event.target.value)
+                                "
                                 style="width: 5rem"
-                            />
-                            <br />
-                            <b>Descansos entre series: </b>
+                            /><br />
+                            Descanso entre Series:
                             <input
-                                type="text"
                                 class="mb-2"
-                                :value="ejercicio.descanso"
+                                type="text"
+                                :value="objetoImagen[4]"
+                                @input="
+                                    actualizarDescanso(id, $event.target.value)
+                                "
                                 style="width: 8rem"
                             />
-                            <b>Repeticiones: </b>
+                            <br />
+                            Repeticiones:
                             <input
+                                class="mt-2"
                                 type="number"
-                                class="mb-2"
-                                :value="ejercicio.repeticiones"
+                                :value="objetoImagen[3]"
+                                @input="
+                                    actualizarRepes(id, $event.target.value)
+                                "
                                 style="width: 5rem"
                             />
                         </div>
@@ -240,9 +252,11 @@ export default {
             strError: "",
             diaSemana: "",
             lengthRutina: [],
+            nombreRutinaAnterior: "",
         };
     },
     mounted() {
+        this.nombreRutinaAnterior = this.nombreRutina;
         console.log(this.nombreRutina);
         console.log(this.userid);
         console.log("day: " + this.activeDay);
@@ -264,6 +278,7 @@ export default {
                 .then((response) => {
                     console.log(response.data);
                     this.diaSemana = response.data[0].dia_semana;
+                    this.selectedDay = response.data[0].dia_semana;
                     this.lengthRutina = response.data;
                 })
                 .catch(function (error) {
@@ -290,6 +305,13 @@ export default {
                                     console.log(response.data);
                                     e.imagen_ejercicio =
                                         response.data[0].imagen_ejercicio;
+                                    this.imgEjer[e.id] = [
+                                        response.data[0].nombre_ejercicio,
+                                        response.data[0].imagen_ejercicio,
+                                        1,
+                                        1,
+                                        0,
+                                    ];
                                 })
                                 .catch(function (error) {
                                     console.error(error);
@@ -302,46 +324,18 @@ export default {
             .catch(function (error) {
                 console.error(error);
             });
-
-        // this.$axios.get("/sanctum/csrf-cookie").then((response) => {
-        //     this.$axios
-        //         .get("/api/hasTarifa/" + this.userid)
-        //         .then((response) => {
-        //             this.miRutina = response.data;
-        //             console.log(this.miRutina);
-        //             this.miRutina.forEach((e) => {
-        //                 console.log(e.ejercicio);
-        //                 this.$axios
-        //                     .get("/sanctum/csrf-cookie")
-        //                     .then((response) => {
-        //                         this.$axios
-        //                             .get("/api/getImg/" + e.ejercicio)
-        //                             .then((response) => {
-        //                                 console.log(response.data);
-        //                                 e.imagen_ejercicio =
-        //                                     response.data[0].imagen_ejercicio;
-        //                             })
-        //                             .catch(function (error) {
-        //                                 console.error(error);
-        //                             });
-        //                     });
-        //             });
-        //             console.log("hola");
-        //             console.log(this.miRutina);
-        //         })
-        //         .catch(function (error) {
-        //             console.error(error);
-        //         });
-        // });
     },
     methods: {
-        deleteRutina(id) {
+        deleteRutinaX(id){
+            delete this.imgEjer[id];
+        },
+        deleteRutina(nombre) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
-                    .delete("/api/deleteRutina/" + id)
+                    .delete("/api/deleteRutina/" + nombre)
                     .then((response) => {
                         const index = this.rutinaUsuario.findIndex(
-                            (rutina) => rutina.id === id
+                            (rutina) => rutina.nombre_rutina === nombre
                         );
                         this.rutinaUsuario.splice(index, 1);
                     })
@@ -351,6 +345,7 @@ export default {
             });
         },
         busquedaImg(event) {
+            console.log("busquedaImg");
             console.log(event);
             console.log(event.target.checked);
             console.log(event.target.value);
@@ -359,6 +354,11 @@ export default {
                     this.$axios
                         .get("/api/busquedaImgRutina/" + event.target.value)
                         .then((response) => {
+                            console.log(
+                                event.target.value,
+                                "dskjbfasjfdbasjfndjl"
+                            );
+                            console.log("holasadasdsadsadasdsadsadsadsadsads");
                             console.log(response.data[0].nombre_ejercicio);
                             //esta en una lista que se llama imgEjer este info
                             this.imgEjer[event.target.value] = [
@@ -401,7 +401,7 @@ export default {
             }
         },
         handleSubmit() {
-            //Post datos Rutina
+            this.deleteRutina(this.nombreRutinaAnterior);
             for (const [id, e] of Object.entries(this.imgEjer)) {
                 const formData = new FormData();
                 formData.append("nombre_rutina", this.nombreRutina);
@@ -423,15 +423,6 @@ export default {
                         });
                 });
             }
-
-            const data = {
-                diaSeleccionado: this.selectedDay,
-                nombreRutina: this.nombreRutina,
-                arrayRutina: this.checkEjer,
-            };
-
-            const dataString = JSON.stringify(data);
-            localStorage.setItem("myData", dataString);
         },
         muculosMuestra() {
             console.log(this.selected);

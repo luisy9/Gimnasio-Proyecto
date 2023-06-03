@@ -51,7 +51,7 @@
                     <div
                         class=""
                         v-for="(ejerci, index) in ejercicios"
-                        :key="index"
+                        :key="ejerci.id"
                     >
                         <div class="image-container">
                             <div
@@ -74,6 +74,7 @@
                                             name="test"
                                             :value="`${ejerci.id}`"
                                             @change="busquedaImg"
+                                            :id="`${ejerci.id}`"
                                         />
                                         <!-- <input type="number" :value="" -->
                                     </p>
@@ -105,7 +106,20 @@
                             <h5 v-for="nombre in this.nombreEjer">
                                 {{ nombre.nombre_ejercicio }}
                             </h5>
-                            <h5>{{ objetoImagen[0] }}</h5>
+                            <h5>
+                                {{ objetoImagen[0] }}
+                                <a
+                                    class="px-5"
+                                    style="cursor: pointer"
+                                    @click="deleteRutina(id)"
+                                >
+                                    <img
+                                        class="logo-x"
+                                        src="/img/logos/x.svg"
+                                        style="height: 19px; width: 19px"
+                                    />
+                                </a>
+                            </h5>
                             <div
                                 class="imagen-seleccionada"
                                 :style="{
@@ -200,6 +214,9 @@ export default {
         });
     },
     methods: {
+        deleteRutina(id){
+            delete this.imgEjer[id];
+        },
         busquedaImg(event) {
             console.log(event);
             console.log(event.target.checked);
@@ -216,7 +233,7 @@ export default {
                                 response.data[0].imagen_ejercicio,
                                 1,
                                 1,
-                                0
+                                0,
                             ];
                             console.log(this.imgEjer);
                         })
