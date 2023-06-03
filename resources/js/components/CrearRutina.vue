@@ -53,6 +53,7 @@
                         v-for="(ejerci, index) in ejercicios"
                         :key="ejerci.id"
                     >
+                        <h3 class="pt-4">{{ ejerci.nombre_ejercicio }}</h3>
                         <div class="image-container">
                             <div
                                 class="image"
@@ -67,7 +68,7 @@
                                 <p>{{ ejerci.descripcion_ejercicio }}</p>
                                 <div class="">
                                     <p>
-                                        {{ ejerci.nombre_ejercicio }}:
+                                        Añadir a Rutina:
                                         <input
                                             class="mt-1"
                                             type="checkbox"
@@ -109,7 +110,7 @@
                             <h5>
                                 {{ objetoImagen[0] }}
                                 <a
-                                    class="px-5"
+                                    class="px-2"
                                     style="cursor: pointer"
                                     @click="deleteRutina(id)"
                                 >
@@ -120,44 +121,61 @@
                                     />
                                 </a>
                             </h5>
-                            <div
-                                class="imagen-seleccionada"
-                                :style="{
-                                    backgroundImage:
-                                        'url(/img/' + objetoImagen[1] + ')',
-                                }"
-                            ></div>
-                            Series:
-                            <input
-                                type="number"
-                                class="mb-2"
-                                :value="objetoImagen[2]"
-                                @input="
-                                    actualizarSeries(id, $event.target.value)
-                                "
-                                style="width: 5rem"
-                            /><br />
-                            Descanso entre Series:
-                            <input
-                                class="mb-2"
-                                type="text"
-                                :value="objetoImagen[4]"
-                                @input="
-                                    actualizarDescanso(id, $event.target.value)
-                                "
-                                style="width: 8rem"
-                            />
-                            <br />
-                            Repeticiones:
-                            <input
-                                class="mt-2"
-                                type="number"
-                                :value="objetoImagen[3]"
-                                @input="
-                                    actualizarRepes(id, $event.target.value)
-                                "
-                                style="width: 5rem"
-                            />
+                            <div class="container">
+                                <div class="contenedor-flex">
+                                    <div
+                                        class="imagen-seleccionada"
+                                        style="height: 15rem; width: 25rem;"
+                                        :style="{
+                                            backgroundImage:
+                                                'url(/img/' +
+                                                objetoImagen[1] +
+                                                ')',}"
+                                    ></div>
+                                    <div class="">
+                                        Series:
+                                        <input
+                                            type="number"
+                                            class="mb-3"
+                                            :value="objetoImagen[2]"
+                                            @input="
+                                                actualizarSeries(
+                                                    id,
+                                                    $event.target.value
+                                                )
+                                            "
+                                            style="width: 5rem"
+                                        /><br />
+                                        Descanso entre Series:
+                                        <input
+                                            class="mb-3"
+                                            type="text"
+                                            :value="objetoImagen[4]"
+                                            @input="
+                                                actualizarDescanso(
+                                                    id,
+                                                    $event.target.value
+                                                )
+                                            "
+                                            style="width: 8rem"
+                                        />
+                                        <br />
+                                        Repeticiones:
+                                        <input
+                                            class=""
+                                            type="number"
+                                            :value="objetoImagen[3]"
+                                            @input="
+                                                actualizarRepes(
+                                                    id,
+                                                    $event.target.value
+                                                )
+                                            "
+                                            style="width: 5rem"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <button class="button-primary m-auto" @click="handleSubmit">
@@ -214,7 +232,7 @@ export default {
         });
     },
     methods: {
-        deleteRutina(id){
+        deleteRutina(id) {
             delete this.imgEjer[id];
         },
         busquedaImg(event) {
@@ -318,11 +336,14 @@ export default {
 };
 </script>
 <style>
+.contenedor-flex{
+    display: flex;
+}
 .image-container {
     position: relative;
     display: inline-block;
     width: 100%;
-    height: 25rem;
+    height: 30rem;
     margin: 0.225rem;
 }
 
@@ -338,10 +359,10 @@ export default {
 }
 
 .imagen-seleccionada {
-    width: 12rem;
-    height: 13rem;
+    /* width: 20rem;
+    height: 20rem;
     background-size: cover;
-    background-position: center;
+    background-position: center; */
 }
 
 .image-description {
@@ -370,6 +391,11 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.col-xl-3 {
+    flex: 0 0 auto;
+    width: 28%;
 }
 
 .imagen-container:hover .overlay {
