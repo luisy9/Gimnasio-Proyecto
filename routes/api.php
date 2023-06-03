@@ -74,7 +74,7 @@ Route::get('showEjercicioUpdate/{id}', [AdminController::class, 'showEjericioUpd
 Route::post('updateEjercicio/{idejercicio}', [AdminController::class, 'updateEjercicio']);
 Route::post('createEjercicio', [AdminController::class, 'createEjercicio']);
 Route::post('updateRutina/{idrutina}', [AdminController::class, 'updateRutina']);
-Route::delete('deleteRutina/{idrutina}', [AdminController::class, 'deleteRutina']);
+Route::delete('deleteRutina/{nombre}', [AdminController::class, 'deleteRutina']);
 Route::get('clases', [ClasesController::class, 'clases']);
 Route::get('claseSeleccionada/{idclase}', [ClasesController::class, 'clasesSelect']);
 Route::post('unirteClase/{iduser}/{idclase}', [ClasesController::class, 'unirseClase']);

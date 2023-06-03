@@ -270,9 +270,9 @@ class AdminController extends Controller
         return response()->json(['success' => 'Rutina update successfully']);
     }
 
-    public function deleteRutina($idrutina)
+    public function deleteRutina($nombre)
     {
-        $rutina = rutina_users::find($idrutina);
+        $rutina = rutina_users::where('nombre_rutina', $nombre);
         $rutina->delete();
         return response()->json(['success' => 'Rutina deleted successfully']);
     }

@@ -161,53 +161,6 @@
                                 style="width: 5rem"
                             />
                         </div>
-                        <!-- <div
-                            class="imagen-container"
-                            v-for="(objetoImagen, id) in this.imgEjer"
-                        >
-                            <h5 v-for="nombre in this.nombreEjer">
-                                {{ nombre.nombre_ejercicio }}
-                            </h5>
-                            <h5>{{ objetoImagen[0] }}</h5>
-                            <div
-                                class="imagen-seleccionada"
-                                :style="{
-                                    backgroundImage:
-                                        'url(/img/' + objetoImagen[1] + ')',
-                                }"
-                            ></div>
-                            Series:
-                            <input
-                                type="number"
-                                class="mb-2"
-                                :value="objetoImagen[2]"
-                                @input="
-                                    actualizarSeries(id, $event.target.value)
-                                "
-                                style="width: 5rem"
-                            /><br />
-                            Descanso entre Series:
-                            <input
-                                class="mb-2"
-                                type="text"
-                                :value="objetoImagen[4]"
-                                @input="
-                                    actualizarDescanso(id, $event.target.value)
-                                "
-                                style="width: 8rem"
-                            />
-                            <br />
-                            Repeticiones:
-                            <input
-                                class="mt-2"
-                                type="number"
-                                :value="objetoImagen[3]"
-                                @input="
-                                    actualizarRepes(id, $event.target.value)
-                                "
-                                style="width: 5rem"
-                            />
-                        </div> -->
                     </div>
                     <button
                         class="button-primary m-auto mt-4"
