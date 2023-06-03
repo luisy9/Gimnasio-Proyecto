@@ -45,7 +45,6 @@ class EjerciciosController extends Controller
 
    public function deleteRutinaAnterior($nombre){
       $deleteRutina = rutina_users::where('nombre_rutina', $nombre)->delete();
-      // $deleteRutina->delete();
    }
 
 }
