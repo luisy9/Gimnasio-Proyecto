@@ -91,8 +91,8 @@ Route::post('createRoles', [AdminController::class, 'createRoles']);
 Route::post('updateRoles/{idrole}', [AdminController::class, 'updateRoles']);
 Route::get('busquedaImgRutina/{data}', [EntrenamientoController::class, 'busquedaImg']);
 Route::get('getImg/{nombre_ejercicio}', [EjerciciosController::class, 'getImg']);
-Route::get('rutinaUser/{nombre_rutina}',[EjerciciosController::class, 'showRutina']);
-Route::get('hasRutinaUser/{idUser}/{nombreRutina}',[EjerciciosController::class, 'RutinaPrintUpdate']);
+Route::get('rutinaUser/{id_rutina}',[EjerciciosController::class, 'showRutina']);
+Route::get('hasRutinaUser/{idUser}/{id_rutina}',[EjerciciosController::class, 'RutinaPrintUpdate']);
 Route::get('getImgEjercicio/{ejercicio}',[EjerciciosController::class, 'imagenEjercicio']);
-Route::delete('deleteRutinaAnterior/{nombre}',[EjerciciosController::class, 'deleteRutinaAnterior']);
+Route::delete('deleteRutinaAnterior/{id_rutina}',[EjerciciosController::class, 'deleteRutinaAnterior']);
 

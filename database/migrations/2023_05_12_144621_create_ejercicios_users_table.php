@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('rutina_users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_rutina');
             $table->string('nombre_rutina');
             $table->string('dia_semana');
             $table->string('ejercicio');

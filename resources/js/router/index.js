@@ -187,7 +187,7 @@ export const routes = [
     },
     {
         name: "updateRutina",
-        path: "/updateRutina/:nombre_rutina",
+        path: "/updateRutina/:id_rutina",
         component: updateRutina,
     },
     {

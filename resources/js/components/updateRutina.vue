@@ -188,8 +188,9 @@ export default {
                 "Domingo",
             ],
             selectedDay: null,
+            nombreRutina: "",
             userid: window.Laravel.user.id,
-            nombreRutina: this.$route.params.nombre_rutina,
+            idRutina: this.$route.params.id_rutina,
             rutinaUsuario: [],
             miRutina: [],
             diaSemana: "",
@@ -205,11 +206,12 @@ export default {
             strError: "",
             diaSemana: "",
             lengthRutina: [],
-            nombreRutinaAnterior: "",
+            idRutinaAnterior: "",
         };
     },
     mounted() {
-        this.nombreRutinaAnterior = this.nombreRutina;
+        this.idRutinaAnterior = this.idRutina;
+        console.log(this.idRutinaAnterior);
         console.log(this.nombreRutina);
         console.log(this.userid);
         console.log("day: " + this.activeDay);
@@ -227,9 +229,10 @@ export default {
 
         this.$axios.get("/sanctum/csrf-cookie").then((response) => {
             this.$axios
-                .get("/api/rutinaUser/" + this.nombreRutina)
+                .get("/api/rutinaUser/" + this.idRutina)
                 .then((response) => {
                     console.log(response.data);
+                    this.nombreRutina = response.data[0].nombre_rutina;
                     this.diaSemana = response.data[0].dia_semana;
                     this.selectedDay = response.data[0].dia_semana;
                     this.lengthRutina = response.data;
@@ -246,7 +249,7 @@ export default {
                         "/api/hasRutinaUser/" +
                             this.userid +
                             "/" +
-                            this.nombreRutina
+                            this.idRutina
                     )
                     .then((response) => {
                         this.rutinaUsuario = response.data;
@@ -282,13 +285,13 @@ export default {
         deleteRutinaX(id){
             delete this.imgEjer[id];
         },
-        deleteRutinaAnterior(nombre) {
+        deleteRutinaAnterior(id_rutina) {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
-                    .delete("/api/deleteRutinaAnterior/" + nombre)
+                    .delete("/api/deleteRutinaAnterior/" + id_rutina)
                     .then((response) => {
                         const index = this.rutinaUsuario.findIndex(
-                            (rutina) => rutina.nombre_rutina === nombre
+                            (rutina) => rutina.id_rutina === id_rutina
                         );
                         this.rutinaUsuario.splice(index, 1);
                     })
@@ -354,7 +357,7 @@ export default {
             }
         },
         handleSubmit() {
-            this.deleteRutinaAnterior(this.nombreRutinaAnterior);
+            this.deleteRutinaAnterior(this.idRutinaAnterior);
             for (const [id, e] of Object.entries(this.imgEjer)) {
                 const formData = new FormData();
                 formData.append("nombre_rutina", this.nombreRutina);

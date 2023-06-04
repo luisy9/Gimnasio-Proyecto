@@ -46,6 +46,8 @@ class EntrenamientoController extends Controller
     {
         try {
             $rutina = new rutina_users();
+            $numFilas = rutina_users::count();
+            $rutina->id_rutina = $numFilas + 1;
             $rutina->nombre_rutina = $req->nombre_rutina;
             $rutina->dia_semana = $req->dia_semana;
             $rutina->ejercicio = $req->ejercicio;

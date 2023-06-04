@@ -26,13 +26,13 @@ class EjerciciosController extends Controller
       return $imgEjercicio;
    }
 
-   public function showRutina($nombre_rutina){
-      $rutina_user = rutina_users::where('nombre_rutina', $nombre_rutina)->get();
+   public function showRutina($id_rutina){
+      $rutina_user = rutina_users::where('id_rutina', $id_rutina)->get();
       return $rutina_user;
    }
 
-   public function RutinaPrintUpdate($idUser,$nombre_rutina){
-      $ejercicio_user = rutina_users::where('nombre_rutina', $nombre_rutina)
+   public function RutinaPrintUpdate($idUser,$id_rutina){
+      $ejercicio_user = rutina_users::where('id_rutina', $id_rutina)
       ->where('user_id', $idUser)->get();
 
       return $ejercicio_user;
@@ -43,8 +43,8 @@ class EjerciciosController extends Controller
       return $imagen;
    }
 
-   public function deleteRutinaAnterior($nombre){
-      $deleteRutina = rutina_users::where('nombre_rutina', $nombre)->delete();
+   public function deleteRutinaAnterior($id_rutina){
+      $deleteRutina = rutina_users::where('id_rutina', $id_rutina)->delete();
    }
 
 }

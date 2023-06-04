@@ -115,7 +115,7 @@
                                                         style="cursor: pointer"
                                                         @click="
                                                             editarRutina(
-                                                                rutinas.nombre_rutina
+                                                                rutinas.id_rutina
                                                             )
                                                         "
                                                     >
