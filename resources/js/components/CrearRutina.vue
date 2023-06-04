@@ -125,12 +125,13 @@
                                 <div class="contenedor-flex">
                                     <div
                                         class="imagen-seleccionada"
-                                        style="height: 15rem; width: 25rem;"
+                                        style="height: 15rem; width: 25rem"
                                         :style="{
                                             backgroundImage:
                                                 'url(/img/' +
                                                 objetoImagen[1] +
-                                                ')',}"
+                                                ')',
+                                        }"
                                     ></div>
                                     <div class="">
                                         Series:
@@ -214,6 +215,7 @@ export default {
             nombreEjer: [],
             strSuccess: "",
             strError: "",
+            numRutinaAñadir: null,
         };
     },
     mounted() {
@@ -230,6 +232,17 @@ export default {
                     console.log(error);
                 });
         });
+        this.$axios.get("/sanctum/csrf-cookie").then((response) => {
+                this.$axios
+                    .get("/api/numRutina")
+                    .then((response) => {
+                        console.log(response.data);
+                        this.numRutinaAñadir = response.data + 1;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            });
     },
     methods: {
         deleteRutina(id) {
@@ -289,6 +302,7 @@ export default {
             //Post datos Rutina
             for (const [id, e] of Object.entries(this.imgEjer)) {
                 const formData = new FormData();
+                formData.append("id_rutina", this.numRutinaAñadir);
                 formData.append("nombre_rutina", this.nombreRutina);
                 formData.append("dia_semana", this.selectedDay);
                 formData.append("ejercicio", e[0]);
@@ -336,7 +350,7 @@ export default {
 };
 </script>
 <style>
-.contenedor-flex{
+.contenedor-flex {
     display: flex;
 }
 .image-container {

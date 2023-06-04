@@ -46,8 +46,7 @@ class EntrenamientoController extends Controller
     {
         try {
             $rutina = new rutina_users();
-            $numFilas = rutina_users::count();
-            $rutina->id_rutina = $numFilas + 1;
+            $rutina->id_rutina = $req->id_rutina;
             $rutina->nombre_rutina = $req->nombre_rutina;
             $rutina->dia_semana = $req->dia_semana;
             $rutina->ejercicio = $req->ejercicio;
@@ -57,7 +56,7 @@ class EntrenamientoController extends Controller
             $rutina->user_id = $userid;
             $rutina->save();
 
-            $rutina->save();
+            return $rutina;
 
             $success = true;
             $message = "Rutina añadida correctamente";
@@ -94,5 +93,10 @@ class EntrenamientoController extends Controller
     public function busquedaImg($dato){
         $img = ejercicio::where('id', $dato)->get();
         return $img;
+    }
+
+    public function numRutinas(){
+        $numFilas = rutina_users::count();
+        return $numFilas;
     }
 }

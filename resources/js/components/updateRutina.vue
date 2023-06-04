@@ -360,6 +360,7 @@ export default {
             this.deleteRutinaAnterior(this.idRutinaAnterior);
             for (const [id, e] of Object.entries(this.imgEjer)) {
                 const formData = new FormData();
+                formData.append("id_rutina", this.idRutina);
                 formData.append("nombre_rutina", this.nombreRutina);
                 formData.append("dia_semana", this.selectedDay);
                 formData.append("ejercicio", e[0]);
