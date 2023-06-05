@@ -82,10 +82,10 @@
                                                     Descripcion Ejercicio
                                                 </th>
                                                 <th class="px-4 text-center">
-                                                    Editar
+                                                    Modificar Rutina
                                                 </th>
                                                 <th class="text-center">
-                                                    Eliminar
+                                                    Eliminar Ejercicio
                                                 </th>
                                             </tr>
                                         </thead>
