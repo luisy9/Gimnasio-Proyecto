@@ -23,12 +23,48 @@
                 Ya eres de los nuestros!<br />
                 Quieres reservar tu primera clase?
             </p>
-            <a href="/crearRutina" v-if="this.isPro">
-                <button class="button-secondary">Crear Rutina</button>
+            <a href="/Entrenamiento" v-if="this.isPro">
+                <button class="button-secondary">Crea tu Rutina</button>
             </a>
             <a href="/clasesDirigidas">
                 <button class="button-secondary">Clases Dirigidas</button>
             </a>
+        </div>
+    </div>
+    <div class="seccion mx-0 mb-0" v-if="isPro">
+        <div class="text-center text-titulo">
+            <h1>Crea tu Rutina</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12 imagen-rutina">
+                <div class="banner-text">
+                    <section>
+                        <h2 class=""><b>Eres miembro Pro enhorabuena!</b></h2>
+                            <p class="pt-3">Siendo miemnbro Pro podras crear tus propias rutinas y poder verlas cuando quieras</p>
+                            <router-link to="/Entrenamiento">
+                                <button class="button-secondary my-2">Mis Rutinas</button>
+                            </router-link>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-else class="seccion mx-0 mb-0">
+        <div class="text-center text-titulo">
+            <h1>Miembro Pro</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12 imagen-rutina">
+                <div class="banner-text">
+                    <section>
+                        <h2 class=""><b>Hazte miembro Pro!</b></h2>
+                            <p class="pt-3">Si te haces miembro Pro, podras tener acceso a todas las rutinas que quieras totalmente personalizadas solo para ti!!</p>
+                            <router-link to="/Tarifa">
+                                <button class="button-primary my-2">Hacerme Pro</button>
+                            </router-link>
+                    </section>
+                </div>
+            </div>
         </div>
     </div>
     <!-- SEC1 TARIFAS-->
@@ -240,43 +276,6 @@
             </div> -->
         </main>
     </div>
-    <div class="seccion mx-0 mb-0" v-if="isPro">
-        <div class="text-center text-titulo">
-            <h1>Crea tu Rutina</h1>
-        </div>
-        <div class="row">
-            <div class="col-md-12 imagen-rutina">
-                <div class="banner-text">
-                    <section>
-                        <h2 class=""><b>Eres miembro Pro enhorabuena!</b></h2>
-                            <p class="pt-3">Siendo miemnbro Pro podras crear tus propias rutinas y poder verlas cuando quieras</p>
-                            <router-link to="/crearRutina">
-                                <button class="button-secondary my-2">Crear Rutina</button>
-                            </router-link>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div v-else class="seccion mx-0 mb-0">
-        <div class="text-center text-titulo">
-            <h1>Miembro Pro</h1>
-        </div>
-        <div class="row">
-            <div class="col-md-12 imagen-rutina">
-                <div class="banner-text">
-                    <section>
-                        <h2 class=""><b>Hazte miembro Pro!</b></h2>
-                            <p class="pt-3">Si te haces miembro Pro, podras tener acceso a todas las rutinas que quieras totalmente personalizadas solo para ti!!</p>
-                            <router-link to="/Tarifa">
-                                <button class="button-primary my-2">Hacerme Pro</button>
-                            </router-link>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- SEC2  ELEGIRNOS-->
     <div class="seccion mx-0 mb-0">
         <div class="text-center text-titulo">

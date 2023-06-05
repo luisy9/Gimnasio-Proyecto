@@ -207,6 +207,7 @@ export default {
             diaSemana: "",
             lengthRutina: [],
             idRutinaAnterior: "",
+            complementos: [],
         };
     },
     mounted() {
@@ -253,20 +254,24 @@ export default {
                     )
                     .then((response) => {
                         this.rutinaUsuario = response.data;
-                        console.log(response.data, "User Rutina");
+                        console.log(this.rutinaUsuario, "hola");
                         this.rutinaUsuario.forEach((e) => {
                             this.$axios
                                 .get(`/api/getImgEjercicio/${e.ejercicio}`)
                                 .then((response) => {
-                                    console.log(response.data);
+                                    console.log(response.data[0]);
                                     e.imagen_ejercicio =
                                         response.data[0].imagen_ejercicio;
                                     this.imgEjer[e.id] = [
                                         response.data[0].nombre_ejercicio,
                                         response.data[0].imagen_ejercicio,
+                                        // this.rutinaUsuario[0].series,
                                         1,
                                         1,
-                                        0,
+                                        0
+                                        // this.complementos[0].series,
+                                        // this.complementos[0].repeticiones,
+                                        // this.complementos[0].descanso,
                                     ];
                                 })
                                 .catch(function (error) {
@@ -282,7 +287,7 @@ export default {
             });
     },
     methods: {
-        deleteRutinaX(id){
+        deleteRutinaX(id) {
             delete this.imgEjer[id];
         },
         deleteRutinaAnterior(id_rutina) {
@@ -310,11 +315,6 @@ export default {
                     this.$axios
                         .get("/api/busquedaImgRutina/" + event.target.value)
                         .then((response) => {
-                            console.log(
-                                event.target.value,
-                                "dskjbfasjfdbasjfndjl"
-                            );
-                            console.log("holasadasdsadsadasdsadsadsadsadsads");
                             console.log(response.data[0].nombre_ejercicio);
                             //esta en una lista que se llama imgEjer este info
                             this.imgEjer[event.target.value] = [

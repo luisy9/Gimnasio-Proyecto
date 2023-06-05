@@ -34,7 +34,6 @@ class EjerciciosController extends Controller
    public function RutinaPrintUpdate($idUser,$id_rutina){
       $ejercicio_user = rutina_users::where('id_rutina', $id_rutina)
       ->where('user_id', $idUser)->get();
-
       return $ejercicio_user;
    }
 

@@ -32,7 +32,7 @@
         </div>
     </div>
     <h3 class="text-center pt-5" v-if="this.miRutina.length > 0">
-        <b>Tu Rutina</b>
+        <b>Mis Rutinas</b>
     </h3>
     <div class="container-fluid" v-if="this.miRutina.length > 0">
         <div class="row">
@@ -101,6 +101,7 @@
                                                 <td class="">
                                                     {{ rutinas.nombre_rutina }}
                                                 </td>
+
                                                 <td class="text-center">
                                                     {{ rutinas.ejercicio }}
                                                 </td>
@@ -206,6 +207,9 @@
                                         <thead class="bg-dark text-light">
                                             <tr class="">
                                                 <th class="">Nombre Rutina</th>
+                                                <th class="px-5">
+                                                    Numero Ejercicio
+                                                </th>
                                                 <th class="px-5">
                                                     Nombre Ejercicio
                                                 </th>

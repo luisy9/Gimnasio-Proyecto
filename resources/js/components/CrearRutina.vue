@@ -104,6 +104,7 @@
                             class="imagen-container"
                             v-for="(objetoImagen, id) in this.imgEjer"
                         >
+
                             <h5 v-for="nombre in this.nombreEjer">
                                 {{ nombre.nombre_ejercicio }}
                             </h5>

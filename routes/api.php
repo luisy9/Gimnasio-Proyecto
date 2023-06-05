@@ -96,4 +96,3 @@ Route::get('hasRutinaUser/{idUser}/{id_rutina}',[EjerciciosController::class, 'R
 Route::get('getImgEjercicio/{ejercicio}',[EjerciciosController::class, 'imagenEjercicio']);
 Route::delete('deleteRutinaAnterior/{id_rutina}',[EjerciciosController::class, 'deleteRutinaAnterior']);
 Route::get('numRutina',[EntrenamientoController::class, 'numRutinas']);
-
