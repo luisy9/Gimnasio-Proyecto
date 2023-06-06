@@ -110,6 +110,7 @@
                             </h5>
                             <h5>
                                 {{ objetoImagen[0] }}
+
                                 <a
                                     class="px-5"
                                     style="cursor: pointer"
@@ -266,9 +267,12 @@ export default {
                                         response.data[0].nombre_ejercicio,
                                         response.data[0].imagen_ejercicio,
                                         // this.rutinaUsuario[0].series,
-                                        1,
-                                        1,
-                                        0
+                                        e.series,
+                                        e.repeticiones,
+                                        e.descanso
+                                        // 1,
+                                        // 1,
+                                        // 0
                                         // this.complementos[0].series,
                                         // this.complementos[0].repeticiones,
                                         // this.complementos[0].descanso,
@@ -287,6 +291,10 @@ export default {
             });
     },
     methods: {
+        MoverEjercicio(id,tipo){
+
+        },
+
         deleteRutinaX(id) {
             delete this.imgEjer[id];
         },
