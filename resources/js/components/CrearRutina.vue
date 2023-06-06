@@ -316,7 +316,8 @@ export default {
                         .post("/api/crearRutina/" + this.userid, formData)
                         .then((response) => {
                             console.log(response.data);
-                            window.location.href = `/tuRutina/${this.userid}`;
+                            // window.location.href = `/tuRutina/${this.userid}`;
+                            window.location.href = `/entrenamiento`;
                         })
                         .catch(function (error) {
                             console.log(error);

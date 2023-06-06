@@ -110,7 +110,6 @@
                             </h5>
                             <h5>
                                 {{ objetoImagen[0] }}
-
                                 <a
                                     class="px-5"
                                     style="cursor: pointer"
@@ -381,7 +380,8 @@ export default {
                         .post("/api/crearRutina/" + this.userid, formData)
                         .then((response) => {
                             console.log(response.data);
-                            window.location.href = `/tuRutina/${this.userid}`;
+                            window.location.href = `/entrenamiento`;
+                            // window.location.href = `/tuRutina/${this.userid}`;
                         })
                         .catch(function (error) {
                             console.log(error);

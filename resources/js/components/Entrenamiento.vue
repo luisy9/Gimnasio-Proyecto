@@ -1,7 +1,18 @@
 <template>
     <div class="banner-entrenamiento">
-        <h1 class="text-light text-center">Mis Rutinas</h1>
+        <div class="row align-items-center">
+            <div class="col text-center">
+                <h1 class="text-light">Mis Rutinas</h1>
+                <button class="mt-5 button-secondary" @click="MisRutinas">
+                    Ver
+                </button>
+            </div>
+        </div>
     </div>
+    <!-- <div class="banner-entrenamiento">
+        <h1 class="text-light text-center">Mis Rutinas</h1>
+        <button class="button-secondary">Ver</button>
+    </div> -->
     <div class="px-5" v-if="isPro">
         <div class="text-center my-5">
             <h3 class="mb-3"><b>Crea tu Rutina</b></h3>
@@ -32,7 +43,7 @@
         </div>
     </div>
     <h3 class="text-center pt-5" v-if="this.miRutina.length > 0">
-        <b>Mis Rutinas</b>
+        <b ref="section">Mis Rutinas</b>
     </h3>
     <div class="container-fluid" v-if="this.miRutina.length > 0">
         <div class="row">
@@ -409,6 +420,10 @@ export default {
         }
     },
     methods: {
+        MisRutinas() {
+            const sectionElement = this.$refs.section;
+            sectionElement.scrollIntoView({ behavior: "smooth" });
+        },
         editarRutina(nombre_rutina) {
             window.location.href = "/updateRutina/" + nombre_rutina;
         },
