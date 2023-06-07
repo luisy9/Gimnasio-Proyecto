@@ -43,8 +43,9 @@
         </div>
     </div>
     <h3 class="text-center pt-5" v-if="this.miRutina.length > 0">
-        <b ref="section">Mis Rutinas</b>
+        <b>Mis Rutinas</b>
     </h3>
+    <div ref="section"></div>
     <div class="container-fluid" v-if="this.miRutina.length > 0">
         <div class="row">
             <main class="ms-sm-auto px-md-4">
