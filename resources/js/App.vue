@@ -50,7 +50,7 @@
             <div class="" v-if="user_role == 2">
                 <a>Crear Users</a>
             </div>
-            <ul class="navbar-nav mx-auto">
+            <ul class="navbar-nav mx-auto" >
                 <li class="nav-item">
                     <router-link to="/entrenamiento" class="nav-link"
                         >Mis Rutinas</router-link
@@ -300,6 +300,16 @@ export default {
     left: 88%;
     transform: translate(-50%, -50%);
 }
+
+.nav-link{
+   opacity: 1;
+}
+
+.nav-link:hover{
+    color: rgb(0, 0, 0);
+    opacity: 40;
+}
+
 li a.nav-link {
     font-size: 18px;
 }
