@@ -302,11 +302,12 @@ export default {
 }
 
 .nav-link{
-   opacity: 1;
+   opacity: 100;
+   color: black;
 }
 
 .nav-link:hover{
-    color: rgb(0, 0, 0);
+    color: rgb(118, 118, 118);
     opacity: 40;
 }
 
